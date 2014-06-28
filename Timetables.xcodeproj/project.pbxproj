@@ -21,6 +21,12 @@
 		5571DFFA195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
 		5571E002195F66980089E7E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5571E000195F66980089E7E7 /* InfoPlist.strings */; };
 		5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E003195F66980089E7E7 /* TimetablesTests.m */; };
+		5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
+		5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
+		5571E01D195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
+		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
+		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,12 @@
 		5571DFFF195F66980089E7E7 /* TimetablesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimetablesTests-Info.plist"; sourceTree = "<group>"; };
 		5571E001195F66980089E7E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5571E003195F66980089E7E7 /* TimetablesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimetablesTests.m; sourceTree = "<group>"; };
+		5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartmentViewController.h; sourceTree = "<group>"; };
+		5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepartmentViewController.m; sourceTree = "<group>"; };
+		5571E01B195F754E0089E7E7 /* TTPDepartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepartment.m; sourceTree = "<group>"; };
+		5571E01C195F754E0089E7E7 /* TTPDepartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartment.h; sourceTree = "<group>"; };
+		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
+		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,8 @@
 		5571DFDE195F66980089E7E7 /* Timetables */ = {
 			isa = PBXGroup;
 			children = (
+				5571E01A195F75180089E7E7 /* Entities */,
+				5571E00D195F6F350089E7E7 /* Controllers */,
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
 				5571DFEA195F66980089E7E7 /* Main.storyboard */,
@@ -150,6 +164,26 @@
 				5571E000195F66980089E7E7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5571E00D195F6F350089E7E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */,
+				5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5571E01A195F75180089E7E7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5571E01F195F75B20089E7E7 /* TTPParser.m */,
+				5571E020195F75B20089E7E7 /* TTPParser.h */,
+				5571E01B195F754E0089E7E7 /* TTPDepartment.m */,
+				5571E01C195F754E0089E7E7 /* TTPDepartment.h */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5571E01D195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				5571E021195F75B20089E7E7 /* TTPParser.m in Sources */,
 				5571DFE5195F66980089E7E7 /* main.m in Sources */,
 				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
 				5571DFEF195F66980089E7E7 /* TTPViewController.m in Sources */,
+				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +297,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
+				5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,10 +417,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,10 +432,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
