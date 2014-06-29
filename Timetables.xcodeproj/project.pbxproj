@@ -14,7 +14,6 @@
 		5571DFE5195F66980089E7E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE4195F66980089E7E7 /* main.m */; };
 		5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */; };
 		5571DFEC195F66980089E7E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFEA195F66980089E7E7 /* Main.storyboard */; };
-		5571DFEF195F66980089E7E7 /* TTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFEE195F66980089E7E7 /* TTPViewController.m */; };
 		5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFF0195F66980089E7E7 /* Images.xcassets */; };
 		5571DFF8195F66980089E7E7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFF7195F66980089E7E7 /* XCTest.framework */; };
 		5571DFF9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
@@ -51,8 +50,6 @@
 		5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPAppDelegate.h; sourceTree = "<group>"; };
 		5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPAppDelegate.m; sourceTree = "<group>"; };
 		5571DFEB195F66980089E7E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5571DFED195F66980089E7E7 /* TTPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPViewController.h; sourceTree = "<group>"; };
-		5571DFEE195F66980089E7E7 /* TTPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPViewController.m; sourceTree = "<group>"; };
 		5571DFF0195F66980089E7E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetablesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFF7195F66980089E7E7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -129,8 +126,6 @@
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
 				5571DFEA195F66980089E7E7 /* Main.storyboard */,
-				5571DFED195F66980089E7E7 /* TTPViewController.h */,
-				5571DFEE195F66980089E7E7 /* TTPViewController.m */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
 			);
@@ -288,7 +283,6 @@
 				5571E021195F75B20089E7E7 /* TTPParser.m in Sources */,
 				5571DFE5195F66980089E7E7 /* main.m in Sources */,
 				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
-				5571DFEF195F66980089E7E7 /* TTPViewController.m in Sources */,
 				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +495,7 @@
 				5571E009195F66980089E7E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5571E00A195F66980089E7E7 /* Build configuration list for PBXNativeTarget "TimetablesTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +504,7 @@
 				5571E00C195F66980089E7E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
