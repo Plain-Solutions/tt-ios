@@ -1,27 +1,29 @@
 //
-//  TTPDepartmentViewController.m
+//  TTPGroupViewController.m
 //  Timetables
 //
 //  Created by Vlad Selpukhin on 29/06/14.
 //  Copyright (c) 2014 Vlad Slepukhin. All rights reserved.
 //
 
-#import "TTPDepartmentViewController.h"
-#import "TTPDepartment.h"
-#import "TTPParser.h"
 #import "TTPGroupViewController.h"
-@interface TTPDepartmentViewController ()
+#import "TTPParser.h"
+
+@interface TTPGroupViewController ()
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) TTPParser *parser;
 @property (retain) NSIndexPath* lastIndexPath;
 @end
 
-@implementation TTPDepartmentViewController
+@implementation TTPGroupViewController
+@synthesize selectedDepartment = _selectedDepartment;
+@synthesize groupList = _groupList;
 
 @synthesize nextButton = _nextButton;
 @synthesize responseData = _responseData;
 @synthesize parser = _parser;
 @synthesize lastIndexPath = _lastIndexPath;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,14 +37,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Done loading");
-    
+    self.title = self.selectedDepartment.name;
+
     self.responseData = [NSMutableData data];
     
+    NSString *groupURLString = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups", self.selectedDepartment.tag];
+    NSLog(@"%@", groupURLString);
     NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"http://api.ssutt.org:8080/1/departments"]];
+                             [NSURL URLWithString:groupURLString]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
+}
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
@@ -62,14 +73,10 @@
     NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
     self.parser = [[TTPParser alloc] init];
     NSError *error;
-    self.departmentList = [self.parser parseDepartments:self.responseData error:error];
+    self.groupList = [self.parser parseGroups:self.responseData error:error];
    	[self.tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.tableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -81,21 +88,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return self.departmentList.count;
+    return self.groupList.count;
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell"];
-    
-    TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DepCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupCell"];
     }
-    cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
+    NSLog(@"%@", [self.groupList objectAtIndexedSubscript:indexPath.row]);
+    cell.textLabel.text = [self.groupList objectAtIndexedSubscript:indexPath.row];
     if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -104,6 +109,7 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+
     return cell;
 }
 
@@ -113,6 +119,7 @@
     self.nextButton.enabled = YES;
     [tableView reloadData];
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -152,21 +159,15 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"groupInitialSelect"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-
-        TTPDepartment *dep = [self.departmentList objectAtIndexedSubscript:self.lastIndexPath.row];
-        TTPGroupViewController *controller = [segue destinationViewController];
-        controller.selectedDepartment = dep;
-        
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

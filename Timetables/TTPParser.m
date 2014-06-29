@@ -39,15 +39,15 @@
     NSDictionary *asDict = [NSJSONSerialization JSONObjectWithData:raw options:0 error:&error];
     return [asDict objectForKey:@"msg"];
 }
-
-- (NSMutableArray *)parseGroups:(NSData *)raw :(NSError *)error {
+*/
+- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error {
     NSArray *asArray = [NSJSONSerialization
             JSONObjectWithData:raw
                        options:NSJSONReadingMutableContainers
                          error:&error];
 
     return [asArray mutableCopy];
-}*/
+}
 
 /*- (NSMutableArray *)parseTimetables:(NSData *)raw :(NSError *)error {
     NSMutableArray *result = [[NSMutableArray alloc] init];

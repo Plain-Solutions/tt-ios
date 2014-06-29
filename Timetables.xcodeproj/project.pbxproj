@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
+		551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		551C934F195F90A00017145D /* TTPGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroupViewController.h; sourceTree = "<group>"; };
+		551C9350195F90A00017145D /* TTPGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroupViewController.m; sourceTree = "<group>"; };
 		5571DFD5195F66980089E7E7 /* Timetables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timetables.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFD8195F66980089E7E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5571DFDA195F66980089E7E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -166,6 +170,8 @@
 			children = (
 				5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */,
 				5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */,
+				551C934F195F90A00017145D /* TTPGroupViewController.h */,
+				551C9350195F90A00017145D /* TTPGroupViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 				5571DFE5195F66980089E7E7 /* main.m in Sources */,
 				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
 				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
+				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +301,7 @@
 				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
 				5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
 				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

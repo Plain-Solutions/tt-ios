@@ -1,5 +1,5 @@
 //
-//  TTPDepartmentViewController.h
+//  TTPGroupViewController.h
 //  Timetables
 //
 //  Created by Vlad Selpukhin on 29/06/14.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TTPDepartment.h"
-@interface TTPDepartmentViewController : UITableViewController
-@property (nonatomic, strong) NSMutableArray* departmentList;
+@interface TTPGroupViewController : UITableViewController
+@property (nonatomic, strong) NSMutableArray* groupList;
+@property (nonatomic, strong) TTPDepartment* selectedDepartment;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* nextButton;
 @end

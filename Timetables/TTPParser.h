@@ -17,7 +17,7 @@
 
 //- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw:(NSError *)error;
 //
-//- (NSMutableArray *)parseGroups:(NSData *)raw:(NSError *)error;
+- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
 //
 //- (NSMutableArray *)parseTimetables:(NSData *)raw:(NSError *)error;
 @end
