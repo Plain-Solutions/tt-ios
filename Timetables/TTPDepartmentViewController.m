@@ -12,6 +12,7 @@
 @interface TTPDepartmentViewController ()
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) TTPParser *parser;
+@property (retain) NSIndexPath* lastIndexPath;
 @end
 
 @implementation TTPDepartmentViewController
@@ -20,6 +21,7 @@
 @synthesize nextButton = _nextButton;
 @synthesize responseData = _responseData;
 @synthesize parser = _parser;
+@synthesize lastIndexPath = _lastIndexPath;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -94,11 +96,23 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DepCell"];
     }
     cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
-    
+    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.lastIndexPath = indexPath;
+    self.nextButton.enabled = YES;
+    [tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.
