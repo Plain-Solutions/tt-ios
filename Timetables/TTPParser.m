@@ -49,7 +49,7 @@
     return [asArray mutableCopy];
 }
 
-- (NSMutableArray *)parseTimetables:(NSData *)raw :(NSError *)error {
+- (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error {
     NSMutableArray *result = [[NSMutableArray alloc] init];
 	
     NSArray *asArray = [NSJSONSerialization
@@ -57,20 +57,15 @@
 						options:NSJSONReadingMutableContainers
 						error:&error];
     for (NSDictionary *lesson in asArray) {
-		TTPLesson *aLesson = [[TTPLesson alloc] init];
-		
-		aLesson.day = lesson[@"day"];
-		aLesson.sequence = lesson[@"sequence"];
-		aLesson.subjects = [[NSMutableArray alloc] init];
-		
 		for (NSDictionary *subject in lesson[@"subject"]) {
-			TTPSubject *subj = [[TTPSubject alloc] init];
-			
-			subj.name = subject[@"name"];
-			subj.activity = subject[@"activity"];
-			subj.parity = subject[@"parity"];
-			
-			subj.subgroups = [[NSMutableArray alloc] init];
+			TTPLesson *aLesson = [[TTPLesson alloc] init];
+			aLesson.day = lesson[@"day"];
+			aLesson.sequence = lesson[@"sequence"];
+			aLesson.parity = subject[@"parity"];
+			aLesson.name = subject[@"name"];
+			aLesson.activity = subject[@"activity"];
+
+			aLesson.subgroups = [[NSMutableArray alloc] init];
 			for (NSDictionary *aSubgroup in subject[@"subgroups"]) {
 				TTPSubgroup *subgroup = [[TTPSubgroup alloc] init];
 				
@@ -78,14 +73,14 @@
 				subgroup.teacher = aSubgroup[@"teacher"];
 				subgroup.location = aSubgroup[@"location"];
 				
-				[subj.subgroups addObject:subgroup];
+				[aLesson.subgroups addObject:subgroup];
 			}
 			
-			[aLesson.subjects addObject:subj];
+			[result addObject:aLesson];
 			
 		}
 		
-		[result addObject:aLesson];
+
     }
 	
     return result;

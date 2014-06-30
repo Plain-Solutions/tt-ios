@@ -9,7 +9,11 @@
 @interface TTPLesson : NSObject
 @property NSNumber *day;
 @property NSNumber *sequence;
-@property NSMutableArray *subjects;
+@property NSNumber *parity;
+
+@property NSString *name;
+@property NSString *activity;
+@property NSMutableArray *subgroups;
 
 - (NSString *)description;
 

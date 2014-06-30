@@ -8,7 +8,7 @@
 
 #import "TTPGroupViewController.h"
 #import "TTPParser.h"
-#import "TTPMainViewController.h"
+#import "TTPTimetableViewController.h"
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) TTPParser *parser;
@@ -167,7 +167,7 @@
 	if ([segue.identifier isEqualToString:@"showTimetableView"]) {
 		NSString *group = [self.groupList objectAtIndex:self.lastIndexPath.row];
 		
-		TTPMainViewController *controller = [segue destinationViewController];
+		TTPTimetableViewController *controller = [segue destinationViewController];
 		controller.selectedDepartment = self.selectedDepartment;
 		controller.selectedGroup = group;
 	}
