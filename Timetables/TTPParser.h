@@ -4,9 +4,9 @@
 //
 
 #import "TTPDepartment.h"
-//#import "TTPLesson.h"
-//#import "TTPSubject.h"
-//#import "TTPSubgroup.h"
+#import "TTPLesson.h"
+#import "TTPSubject.h"
+#import "TTPSubgroup.h"
 
 
 @interface TTPParser : NSObject
@@ -19,5 +19,5 @@
 //
 - (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
 //
-//- (NSMutableArray *)parseTimetables:(NSData *)raw:(NSError *)error;
+- (NSMutableArray *)parseTimetables:(NSData *)raw:(NSError *)error;
 @end

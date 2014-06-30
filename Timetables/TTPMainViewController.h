@@ -2,20 +2,15 @@
 //  TTPMainViewController.h
 //  Timetables
 //
-//  Created by Vladislav Slepukhin.
+//  Created by Vladislav Slepukhin on 30/06/14.
 //  Copyright (c) 2014 Vlad Slepukhin. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
 #import "TTPDepartment.h"
 
-@interface TTPMainViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *subjectLabelName;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-
+@interface TTPMainViewController : UITableViewController
 @property (nonatomic, strong) TTPDepartment* selectedDepartment;
 @property (nonatomic, strong) NSString* selectedGroup;
-
-- (IBAction)changeParity:(id)sender;
-- (IBAction)changeDay:(id)sender;
-
+@property (nonatomic, strong) NSMutableArray* timetable;
 @end
