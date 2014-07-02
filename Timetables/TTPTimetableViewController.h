@@ -11,7 +11,7 @@
 @interface TTPTimetableViewController : UIViewController
 @property (nonatomic, strong) TTPDepartment* selectedDepartment;
 @property (nonatomic, strong) NSString* selectedGroup;
-@property (nonatomic, strong) NSMutableArray* timetableData;
+@property (nonatomic, strong) NSMutableArray* dayLessons;
 
 @property (weak, nonatomic) IBOutlet UILabel *daynameLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;
