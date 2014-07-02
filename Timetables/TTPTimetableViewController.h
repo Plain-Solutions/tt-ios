@@ -15,7 +15,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *daynameLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;
+@property (weak, nonatomic) IBOutlet UIPageControl *daySelector;
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
+@property (weak, nonatomic) IBOutlet UIPageControl *dayLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchGroupsButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *savedGroupsButton;
 @end

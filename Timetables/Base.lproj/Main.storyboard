@@ -222,7 +222,6 @@
                                                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </pageControl>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                     </barButtonItem>
                                     <barButtonItem systemItem="bookmarks" id="mrR-wr-zjj"/>
@@ -242,6 +241,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dayLabel" destination="aTP-Gw-YKU" id="T9W-ye-xIR"/>
+                        <outlet property="daySelector" destination="aTP-Gw-YKU" id="qB3-Jj-DhP"/>
                         <outlet property="daynameLabel" destination="BG1-4v-oQ6" id="vCJ-fB-uQI"/>
                         <outlet property="paritySelector" destination="Yun-bI-SC7" id="vmv-HQ-NBD"/>
                         <outlet property="savedGroupsButton" destination="mrR-wr-zjj" id="PRs-Kg-8Mf"/>

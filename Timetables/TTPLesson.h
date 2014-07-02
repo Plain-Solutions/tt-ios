@@ -15,6 +15,7 @@
 @property NSString *activity;
 @property NSMutableArray *subgroups;
 
-- (NSString *)description;
++ (id)lessonWithLesson:(TTPLesson *)lesson;
+- (id)initWithLesson:(TTPLesson *)lesson;
 
 @end

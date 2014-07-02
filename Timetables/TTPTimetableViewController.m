@@ -28,6 +28,7 @@
 @synthesize timetableAccessor = _timetableAccessor;
 
 @synthesize paritySelector = _paritySelector;
+@synthesize daySelector = _daySelector;
 @synthesize timetable = _timetable;
 @synthesize savedGroupsButton = _savedGroupsButton;
 @synthesize searchGroupsButton = _searchGroupsButton;
@@ -104,7 +105,9 @@
     NSError *error;
 	self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
 	self.timetableAccessor.timetable = [self.parser parseTimetables:self.responseData error:error];
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:0] parity:[NSNumber numberWithInt:0]];
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:self.daySelector.currentPage] parity:[NSNumber numberWithInt:0]];
+	TTPLesson *dayLesson = [TTPLesson lessonWithLesson:[self.dayLessons objectAtIndex:0]];
+	self.daynameLabel.text = [self convertNumToDays:dayLesson.day];
 	[self.timetable reloadData];
 }
 
@@ -122,7 +125,6 @@
     if (cell == nil) {
         cell = [[TTPSubjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LessonCell"];
     }
-    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:0] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 	TTPLesson *lesson = [self.dayLessons objectAtIndex:indexPath.row];
 
 	cell.subjectNameLabel.text = lesson.name;
@@ -137,8 +139,21 @@
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event {
 	NSLog(@"Parity was updated");
 	[self.dayLessons removeAllObjects];
-    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:0] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 	[self.timetable reloadData];
+}
+
+- (NSString *)convertNumToDays:(NSNumber *)num {
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
+	NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+	
+	[dateComponents setWeekday: [num intValue]];
+	
+	NSDate *tempDate = [gregorian dateFromComponents:dateComponents];
+	[myFormatter setDateFormat:@"EEEE"]; // day, like "Saturday"
+	
+	return [myFormatter stringFromDate:tempDate];
 }
 /*
 #pragma mark - Navigation

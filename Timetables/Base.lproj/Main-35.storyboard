@@ -215,7 +215,6 @@
                                                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </pageControl>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                     </barButtonItem>
                                     <barButtonItem systemItem="bookmarks" id="mrR-wr-zjj"/>
