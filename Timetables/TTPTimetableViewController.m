@@ -59,7 +59,14 @@
 							action:@selector(parityUpdated:forEvent:)
 				  forControlEvents:UIControlEventValueChanged];
 	
-    
+	//gestures
+	UISwipeGestureRecognizer* leftSwipe;
+	
+	leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeL)];
+	leftSwipe.numberOfTouchesRequired = 1;
+	leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+	[self.view addGestureRecognizer:leftSwipe];
+
 	//downloading
 	NSString *timetableURLString = [NSString stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@", self.selectedDepartment.tag, [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSLog(@"%@", timetableURLString);
@@ -135,6 +142,17 @@
     return cell;
 }
 
+#pragma mark - Actions
+- (void)handleSwipeL {
+	self.daySelector.currentPage++;
+	[self.dayLessons removeAllObjects];
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+	[self.timetable reloadData];
+}
+
+- (void)handleSwipeR {
+	
+}
 
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event {
 	NSLog(@"Parity was updated");
@@ -142,6 +160,8 @@
     self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 	[self.timetable reloadData];
 }
+
+#pragma  mark - Private stuff
 
 - (NSString *)convertNumToDays:(NSNumber *)num {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];

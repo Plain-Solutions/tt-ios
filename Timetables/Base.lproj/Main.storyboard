@@ -230,10 +230,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="rZs-j8-6SV" appends="YES" id="rQk-8P-BFf"/>
-                            <outletCollection property="gestureRecognizers" destination="2Lf-ZU-iag" appends="YES" id="eUK-0C-Dmx"/>
-                        </connections>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="opr-Mw-4S7"/>
@@ -251,8 +247,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpf-Hn-ulv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="rZs-j8-6SV"/>
-                <swipeGestureRecognizer direction="right" id="2Lf-ZU-iag"/>
             </objects>
             <point key="canvasLocation" x="1978" y="-27"/>
         </scene>
