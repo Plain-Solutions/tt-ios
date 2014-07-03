@@ -7,9 +7,6 @@
 //
 
 #import "TTPTimetableViewController.h"
-#import "TTPParser.h"
-#import "TTPSubjectCell.h"
-#import "TTPTimetableAccessor.h"
 
 @interface TTPTimetableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSMutableData *responseData;

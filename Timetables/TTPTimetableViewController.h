@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewControllerDefines.h"
+#import "TTPSubjectCell.h"
 #import "TTPDepartment.h"
+#import "TTPParser.h"
+#import "TTPTimetableAccessor.h"
 
 /**
  Main app view.

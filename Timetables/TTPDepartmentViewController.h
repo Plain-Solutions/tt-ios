@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewControllerDefines.h"
+#import "TTPGroupViewController.h"
 #import "TTPDepartment.h"
+#import "TTPParser.h"
+
 
 /**
  Department view

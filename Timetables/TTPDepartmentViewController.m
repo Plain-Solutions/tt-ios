@@ -7,12 +7,6 @@
 //
 
 #import "TTPDepartmentViewController.h"
-#import "TTPDepartment.h"
-#import "TTPParser.h"
-#import "TTPGroupViewController.h"
-
-#define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
-#define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
 @interface TTPDepartmentViewController ()
 @property (nonatomic, strong) TTPParser *parser;
@@ -51,7 +45,6 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
-		NSLog(@"%d", [data length]);
         // do any UI stuff on the main UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
 			self.parser = [[TTPParser alloc] init];

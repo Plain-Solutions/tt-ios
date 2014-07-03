@@ -7,11 +7,6 @@
 //
 
 #import "TTPGroupViewController.h"
-#import "TTPParser.h"
-#import "TTPTimetableViewController.h"
-
-#define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
-#define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) TTPParser *parser;

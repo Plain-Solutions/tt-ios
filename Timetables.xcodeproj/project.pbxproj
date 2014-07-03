@@ -89,6 +89,7 @@
 		5571E01C195F754E0089E7E7 /* TTPDepartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartment.h; sourceTree = "<group>"; };
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
+		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +177,7 @@
 				5571DFE1195F66980089E7E7 /* InfoPlist.strings */,
 				5571DFE4195F66980089E7E7 /* main.m */,
 				5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */,
+				557349E019656AEE00212502 /* ViewControllerDefines.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
