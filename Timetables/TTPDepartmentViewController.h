@@ -12,7 +12,6 @@
 #import "TTPDepartment.h"
 #import "TTPParser.h"
 
-
 /**
  Department view
  This is used to select a department both in first start and search.
