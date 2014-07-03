@@ -10,8 +10,11 @@
 #import "TTPDepartment.h"
 #import "TTPParser.h"
 #import "TTPGroupViewController.h"
+
+#define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
+#define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
+
 @interface TTPDepartmentViewController ()
-@property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) TTPParser *parser;
 @property (retain) NSIndexPath* lastIndexPath;
 @end
@@ -19,7 +22,6 @@
 @implementation TTPDepartmentViewController
 
 @synthesize nextButton = _nextButton;
-@synthesize responseData = _responseData;
 @synthesize parser = _parser;
 @synthesize lastIndexPath = _lastIndexPath;
 
@@ -35,35 +37,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Done loading");
-    
-    self.responseData = [NSMutableData data];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"http://api.ssutt.org:8080/1/departments"]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
-    self.parser = [[TTPParser alloc] init];
-    NSError *error;
-    self.departmentList = [self.parser parseDepartments:self.responseData error:error];
-   	[self.tableView reloadData];
+ 
+	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
+    dispatch_async(downloadQueue, ^{
+		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
+		ShowNetworkActivityIndicator();
+        // do our long running process here
+		NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString: depURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+        NSURLResponse* response = nil;
+        NSError* error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+		NSLog(@"%d", [data length]);
+        // do any UI stuff on the main UI thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+			self.parser = [[TTPParser alloc] init];
+			self.departmentList = [self.parser parseDepartments:data error:error];
+			[self.tableView reloadData];
+			HideNetworkActivityIndicator();
+        });
+    });
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
