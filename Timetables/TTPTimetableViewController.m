@@ -46,7 +46,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+ 
 	//data models
 
 		self.responseData = [NSMutableData data];
@@ -58,7 +58,9 @@
 	[self.paritySelector addTarget:self
 							action:@selector(parityUpdated:forEvent:)
 				  forControlEvents:UIControlEventValueChanged];
-	
+
+	self.daySelector.numberOfPages = 6;
+	self.daySelector.enabled = 1;
 	//gestures
 	UISwipeGestureRecognizer* leftSwipe;
 	
@@ -66,6 +68,8 @@
 	leftSwipe.numberOfTouchesRequired = 1;
 	leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
 	[self.view addGestureRecognizer:leftSwipe];
+	
+   [super viewDidLoad];
 
 	//downloading
 	NSString *timetableURLString = [NSString stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@", self.selectedDepartment.tag, [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -113,8 +117,8 @@
 	self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
 	self.timetableAccessor.timetable = [self.parser parseTimetables:self.responseData error:error];
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:self.daySelector.currentPage] parity:[NSNumber numberWithInt:0]];
-	TTPLesson *dayLesson = [TTPLesson lessonWithLesson:[self.dayLessons objectAtIndex:0]];
-	self.daynameLabel.text = [self convertNumToDays:dayLesson.day];
+
+	self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
 	[self.timetable reloadData];
 }
 
@@ -144,9 +148,11 @@
 
 #pragma mark - Actions
 - (void)handleSwipeL {
-	self.daySelector.currentPage++;
-	[self.dayLessons removeAllObjects];
+	self.daySelector.currentPage = self.daySelector.currentPage + 1;
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+
+	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
+
 	[self.timetable reloadData];
 }
 
@@ -158,23 +164,29 @@
 	NSLog(@"Parity was updated");
 	[self.dayLessons removeAllObjects];
     self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+
 	[self.timetable reloadData];
 }
 
 #pragma  mark - Private stuff
 
 - (NSString *)convertNumToDays:(NSNumber *)num {
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
-	NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-	
-	[dateComponents setWeekday: [num intValue]];
-	
-	NSDate *tempDate = [gregorian dateFromComponents:dateComponents];
-	[myFormatter setDateFormat:@"EEEE"]; // day, like "Saturday"
-	
-	return [myFormatter stringFromDate:tempDate];
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
+
+	NSArray *weekdays = [df weekdaySymbols];
+	if ([num intValue] +1 >= 7)
+		num = [NSNumber numberWithInt:0];
+	return [weekdays objectAtIndex:[num intValue] +1];
+
 }
+
+-(void) updateDisplay:(NSString *)str
+{
+	
+	[self.daynameLabel performSelectorOnMainThread : @selector(setText : ) withObject:str waitUntilDone:YES];
+}
+
 /*
 #pragma mark - Navigation
 
