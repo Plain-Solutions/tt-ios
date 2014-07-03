@@ -62,12 +62,17 @@
 	self.daySelector.numberOfPages = 6;
 	self.daySelector.enabled = 1;
 	//gestures
-	UISwipeGestureRecognizer* leftSwipe;
-	
-	leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeL)];
+	UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeL)];
 	leftSwipe.numberOfTouchesRequired = 1;
 	leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
 	[self.view addGestureRecognizer:leftSwipe];
+	
+
+	UISwipeGestureRecognizer* rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeR)];
+	rightSwipe.numberOfTouchesRequired = 1;
+	rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+	[self.view addGestureRecognizer:rightSwipe];
+
 	
    [super viewDidLoad];
 
@@ -148,7 +153,13 @@
 
 #pragma mark - Actions
 - (void)handleSwipeL {
-	self.daySelector.currentPage = self.daySelector.currentPage + 1;
+	if (self.daySelector.currentPage + 1 >= self.daySelector.numberOfPages) {
+		self.daySelector.currentPage = 0;
+	}
+	else {
+		self.daySelector.currentPage = self.daySelector.currentPage + 1;
+	}
+
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
@@ -157,6 +168,18 @@
 }
 
 - (void)handleSwipeR {
+	if (self.daySelector.currentPage - 1 < 0) {
+		self.daySelector.currentPage = 5;
+	}
+	else {
+		self.daySelector.currentPage = self.daySelector.currentPage - 1;
+	}
+
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+	
+	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
+	
+	[self.timetable reloadData];
 	
 }
 
