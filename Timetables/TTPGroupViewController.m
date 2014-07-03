@@ -15,7 +15,7 @@
 
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) TTPParser *parser;
-@property (retain) NSIndexPath* lastIndexPath;
+@property (retain) NSIndexPath *lastIndexPath;
 @end
 
 @implementation TTPGroupViewController
@@ -27,28 +27,28 @@
 @synthesize lastIndexPath = _lastIndexPath;
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style;
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad;
 {
     [super viewDidLoad];
     self.title = self.selectedDepartment.name;
 	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
-		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups", self.selectedDepartment.tag];
+		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups",
+							  self.selectedDepartment.tag];
 		ShowNetworkActivityIndicator();
         // do our long running process here
-		NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString: groupURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-        NSURLResponse* response = nil;
-        NSError* error = nil;
+		NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: groupURL]
+												 cachePolicy:NSURLRequestUseProtocolCachePolicy
+											 timeoutInterval:60];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         // do any UI stuff on the main UI thread
@@ -62,26 +62,26 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated;
+{
 	[super viewWillAppear:animated];
 	[self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)didReceiveMemoryWarning;
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     return self.groupList.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
     
@@ -102,7 +102,7 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     self.lastIndexPath = indexPath;
     self.nextButton.enabled = YES;
@@ -111,7 +111,7 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
 	if ([segue.identifier isEqualToString:@"showTimetableView"]) {
 		NSString *group = [self.groupList objectAtIndex:self.lastIndexPath.row];

@@ -12,8 +12,10 @@
 @synthesize  subgroupName = _subgroupName;
 @synthesize teacher = _teacher;
 @synthesize location = _location;
-- (NSString *)description {
-    return [[NSString alloc] initWithFormat:@"Subgroup Name:%@\nSubgroup Location:%@\nSubgroup Teacher:%@\n---",
+
+- (NSString *)description;
+{
+	return [[NSString alloc] initWithFormat:@"Subgroup Name:%@\nSubgroup Location:%@\nSubgroup Teacher:%@\n---",
 self.subgroupName, self.location, self.teacher];
 }
 

@@ -10,12 +10,31 @@
 #import "TTPSubgroup.h"
 #import "TTPLesson.h"
 
+/**
+ Some sort of library with useful methods to access to data in the timetable.
+ It also holds a copy of fetched timetable.
+ */
 @interface TTPTimetableAccessor : NSObject
-@property (nonatomic, strong) NSArray *lessonBeginTimes;
-@property (nonatomic, strong) NSArray *lessonEndTimes;
-@property (nonatomic, strong) NSArray *availableActivities;
-@property (nonatomic, strong) NSMutableArray *timetable;
 
+/**
+ Set of pre-defined lesson beginning times.
+ */
+@property (nonatomic, strong) NSArray *lessonBeginTimes;
+
+/**
+ Set of pre-defined lesson ending times.
+ */
+@property (nonatomic, strong) NSArray *lessonEndTimes;
+
+/**
+ Set of possible activities for localization.
+ */
+@property (nonatomic, strong) NSArray *availableActivities;
+
+/**
+ Fetched timetable copy
+*/
+@property (nonatomic, strong) NSMutableArray *timetable;
 
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;

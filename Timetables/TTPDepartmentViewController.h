@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "TTPDepartment.h"
+
+/**
+ Department view
+ This is used to select a department both in first start and search.
+ */
 @interface TTPDepartmentViewController : UITableViewController
-@property (nonatomic, strong) NSMutableArray* departmentList;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* nextButton;
+
+/**
+ Fetched Department list of TTPDepartment.
+ */
+@property (nonatomic, strong) NSMutableArray *departmentList;
+
+/**
+ Button to proceed to group selection.
+ */
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
+
 @end

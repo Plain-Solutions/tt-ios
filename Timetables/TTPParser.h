@@ -7,16 +7,19 @@
 #import "TTPLesson.h"
 #import "TTPSubgroup.h"
 
-
+/**
+ Incoming data parser.
+ This thing deserialises JSON strings from api.sssutt.org to objects.
+ */
 @interface TTPParser : NSObject
 
 - (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error;
 
-- (NSString *) prettifyDepartmentNames:(NSString *)departmentName;
+- (NSString *)prettifyDepartmentNames:(NSString *)departmentName;
 
-//- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw:(NSError *)error;
-//
+// - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw:(NSError *)error;
+
 - (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
-//
+
 - (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error;
 @end

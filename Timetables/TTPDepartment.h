@@ -5,11 +5,26 @@
 
 #import <Foundation/Foundation.h>
 
-
+/**
+ Entity of department.
+ Fetched from api.ssutt.org and deserialised from JSON
+ */
 @interface TTPDepartment : NSObject
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, strong) NSString *tag;
-@property(nonatomic, strong) NSString *msg;
+
+/**
+ The printed name.
+ */
+@property (nonatomic, strong) NSString *name;
+
+/**
+ The tag like 'knt' or 'bf' for navigation and interconnection.
+ */
+@property (nonatomic, strong) NSString *tag;
+
+/**
+ Dean's office message.
+ */
+@property (nonatomic, strong) NSString *msg;
 
 - (id)initWithBasicInfo:(NSString *)name tag:(NSString *)tag;
 

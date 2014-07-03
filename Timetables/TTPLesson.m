@@ -14,10 +14,12 @@
 @synthesize activity = _activity;
 @synthesize subgroups = _subgroups;
 
-+ (id)lessonWithLesson:(TTPLesson *)lesson {
++ (id)lessonWithLesson:(TTPLesson *)lesson;
+{
 	return [[[self class] alloc] initWithLesson:lesson];
 }
-- (id)initWithLesson:(TTPLesson *)lesson {
+- (id)initWithLesson:(TTPLesson *)lesson;
+{
 	self = [super init];
 	self.day = lesson.day;
 	self.sequence = lesson.sequence;

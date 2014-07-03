@@ -9,7 +9,8 @@
 @implementation TTPParser {
 
 }
-- (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error {
+- (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error;
+{
     NSMutableArray *result = [[NSMutableArray alloc] init];
 
     NSArray *asArray = [NSJSONSerialization
@@ -17,30 +18,36 @@
                        options:NSJSONReadingMutableContainers
                          error:&error];
     for (NSDictionary *elem in asArray) {
-        TTPDepartment *dep = [[TTPDepartment alloc] initWithBasicInfo:[elem objectForKey:@"name"] tag:[elem objectForKey:@"tag"]];
+        TTPDepartment *dep = [[TTPDepartment alloc] initWithBasicInfo:[elem objectForKey:@"name"]
+																  tag:[elem objectForKey:@"tag"]];
         [result addObject:dep];
     }
     return result;
 }
 
-- (NSString *) prettifyDepartmentNames:(NSString *)departmentName
+// this is used in Department view to minimize text and hold them in the single line
+- (NSString *)prettifyDepartmentNames:(NSString *)departmentName;
 {
-    NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет" withString:@""];
-    NSString *truncateDepBeginning = [truncateDepEnding stringByReplacingOccurrencesOfString:@"Факультет" withString:@""];
-    NSString *truncateInstitute = [truncateDepBeginning stringByReplacingOccurrencesOfString:@"Институт" withString:@""];
+    NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет"
+																			withString:@""];
+    NSString *truncateDepBeginning = [truncateDepEnding stringByReplacingOccurrencesOfString:@"Факультет"
+																				  withString:@""];
+    NSString *truncateInstitute = [truncateDepBeginning stringByReplacingOccurrencesOfString:@"Институт"
+																				  withString:@""];
     NSString *trimSpaced = [truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     return [trimSpaced capitalizedString];
 }
 
-
-
-/*- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw :(NSError *)error; {
+/*
+ - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw :(NSError *)error; {
     NSDictionary *asDict = [NSJSONSerialization JSONObjectWithData:raw options:0 error:&error];
     return [asDict objectForKey:@"msg"];
 }
 */
-- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error {
+
+- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
+{
     NSArray *asArray = [NSJSONSerialization
             JSONObjectWithData:raw
                        options:NSJSONReadingMutableContainers
@@ -49,7 +56,8 @@
     return [asArray mutableCopy];
 }
 
-- (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error {
+- (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error;
+{
     NSMutableArray *result = [[NSMutableArray alloc] init];
 	
     NSArray *asArray = [NSJSONSerialization

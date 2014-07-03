@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+/** Default delegate file
+ */
 @interface TTPAppDelegate : UIResponder <UIApplicationDelegate>
 
+/** App window
+ */
 @property (strong, nonatomic) UIWindow *window;
 
 @end

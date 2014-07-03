@@ -8,8 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "TTPDepartment.h"
+
+/**
+ Group selection view.
+ */
 @interface TTPGroupViewController : UITableViewController
-@property (nonatomic, strong) NSMutableArray* groupList;
-@property (nonatomic, strong) TTPDepartment* selectedDepartment;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* nextButton;
+
+/**
+ Fetched grouplist.
+ */
+@property (nonatomic, strong) NSMutableArray *groupList;
+
+/**
+ Selected department from the last screen.
+ */
+@property (nonatomic, strong) TTPDepartment *selectedDepartment;
+
+/**
+ utton to proceed to group viewing.
+ */
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
 @end

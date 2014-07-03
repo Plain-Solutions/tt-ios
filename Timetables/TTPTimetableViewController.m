@@ -35,7 +35,7 @@
 
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -44,13 +44,12 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad;
 {
  
-	//data models
-
-		self.responseData = [NSMutableData data];
-	//UI
+	// data models
+	self.responseData = [NSMutableData data];
+	// UI
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
 	self.timetable.dataSource = self;
@@ -61,14 +60,16 @@
 
 	self.daySelector.numberOfPages = 6;
 	self.daySelector.enabled = 1;
-	//gestures
-	UISwipeGestureRecognizer* leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeL)];
+	// gestures
+	UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+																					action:@selector(handleSwipeL)];
 	leftSwipe.numberOfTouchesRequired = 1;
 	leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
 	[self.view addGestureRecognizer:leftSwipe];
 	
 
-	UISwipeGestureRecognizer* rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeR)];
+	UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+																					 action:@selector(handleSwipeR)];
 	rightSwipe.numberOfTouchesRequired = 1;
 	rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
 	[self.view addGestureRecognizer:rightSwipe];
@@ -76,9 +77,12 @@
 	
    [super viewDidLoad];
 
-	//downloading
-	NSString *timetableURLString = [NSString stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@", self.selectedDepartment.tag, [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSLog(@"%@", timetableURLString);
+	// downloading
+	NSString *timetableURLString = [NSString
+									stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
+									self.selectedDepartment.tag,
+									[self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:timetableURLString]];
 	
@@ -89,52 +93,58 @@
 	[self.timetable reloadData];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)didReceiveMemoryWarning;
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated;
+{
 	[super viewWillAppear:animated];
-		[self.timetable reloadData];
+	[self.timetable reloadData];
 }
 
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+{
     NSLog(@"didReceiveResponse");
     [self.responseData setLength:0];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+{
     [self.responseData appendData:data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+{
     NSLog(@"didFailWithError");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+{
     NSLog(@"connectionDidFinishLoading");
     NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
     self.parser = [[TTPParser alloc] init];
     NSError *error;
 	self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
 	self.timetableAccessor.timetable = [self.parser parseTimetables:self.responseData error:error];
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt:self.daySelector.currentPage] parity:[NSNumber numberWithInt:0]];
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
+					   [NSNumber numberWithInt:self.daySelector.currentPage]
+															 parity:[NSNumber numberWithInt:0]];
 
 	self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
 	[self.timetable reloadData];
 }
 
 #pragma mark - Timetable
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
 	return self.dayLessons.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     TTPSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LessonCell" forIndexPath:indexPath];
     
@@ -152,22 +162,26 @@
 }
 
 #pragma mark - Actions
-- (void)handleSwipeL {
+- (void)handleSwipeL;
+{
 	if (self.daySelector.currentPage + 1 >= self.daySelector.numberOfPages) {
 		self.daySelector.currentPage = 0;
 	}
 	else {
 		self.daySelector.currentPage = self.daySelector.currentPage + 1;
 	}
-
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+	
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
+					   [NSNumber numberWithInt: self.daySelector.currentPage]
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
 
 	[self.timetable reloadData];
 }
 
-- (void)handleSwipeR {
+- (void)handleSwipeR;
+{
 	if (self.daySelector.currentPage - 1 < 0) {
 		self.daySelector.currentPage = 5;
 	}
@@ -175,7 +189,9 @@
 		self.daySelector.currentPage = self.daySelector.currentPage - 1;
 	}
 
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
+					   [NSNumber numberWithInt: self.daySelector.currentPage]
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 	
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
 	
@@ -183,17 +199,21 @@
 	
 }
 
-- (void)parityUpdated:(id)sender forEvent:(UIEvent *)event {
+- (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
+{
 	NSLog(@"Parity was updated");
 	[self.dayLessons removeAllObjects];
-    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:[NSNumber numberWithInt: self.daySelector.currentPage] parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
+					   [NSNumber numberWithInt: self.daySelector.currentPage]
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 
 	[self.timetable reloadData];
 }
 
 #pragma  mark - Private stuff
 
-- (NSString *)convertNumToDays:(NSNumber *)num {
+- (NSString *)convertNumToDays:(NSNumber *)num;
+{
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
 
@@ -204,7 +224,7 @@
 
 }
 
--(void) updateDisplay:(NSString *)str
+- (void)updateDisplay:(NSString *)str;
 {
 	
 	[self.daynameLabel performSelectorOnMainThread : @selector(setText : ) withObject:str waitUntilDone:YES];

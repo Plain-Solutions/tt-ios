@@ -127,10 +127,10 @@
 		5571DFCC195F66980089E7E7 = {
 			isa = PBXGroup;
 			children = (
-				5571DFDE195F66980089E7E7 /* Timetables */,
-				5571DFFD195F66980089E7E7 /* TimetablesTests */,
 				5571DFD7195F66980089E7E7 /* Frameworks */,
 				5571DFD6195F66980089E7E7 /* Products */,
+				5571DFDE195F66980089E7E7 /* Timetables */,
+				5571DFFD195F66980089E7E7 /* TimetablesTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,14 +215,14 @@
 		5571E01A195F75180089E7E7 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				5520FB621961A20A0031B156 /* TTPLesson.m */,
-				5520FB631961A20A0031B156 /* TTPLesson.h */,
-				5520FB661961A20A0031B156 /* TTPSubgroup.m */,
-				5520FB671961A20A0031B156 /* TTPSubgroup.h */,
-				5571E01F195F75B20089E7E7 /* TTPParser.m */,
-				5571E020195F75B20089E7E7 /* TTPParser.h */,
-				5571E01B195F754E0089E7E7 /* TTPDepartment.m */,
 				5571E01C195F754E0089E7E7 /* TTPDepartment.h */,
+				5571E01B195F754E0089E7E7 /* TTPDepartment.m */,
+				5520FB631961A20A0031B156 /* TTPLesson.h */,
+				5520FB621961A20A0031B156 /* TTPLesson.m */,
+				5571E020195F75B20089E7E7 /* TTPParser.h */,
+				5571E01F195F75B20089E7E7 /* TTPParser.m */,
+				5520FB671961A20A0031B156 /* TTPSubgroup.h */,
+				5520FB661961A20A0031B156 /* TTPSubgroup.m */,
 				5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */,
 				5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */,
 			);
