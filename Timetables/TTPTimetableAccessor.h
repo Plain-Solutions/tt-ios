@@ -13,9 +13,12 @@
 @interface TTPTimetableAccessor : NSObject
 @property (nonatomic, strong) NSArray *lessonBeginTimes;
 @property (nonatomic, strong) NSArray *lessonEndTimes;
+@property (nonatomic, strong) NSArray *availableActivities;
 @property (nonatomic, strong) NSMutableArray *timetable;
+
 
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)partiy;
+- (NSString *)localizeActivities:(NSString *)activity;
 @end

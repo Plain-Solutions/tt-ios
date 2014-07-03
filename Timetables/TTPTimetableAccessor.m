@@ -12,13 +12,15 @@
 @implementation TTPTimetableAccessor
 @synthesize lessonBeginTimes = _lessonBeginTimes;
 @synthesize lessonEndTimes = _lessonEndTimes;
+@synthesize availableActivities = _availableActivities;
 @synthesize timetable = _timetable;
 
 - (id)init {
 	self = [super init];
-self.lessonBeginTimes = [NSArray arrayWithObjects:@"08:20", @"10:00", @"12:05", @"13:50", @"15:35", @"17:20", @"18:45", @"20:10", nil];
+	self.lessonBeginTimes = [NSArray arrayWithObjects:@"08:20", @"10:00", @"12:05", @"13:50", @"15:35", @"17:20", @"18:45", @"20:10", nil];
 	
-self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40", @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
+	self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40", @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
+	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"lab", nil];
 	
 	return self;
 }
@@ -37,5 +39,15 @@ self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40", @"
 			[result addObject:l];
 
 	return result;
+}
+
+- (NSString *)localizeActivities:(NSString *)activity {
+	
+	NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+	if ([language isEqualToString:@"ru"]) {
+		NSArray *russianNames = [NSArray arrayWithObjects:@"лекция", @"практика", @"лабораторная", nil];
+		return [russianNames objectAtIndex:[self.availableActivities indexOfObject:activity]];
+	}
+	return activity;
 }
  @end

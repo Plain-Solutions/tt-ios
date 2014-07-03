@@ -144,7 +144,7 @@
 	TTPLesson *lesson = [self.dayLessons objectAtIndex:indexPath.row];
 
 	cell.subjectNameLabel.text = lesson.name;
-	cell.subjectTypeLabel.text = lesson.activity;
+	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:lesson.activity];
 	cell.beginTimeLabel.text = [self.timetableAccessor getBeginTimeBySequence:lesson.sequence];
 	cell.endTimeLabel.text = [self.timetableAccessor getEndTimeBySequence:lesson.sequence];
 	
@@ -200,7 +200,7 @@
 	NSArray *weekdays = [df weekdaySymbols];
 	if ([num intValue] +1 >= 7)
 		num = [NSNumber numberWithInt:0];
-	return [weekdays objectAtIndex:[num intValue] +1];
+	return [[weekdays objectAtIndex:[num intValue] +1] capitalizedString];
 
 }
 
