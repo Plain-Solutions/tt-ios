@@ -191,7 +191,7 @@
                                 <sections/>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Yun-bI-SC7">
-                                <rect key="frame" x="54" y="532" width="213" height="29"/>
+                                <rect key="frame" x="20" y="532" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Even"/>
@@ -208,7 +208,7 @@
                                             <rect key="frame" x="44" y="6" width="229" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dayname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG1-4v-oQ6">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dayname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG1-4v-oQ6" customClass="daynameLabel">
                                                     <rect key="frame" x="50" y="0.0" width="130" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -237,7 +237,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="dayLabel" destination="aTP-Gw-YKU" id="T9W-ye-xIR"/>
                         <outlet property="daySelector" destination="aTP-Gw-YKU" id="qB3-Jj-DhP"/>
                         <outlet property="daynameLabel" destination="BG1-4v-oQ6" id="vCJ-fB-uQI"/>
                         <outlet property="paritySelector" destination="Yun-bI-SC7" id="vmv-HQ-NBD"/>
