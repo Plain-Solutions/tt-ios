@@ -9,7 +9,6 @@
 #import "TTPTimetableViewController.h"
 
 @interface TTPTimetableViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) TTPTimetableAccessor *timetableAccessor;
 @end
@@ -20,7 +19,6 @@
 @synthesize selectedGroup = _selectedGroup;
 @synthesize dayLessons = _dayLessons;
 
-@synthesize responseData = _responseData;
 @synthesize parser = _parser;
 @synthesize timetableAccessor = _timetableAccessor;
 
@@ -29,8 +27,6 @@
 @synthesize timetable = _timetable;
 @synthesize savedGroupsButton = _savedGroupsButton;
 @synthesize searchGroupsButton = _searchGroupsButton;
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -43,9 +39,6 @@
 
 - (void)viewDidLoad;
 {
- 
-	// data models
-	self.responseData = [NSMutableData data];
 	// UI
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
@@ -75,19 +68,37 @@
    [super viewDidLoad];
 
 	// downloading
-	NSString *timetableURLString = [NSString
-									stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
-									self.selectedDepartment.tag,
-									[self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
+    dispatch_async(downloadQueue, ^{
+		NSString *ttURL = [NSString
+						   stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
+						   self.selectedDepartment.tag,
+						   [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:timetableURLString]];
-	
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
+		ShowNetworkActivityIndicator();
+		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
+												 cachePolicy:NSURLRequestUseProtocolCachePolicy
+											 timeoutInterval:120];
+		NSURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request
+											 returningResponse:&response
+														 error:&error];
 
-		
-	[self.timetable reloadData];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.parser = [[TTPParser alloc] init];
+			self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
+			self.timetableAccessor.timetable = [self.parser parseTimetables:data
+																	  error:error];
+			self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
+							   [NSNumber numberWithInt:self.daySelector.currentPage]
+																	 parity:[NSNumber numberWithInt:0]];
+			
+			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
+			[self.timetable reloadData];
+			HideNetworkActivityIndicator();
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning;
@@ -98,39 +109,6 @@
 - (void)viewWillAppear:(BOOL)animated;
 {
 	[super viewWillAppear:animated];
-	[self.timetable reloadData];
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-{
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-{
-    [self.responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-{
-    NSLog(@"didFailWithError");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-{
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
-    self.parser = [[TTPParser alloc] init];
-    NSError *error;
-	self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
-	self.timetableAccessor.timetable = [self.parser parseTimetables:self.responseData error:error];
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-					   [NSNumber numberWithInt:self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:0]];
-
-	self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
 	[self.timetable reloadData];
 }
 
