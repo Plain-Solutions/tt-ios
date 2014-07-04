@@ -16,6 +16,9 @@
 @synthesize availableActivities = _availableActivities;
 @synthesize timetable = _timetable;
 @synthesize availableDays = _availableDays;
+@synthesize firstAvailableDay = _firstAvailableDay;
+@synthesize lastAvailableDay = _lastAvailableDay;
+
 
 - (id)init;
 {
@@ -46,17 +49,32 @@
 - (void)populateAvailableDays;
 {
 	self.availableDays = [[NSMutableArray alloc] init];
-	for (TTPLesson *l in self.timetable) {
-		BOOL wasAdded = NO;
-		
-		for (NSNumber * nn in self.availableDays) {
-			if ([l.day isEqualToNumber:nn])
-				wasAdded = YES;
-		}
-		if (!wasAdded)
-			[self.availableDays addObject:l.day];
-
+	for (int i = 0; i < 6; i++)
+	{
+		[self.availableDays addObject:[NSNumber numberWithInt:0]];
 	}
+	for (TTPLesson *l in self.timetable) {
+		int value =[[self.availableDays objectAtIndex:[l.day intValue]] intValue];
+		value++;
+		[self.availableDays replaceObjectAtIndex:[l.day intValue] withObject:[NSNumber numberWithInt:value]];
+	}
+
+	for (int i = 0; i < self.availableDays.count; i++) {
+		if ([[self.availableDays objectAtIndex:i] intValue] != 0) {
+			self.firstAvailableDay = [NSNumber numberWithInt:i];
+			break;
+		}
+	}
+	NSLog(@"%@", self.firstAvailableDay);
+		
+	for (int i = self.availableDays.count - 1; i >= 0; i--) {
+		if ([[self.availableDays objectAtIndex:i] intValue] != 0) {
+			self.lastAvailableDay = [NSNumber numberWithInt:i];
+			break;
+		}
+	}
+		NSLog(@"%@", self.lastAvailableDay);
+	NSLog(@"%@", [self.availableDays description]);
 
 }
 
@@ -73,9 +91,27 @@
 }
 
 
-- (NSNumber *)getFirstNotEmptyDay;
+- (NSNumber *)getNextDay:(int)currentDay;
 {
-	return [NSNumber numberWithInt:(self.availableDays.count)? [[self.availableDays objectAtIndex:0] intValue]:0];
+	currentDay++;
+	NSLog(@"%d", currentDay);
+	if (currentDay >= self.availableDays.count)
+			return self.firstAvailableDay;
+	for (int i = currentDay; i < self.availableDays.count; i++) {
+		if ([[self.availableDays objectAtIndex:i] intValue] != 0)
+			return [NSNumber numberWithInt:i];
+	}
+	return self.firstAvailableDay;
+}
+
+- (NSNumber *)getPreviousDay:(int)currentDay;
+{
+	currentDay--;
+	for (int i = currentDay; i >= 0; i--) {
+		if ([[self.availableDays objectAtIndex:i] intValue] != 0)
+			return [NSNumber numberWithInt:i];
+	}
+	return self.lastAvailableDay;
 }
 
 #pragma mark - Getting timetable

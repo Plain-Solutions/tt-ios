@@ -83,11 +83,11 @@
 			[self.timetableAccessor populateAvailableDays];
 			
 			self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-							   [self.timetableAccessor getFirstNotEmptyDay]
+							   self.timetableAccessor.firstAvailableDay
 																	 parity:[NSNumber numberWithInt:0]
 																withRepeats:NO];
-			NSLog(@"%d", [[self.timetableAccessor getFirstNotEmptyDay] intValue]);
-			self.daySelector.currentPage = [[self.timetableAccessor getFirstNotEmptyDay]intValue];
+			
+			self.daySelector.currentPage = [self.timetableAccessor.firstAvailableDay intValue];
 			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.currentPage]];
 			[self.timetable reloadData];
 			HideNetworkActivityIndicator();
@@ -134,13 +134,7 @@
 #pragma mark - Actions
 - (void)handleSwipeL;
 {
-	if (self.daySelector.currentPage + 1 >= self.daySelector.numberOfPages) {
-		self.daySelector.currentPage = 0;
-	}
-	else {
-		self.daySelector.currentPage = self.daySelector.currentPage + 1;
-	}
-	
+	self.daySelector.currentPage = [[self.timetableAccessor getNextDay:self.daySelector.currentPage] intValue];
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
 															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
@@ -152,12 +146,8 @@
 
 - (void)handleSwipeR;
 {
-	if (self.daySelector.currentPage - 1 < 0) {
-		self.daySelector.currentPage = 5;
-	}
-	else {
-		self.daySelector.currentPage = self.daySelector.currentPage - 1;
-	}
+
+	self.daySelector.currentPage = [[self.timetableAccessor getPreviousDay:self.daySelector.currentPage] intValue];
 
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]

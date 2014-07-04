@@ -37,14 +37,26 @@
 @property (nonatomic, strong) NSMutableArray *timetable;
 
 /**
- All the days, which have lessons
+ All the days, which have lessons.
  */
 @property (nonatomic, strong) NSMutableArray *availableDays;
+
+/**
+ First day of the week with lessons.
+ */
+@property (nonatomic, strong) NSNumber *firstAvailableDay;
+
+/**
+ Last day of the week with lessons.
+ */
+@property (nonatomic, strong) NSNumber *lastAvailableDay;
+
 
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
-- (NSNumber *)getFirstNotEmptyDay;
+- (NSNumber *)getNextDay:(int)currentDay;
+- (NSNumber *)getPreviousDay:(int)currentDay;
 - (void)populateAvailableDays;
 
 - (NSString *)localizeActivities:(NSString *)activity;
