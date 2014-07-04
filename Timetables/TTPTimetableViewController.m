@@ -220,5 +220,7 @@
 
 - (IBAction)searchGroups:(id)sender;
 {
+	[self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
+
 }
 @end
