@@ -34,6 +34,7 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
+
 }
 
 

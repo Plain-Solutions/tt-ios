@@ -201,7 +201,9 @@
 {
 	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
 		TTPSubjectDetailViewController *controller = [segue destinationViewController];
-	}
+        controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].row];
+        controller.accessor = self.timetableAccessor;
+    }
 }
 
 

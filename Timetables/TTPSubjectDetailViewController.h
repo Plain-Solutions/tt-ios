@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TTPLesson.h"
+#import "TTPTimetableAccessor.h"
 
 @interface TTPSubjectDetailViewController : UIViewController
 @property (nonatomic, strong) TTPLesson *selectedLesson;
+@property (nonatomic, assign) TTPTimetableAccessor *accessor;
 @end
