@@ -53,13 +53,5 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
 
-/**
- Search through groups.
- */
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchGroupsButton;
-
-/**
- Open cached groups.
- */
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *savedGroupsButton;
+- (IBAction)searchGroups:(id)sender;
 @end

@@ -38,6 +38,6 @@
 
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
-- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)partiy;
+- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 - (NSString *)localizeActivities:(NSString *)activity;
 @end

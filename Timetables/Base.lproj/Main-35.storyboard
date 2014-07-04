@@ -233,8 +233,6 @@
                         <outlet property="daySelector" destination="aTP-Gw-YKU" id="kdj-tj-n0m"/>
                         <outlet property="daynameLabel" destination="BG1-4v-oQ6" id="vCJ-fB-uQI"/>
                         <outlet property="paritySelector" destination="Yun-bI-SC7" id="vmv-HQ-NBD"/>
-                        <outlet property="savedGroupsButton" destination="mrR-wr-zjj" id="PRs-Kg-8Mf"/>
-                        <outlet property="searchGroupsButton" destination="PeB-PA-Q2p" id="Fxa-hE-bvG"/>
                         <outlet property="timetable" destination="bWH-Lb-rO7" id="lx7-5d-2uX"/>
                     </connections>
                 </viewController>

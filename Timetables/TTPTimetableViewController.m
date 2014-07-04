@@ -25,8 +25,6 @@
 @synthesize paritySelector = _paritySelector;
 @synthesize daySelector = _daySelector;
 @synthesize timetable = _timetable;
-@synthesize savedGroupsButton = _savedGroupsButton;
-@synthesize searchGroupsButton = _searchGroupsButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -92,7 +90,8 @@
 																	  error:error];
 			self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 							   [NSNumber numberWithInt:self.daySelector.currentPage]
-																	 parity:[NSNumber numberWithInt:0]];
+																	 parity:[NSNumber numberWithInt:0]
+																withRepeats:NO];
 			
 			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
 			[self.timetable reloadData];
@@ -148,7 +147,8 @@
 	
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
+														withRepeats:NO];
 
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
 
@@ -166,7 +166,8 @@
 
 	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
+														withRepeats:NO];
 	
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
 	
@@ -180,7 +181,8 @@
 	[self.dayLessons removeAllObjects];
     self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
+														withRepeats:NO];
 
 	[self.timetable reloadData];
 }
@@ -216,4 +218,7 @@
 }
 */
 
+- (IBAction)searchGroups:(id)sender;
+{
+}
 @end

@@ -35,7 +35,7 @@
 	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
-		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups",
+		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
 							  self.selectedDepartment.tag];
 		ShowNetworkActivityIndicator();
         // do our long running process here

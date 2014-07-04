@@ -42,13 +42,24 @@
 	return [self.lessonEndTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
 
-- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity;
+- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 {
 	NSMutableArray *result = [[NSMutableArray alloc] init];
 	for (TTPLesson *l  in self.timetable)
 		if ([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2))
 			[result addObject:l];
-
+	if (isRepeated == NO) {
+	for (int i = 0; i < result.count-1; i++) {
+		TTPLesson *current = [result objectAtIndex:i];
+		TTPLesson *next = [result objectAtIndex:i+1];
+		
+		if (current.day == next.day && current.sequence == next.sequence && current.parity == next.parity) {
+				current.name = @"Multiple values";
+				[current.subgroups removeAllObjects];
+				[result removeObject:next];
+			}
+		}
+	}
 	return result;
 }
 
