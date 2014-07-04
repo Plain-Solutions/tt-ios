@@ -15,10 +15,25 @@
 @synthesize lessonEndTimes = _lessonEndTimes;
 @synthesize availableActivities = _availableActivities;
 @synthesize timetable = _timetable;
+@synthesize availableDays = _availableDays;
 
 - (id)init;
 {
 	self = [super init];
+	[self initSets];
+	return self;
+}
+
+- (id)initWithTimetable:(NSMutableArray *)timetable;
+{
+	self = [super init];
+	[self initSets];
+	self.timetable = timetable;
+	return self;
+}
+
+- (void)initSets;
+{
 	self.lessonBeginTimes = [NSArray arrayWithObjects:@"08:20", @"10:00", @"12:05",
 							 @"13:50", @"15:35", @"17:20", @"18:45", @"20:10", nil];
 	
@@ -26,8 +41,23 @@
 						   @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
 	
 	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"lab", nil];
-	
-	return self;
+}
+
+- (void)populateAvailableDays;
+{
+	self.availableDays = [[NSMutableArray alloc] init];
+	for (TTPLesson *l in self.timetable) {
+		BOOL wasAdded = NO;
+		
+		for (NSNumber * nn in self.availableDays) {
+			if ([l.day isEqualToNumber:nn])
+				wasAdded = YES;
+		}
+		if (!wasAdded)
+			[self.availableDays addObject:l.day];
+
+	}
+
 }
 
 #pragma mark - Timey-wimey
@@ -42,13 +72,23 @@
 	return [self.lessonEndTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
 
+
+- (NSNumber *)getFirstNotEmptyDay;
+{
+	return [NSNumber numberWithInt:(self.availableDays.count)? [[self.availableDays objectAtIndex:0] intValue]:0];
+}
+
+#pragma mark - Getting timetable
+
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 {
 	NSMutableArray *result = [[NSMutableArray alloc] init];
 	for (TTPLesson *l  in self.timetable)
 		if ([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2))
 			[result addObject:l];
-	if (isRepeated == NO) {
+		
+
+	if (result.count != 0 && isRepeated == NO) {
 	for (int i = 0; i < result.count-1; i++) {
 		TTPLesson *current = [result objectAtIndex:i];
 		TTPLesson *next = [result objectAtIndex:i+1];

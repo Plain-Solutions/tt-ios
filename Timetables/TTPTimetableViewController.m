@@ -29,9 +29,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
     return self;
 }
 
@@ -45,9 +42,6 @@
 	[self.paritySelector addTarget:self
 							action:@selector(parityUpdated:forEvent:)
 				  forControlEvents:UIControlEventValueChanged];
-
-	self.daySelector.numberOfPages = 6;
-	self.daySelector.enabled = 1;
 	// gestures
 	UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
 																					action:@selector(handleSwipeL)];
@@ -55,15 +49,13 @@
 	leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
 	[self.view addGestureRecognizer:leftSwipe];
 	
-
 	UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
 																					 action:@selector(handleSwipeR)];
 	rightSwipe.numberOfTouchesRequired = 1;
 	rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
 	[self.view addGestureRecognizer:rightSwipe];
 
-	
-   [super viewDidLoad];
+	[super viewDidLoad];
 
 	// downloading
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
@@ -88,12 +80,15 @@
 			self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
 			self.timetableAccessor.timetable = [self.parser parseTimetables:data
 																	  error:error];
+			[self.timetableAccessor populateAvailableDays];
+			
 			self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-							   [NSNumber numberWithInt:self.daySelector.currentPage]
+							   [self.timetableAccessor getFirstNotEmptyDay]
 																	 parity:[NSNumber numberWithInt:0]
 																withRepeats:NO];
-			
-			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.numberOfPages]];
+			NSLog(@"%d", [[self.timetableAccessor getFirstNotEmptyDay] intValue]);
+			self.daySelector.currentPage = [[self.timetableAccessor getFirstNotEmptyDay]intValue];
+			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.currentPage]];
 			[self.timetable reloadData];
 			HideNetworkActivityIndicator();
         });
@@ -125,13 +120,14 @@
     if (cell == nil) {
         cell = [[TTPSubjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LessonCell"];
     }
+	if (self.dayLessons.count != 0){
 	TTPLesson *lesson = [self.dayLessons objectAtIndex:indexPath.row];
 
 	cell.subjectNameLabel.text = lesson.name;
 	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:lesson.activity];
 	cell.beginTimeLabel.text = [self.timetableAccessor getBeginTimeBySequence:lesson.sequence];
 	cell.endTimeLabel.text = [self.timetableAccessor getEndTimeBySequence:lesson.sequence];
-	
+	}
     return cell;
 }
 
@@ -149,7 +145,6 @@
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
 															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
 														withRepeats:NO];
-
 	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
 
 	[self.timetable reloadData];
@@ -177,7 +172,6 @@
 
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
 {
-	NSLog(@"Parity was updated");
 	[self.dayLessons removeAllObjects];
     self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
 					   [NSNumber numberWithInt: self.daySelector.currentPage]
@@ -221,6 +215,5 @@
 - (IBAction)searchGroups:(id)sender;
 {
 	[self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
-
 }
 @end
