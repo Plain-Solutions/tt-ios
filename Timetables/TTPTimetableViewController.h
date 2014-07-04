@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ViewControllerDefines.h"
 #import "TTPDepartmentViewController.h"
-#import "TTPSubjectDetailViewController.h"
+#import "TTPSubjectDetailTableViewController.h"
 #import "TTPSubjectCell.h"
 #import "TTPDepartment.h"
 #import "TTPParser.h"

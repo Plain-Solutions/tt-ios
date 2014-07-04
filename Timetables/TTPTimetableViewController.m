@@ -200,9 +200,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
-		TTPSubjectDetailViewController *controller = [segue destinationViewController];
+		TTPSubjectDetailTableViewController *controller = [segue destinationViewController];
         controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].row];
-        controller.accessor = self.timetableAccessor;
     }
 }
 
