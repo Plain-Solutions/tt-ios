@@ -103,6 +103,7 @@
 - (void)viewWillAppear:(BOOL)animated;
 {
 	[super viewWillAppear:animated];
+	[self.navigationController setNavigationBarHidden:YES];
 	[self.timetable reloadData];
 }
 
@@ -127,6 +128,7 @@
 	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:lesson.activity];
 	cell.beginTimeLabel.text = [self.timetableAccessor getBeginTimeBySequence:lesson.sequence];
 	cell.endTimeLabel.text = [self.timetableAccessor getEndTimeBySequence:lesson.sequence];
+	cell.locationLabel.text= [self.timetableAccessor getLocationOnSingleSubgroupCount:lesson.subgroups];
 	}
     return cell;
 }
@@ -191,16 +193,17 @@
 	[self.daynameLabel performSelectorOnMainThread : @selector(setText : ) withObject:str waitUntilDone:YES];
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
+		TTPSubjectDetailViewController *controller = [segue destinationViewController];
+	}
 }
-*/
+
 
 - (IBAction)searchGroups:(id)sender;
 {

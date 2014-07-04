@@ -43,7 +43,7 @@
 	self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40",
 						   @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
 	
-	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"lab", nil];
+	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"laboratory", nil];
 }
 
 - (void)populateAvailableDays;
@@ -114,7 +114,7 @@
 	return self.lastAvailableDay;
 }
 
-#pragma mark - Getting timetable
+#pragma mark - Getting timetables and stuff
 
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 {
@@ -137,6 +137,15 @@
 		}
 	}
 	return result;
+}
+
+- (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
+{
+	if (subgroups.count == 1) {
+		TTPSubgroup *sub = [subgroups objectAtIndex:0];
+		return sub.location;
+	}
+	return @"Multiple values";
 }
 
 #pragma mark - Localisation thing

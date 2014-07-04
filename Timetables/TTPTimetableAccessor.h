@@ -54,10 +54,12 @@
 
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
-- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 - (NSNumber *)getNextDay:(int)currentDay;
 - (NSNumber *)getPreviousDay:(int)currentDay;
 - (void)populateAvailableDays;
+
+- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
+- (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
 
 - (NSString *)localizeActivities:(NSString *)activity;
 
