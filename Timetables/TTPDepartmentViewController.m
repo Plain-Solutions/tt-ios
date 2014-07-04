@@ -110,11 +110,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
     if ([segue.identifier isEqualToString:@"groupInitialSelect"]) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.lastIndexPath];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        
 
         TTPDepartment *dep = [self.departmentList objectAtIndexedSubscript:self.lastIndexPath.row];
         TTPGroupViewController *controller = [segue destinationViewController];
         controller.selectedDepartment = dep;
-        
+        self.lastIndexPath = nil;
     }
 }
 
