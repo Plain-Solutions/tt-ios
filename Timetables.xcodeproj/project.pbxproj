@@ -25,13 +25,14 @@
 		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
+		555DE4E51968117200F4D939 /* Main-4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555DE4E31968117200F4D939 /* Main-4.storyboard */; };
+		555DE4E61968117200F4D939 /* Main-4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555DE4E31968117200F4D939 /* Main-4.storyboard */; };
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
 		5571DFE3195F66980089E7E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFE1195F66980089E7E7 /* InfoPlist.strings */; };
 		5571DFE5195F66980089E7E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE4195F66980089E7E7 /* main.m */; };
 		5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */; };
-		5571DFEC195F66980089E7E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFEA195F66980089E7E7 /* Main.storyboard */; };
 		5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFF0195F66980089E7E7 /* Images.xcassets */; };
 		5571DFF8195F66980089E7E7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFF7195F66980089E7E7 /* XCTest.framework */; };
 		5571DFF9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
@@ -74,6 +75,7 @@
 		5520FB831961D7940031B156 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-35.storyboard"; sourceTree = "<group>"; };
 		555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroupCell.h; sourceTree = "<group>"; };
 		555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroupCell.m; sourceTree = "<group>"; };
+		555DE4E41968117200F4D939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-4.storyboard"; sourceTree = "<group>"; };
 		5571DFD5195F66980089E7E7 /* Timetables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timetables.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFD8195F66980089E7E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5571DFDA195F66980089E7E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,7 +86,6 @@
 		5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timetables-Prefix.pch"; sourceTree = "<group>"; };
 		5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPAppDelegate.h; sourceTree = "<group>"; };
 		5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPAppDelegate.m; sourceTree = "<group>"; };
-		5571DFEB195F66980089E7E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5571DFF0195F66980089E7E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetablesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFF7195F66980089E7E7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -172,8 +173,8 @@
 				5571E00D195F6F350089E7E7 /* Controllers */,
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
-				5571DFEA195F66980089E7E7 /* Main.storyboard */,
 				5520FB821961D7940031B156 /* Main-35.storyboard */,
+				555DE4E31968117200F4D939 /* Main-4.storyboard */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
 			);
@@ -320,9 +321,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555DE4E51968117200F4D939 /* Main-4.storyboard in Resources */,
 				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
 				5571DFE3195F66980089E7E7 /* InfoPlist.strings in Resources */,
-				5571DFEC195F66980089E7E7 /* Main.storyboard in Resources */,
 				5520FB841961D7940031B156 /* Main-35.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5571E002195F66980089E7E7 /* InfoPlist.strings in Resources */,
+				555DE4E61968117200F4D939 /* Main-4.storyboard in Resources */,
 				5520FB851961D7940031B156 /* Main-35.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,20 +399,20 @@
 			name = "Main-35.storyboard";
 			sourceTree = "<group>";
 		};
+		555DE4E31968117200F4D939 /* Main-4.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				555DE4E41968117200F4D939 /* Base */,
+			);
+			name = "Main-4.storyboard";
+			sourceTree = "<group>";
+		};
 		5571DFE1195F66980089E7E7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5571DFE2195F66980089E7E7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5571DFEA195F66980089E7E7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5571DFEB195F66980089E7E7 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5571E000195F66980089E7E7 /* InfoPlist.strings */ = {

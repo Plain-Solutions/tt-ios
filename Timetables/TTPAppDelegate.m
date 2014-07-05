@@ -16,7 +16,7 @@
 {
 	UIStoryboard *mainStoryboard = nil;
 	if (IS_IPHONE5) {
-		mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-4" bundle:nil];
 	} else {
 		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-35" bundle:nil];
 	}
