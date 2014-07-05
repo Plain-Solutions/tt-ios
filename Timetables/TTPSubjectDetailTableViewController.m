@@ -9,11 +9,13 @@
 #import "TTPSubjectDetailTableViewController.h"
 
 @interface TTPSubjectDetailTableViewController ()
-
+@property (nonatomic, strong) NSMutableArray *lessonsOnDPT;
 @end
 
 @implementation TTPSubjectDetailTableViewController
 @synthesize selectedLesson = _selectedLesson;
+@synthesize accessor = _accessor;
+@synthesize lessonsOnDPT = _lessonsOnDPT;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,8 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.title = self.selectedLesson.name;
-	[[self navigationController] setNavigationBarHidden:NO animated:YES];
+   
+    self.lessonsOnDPT = [self.accessor getLessonsOnDayParitySequence:self.selectedLesson.day
+                                                                  parity:self.selectedLesson.parity
+                                                            sequence:self.selectedLesson.sequence];
+    for (TTPLesson *l in self.lessonsOnDPT) {
+        NSLog(@"%d", l.subgroups.count);
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -46,28 +55,62 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return self.lessonsOnDPT.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:section];
+    return 4 + lesson.subgroups.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
+    //we go to subgroup cells
+    if (indexPath.row > 3) {
+        TTPSubgroupCell *sgCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
+        if (sgCell == nil)
+            sgCell = [[TTPSubgroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"subgroupInfo"];
+
+        TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
+        sgCell.subgroupTeacherName.text = sub.teacher;
+        sgCell.subgroupNameLabel.text = sub.subgroupName;
+        sgCell.subgroupLocationLabel.text = sub.location;
+        return sgCell;
+    }
     
-    // Configure the cell...
+    UITableViewCell *defaultCell = [tableView dequeueReusableCellWithIdentifier:@"basicInfo" forIndexPath:indexPath];
+    if (defaultCell == nil)
+        defaultCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicInfo"];
+
+    NSArray *basicInfoCompilation = [NSArray arrayWithObjects:lesson.name,
+                                     lesson.activity,
+                                     [self.accessor getTimeRangeBySequence:lesson.sequence],
+                                     [self.accessor convertParityNumToString:lesson.parity],
+                                     nil];
+    NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];
+
+    [defaultCell.textLabel setText:defaultCellText];
+//    TTPSubgroupCell *subgroupCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
     
-    return cell;
+    
+    return defaultCell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row > 3) {
+        return 100.0;
+    }
+    else
+    {
+        return 35.0;
+    }
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -30,4 +30,20 @@
 	return self;
 }
 
+- (id)copy
+{
+    TTPLesson *copy = [[TTPLesson alloc] init];
+    
+    copy.day = self.day;
+	copy.sequence = self.sequence;
+    copy.parity = self.parity;
+    copy.name = self.name;
+    copy.activity = self.activity;
+    copy.subgroups = [NSMutableArray array];
+	[copy.subgroups addObjectsFromArray:self.subgroups];
+    NSLog(@"InCopy: orig:%d copy:%d", self.subgroups.count, copy.subgroups.count);
+
+    return copy;
+}
+
 @end

@@ -44,5 +44,5 @@
 
 + (id)lessonWithLesson:(TTPLesson *)lesson;
 - (id)initWithLesson:(TTPLesson *)lesson;
-
+- (id)copy;
 @end

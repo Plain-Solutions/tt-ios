@@ -18,7 +18,7 @@
 @synthesize availableDays = _availableDays;
 @synthesize firstAvailableDay = _firstAvailableDay;
 @synthesize lastAvailableDay = _lastAvailableDay;
-
+@synthesize parities = _parities;
 
 - (id)init;
 {
@@ -44,6 +44,8 @@
 						   @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
 	
 	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"laboratory", nil];
+    
+    self.parities = [NSArray arrayWithObjects:@"even", @"odd", @"even&odd", nil];
 }
 
 - (void)populateAvailableDays;
@@ -65,7 +67,6 @@
 			break;
 		}
 	}
-	NSLog(@"%@", self.firstAvailableDay);
 		
 	for (int i = self.availableDays.count - 1; i >= 0; i--) {
 		if ([[self.availableDays objectAtIndex:i] intValue] != 0) {
@@ -73,8 +74,6 @@
 			break;
 		}
 	}
-		NSLog(@"%@", self.lastAvailableDay);
-	NSLog(@"%@", [self.availableDays description]);
 
 }
 
@@ -89,12 +88,16 @@
 {
 	return [self.lessonEndTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
+- (NSString *)getTimeRangeBySequence:(NSNumber *)sequence;
+{
+    // will be formated as 00:00 - 00:00
+    return [NSString stringWithFormat:@"%@ – %@", [self getBeginTimeBySequence:sequence], [self getEndTimeBySequence:sequence]];
+}
 
 
 - (NSNumber *)getNextDay:(int)currentDay;
 {
 	currentDay++;
-	NSLog(@"%d", currentDay);
 	if (currentDay >= self.availableDays.count)
 			return self.firstAvailableDay;
 	for (int i = currentDay; i < self.availableDays.count; i++) {
@@ -119,11 +122,11 @@
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
 {
 	NSMutableArray *result = [[NSMutableArray alloc] init];
-	for (TTPLesson *l  in self.timetable)
+	for (TTPLesson *l  in self.timetable) {
 		if ([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2))
-			[result addObject:l];
+			[result addObject:[l copy]];
+    }
 		
-
 	if (result.count != 0 && isRepeated == NO) {
 	for (int i = 0; i < result.count-1; i++) {
 		TTPLesson *current = [result objectAtIndex:i];
@@ -131,12 +134,23 @@
 		
 		if (current.day == next.day && current.sequence == next.sequence && current.parity == next.parity) {
 				current.name = @"Multiple values";
-				[current.subgroups removeAllObjects];
+            	[current.subgroups removeAllObjects];
 				[result removeObject:next];
 			}
 		}
+        
 	}
 	return result;
+}
+
+- (NSMutableArray *)getLessonsOnDayParitySequence:(NSNumber *)day parity:(NSNumber *)parity sequence:(NSNumber *)sequence;
+{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+	for (TTPLesson *l  in self.timetable)
+		if([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2)
+           && ([l.sequence isEqualToNumber:sequence]))
+			[result addObject:[l copy]];
+    return result;
 }
 
 - (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
@@ -148,7 +162,7 @@
 	return @"Multiple values";
 }
 
-#pragma mark - Localisation thing
+#pragma mark - Convert thing
 
 - (NSString *)localizeActivities:(NSString *)activity;
 {
@@ -160,5 +174,10 @@
 		return [russianNames objectAtIndex:[self.availableActivities indexOfObject:activity]];
 	}
 	return activity;
+}
+
+- (NSString *)convertParityNumToString:(NSNumber *)parity;
+{
+    return [self.parities objectAtIndex:[parity integerValue]];
 }
  @end

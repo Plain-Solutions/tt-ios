@@ -52,16 +52,23 @@
 @property (nonatomic, strong) NSNumber *lastAvailableDay;
 
 
+/**
+ Parity names
+ */
+@property (nonatomic, strong) NSArray *parities;
+
 - (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
+- (NSString *)getTimeRangeBySequence:(NSNumber *)sequence;
 - (NSNumber *)getNextDay:(int)currentDay;
 - (NSNumber *)getPreviousDay:(int)currentDay;
 - (void)populateAvailableDays;
 
 - (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
+- (NSMutableArray *)getLessonsOnDayParitySequence:(NSNumber *)day parity:(NSNumber *)parity sequence:(NSNumber *)sequence;
 - (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
 
 - (NSString *)localizeActivities:(NSString *)activity;
-
+- (NSString *)convertParityNumToString:(NSNumber *)parity;
 -(id)initWithTimetable:(NSMutableArray *)timetable;
 @end

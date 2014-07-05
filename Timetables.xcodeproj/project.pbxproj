@@ -22,6 +22,9 @@
 		5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */; };
 		5520FB841961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
 		5520FB851961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
+		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
+		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
+		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
@@ -69,6 +72,8 @@
 		5520FB761961BA3A0031B156 /* TTPTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableViewController.h; sourceTree = "<group>"; };
 		5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableViewController.m; sourceTree = "<group>"; };
 		5520FB831961D7940031B156 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-35.storyboard"; sourceTree = "<group>"; };
+		555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroupCell.h; sourceTree = "<group>"; };
+		555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroupCell.m; sourceTree = "<group>"; };
 		5571DFD5195F66980089E7E7 /* Timetables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timetables.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFD8195F66980089E7E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5571DFDA195F66980089E7E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +129,8 @@
 			children = (
 				5511C27A1963DD7E00E2C33B /* TTPSubjectCell.h */,
 				5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */,
+				555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */,
+				555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -345,6 +352,7 @@
 				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5520FB681961A20A0031B156 /* TTPLesson.m in Sources */,
+				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
@@ -361,9 +369,11 @@
 				5520FB691961A20A0031B156 /* TTPLesson.m in Sources */,
 				5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
+				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */,
 				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
+				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
