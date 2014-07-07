@@ -35,9 +35,6 @@
     self.lessonsOnDPT = [self.accessor getLessonsOnDayParitySequence:self.selectedLesson.day
                                                                   parity:self.selectedLesson.parity
                                                             sequence:self.selectedLesson.sequence];
-    for (TTPLesson *l in self.lessonsOnDPT) {
-        NSLog(@"%d", l.subgroups.count);
-    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -95,14 +92,16 @@
     NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];
 
     [defaultCell.textLabel setText:defaultCellText];
-    
+    defaultCell.textLabel.numberOfLines = 0;
+
     return defaultCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
+
     if (indexPath.row > 3) {
-		TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
 		TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
 		if (sub.subgroupName.length)
 			return 100.0;
@@ -110,7 +109,9 @@
     }
     else
     {
-        return 35.0;
+		if (lesson.name.length > 23)
+			return 50.0;
+		return 35.0;
     }
     
 }

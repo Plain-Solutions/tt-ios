@@ -12,9 +12,14 @@
 
 
 @interface TTPSavedGroupsViewController ()
+{
+	TTPGroup *_confirmDeletedMyGroup;
+}
 @property (nonatomic, strong) NSMutableArray *savedGroups;
 @property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) TTPGroup *myGroup;
+@property (nonatomic, strong) NSUserDefaults *defaults;
+@property (assign) NSInteger myGrpIndex;
 @end
 
 @implementation TTPSavedGroupsViewController
@@ -34,25 +39,26 @@
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	self.title = @"Saved groups";
 	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSData *data = [defaults objectForKey:@"savedGroups"];
+	self.defaults = [NSUserDefaults standardUserDefaults];
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
 	self.savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
 
-	self.myGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"myGroup"]];
+	self.myGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"myGroup"]];
 
 	self.parser = [[TTPParser alloc] init];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	for (TTPGroup *g in self.savedGroups) {
+		if (g.departmentName == self.myGroup.departmentName && g.groupName == self.myGroup.groupName) {
+			self.myGrpIndex = [self.savedGroups indexOfObject:g];
+			break;
+		}
+		
+	}
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -85,15 +91,30 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+	return (indexPath.row == self.myGrpIndex)?NO:YES;
 }
-*/
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		[self.savedGroups removeObjectAtIndex:indexPath.row];
+		NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedGroups];
+		[self.defaults setObject:data forKey:@"savedGroups"];
+		[self.defaults synchronize];
+		[self.tableView reloadData];
+    }
+}
+
+//- (void)didMoveToParentViewController:(UIViewController *)parent
+//{
+//    if (![parent isEqual:self.parentViewController]) {
+//		NSLog(@"%@", self.myGroup);
+//		((TTPTimetableViewController*)self.parentViewController).addGroup.enabled = !(self.myGroup == nil);
+//
+//    }
+//}
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

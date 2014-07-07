@@ -57,6 +57,7 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
+	NSLog(@"Here");
 	[self.tableView reloadData];
 }
 
