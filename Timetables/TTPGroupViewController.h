@@ -27,8 +27,4 @@
  */
 @property (nonatomic, strong) TTPDepartment *selectedDepartment;
 
-/**
- utton to proceed to group viewing.
- */
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
 @end

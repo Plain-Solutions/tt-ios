@@ -10,17 +10,13 @@
 
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) TTPParser *parser;
-@property (retain) NSIndexPath *lastIndexPath;
 @end
 
 @implementation TTPGroupViewController
 @synthesize selectedDepartment = _selectedDepartment;
 @synthesize groupList = _groupList;
 
-@synthesize nextButton = _nextButton;
 @synthesize parser = _parser;
-@synthesize lastIndexPath = _lastIndexPath;
-
 
 - (id)initWithStyle:(UITableViewStyle)style;
 {
@@ -32,7 +28,7 @@
 {
     [super viewDidLoad];
     self.title = self.selectedDepartment.name;
-	
+
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
@@ -85,37 +81,29 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupCell"];
     }
 	
-    cell.textLabel.text = [self.groupList objectAtIndexedSubscript:indexPath.row];
-    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.textLabel.text = [self.groupList objectAtIndex:indexPath.row];
 
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    self.lastIndexPath = indexPath;
-    self.nextButton.enabled = YES;
-    [tableView reloadData];
-}
-
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	if ([segue.identifier isEqualToString:@"showTimetableView"]) {
-		NSString *group = [self.groupList objectAtIndex:self.lastIndexPath.row];
-		
-		TTPTimetableViewController *controller = [segue destinationViewController];
-		controller.selectedDepartment = self.selectedDepartment;
-		controller.selectedGroup = group;
+	UIStoryboard *mainStoryboard = nil;
+	if (IS_IPHONE5) {
+		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-4" bundle:nil];
+	} else {
+		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-35" bundle:nil];
 	}
+	TTPTimetableViewController *controller = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainView"];
+
+	NSString *group = [self.groupList objectAtIndex:indexPath.row];
+	controller.selectedDepartment = self.selectedDepartment;
+	controller.selectedGroup = group;
+
+	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

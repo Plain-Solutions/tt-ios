@@ -23,9 +23,4 @@
  */
 @property (nonatomic, strong) NSMutableArray *departmentList;
 
-/**
- Button to proceed to group selection.
- */
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
-
 @end

@@ -41,7 +41,6 @@
     copy.activity = self.activity;
     copy.subgroups = [NSMutableArray array];
 	[copy.subgroups addObjectsFromArray:self.subgroups];
-    NSLog(@"InCopy: orig:%d copy:%d", self.subgroups.count, copy.subgroups.count);
 
     return copy;
 }

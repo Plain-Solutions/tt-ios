@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewControllerDefines.h"
 
 /** Default delegate file
  */
