@@ -10,13 +10,11 @@
 
 @interface TTPDepartmentViewController ()
 @property (nonatomic, strong) TTPParser *parser;
-@property (retain) NSIndexPath* lastIndexPath;
 @end
 
 @implementation TTPDepartmentViewController
 
 @synthesize parser = _parser;
-@synthesize lastIndexPath = _lastIndexPath;
 
 - (id)initWithStyle:(UITableViewStyle)style;
 {
@@ -89,8 +87,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    self.lastIndexPath = indexPath;
-    [tableView reloadData];
 }
 
 #pragma mark - Navigation
@@ -99,10 +95,12 @@
 {
     if ([segue.identifier isEqualToString:@"groupSelect"]) {
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-
-        TTPDepartment *dep = [self.departmentList objectAtIndexedSubscript:self.lastIndexPath.row];
+		UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+		
         TTPGroupViewController *controller = [segue destinationViewController];
-        controller.selectedDepartment = dep;
+		TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
+		controller.selectedDepartment = dep;
     }
 }
 

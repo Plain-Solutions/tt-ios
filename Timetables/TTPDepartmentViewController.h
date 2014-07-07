@@ -23,12 +23,4 @@
  */
 @property (nonatomic, strong) NSMutableArray *departmentList;
 
-/**
- Button to proceed to group selection.
- This button is unused, but there is some bug that forces us to keep it
- because without it, the app crashes.
- More: http://stackoverflow.com/questions/24598642/exception-on-coding-compilant-value-for-non-existing-button
- */
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
-
 @end
