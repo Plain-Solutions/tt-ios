@@ -138,7 +138,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="aTP-Gw-YKU">
-                                                    <rect key="frame" x="17" y="5" width="122" height="37"/>
+                                                    <rect key="frame" x="17" y="8" width="122" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="pageIndicatorTintColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,9 +148,15 @@
                                     </barButtonItem>
                                     <barButtonItem systemItem="add" id="eV0-0X-hPa">
                                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-25" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="addGroup:" destination="oVa-eM-EQw" id="wFX-BG-ZiJ"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="bookmarks" id="mrR-wr-zjj">
                                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-51" maxY="0.0"/>
+                                        <connections>
+                                            <segue destination="SVd-HT-JgE" kind="push" identifier="showSavedGroups" id="5FJ-ms-boS"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -164,6 +170,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addGroup" destination="eV0-0X-hPa" id="hKH-Oc-W4V"/>
                         <outlet property="daySelector" destination="aTP-Gw-YKU" id="kdj-tj-n0m"/>
                         <outlet property="daynameLabel" destination="BG1-4v-oQ6" id="vCJ-fB-uQI"/>
                         <outlet property="paritySelector" destination="Yun-bI-SC7" id="vmv-HQ-NBD"/>
@@ -174,11 +181,59 @@
             </objects>
             <point key="canvasLocation" x="812" y="-27"/>
         </scene>
+        <!--Saved Groups View Controller-->
+        <scene sceneID="P48-W7-zhT">
+            <objects>
+                <tableViewController id="SVd-HT-JgE" customClass="TTPSavedGroupsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fhN-5G-vCc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="savedGroup" textLabel="oeR-I8-0G7" detailTextLabel="f9a-gB-IkM" style="IBUITableViewCellStyleSubtitle" id="wOa-K8-sWT">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wOa-K8-sWT" id="taa-wp-jsU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeR-I8-0G7">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f9a-gB-IkM">
+                                            <rect key="frame" x="15" y="25" width="32" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="oVa-eM-EQw" kind="push" identifier="viewTimetable" id="p4D-QQ-BPF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SVd-HT-JgE" id="mga-eE-pn7"/>
+                            <outlet property="delegate" destination="SVd-HT-JgE" id="uJQ-w1-nnL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="35o-ck-EZw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lPu-Xi-90y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1227" y="-599"/>
+        </scene>
         <!--Subject Detail Table View Controller-->
         <scene sceneID="ScO-37-jxm">
             <objects>
                 <tableViewController id="FRL-1u-7p4" customClass="TTPSubjectDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ngo-av-vVe">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ngo-av-vVe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -255,4 +310,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="p4D-QQ-BPF"/>
+    </inferredMetricsTieBreakers>
 </document>

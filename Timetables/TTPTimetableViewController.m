@@ -11,17 +11,18 @@
 @interface TTPTimetableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) TTPTimetableAccessor *timetableAccessor;
+@property (nonatomic, strong) NSUserDefaults *defaults;
 @end
 
 @implementation TTPTimetableViewController
 
-@synthesize selectedDepartment = _selectedDepartment;
 @synthesize selectedGroup = _selectedGroup;
 @synthesize dayLessons = _dayLessons;
 
 @synthesize parser = _parser;
 @synthesize timetableAccessor = _timetableAccessor;
 
+@synthesize addGroup = _addGroup;
 @synthesize paritySelector = _paritySelector;
 @synthesize daySelector = _daySelector;
 @synthesize timetable = _timetable;
@@ -34,18 +35,18 @@
 
 - (void)viewDidLoad;
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.defaults = [NSUserDefaults standardUserDefaults];
 	
 	if (self.selectedGroup == nil) {
-		TTPDepartment *testDep = [[TTPDepartment alloc] init];
-		testDep.name = [defaults objectForKey:@"myDepartmentName"];
-		testDep.tag=  [defaults objectForKey:@"myDepartmentTag"];
-		self.selectedDepartment = testDep;
-		
-		self.selectedGroup = [defaults objectForKey:@"myGroup"];
+		NSData *data = [self.defaults objectForKey:@"myGroup"];
+		self.selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:data];		
 	}
 	
-	// UI
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
+	
+	
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
 	self.timetable.dataSource = self;
@@ -73,8 +74,8 @@
     dispatch_async(downloadQueue, ^{
 		NSString *ttURL = [NSString
 						   stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
-						   self.selectedDepartment.tag,
-						   [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+						   self.selectedGroup.departmentTag,
+						   [self.selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
 		ShowNetworkActivityIndicator();
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
@@ -217,6 +218,21 @@
     }
 }
 
+
+- (IBAction)addGroup:(id)sender;
+{
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	
+	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	TTPGroup *grp = [self.selectedGroup copy];	
+	[savedGroups addObject:grp];
+	
+	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
+	[self.defaults setObject:updatedData forKey:@"savedGroups"];
+	[self.defaults synchronize];
+
+	self.addGroup.enabled = NO;
+}
 
 - (IBAction)searchGroups:(id)sender;
 {

@@ -11,10 +11,10 @@
 #import "TTPDepartmentViewController.h"
 #import "TTPSubjectDetailTableViewController.h"
 #import "TTPSubjectCell.h"
-#import "TTPDepartment.h"
+#import "TTPGroup.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
-
+#import "TTPSavedGroupsViewController.h"
 /**
  Main app view.
  */
@@ -23,12 +23,7 @@
 /**
  Department from the last screen selection
  */
-@property (nonatomic, strong) TTPDepartment *selectedDepartment;
-
-/**
- Group from the last screen selection
- */
-@property (nonatomic, strong) NSString *selectedGroup;
+@property (nonatomic, strong) TTPGroup *selectedGroup;
 
 /**
  Lessons to display.
@@ -54,6 +49,8 @@
  Display timetable
  */
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addGroup;
 
+- (IBAction)addGroup:(id)sender;
 - (IBAction)searchGroups:(id)sender;
 @end

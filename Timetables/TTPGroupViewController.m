@@ -57,6 +57,7 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
+	NSLog(@"Here");
 	[self.tableView reloadData];
 }
 
@@ -90,7 +91,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	NSString *group = [self.groupList objectAtIndex:indexPath.row];
+	NSString *groupName = [self.groupList objectAtIndex:indexPath.row];
+	TTPGroup *selectedGroup = [[TTPGroup alloc] init];
+	selectedGroup.departmentName = self.selectedDepartment.name;
+	selectedGroup.departmentTag = self.selectedDepartment.tag;
+	selectedGroup.groupName = groupName;
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:
@@ -98,16 +103,17 @@
 	
 	if ([defaults boolForKey:@"firstRun"] == YES) {
 		[defaults setBool:NO forKey:@"firstRun"];
-		[defaults setObject:self.selectedDepartment.name forKey:@"myDepartmentName"];
-		[defaults setObject:self.selectedDepartment.tag forKey:@"myDepartmentTag"];
-		[defaults setObject:group forKey:@"myGroup"];
+
+		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
+		NSData *favs = [NSKeyedArchiver archivedDataWithRootObject:[NSArray arrayWithObject:selectedGroup]];
+		[defaults setObject:grp forKey:@"myGroup"];
+		[defaults setObject:favs forKey:@"savedGroups"];
 		[defaults synchronize];
 	}
 	
 	TTPTimetableViewController *controller = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainView"];
-
-	controller.selectedDepartment = self.selectedDepartment;
-	controller.selectedGroup = group;
+	
+	controller.selectedGroup = selectedGroup;
 
 	[self.navigationController pushViewController:controller animated:YES];
 }
