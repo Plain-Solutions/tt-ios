@@ -216,10 +216,9 @@
 
 - (IBAction)searchGroups:(id)sender;
 {
-	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
-	UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"selectDepView"];
-//	self.nacontroller = [[UINavigationController alloc] initWithRootViewController:vc];
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self.navigationController pushViewController:vc animated:YES];
+	UIStoryboard *searchStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
+	UIViewController *controller = [searchStoryboard instantiateViewControllerWithIdentifier:@"selectDepView"];
+	
+	[self.navigationController pushViewController:controller animated:YES];
 }
 @end

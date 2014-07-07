@@ -86,6 +86,8 @@
     return cell;
 }
 
+#pragma mark - Navigation
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 	UIStoryboard *mainStoryboard = nil;
@@ -103,11 +105,5 @@
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self.navigationController pushViewController:controller animated:YES];
 }
-
-#pragma mark - Navigation
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-//{
-//}
 
 @end
