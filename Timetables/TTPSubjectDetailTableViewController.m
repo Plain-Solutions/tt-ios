@@ -76,8 +76,10 @@
 
         TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
         sgCell.subgroupTeacherName.text = sub.teacher;
-        sgCell.subgroupNameLabel.text = sub.subgroupName;
         sgCell.subgroupLocationLabel.text = sub.location;
+		sgCell.subgroupNameLabel.text = sub.subgroupName;
+
+
         return sgCell;
     }
     
@@ -93,8 +95,6 @@
     NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];
 
     [defaultCell.textLabel setText:defaultCellText];
-//    TTPSubgroupCell *subgroupCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
-    
     
     return defaultCell;
 }
@@ -102,7 +102,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row > 3) {
-        return 100.0;
+		TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
+		TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
+		if (sub.subgroupName.length)
+			return 100.0;
+		return 60.0;
     }
     else
     {
