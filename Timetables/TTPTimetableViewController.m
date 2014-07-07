@@ -15,7 +15,6 @@
 
 @implementation TTPTimetableViewController
 
-@synthesize selectedDepartment = _selectedDepartment;
 @synthesize selectedGroup = _selectedGroup;
 @synthesize dayLessons = _dayLessons;
 
@@ -37,12 +36,8 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	if (self.selectedGroup == nil) {
-		TTPDepartment *testDep = [[TTPDepartment alloc] init];
-		testDep.name = [defaults objectForKey:@"myDepartmentName"];
-		testDep.tag=  [defaults objectForKey:@"myDepartmentTag"];
-		self.selectedDepartment = testDep;
-		
-		self.selectedGroup = [defaults objectForKey:@"myGroup"];
+		NSData *data = [defaults objectForKey:@"myGroup"];
+		self.selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:data];		
 	}
 	
 	// UI
@@ -73,8 +68,8 @@
     dispatch_async(downloadQueue, ^{
 		NSString *ttURL = [NSString
 						   stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
-						   self.selectedDepartment.tag,
-						   [self.selectedGroup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+						   self.selectedGroup.departmentTag,
+						   [self.selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
 		ShowNetworkActivityIndicator();
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]

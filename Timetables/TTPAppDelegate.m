@@ -23,7 +23,7 @@
 		[defaults synchronize];
 	}
 	
-	if ([defaults objectForKey:@"myDepartmentName"] == nil || [defaults objectForKey:@"myDepartmentTag"] == nil || [defaults objectForKey:@"myGroup"] == nil) {
+	if ([defaults objectForKey:@"myGroup"] == nil) {
 		[defaults setBool:YES forKey:@"firstRun"];
 		[defaults synchronize];
 		mainStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];

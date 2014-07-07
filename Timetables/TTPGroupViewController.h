@@ -11,7 +11,7 @@
 #import "TTPTimetableViewController.h"
 #import "TTPDepartment.h"
 #import "TTPParser.h"
-
+#import "TTPGroup.h"
 /**
  Group selection view.
  */

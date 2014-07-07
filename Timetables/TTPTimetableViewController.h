@@ -12,6 +12,7 @@
 #import "TTPSubjectDetailTableViewController.h"
 #import "TTPSubjectCell.h"
 #import "TTPDepartment.h"
+#import "TTPGroup.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
 
@@ -23,12 +24,7 @@
 /**
  Department from the last screen selection
  */
-@property (nonatomic, strong) TTPDepartment *selectedDepartment;
-
-/**
- Group from the last screen selection
- */
-@property (nonatomic, strong) NSString *selectedGroup;
+@property (nonatomic, strong) TTPGroup *selectedGroup;
 
 /**
  Lessons to display.
