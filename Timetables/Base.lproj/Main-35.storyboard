@@ -106,28 +106,39 @@
                                 </segments>
                             </segmentedControl>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldz-Av-Fgd">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="3" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="search" id="PeB-PA-Q2p">
+                                        <inset key="imageInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <action selector="searchGroups:" destination="oVa-eM-EQw" id="2Mr-P1-rV3"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" id="d2Q-29-zeZ">
+                                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="11" maxY="0.0"/>
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="AFi-FJ-EGA">
+                                            <rect key="frame" x="44" y="11" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" id="QqC-38-P8M">
                                         <view key="customView" contentMode="scaleToFill" id="HNS-t2-ByL">
-                                            <rect key="frame" x="44" y="6" width="229" height="33"/>
+                                            <rect key="frame" x="76" y="6" width="140" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dayname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG1-4v-oQ6">
-                                                    <rect key="frame" x="60" y="0.0" width="109" height="20"/>
+                                                    <rect key="frame" x="24" y="0.0" width="109" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="aTP-Gw-YKU">
-                                                    <rect key="frame" x="53" y="7" width="122" height="37"/>
+                                                    <rect key="frame" x="17" y="5" width="122" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="pageIndicatorTintColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,7 +146,12 @@
                                             </subviews>
                                         </view>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="bookmarks" id="mrR-wr-zjj"/>
+                                    <barButtonItem systemItem="add" id="eV0-0X-hPa">
+                                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-25" maxY="0.0"/>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="bookmarks" id="mrR-wr-zjj">
+                                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-51" maxY="0.0"/>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
