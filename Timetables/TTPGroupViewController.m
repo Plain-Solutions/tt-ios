@@ -102,8 +102,11 @@
 	
 	if ([defaults boolForKey:@"firstRun"] == YES) {
 		[defaults setBool:NO forKey:@"firstRun"];
+
 		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
+		NSData *favs = [NSKeyedArchiver archivedDataWithRootObject:[NSArray arrayWithObject:selectedGroup]];
 		[defaults setObject:grp forKey:@"myGroup"];
+		[defaults setObject:favs forKey:@"savedGroups"];
 		[defaults synchronize];
 	}
 	

@@ -21,6 +21,7 @@
 @synthesize parser = _parser;
 @synthesize timetableAccessor = _timetableAccessor;
 
+@synthesize addGroup = _addGroup;
 @synthesize paritySelector = _paritySelector;
 @synthesize daySelector = _daySelector;
 @synthesize timetable = _timetable;
@@ -40,7 +41,11 @@
 		self.selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:data];		
 	}
 	
-	// UI
+	NSData *data = [defaults objectForKey:@"savedGroups"];
+	NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
+	
+	
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
 	self.timetable.dataSource = self;

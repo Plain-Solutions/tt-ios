@@ -25,7 +25,8 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (id)initWithCoder:(NSCoder *)decoder;
+{
     if(self = [super init]) {
         self.departmentName = [decoder decodeObjectForKey:@"departmentName"];
         self.departmentTag = [decoder decodeObjectForKey:@"departmentTag"];
@@ -34,10 +35,23 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder {
+- (void)encodeWithCoder:(NSCoder *)encoder;
+{
     [encoder encodeObject:self.departmentName forKey:@"departmentName"];
     [encoder encodeObject:self.departmentTag forKey:@"departmentTag"];
     [encoder encodeObject:self.groupName forKey:@"groupName"];
+}
+
+- (BOOL)isSaved:(NSArray *)favGroups;
+{
+	for (TTPGroup *g in favGroups) {
+		if ([self.departmentName isEqualToString:g.departmentName] &&
+			[self.departmentTag isEqualToString:g.departmentTag] &&
+			[self.groupName isEqualToString:g.groupName]) {
+			return YES;
+		}
+	}
+	return NO;
 }
 
 

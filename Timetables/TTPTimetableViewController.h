@@ -11,7 +11,6 @@
 #import "TTPDepartmentViewController.h"
 #import "TTPSubjectDetailTableViewController.h"
 #import "TTPSubjectCell.h"
-#import "TTPDepartment.h"
 #import "TTPGroup.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
@@ -50,6 +49,7 @@
  Display timetable
  */
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addGroup;
 
 - (IBAction)searchGroups:(id)sender;
 @end

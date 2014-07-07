@@ -22,4 +22,5 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder;
 
+- (BOOL)isSaved:(NSArray *)favGroups;
 @end
