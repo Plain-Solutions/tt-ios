@@ -19,7 +19,7 @@
 
 - (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
 - (id)initWithCoder:(NSCoder *)decoder;
-
+- (id) copy;
 - (void)encodeWithCoder:(NSCoder *)encoder;
 
 - (BOOL)isSaved:(NSArray *)favGroups;

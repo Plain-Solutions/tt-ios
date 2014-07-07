@@ -14,7 +14,7 @@
 #import "TTPGroup.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
-
+#import "TTPSavedGroupsViewController.h"
 /**
  Main app view.
  */
@@ -51,5 +51,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addGroup;
 
+- (IBAction)addGroup:(id)sender;
 - (IBAction)searchGroups:(id)sender;
 @end

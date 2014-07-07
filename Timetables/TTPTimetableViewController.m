@@ -11,6 +11,7 @@
 @interface TTPTimetableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) TTPTimetableAccessor *timetableAccessor;
+@property (nonatomic, strong) NSUserDefaults *defaults;
 @end
 
 @implementation TTPTimetableViewController
@@ -34,14 +35,14 @@
 
 - (void)viewDidLoad;
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.defaults = [NSUserDefaults standardUserDefaults];
 	
 	if (self.selectedGroup == nil) {
-		NSData *data = [defaults objectForKey:@"myGroup"];
+		NSData *data = [self.defaults objectForKey:@"myGroup"];
 		self.selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:data];		
 	}
 	
-	NSData *data = [defaults objectForKey:@"savedGroups"];
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
 	NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
 	
@@ -215,8 +216,21 @@
         controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].row];
         controller.accessor = self.timetableAccessor;
     }
+//	if ([segue.identifier isEqualToString:@"showSavedGroups"]) {
+//		TTPSavedGroupsViewController *controller = [segue destinationViewController];
+//			
+//	}
 }
 
+
+- (IBAction)addGroup:(id)sender;
+{
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	TTPGroup *grp = [self.selectedGroup copy];
+	
+	
+}
 
 - (IBAction)searchGroups:(id)sender;
 {

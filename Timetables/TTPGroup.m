@@ -35,6 +35,16 @@
     return self;
 }
 
+- (id) copy;
+{
+	TTPGroup *copy = [[TTPGroup alloc] init];
+	copy.departmentName = self.departmentName;
+	copy.departmentTag = self.departmentTag;
+	copy.groupName = self.groupName;
+
+	return copy;
+}
+
 - (void)encodeWithCoder:(NSCoder *)encoder;
 {
     [encoder encodeObject:self.departmentName forKey:@"departmentName"];

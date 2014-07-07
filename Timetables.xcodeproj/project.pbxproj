@@ -26,6 +26,8 @@
 		5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A188196A813E00301897 /* SearchViews.storyboard */; };
 		5537A18E196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
 		5537A18F196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
+		5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */; };
+		5537A193196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */; };
 		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
@@ -80,6 +82,8 @@
 		5537A189196A813E00301897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchViews.storyboard; sourceTree = "<group>"; };
 		5537A18C196AD08500301897 /* TTPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroup.h; sourceTree = "<group>"; };
 		5537A18D196AD08500301897 /* TTPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroup.m; sourceTree = "<group>"; };
+		5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupsViewController.h; sourceTree = "<group>"; };
+		5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupsViewController.m; sourceTree = "<group>"; };
 		555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroupCell.h; sourceTree = "<group>"; };
 		555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroupCell.m; sourceTree = "<group>"; };
 		555DE4E41968117200F4D939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-4.storyboard"; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 				5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */,
 				55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */,
 				55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */,
+				5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */,
+				5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -367,6 +373,7 @@
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5520FB681961A20A0031B156 /* TTPLesson.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
+				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
@@ -391,6 +398,7 @@
 				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
 				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
+				5537A193196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
