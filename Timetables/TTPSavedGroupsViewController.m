@@ -12,8 +12,9 @@
 
 
 @interface TTPSavedGroupsViewController ()
-@property (nonatomic, weak) NSMutableArray *savedGroups;
+@property (nonatomic, strong) NSMutableArray *savedGroups;
 @property (nonatomic, strong) TTPParser *parser;
+@property (nonatomic, strong) TTPGroup *myGroup;
 @end
 
 @implementation TTPSavedGroupsViewController
@@ -36,6 +37,9 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSData *data = [defaults objectForKey:@"savedGroups"];
 	self.savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+
+	self.myGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"myGroup"]];
+
 	self.parser = [[TTPParser alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -69,6 +73,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
 	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
+	
+	if ([group.groupName isEqualToString:self.myGroup.groupName] && [group.departmentName isEqualToString:self.myGroup.departmentName]) {
+		[cell.textLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+		[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+	}
+		 
     cell.textLabel.text = group.groupName;
 	cell.detailTextLabel.text = [self.parser prettifyDepartmentNames:group.departmentName];
     
@@ -105,6 +115,9 @@
     return YES;
 }
 */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
@@ -112,9 +125,10 @@
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-		
+
         TTPTimetableViewController *controller = [segue destinationViewController];
 		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];
+
     }
 }
 

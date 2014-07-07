@@ -216,20 +216,22 @@
         controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].row];
         controller.accessor = self.timetableAccessor;
     }
-//	if ([segue.identifier isEqualToString:@"showSavedGroups"]) {
-//		TTPSavedGroupsViewController *controller = [segue destinationViewController];
-//			
-//	}
 }
 
 
 - (IBAction)addGroup:(id)sender;
 {
 	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	
 	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-	TTPGroup *grp = [self.selectedGroup copy];
+	TTPGroup *grp = [self.selectedGroup copy];	
+	[savedGroups addObject:grp];
 	
-	
+	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
+	[self.defaults setObject:updatedData forKey:@"savedGroups"];
+	[self.defaults synchronize];
+
+	self.addGroup.enabled = NO;
 }
 
 - (IBAction)searchGroups:(id)sender;
