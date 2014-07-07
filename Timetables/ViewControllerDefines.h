@@ -12,6 +12,4 @@
 #define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
 #define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
-#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
-
 #endif
