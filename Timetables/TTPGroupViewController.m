@@ -90,19 +90,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	UIStoryboard *mainStoryboard = nil;
-	if (IS_IPHONE5) {
-		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-4" bundle:nil];
-	} else {
-		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-35" bundle:nil];
+	NSString *group = [self.groupList objectAtIndex:indexPath.row];
+
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:
+									[defaults objectForKey:@"usedStoryboard"]bundle:nil];
+	
+	if ([defaults boolForKey:@"firstRun"] == YES) {
+		[defaults setBool:NO forKey:@"firstRun"];
+		[defaults setObject:self.selectedDepartment.name forKey:@"myDepartmentName"];
+		[defaults setObject:self.selectedDepartment.tag forKey:@"myDepartmentTag"];
+		[defaults setObject:group forKey:@"myGroup"];
+		[defaults synchronize];
 	}
+	
 	TTPTimetableViewController *controller = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainView"];
 
-	NSString *group = [self.groupList objectAtIndex:indexPath.row];
 	controller.selectedDepartment = self.selectedDepartment;
 	controller.selectedGroup = group;
 
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self.navigationController pushViewController:controller animated:YES];
 }
 

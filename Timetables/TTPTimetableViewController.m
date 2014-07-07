@@ -34,13 +34,17 @@
 
 - (void)viewDidLoad;
 {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
 	if (self.selectedGroup == nil) {
-	self.selectedGroup = @"151";
-	TTPDepartment *testDep = [[TTPDepartment alloc] init];
-	testDep.name = @"KNIIT";
-	testDep.tag=  @"knt";
-	self.selectedDepartment = testDep;
+		TTPDepartment *testDep = [[TTPDepartment alloc] init];
+		testDep.name = [defaults objectForKey:@"myDepartmentName"];
+		testDep.tag=  [defaults objectForKey:@"myDepartmentTag"];
+		self.selectedDepartment = testDep;
+		
+		self.selectedGroup = [defaults objectForKey:@"myGroup"];
 	}
+	
 	// UI
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;

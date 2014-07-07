@@ -14,15 +14,30 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 {
 	UIStoryboard *mainStoryboard = nil;
-	if (IS_IPHONE5) {
-		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-4" bundle:nil];
-	} else {
-		mainStoryboard = [UIStoryboard storyboardWithName:@"Main-35" bundle:nil];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+	if ([defaults objectForKey:@"usedStoryboard"] == nil) {
+		NSLog(@"Display size not set.");
+		NSString *storyBoardName = (IS_IPHONE5)?@"Main-4":@"Main-35";
+		[defaults setObject:storyBoardName forKey:@"usedStoryboard"];
+		[defaults synchronize];
 	}
 	
+	if ([defaults objectForKey:@"myDepartmentName"] == nil || [defaults objectForKey:@"myDepartmentTag"] == nil || [defaults objectForKey:@"myGroup"] == nil) {
+		[defaults setBool:YES forKey:@"firstRun"];
+		[defaults synchronize];
+		mainStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
+		self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+		self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
+		[self.window makeKeyAndVisible];
+	}
+	else {
+	mainStoryboard = [UIStoryboard storyboardWithName:[defaults objectForKey:@"usedStoryboard"]bundle:nil];
+		
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
 	[self.window makeKeyAndVisible];
+	}
 	
 	return YES;
 }

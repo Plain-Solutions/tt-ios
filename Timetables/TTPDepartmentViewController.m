@@ -28,6 +28,17 @@
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	if ([defaults boolForKey:@"firstRun"] == YES) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Announcement"
+														message: @"It seems that you are running Timetables for the first time! Choose your department and group."
+													   delegate: nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		
+		[alert show];
+	}
  
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
