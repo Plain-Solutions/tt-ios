@@ -15,7 +15,6 @@
 
 @implementation TTPDepartmentViewController
 
-@synthesize nextButton = _nextButton;
 @synthesize parser = _parser;
 @synthesize lastIndexPath = _lastIndexPath;
 
@@ -23,7 +22,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -36,7 +35,7 @@
     dispatch_async(downloadQueue, ^{
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
 		ShowNetworkActivityIndicator();
-        // do our long running process here
+
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: depURL]
 												 cachePolicy:NSURLRequestUseProtocolCachePolicy
 											 timeoutInterval:60];
@@ -45,7 +44,7 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
-        // do any UI stuff on the main UI thread
+
         dispatch_async(dispatch_get_main_queue(), ^{
 			self.parser = [[TTPParser alloc] init];
 			self.departmentList = [self.parser parseDepartments:data error:error];
@@ -75,8 +74,6 @@
    return self.departmentList.count;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell"];
@@ -87,21 +84,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DepCell"];
     }
     cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
-    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     self.lastIndexPath = indexPath;
-    self.nextButton.enabled = YES;
     [tableView reloadData];
 }
 
@@ -109,17 +97,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
-    if ([segue.identifier isEqualToString:@"groupInitialSelect"]) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.lastIndexPath];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
+    if ([segue.identifier isEqualToString:@"groupSelect"]) {
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-        
 
         TTPDepartment *dep = [self.departmentList objectAtIndexedSubscript:self.lastIndexPath.row];
         TTPGroupViewController *controller = [segue destinationViewController];
         controller.selectedDepartment = dep;
-        self.lastIndexPath = nil;
     }
 }
 

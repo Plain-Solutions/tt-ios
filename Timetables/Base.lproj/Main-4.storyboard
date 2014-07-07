@@ -12,111 +12,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="rsK-Bi-hKT" kind="relationship" relationship="rootViewController" id="dEQ-Jx-lNM"/>
+                        <segue destination="oVa-eM-EQw" kind="relationship" relationship="rootViewController" id="s43-AI-oWI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8O-LS-B4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="212" y="-27"/>
         </scene>
-        <!--Department View Controller - Select Department-->
-        <scene sceneID="6YF-TP-qND">
-            <objects>
-                <tableViewController id="rsK-Bi-hKT" customClass="TTPDepartmentViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Val-bF-Mvb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="DepCell" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DepCell" textLabel="cka-71-SU7" style="IBUITableViewCellStyleDefault" id="iim-eZ-Q7I">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iim-eZ-Q7I" id="lDK-Cx-jZe">
-                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Department" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cka-71-SU7">
-                                            <rect key="frame" x="15" y="0.0" width="266" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="rsK-Bi-hKT" id="xMy-kv-Ch6"/>
-                            <outlet property="delegate" destination="rsK-Bi-hKT" id="OpT-uG-fgy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select Department" id="Hvv-73-4hY">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="sJM-PX-LCT">
-                            <connections>
-                                <segue destination="Dml-C4-EK6" kind="push" identifier="groupInitialSelect" id="4Fl-Kg-UqQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nextButton" destination="sJM-PX-LCT" id="B6z-8p-liy"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jMe-8T-sKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="811" y="-27"/>
-        </scene>
-        <!--Group View Controller - Department-->
-        <scene sceneID="ru4-YL-4nW">
-            <objects>
-                <tableViewController id="Dml-C4-EK6" customClass="TTPGroupViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pr7-Il-x9I">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" textLabel="69v-WN-H0F" style="IBUITableViewCellStyleDefault" id="rh1-ds-cdK">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rh1-ds-cdK" id="ugK-EW-s0P">
-                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="69v-WN-H0F">
-                                            <rect key="frame" x="15" y="0.0" width="266" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Dml-C4-EK6" id="X42-z0-40j"/>
-                            <outlet property="delegate" destination="Dml-C4-EK6" id="JsA-Wr-EHv"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Department" id="dKm-p9-8gc">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="386-SH-Cr8">
-                            <connections>
-                                <segue destination="oVa-eM-EQw" kind="push" identifier="showTimetableView" id="bmx-6W-M0m"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nextButton" destination="386-SH-Cr8" id="SRk-AJ-YCm"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NNV-R2-cf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1403" y="-27"/>
-        </scene>
         <!--Timetable View Controller-->
         <scene sceneID="Dum-hs-oP3">
             <objects>
-                <viewController id="oVa-eM-EQw" customClass="TTPTimetableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainView" id="oVa-eM-EQw" customClass="TTPTimetableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BEi-Jr-Rw7"/>
                         <viewControllerLayoutGuide type="bottom" id="NTf-Vp-ym5"/>

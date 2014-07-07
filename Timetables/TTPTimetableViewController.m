@@ -34,6 +34,13 @@
 
 - (void)viewDidLoad;
 {
+	if (self.selectedGroup == nil) {
+	self.selectedGroup = @"151";
+	TTPDepartment *testDep = [[TTPDepartment alloc] init];
+	testDep.name = @"KNIIT";
+	testDep.tag=  @"knt";
+	self.selectedDepartment = testDep;
+	}
 	// UI
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
@@ -209,6 +216,10 @@
 
 - (IBAction)searchGroups:(id)sender;
 {
-	[self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
+	UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"selectDepView"];
+//	self.nacontroller = [[UINavigationController alloc] initWithRootViewController:vc];
+	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 @end
