@@ -12,6 +12,7 @@
 #import "TTPSubjectDetailTableViewController.h"
 #import "TTPSubjectCell.h"
 #import "TTPGroup.h"
+#import "TTPSubjectEntity.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
 #import "TTPSavedGroupsViewController.h"

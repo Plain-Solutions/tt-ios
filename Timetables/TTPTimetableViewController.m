@@ -94,13 +94,8 @@
 																	  error:error];
 			[self.timetableAccessor populateAvailableDays];
 			
-			self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-							   self.timetableAccessor.firstAvailableDay
-																	 parity:[NSNumber numberWithInt:0]
-																withRepeats:NO];
-			
-			self.daySelector.currentPage = [self.timetableAccessor.firstAvailableDay intValue];
-			self.daynameLabel.text = [self convertNumToDays:[NSNumber numberWithInt:self.daySelector.currentPage]];
+			self.daySelector.currentPage = self.timetableAccessor.firstAvailableDay;
+			self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 			[self.timetable reloadData];
 			HideNetworkActivityIndicator();
         });
@@ -122,8 +117,30 @@
 #pragma mark - Timetable
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-	return self.dayLessons.count;
+	NSArray *seqs = [self.timetableAccessor availableSequencesOnDayParity:self.daySelector.currentPage
+																   parity:self.paritySelector.selectedSegmentIndex];
+
+	return [self.timetableAccessor lessonsCountOnDayParitySequence:self.daySelector.currentPage
+															parity:self.paritySelector.selectedSegmentIndex
+														   sequence:[[seqs objectAtIndex:section] integerValue]];
+
+
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [self.timetableAccessor lessonsCountOnDayParity:self.daySelector.currentPage
+													parity:self.paritySelector.selectedSegmentIndex];
+}
+
+-(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+        return 3;
+    return 0.5;
+}
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -133,43 +150,46 @@
     if (cell == nil) {
         cell = [[TTPSubjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LessonCell"];
     }
-	if (self.dayLessons.count != 0){
-	TTPLesson *lesson = [self.dayLessons objectAtIndex:indexPath.row];
+	NSLog(@"%d %d %d", self.daySelector.currentPage, self.paritySelector.selectedSegmentIndex, indexPath.section + 1);
+	NSArray *seqs = [self.timetableAccessor availableSequencesOnDayParity:self.daySelector.currentPage
+																   parity:self.paritySelector.selectedSegmentIndex];
+	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
+	NSArray *subjectsDPT = [self.timetableAccessor lessonsOnDayParitySequence:self.daySelector.currentPage
+																	   parity:self.paritySelector.selectedSegmentIndex
+																	 sequence:[sequence integerValue]];
 
-	cell.subjectNameLabel.text = lesson.name;
-	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:lesson.activity];
-	cell.beginTimeLabel.text = [self.timetableAccessor getBeginTimeBySequence:lesson.sequence];
-	cell.endTimeLabel.text = [self.timetableAccessor getEndTimeBySequence:lesson.sequence];
-	cell.locationLabel.text= [self.timetableAccessor getLocationOnSingleSubgroupCount:lesson.subgroups];
+	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	
+	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString], [subj.name substringFromIndex:1]];
+	
+	
+	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:subj.activity];
+	cell.locationLabel.text= [self.timetableAccessor locationOnSingleSubgroupCount:subj.subgroups];
+			NSLog(@"%@ - %d", subj.name, [subjectsDPT indexOfObject:subj]);
+	if ([subjectsDPT indexOfObject:subj] == 0) {
+
+		cell.beginTimeLabel.text = [self.timetableAccessor beginTimeBySequence:sequence];
+		cell.endTimeLabel.text = [self.timetableAccessor endTimeBySequence:sequence];
+		cell.dashLabel.text =@"–––";
 	}
-    return cell;
+	else cell.beginTimeLabel.text = cell.endTimeLabel.text = cell.dashLabel.text =@"";
+	
+	return cell;
 }
 
 #pragma mark - Actions
 - (void)handleSwipeL;
 {
-	self.daySelector.currentPage = [[self.timetableAccessor getNextDay:self.daySelector.currentPage] intValue];
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
-														withRepeats:NO];
-	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
-
+	self.daySelector.currentPage = [self.timetableAccessor nextDay:self.daySelector.currentPage];
+	self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 	[self.timetable reloadData];
 }
 
 - (void)handleSwipeR;
 {
 
-	self.daySelector.currentPage = [[self.timetableAccessor getPreviousDay:self.daySelector.currentPage] intValue];
-
-	self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
-														withRepeats:NO];
-	
-	self.daynameLabel.text = [self convertNumToDays: [NSNumber numberWithInt:self.daySelector.currentPage]];
-	
+	self.daySelector.currentPage = [self.timetableAccessor previousDay:self.daySelector.currentPage];
+	self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 	[self.timetable reloadData];
 	
 }
@@ -177,25 +197,20 @@
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
 {
 	[self.dayLessons removeAllObjects];
-    self.dayLessons = [self.timetableAccessor getLessonsOnDayParity:
-					   [NSNumber numberWithInt: self.daySelector.currentPage]
-															 parity:[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]
-														withRepeats:NO];
-
 	[self.timetable reloadData];
 }
 
 #pragma  mark - Private stuff
 
-- (NSString *)convertNumToDays:(NSNumber *)num;
+- (NSString *)convertNumToDays:(NSInteger)num;
 {
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
 
 	NSArray *weekdays = [df weekdaySymbols];
-	if ([num intValue] +1 >= 7)
-		num = [NSNumber numberWithInt:0];
-	return [[weekdays objectAtIndex:[num intValue] +1] capitalizedString];
+	if (num + 1 >= 7)
+		num = 0;
+	return [[weekdays objectAtIndex:num + 1] capitalizedString];
 
 }
 
@@ -213,7 +228,7 @@
 {
 	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
 		TTPSubjectDetailTableViewController *controller = [segue destinationViewController];
-        controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].row];
+        controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].section];
         controller.accessor = self.timetableAccessor;
     }
 }

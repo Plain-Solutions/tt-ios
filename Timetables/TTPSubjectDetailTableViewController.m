@@ -32,7 +32,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.title = self.selectedLesson.name;
    
-    self.lessonsOnDPT = [self.accessor getLessonsOnDayParitySequence:self.selectedLesson.day
+    self.lessonsOnDPT = [self.accessor lessonsOnDayParitySequence:self.selectedLesson.day
                                                                   parity:self.selectedLesson.parity
                                                             sequence:self.selectedLesson.sequence];
     // Uncomment the following line to preserve selection between presentations.
@@ -86,7 +86,7 @@
 
     NSArray *basicInfoCompilation = [NSArray arrayWithObjects:lesson.name,
                                      lesson.activity,
-                                     [self.accessor getTimeRangeBySequence:lesson.sequence],
+                                     [self.accessor timeRangeBySequence:lesson.sequence],
                                      [self.accessor convertParityNumToString:lesson.parity],
                                      nil];
     NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];

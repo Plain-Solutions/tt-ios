@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TTPSubgroup.h"
 #import "TTPLesson.h"
+#import "TTPSubjectEntity.h"
+#import "TTPDaySequenceEntity.h"
 
 /**
  Some sort of library with useful methods to access to data in the timetable.
@@ -34,22 +36,22 @@
 /**
  Fetched timetable copy
 */
-@property (nonatomic, strong) NSMutableArray *timetable;
+@property (nonatomic, strong) NSArray *timetable;
 
 /**
  All the days, which have lessons.
  */
-@property (nonatomic, strong) NSMutableArray *availableDays;
+@property (nonatomic, strong) NSArray *availableDays;
 
 /**
  First day of the week with lessons.
  */
-@property (nonatomic, strong) NSNumber *firstAvailableDay;
+@property (nonatomic, assign) NSInteger firstAvailableDay;
 
 /**
  Last day of the week with lessons.
  */
-@property (nonatomic, strong) NSNumber *lastAvailableDay;
+@property (nonatomic, assign) NSInteger lastAvailableDay;
 
 
 /**
@@ -57,17 +59,20 @@
  */
 @property (nonatomic, strong) NSArray *parities;
 
-- (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
-- (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
-- (NSString *)getTimeRangeBySequence:(NSNumber *)sequence;
-- (NSNumber *)getNextDay:(int)currentDay;
-- (NSNumber *)getPreviousDay:(int)currentDay;
+- (NSString *)beginTimeBySequence:(NSNumber *)sequence;
+- (NSString *)endTimeBySequence:(NSNumber *)sequence;
+- (NSString *)timeRangeBySequence:(NSNumber *)sequence;
+- (NSInteger)nextDay:(NSInteger)currentDay;
+- (NSInteger)previousDay:(NSInteger)currentDay;
 - (void)populateAvailableDays;
 
-- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
-- (NSMutableArray *)getLessonsOnDayParitySequence:(NSNumber *)day parity:(NSNumber *)parity sequence:(NSNumber *)sequence;
-- (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
+- (NSInteger) lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSInteger) lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+- (NSArray *) availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
 
+- (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+
+- (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
 - (NSString *)localizeActivities:(NSString *)activity;
 - (NSString *)convertParityNumToString:(NSNumber *)parity;
 -(id)initWithTimetable:(NSMutableArray *)timetable;

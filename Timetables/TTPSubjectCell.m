@@ -15,7 +15,7 @@
 @synthesize subjectNameLabel =_subjectNameLabel;
 @synthesize subjectTypeLabel = _subjectTypeLabel;
 @synthesize locationLabel = _locationLabel;
-
+@synthesize dashLabel = _dashLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 {

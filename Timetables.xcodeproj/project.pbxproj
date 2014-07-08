@@ -51,6 +51,8 @@
 		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
 		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
+		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,10 @@
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDaySequenceEntity.h; sourceTree = "<group>"; };
+		55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDaySequenceEntity.m; sourceTree = "<group>"; };
+		55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectEntity.h; sourceTree = "<group>"; };
+		55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +262,10 @@
 				5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */,
 				5537A18C196AD08500301897 /* TTPGroup.h */,
 				5537A18D196AD08500301897 /* TTPGroup.m */,
+				55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */,
+				55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */,
+				55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */,
+				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -376,7 +386,9 @@
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
+				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
+				55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */,
 				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
