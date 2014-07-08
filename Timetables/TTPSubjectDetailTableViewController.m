@@ -9,19 +9,15 @@
 #import "TTPSubjectDetailTableViewController.h"
 
 @interface TTPSubjectDetailTableViewController ()
-@property (nonatomic, strong) NSMutableArray *lessonsOnDPT;
+@property (nonatomic, strong) TTPTimetableAccessor *accessor;
 @end
 
 @implementation TTPSubjectDetailTableViewController
-@synthesize selectedLesson = _selectedLesson;
-@synthesize accessor = _accessor;
-@synthesize lessonsOnDPT = _lessonsOnDPT;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -30,48 +26,33 @@
 {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    self.title = self.selectedLesson.name;
-   
-    self.lessonsOnDPT = [self.accessor getLessonsOnDayParitySequence:self.selectedLesson.day
-                                                                  parity:self.selectedLesson.parity
-                                                            sequence:self.selectedLesson.sequence];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = self.subject.name;
+	self.accessor = [[TTPTimetableAccessor alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.lessonsOnDPT.count;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:section];
-    return 4 + lesson.subgroups.count;
+    return 4 + self.subject.subgroups.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
     //we go to subgroup cells
     if (indexPath.row > 3) {
         TTPSubgroupCell *sgCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
         if (sgCell == nil)
             sgCell = [[TTPSubgroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"subgroupInfo"];
 
-        TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
+        TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.row-4];
         sgCell.subgroupTeacherName.text = sub.teacher;
         sgCell.subgroupLocationLabel.text = sub.location;
 		sgCell.subgroupNameLabel.text = sub.subgroupName;
@@ -84,10 +65,10 @@
     if (defaultCell == nil)
         defaultCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicInfo"];
 
-    NSArray *basicInfoCompilation = [NSArray arrayWithObjects:lesson.name,
-                                     lesson.activity,
-                                     [self.accessor getTimeRangeBySequence:lesson.sequence],
-                                     [self.accessor convertParityNumToString:lesson.parity],
+    NSArray *basicInfoCompilation = [NSArray arrayWithObjects:self.subject.name,
+                                     self.subject.activity,
+                                     [self.accessor timeRangeBySequence:[NSNumber numberWithInt:self.sequence]],
+                                     [self.accessor convertParityNumToString:self.subject.parity],
                                      nil];
     NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];
 
@@ -99,17 +80,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	TTPLesson *lesson = [self.lessonsOnDPT objectAtIndex:indexPath.section];
 
     if (indexPath.row > 3) {
-		TTPSubgroup *sub = [lesson.subgroups objectAtIndex:indexPath.row-4];
+		TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.row-4];
 		if (sub.subgroupName.length)
 			return 100.0;
 		return 60.0;
     }
     else
     {
-		if (lesson.name.length > 23)
+		if (self.subject.name.length > 23)
 			return 50.0;
 		return 35.0;
     }

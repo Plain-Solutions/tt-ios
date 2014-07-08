@@ -36,5 +36,6 @@
  Display place.
  */
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dashLabel;
 
 @end

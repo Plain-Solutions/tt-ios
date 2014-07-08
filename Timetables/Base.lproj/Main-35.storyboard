@@ -31,13 +31,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bWH-Lb-rO7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="75" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="bWH-Lb-rO7">
                                 <rect key="frame" x="0.0" y="64" width="326" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LessonCell" rowHeight="75" id="6Bo-sJ-bx4" customClass="TTPSubjectCell">
-                                        <rect key="frame" x="0.0" y="22" width="326" height="75"/>
+                                        <rect key="frame" x="0.0" y="55" width="326" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Bo-sJ-bx4" id="6KU-0o-leR">
                                             <rect key="frame" x="0.0" y="0.0" width="293" height="74"/>
@@ -87,6 +87,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="beginTimeLabel" destination="XeM-41-Aii" id="rhU-zK-Oz1"/>
+                                            <outlet property="dashLabel" destination="7fp-Dh-QqT" id="Qd5-HT-OgD"/>
                                             <outlet property="endTimeLabel" destination="ESb-Dw-Q25" id="rMm-oJ-BBN"/>
                                             <outlet property="locationLabel" destination="BOe-Ps-4i5" id="hsb-ZZ-DRD"/>
                                             <outlet property="subjectNameLabel" destination="Lto-MR-bxm" id="ehF-cd-udW"/>

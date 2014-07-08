@@ -65,31 +65,31 @@
 						options:NSJSONReadingMutableContainers
 						error:&error];
     for (NSDictionary *lesson in asArray) {
+		TTPDaySequenceEntity *dse = [[TTPDaySequenceEntity alloc] init];
+		dse.day = lesson[@"day"];
+		dse.sequence = lesson[@"sequence"];
+		NSMutableArray *subjects = [[NSMutableArray alloc] init];
 		for (NSDictionary *subject in lesson[@"subject"]) {
-			TTPLesson *aLesson = [[TTPLesson alloc] init];
-			aLesson.day = lesson[@"day"];
-			aLesson.sequence = lesson[@"sequence"];
-			aLesson.parity = subject[@"parity"];
-			aLesson.name = subject[@"name"];
-			aLesson.activity = subject[@"activity"];
-
-			aLesson.subgroups = [[NSMutableArray alloc] init];
-			for (NSDictionary *aSubgroup in subject[@"subgroups"]) {
-				TTPSubgroup *subgroup = [[TTPSubgroup alloc] init];
-				
-				subgroup.subgroupName = aSubgroup[@"subgroup"];
-				subgroup.teacher = aSubgroup[@"teacher"];
-				subgroup.location = aSubgroup[@"location"];
-				
-				[aLesson.subgroups addObject:subgroup];
+			TTPSubjectEntity *_subj = [[TTPSubjectEntity alloc] init];
+			_subj.name = subject[@"name"];
+			_subj.activity = subject[@"activity"];
+			_subj.parity = subject[@"parity"];
+			
+			NSMutableArray *subgroups = [[NSMutableArray alloc] init];
+			for (NSDictionary *subgroup in subject[@"subgroups"]) {
+				TTPSubgroup *_subg = [[TTPSubgroup alloc] init];
+				_subg.subgroupName = subgroup[@"subgroup"];
+				_subg.teacher = subgroup[@"teacher"];
+				_subg.location = subgroup[@"location"];
+				[subgroups addObject:_subg];
 			}
-			
-			[result addObject:aLesson];
-			
+			_subj.subgroups = [[NSArray alloc] initWithArray:subgroups];
+			[subjects addObject:_subj];
 		}
-		
+		dse.subjects = [[NSArray alloc] initWithArray:subjects];
 
-    }
+		[result addObject:dse];
+	}
 	
     return result;
 	

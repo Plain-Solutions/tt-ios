@@ -14,8 +14,6 @@
 		5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
 		551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
 		551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
-		5520FB681961A20A0031B156 /* TTPLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB621961A20A0031B156 /* TTPLesson.m */; };
-		5520FB691961A20A0031B156 /* TTPLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB621961A20A0031B156 /* TTPLesson.m */; };
 		5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
 		5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
 		5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */; };
@@ -51,6 +49,8 @@
 		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
 		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
+		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 		5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableAccessor.m; sourceTree = "<group>"; };
 		551C934F195F90A00017145D /* TTPGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroupViewController.h; sourceTree = "<group>"; };
 		551C9350195F90A00017145D /* TTPGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroupViewController.m; sourceTree = "<group>"; };
-		5520FB621961A20A0031B156 /* TTPLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPLesson.m; sourceTree = "<group>"; };
-		5520FB631961A20A0031B156 /* TTPLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPLesson.h; sourceTree = "<group>"; };
 		5520FB661961A20A0031B156 /* TTPSubgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroup.m; sourceTree = "<group>"; };
 		5520FB671961A20A0031B156 /* TTPSubgroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroup.h; sourceTree = "<group>"; };
 		5520FB761961BA3A0031B156 /* TTPTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableViewController.h; sourceTree = "<group>"; };
@@ -110,6 +108,10 @@
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDaySequenceEntity.h; sourceTree = "<group>"; };
+		55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDaySequenceEntity.m; sourceTree = "<group>"; };
+		55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectEntity.h; sourceTree = "<group>"; };
+		55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,8 +248,6 @@
 			children = (
 				5571E01C195F754E0089E7E7 /* TTPDepartment.h */,
 				5571E01B195F754E0089E7E7 /* TTPDepartment.m */,
-				5520FB631961A20A0031B156 /* TTPLesson.h */,
-				5520FB621961A20A0031B156 /* TTPLesson.m */,
 				5571E020195F75B20089E7E7 /* TTPParser.h */,
 				5571E01F195F75B20089E7E7 /* TTPParser.m */,
 				5520FB671961A20A0031B156 /* TTPSubgroup.h */,
@@ -256,6 +256,10 @@
 				5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */,
 				5537A18C196AD08500301897 /* TTPGroup.h */,
 				5537A18D196AD08500301897 /* TTPGroup.m */,
+				55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */,
+				55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */,
+				55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */,
+				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -371,12 +375,13 @@
 				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
-				5520FB681961A20A0031B156 /* TTPLesson.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
+				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
+				55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */,
 				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,7 +393,6 @@
 				5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
-				5520FB691961A20A0031B156 /* TTPLesson.m in Sources */,
 				5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
 				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,

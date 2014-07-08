@@ -50,111 +50,125 @@
 
 - (void)populateAvailableDays;
 {
-	self.availableDays = [[NSMutableArray alloc] init];
-	for (int i = 0; i < 6; i++)
-	{
-		[self.availableDays addObject:[NSNumber numberWithInt:0]];
+	
+	
+	self.firstAvailableDay = [((TTPDaySequenceEntity *)[self.timetable firstObject]).day integerValue];
+	self.lastAvailableDay = [((TTPDaySequenceEntity *)[self.timetable lastObject]).day integerValue];
+	
+	NSMutableSet *setOfAvailDays = [[NSMutableSet alloc] init];
+	
+	for (TTPDaySequenceEntity *e in self.timetable) {
+		[setOfAvailDays addObject:e.day];
 	}
-	for (TTPLesson *l in self.timetable) {
-		int value =[[self.availableDays objectAtIndex:[l.day intValue]] intValue];
-		value++;
-		[self.availableDays replaceObjectAtIndex:[l.day intValue] withObject:[NSNumber numberWithInt:value]];
-	}
-
-	for (int i = 0; i < self.availableDays.count; i++) {
-		if ([[self.availableDays objectAtIndex:i] intValue] != 0) {
-			self.firstAvailableDay = [NSNumber numberWithInt:i];
-			break;
-		}
-	}
-		
-	for (int i = self.availableDays.count - 1; i >= 0; i--) {
-		if ([[self.availableDays objectAtIndex:i] intValue] != 0) {
-			self.lastAvailableDay = [NSNumber numberWithInt:i];
-			break;
-		}
-	}
-
+	self.availableDays= [[NSArray alloc] initWithArray:[[setOfAvailDays allObjects] sortedArrayUsingSelector:@selector(compare:)]];
 }
 
 #pragma mark - Timey-wimey
 
-- (NSString *)getBeginTimeBySequence:(NSNumber *)sequence;
+- (NSString *)beginTimeBySequence:(NSNumber *)sequence;
 {
 	return [self.lessonBeginTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
 
-- (NSString *)getEndTimeBySequence:(NSNumber *)sequence;
+- (NSString *)endTimeBySequence:(NSNumber *)sequence;
 {
 	return [self.lessonEndTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
-- (NSString *)getTimeRangeBySequence:(NSNumber *)sequence;
+- (NSString *)timeRangeBySequence:(NSNumber *)sequence;
 {
     // will be formated as 00:00 - 00:00
-    return [NSString stringWithFormat:@"%@ – %@", [self getBeginTimeBySequence:sequence], [self getEndTimeBySequence:sequence]];
+    return [NSString stringWithFormat:@"%@ – %@", [self beginTimeBySequence:sequence], [self endTimeBySequence:sequence]];
 }
 
 
-- (NSNumber *)getNextDay:(int)currentDay;
+- (NSInteger)nextDay:(NSInteger)currentDay;
 {
-	currentDay++;
-	if (currentDay >= self.availableDays.count)
-			return self.firstAvailableDay;
-	for (int i = currentDay; i < self.availableDays.count; i++) {
-		if ([[self.availableDays objectAtIndex:i] intValue] != 0)
-			return [NSNumber numberWithInt:i];
+	NSInteger nextIndex = [self.availableDays indexOfObject:[NSNumber numberWithInt:currentDay]]+1;
+	if (nextIndex >= self.availableDays.count) {
+		return self.firstAvailableDay;
 	}
-	return self.firstAvailableDay;
+	return [[self.availableDays objectAtIndex:nextIndex] integerValue];
 }
 
-- (NSNumber *)getPreviousDay:(int)currentDay;
+- (NSInteger)previousDay:(int)currentDay;
 {
-	currentDay--;
-	for (int i = currentDay; i >= 0; i--) {
-		if ([[self.availableDays objectAtIndex:i] intValue] != 0)
-			return [NSNumber numberWithInt:i];
+	NSInteger prevIndex = [self.availableDays indexOfObject:[NSNumber numberWithInt:currentDay]]-1;
+	if (prevIndex < 0) {
+		return self.lastAvailableDay;
 	}
-	return self.lastAvailableDay;
+	return [[self.availableDays objectAtIndex:prevIndex] integerValue];
 }
 
 #pragma mark - Getting timetables and stuff
 
-- (NSMutableArray *)getLessonsOnDayParity:(NSNumber *)day parity:(NSNumber *)parity withRepeats:(BOOL)isRepeated;
+- (NSInteger) lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
 {
-	NSMutableArray *result = [[NSMutableArray alloc] init];
-	for (TTPLesson *l  in self.timetable) {
-		if ([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2))
-			[result addObject:[l copy]];
+	NSInteger count = 0;
+
+	for (TTPDaySequenceEntity *e  in self.timetable) {
+		BOOL addDPT = NO;
+		if ([e.day integerValue] == day) {
+			for (TTPSubjectEntity *subj in e.subjects) {
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2) {
+					addDPT = YES;
+					break;
+				}
+			}
+			if (addDPT)
+				count++;
+		}
     }
-		
-	if (result.count != 0 && isRepeated == NO) {
-	for (int i = 0; i < result.count-1; i++) {
-		TTPLesson *current = [result objectAtIndex:i];
-		TTPLesson *next = [result objectAtIndex:i+1];
-		
-		if (current.day == next.day && current.sequence == next.sequence && current.parity == next.parity) {
-				current.name = @"Multiple values";
-            	[current.subgroups removeAllObjects];
-				[result removeObject:next];
+	NSLog(@"Lessons on day:%d\t parity:%d \t %d", day, parity, count);
+	return count;
+}
+- (NSInteger) lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+{
+	NSInteger count = 0;
+	//s//equence++;
+	for (TTPDaySequenceEntity *e  in self.timetable) {
+		if ([e.day integerValue] == day && [e.sequence integerValue] == sequence) {
+			for (TTPSubjectEntity *subj in e.subjects) {
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+					count++;
 			}
 		}
-        
 	}
-	return result;
+	NSLog(@"----\nLessons on day:%d\t parity:%d\t sequence:%d is %d", day, parity, sequence , count);
+	return count;
 }
 
-- (NSMutableArray *)getLessonsOnDayParitySequence:(NSNumber *)day parity:(NSNumber *)parity sequence:(NSNumber *)sequence;
+- (NSArray *) availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+{
+	NSMutableSet *result = [[NSMutableSet alloc] init];
+	for (TTPDaySequenceEntity *e in self.timetable) {
+		if ([e.day integerValue] == day) {
+			for (TTPSubjectEntity *subj in e.subjects) {
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+					[result addObject:e.sequence];
+			}
+		}
+	}
+	
+	return [[NSArray alloc] initWithArray:[[result allObjects] sortedArrayUsingSelector:@selector(compare:)]];
+}
+
+- (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
-	for (TTPLesson *l  in self.timetable)
-		if([l.day isEqualToNumber:day] && ([l.parity isEqualToNumber:parity] || [l.parity intValue] == 2)
-           && ([l.sequence isEqualToNumber:sequence]))
-			[result addObject:[l copy]];
+	for (TTPDaySequenceEntity *e  in self.timetable)
+		if ([e.day integerValue] == day && [e.sequence integerValue] == sequence) {
+			for (TTPSubjectEntity *subj in e.subjects) {
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+					[result addObject:subj];
+			}
+		}
+
     return result;
 }
 
-- (NSString *)getLocationOnSingleSubgroupCount:(NSMutableArray *)subgroups;
+- (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
 {
+	NSLog(@"Count:%d", subgroups.count);
 	if (subgroups.count == 1) {
 		TTPSubgroup *sub = [subgroups objectAtIndex:0];
 		return sub.location;

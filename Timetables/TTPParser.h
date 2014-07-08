@@ -4,9 +4,9 @@
 //
 
 #import "TTPDepartment.h"
-#import "TTPLesson.h"
 #import "TTPSubgroup.h"
-
+#import "TTPDaySequenceEntity.h"
+#import "TTPSubjectEntity.h"
 /**
  Incoming data parser.
  This thing deserialises JSON strings from api.sssutt.org to objects.
