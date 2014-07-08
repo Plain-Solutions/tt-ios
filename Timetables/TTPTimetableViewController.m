@@ -33,22 +33,21 @@
 
 - (void)viewDidLoad;
 {
+	// init settings
 	self.defaults = [NSUserDefaults standardUserDefaults];
 	
+	// load user's group if not selected
 	if (self.selectedGroup == nil) {
 		NSData *data = [self.defaults objectForKey:@"myGroup"];
 		self.selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:data];		
 	}
-	
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
-	
-	
+
+	// UI init
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
     self.timetable.delegate = self;
 	self.timetable.dataSource = self;
 	[self.view addSubview:self.timetable];
+
 	[self.paritySelector addTarget:self
 							action:@selector(parityUpdated:forEvent:)
 				  forControlEvents:UIControlEventValueChanged];
@@ -121,8 +120,6 @@
 	return [self.timetableAccessor lessonsCountOnDayParitySequence:self.daySelector.currentPage
 															parity:self.paritySelector.selectedSegmentIndex
 														   sequence:[[seqs objectAtIndex:section] integerValue]];
-
-
 }
 
 
@@ -139,8 +136,6 @@
     return 0.5;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     TTPSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LessonCell" forIndexPath:indexPath];
@@ -148,28 +143,29 @@
     if (cell == nil) {
         cell = [[TTPSubjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LessonCell"];
     }
+	
 	NSArray *seqs = [self.timetableAccessor availableSequencesOnDayParity:self.daySelector.currentPage
 																   parity:self.paritySelector.selectedSegmentIndex];
 	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
+	
 	NSArray *subjectsDPT = [self.timetableAccessor lessonsOnDayParitySequence:self.daySelector.currentPage
 																	   parity:self.paritySelector.selectedSegmentIndex
 																	 sequence:[sequence integerValue]];
 
 	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
 	
-	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString], [subj.name substringFromIndex:1]];
-	
-	
+
+	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
+								  [subj.name substringFromIndex:1]];
 	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:subj.activity];
 	cell.locationLabel.text= [self.timetableAccessor locationOnSingleSubgroupCount:subj.subgroups];
 
 	if ([subjectsDPT indexOfObject:subj] == 0) {
-
 		cell.beginTimeLabel.text = [self.timetableAccessor beginTimeBySequence:sequence];
 		cell.endTimeLabel.text = [self.timetableAccessor endTimeBySequence:sequence];
 		cell.dashLabel.text =@"–––";
 	}
-	else cell.beginTimeLabel.text = cell.endTimeLabel.text = cell.dashLabel.text =@"";
+	else cell.beginTimeLabel.text = cell.endTimeLabel.text = cell.dashLabel.text = @"";
 	
 	return cell;
 }
@@ -184,7 +180,6 @@
 
 - (void)handleSwipeR;
 {
-
 	self.daySelector.currentPage = [self.timetableAccessor previousDay:self.daySelector.currentPage];
 	self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 	[self.timetable reloadData];
@@ -210,15 +205,7 @@
 
 }
 
-- (void)updateDisplay:(NSString *)str;
-{
-	
-	[self.daynameLabel performSelectorOnMainThread : @selector(setText : ) withObject:str waitUntilDone:YES];
-}
-
-
 #pragma mark - Navigation
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -242,21 +229,6 @@
 		TTPSavedGroupsViewController *controller = [segue destinationViewController];
 		controller.selectedGroup = self.selectedGroup;
 	}
-}
-
-
-- (IBAction)addGroup:(id)sender;
-{
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	
-	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-	TTPGroup *grp = [self.selectedGroup copy];	
-	[savedGroups addObject:grp];
-	
-	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
-	[self.defaults setObject:updatedData forKey:@"savedGroups"];
-	[self.defaults synchronize];
-
 }
 
 - (IBAction)searchGroups:(id)sender;

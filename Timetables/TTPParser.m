@@ -6,9 +6,8 @@
 #import "TTPParser.h"
 
 
-@implementation TTPParser {
+@implementation TTPParser
 
-}
 - (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error;
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
@@ -18,7 +17,7 @@
                        options:NSJSONReadingMutableContainers
                          error:&error];
     for (NSDictionary *elem in asArray) {
-        TTPDepartment *dep = [[TTPDepartment alloc] initWithBasicInfo:[elem objectForKey:@"name"]
+        TTPDepartment *dep = [[TTPDepartment alloc] initWithNameTag:[elem objectForKey:@"name"]
 																  tag:[elem objectForKey:@"tag"]];
         [result addObject:dep];
     }

@@ -9,7 +9,7 @@
 @implementation TTPSubgroup {
 
 }
-@synthesize  subgroupName = _subgroupName;
+@synthesize subgroupName = _subgroupName;
 @synthesize teacher = _teacher;
 @synthesize location = _location;
 

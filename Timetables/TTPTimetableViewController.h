@@ -47,6 +47,5 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
 
-- (IBAction)addGroup:(id)sender;
 - (IBAction)searchGroups:(id)sender;
 @end

@@ -21,14 +21,7 @@
  */
 @property (nonatomic, strong) NSString *tag;
 
-/**
- Dean's office message.
- */
-@property (nonatomic, strong) NSString *msg;
-
-- (id)initWithBasicInfo:(NSString *)name tag:(NSString *)tag;
-
-- (id)initWithFullInfo:(NSString *)name tag:(NSString *)tag message:(NSString *)msg;
+- (id)initWithNameTag:(NSString *)name tag:(NSString *)tag;
 
 - (NSString *)description;
 

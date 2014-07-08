@@ -10,7 +10,18 @@
 #import "TTPParser.h"
 #import "ViewControllerDefines.h"
 
+/**
+ Viewing Dean's office info
+ */
 @interface TTPDepMsgViewController : UIViewController
+
+/**
+ Subview to display parsed and formatted data.
+ */
 @property (weak, nonatomic) IBOutlet UITextView *departmentMessageView;
+
+/**
+ Tag to navigate through API
+ */
 @property (strong, nonatomic) NSString *departmentTag;
 @end

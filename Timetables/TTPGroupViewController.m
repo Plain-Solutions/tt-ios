@@ -16,8 +16,6 @@
 @synthesize selectedDepartment = _selectedDepartment;
 @synthesize groupList = _groupList;
 
-@synthesize parser = _parser;
-
 - (id)initWithStyle:(UITableViewStyle)style;
 {
     self = [super initWithStyle:style];
@@ -33,8 +31,8 @@
     dispatch_async(downloadQueue, ^{
 		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
 							  self.selectedDepartment.tag];
+
 		ShowNetworkActivityIndicator();
-        // do our long running process here
 		NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: groupURL]
 												 cachePolicy:NSURLRequestUseProtocolCachePolicy
 											 timeoutInterval:60];
@@ -42,7 +40,6 @@
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-        // do any UI stuff on the main UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
 			self.parser = [[TTPParser alloc] init];
 			self.groupList = [self.parser parseGroups:data error:error];

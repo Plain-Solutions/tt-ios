@@ -42,10 +42,12 @@
 	self.parser = [[TTPParser alloc] init];
 	
 	for (TTPGroup *g in self.savedGroups) {
-		if ([g.departmentName isEqualToString:self.myGroup.departmentName] && [g.groupName isEqualToString:self.myGroup.groupName]) {
+		if ([g.departmentName isEqualToString:self.myGroup.departmentName] &&
+			[g.groupName isEqualToString:self.myGroup.groupName]) {
 			self.myGrpIndex = [self.savedGroups indexOfObject:g];
 		}
-		if ([g.departmentName isEqualToString:self.selectedGroup.departmentName] && [g.groupName isEqualToString:self.selectedGroup.groupName])
+		if ([g.departmentName isEqualToString:self.selectedGroup.departmentName] &&
+			[g.groupName isEqualToString:self.selectedGroup.groupName])
 			self.addButton.enabled = NO;
 		}
 }
@@ -57,24 +59,19 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     return self.savedGroups.count;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     UITableViewCell *cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
 	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
 	
-	if ([group.groupName isEqualToString:self.myGroup.groupName] && [group.departmentName isEqualToString:self.myGroup.departmentName]) {
+	if ([group.groupName isEqualToString:self.myGroup.groupName] &&
+		[group.departmentName isEqualToString:self.myGroup.departmentName]) {
 		[cell.textLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
 		[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
 	}
@@ -85,13 +82,13 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+{
 	return (indexPath.row == self.myGrpIndex)?NO:YES;
 }
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[self.savedGroups removeObjectAtIndex:indexPath.row];
 		NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedGroups];
@@ -99,39 +96,6 @@
 		[self.defaults synchronize];
 		[self.favs reloadData];
     }
-}
-
-//- (void)didMoveToParentViewController:(UIViewController *)parent
-//{
-//    if (![parent isEqual:self.parentViewController]) {
-//		NSLog(@"%@", self.myGroup);
-//		((TTPTimetableViewController*)self.parentViewController).addGroup.enabled = !(self.myGroup == nil);
-//
-//    }
-//}
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
@@ -153,19 +117,20 @@
 
 
 
-- (IBAction)addGroupToFavs:(id)sender {
+- (IBAction)addGroupToFavs:(id)sender;
+{
+	// defaults
 	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	
 	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
 	TTPGroup *grp = [self.selectedGroup copy];
 	[savedGroups addObject:grp];
-	[self.savedGroups addObject:grp];
-	
 	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
 	[self.defaults setObject:updatedData forKey:@"savedGroups"];
 	[self.defaults synchronize];
+
+	// UI
+	[self.savedGroups addObject:grp];
 	[self.favs reloadData];
 	self.addButton.enabled = NO;
-
 }
 @end

@@ -52,18 +52,4 @@
     [encoder encodeObject:self.groupName forKey:@"groupName"];
 }
 
-- (BOOL)isSaved:(NSArray *)favGroups;
-{
-	for (TTPGroup *g in favGroups) {
-		if ([self.departmentName isEqualToString:g.departmentName] &&
-			[self.departmentTag isEqualToString:g.departmentTag] &&
-			[self.groupName isEqualToString:g.groupName]) {
-			return YES;
-		}
-	}
-	return NO;
-}
-
-
-
 @end

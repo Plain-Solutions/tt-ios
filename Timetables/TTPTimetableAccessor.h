@@ -52,7 +52,6 @@
  */
 @property (nonatomic, assign) NSInteger lastAvailableDay;
 
-
 /**
  Parity names
  */

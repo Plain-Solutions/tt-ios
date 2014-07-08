@@ -14,13 +14,9 @@
 
 @implementation TTPDepartmentViewController
 
-@synthesize parser = _parser;
-
 - (id)initWithStyle:(UITableViewStyle)style;
 {
-    self = [super initWithStyle:style];
-    if (self) {
-
+    if (self = [super initWithStyle:style]) {
     }
     return self;
 }
@@ -31,7 +27,7 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	if ([defaults boolForKey:@"firstRun"] == YES) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Announcement"
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Announcement!"
 														message: @"It seems that you are running Timetables for the first time! Choose your department and group."
 													   delegate: nil
 											  cancelButtonTitle:@"OK"
@@ -94,10 +90,6 @@
     }
     cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
 }
 
 #pragma mark - Navigation
