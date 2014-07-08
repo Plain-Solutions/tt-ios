@@ -140,7 +140,7 @@
         [self.favs scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.favs indexPathForCell:cell];
-
+		TTPGroup *g = [self.savedGroups objectAtIndex:indexPath.row];
         TTPTimetableViewController *controller = [segue destinationViewController];
 		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];
 
