@@ -20,6 +20,8 @@
 		5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */; };
 		5520FB841961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
 		5520FB851961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
+		5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
+		5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
 		5537A18A196A813E00301897 /* SearchViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A188196A813E00301897 /* SearchViews.storyboard */; };
 		5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A188196A813E00301897 /* SearchViews.storyboard */; };
 		5537A18E196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
@@ -77,6 +79,8 @@
 		5520FB761961BA3A0031B156 /* TTPTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableViewController.h; sourceTree = "<group>"; };
 		5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableViewController.m; sourceTree = "<group>"; };
 		5520FB831961D7940031B156 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-35.storyboard"; sourceTree = "<group>"; };
+		5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepMsgViewController.h; sourceTree = "<group>"; };
+		5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepMsgViewController.m; sourceTree = "<group>"; };
 		5537A189196A813E00301897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchViews.storyboard; sourceTree = "<group>"; };
 		5537A18C196AD08500301897 /* TTPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroup.h; sourceTree = "<group>"; };
 		5537A18D196AD08500301897 /* TTPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroup.m; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */,
 				5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */,
 				5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */,
+				5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */,
+				5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
+				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
@@ -401,6 +408,7 @@
 				5537A18F196AD08500301897 /* TTPGroup.m in Sources */,
 				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
 				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
+				5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
 				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
 				5537A193196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 			);

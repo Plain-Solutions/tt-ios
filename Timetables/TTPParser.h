@@ -17,7 +17,7 @@
 
 - (NSString *)prettifyDepartmentNames:(NSString *)departmentName;
 
-// - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw:(NSError *)error;
+- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error;
 
 - (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
 

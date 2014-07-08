@@ -39,12 +39,12 @@
     return [trimSpaced capitalizedString];
 }
 
-/*
- - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw :(NSError *)error; {
+
+ - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error; {
     NSDictionary *asDict = [NSJSONSerialization JSONObjectWithData:raw options:0 error:&error];
     return [asDict objectForKey:@"msg"];
 }
-*/
+
 
 - (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
 {

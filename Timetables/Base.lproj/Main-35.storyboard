@@ -224,7 +224,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="108" style="plain" systemItem="fixedSpace" id="jss-ol-Dgr"/>
-                                    <barButtonItem title="Department Message" id="rhc-ab-cxb"/>
+                                    <barButtonItem title="Department Message" id="rhc-ab-cxb">
+                                        <connections>
+                                            <segue destination="6S1-hw-4S8" kind="push" identifier="viewMessage" id="9qm-am-HRi"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -240,6 +244,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgw-7e-x9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="909" y="-577"/>
+        </scene>
+        <!--Dep Msg View Controller-->
+        <scene sceneID="DlV-mI-uN6">
+            <objects>
+                <viewController id="6S1-hw-4S8" customClass="TTPDepMsgViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YOH-gj-gAi"/>
+                        <viewControllerLayoutGuide type="bottom" id="yYD-NW-J6z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pQz-Ia-hQw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="TEst!!!!" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA7-TO-MoE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="use-YR-6rt"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="departmentMessageView" destination="zA7-TO-MoE" id="vf9-SQ-W7a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Cb-ny-9Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485" y="-577"/>
         </scene>
         <!--Subject Detail Table View Controller-->
         <scene sceneID="ScO-37-jxm">

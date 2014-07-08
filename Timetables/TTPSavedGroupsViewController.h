@@ -10,6 +10,7 @@
 #import "TTPGroup.h"
 #import "TTPParser.h"
 #import "TTPTimetableViewController.h"
+#import "TTPDepMsgViewController.h"
 
 @interface TTPSavedGroupsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *favs;
