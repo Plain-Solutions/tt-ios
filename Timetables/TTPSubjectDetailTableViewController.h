@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTPLesson.h"
+#import "TTPSubjectEntity.h"
 #import "TTPTimetableAccessor.h"
 #import "TTPSubgroupCell.h"
 
 @interface TTPSubjectDetailTableViewController : UITableViewController
-@property (nonatomic, weak) TTPLesson *selectedLesson;
-@property (nonatomic, assign) TTPTimetableAccessor *accessor;
+@property (nonatomic, weak) TTPSubjectEntity *subject;
+@property (nonatomic, assign) NSInteger sequence;
 @end

@@ -150,7 +150,6 @@
     if (cell == nil) {
         cell = [[TTPSubjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LessonCell"];
     }
-	NSLog(@"%d %d %d", self.daySelector.currentPage, self.paritySelector.selectedSegmentIndex, indexPath.section + 1);
 	NSArray *seqs = [self.timetableAccessor availableSequencesOnDayParity:self.daySelector.currentPage
 																   parity:self.paritySelector.selectedSegmentIndex];
 	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
@@ -165,7 +164,7 @@
 	
 	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:subj.activity];
 	cell.locationLabel.text= [self.timetableAccessor locationOnSingleSubgroupCount:subj.subgroups];
-			NSLog(@"%@ - %d", subj.name, [subjectsDPT indexOfObject:subj]);
+
 	if ([subjectsDPT indexOfObject:subj] == 0) {
 
 		cell.beginTimeLabel.text = [self.timetableAccessor beginTimeBySequence:sequence];
@@ -227,9 +226,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
+		TTPSubjectCell *cell = (TTPSubjectCell*)sender;
+		NSIndexPath *indexPath = [self.timetable indexPathForCell:cell];
 		TTPSubjectDetailTableViewController *controller = [segue destinationViewController];
-        controller.selectedLesson = [self.dayLessons objectAtIndex:[self.timetable indexPathForSelectedRow].section];
-        controller.accessor = self.timetableAccessor;
+		NSArray *seqs = [self.timetableAccessor availableSequencesOnDayParity:self.daySelector.currentPage
+																	   parity:self.paritySelector.selectedSegmentIndex];
+		NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
+		NSArray *subjectsDPT = [self.timetableAccessor lessonsOnDayParitySequence:self.daySelector.currentPage
+																		   parity:self.paritySelector.selectedSegmentIndex
+																		 sequence:[sequence integerValue]];
+		
+		TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+
+        controller.subject = subj;
+		controller.sequence = [sequence integerValue];
     }
 }
 
