@@ -36,6 +36,10 @@
  Display place.
  */
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
+/**
+ Dash –– label conrol: remove on non-leading classes
+ */
 @property (weak, nonatomic) IBOutlet UILabel *dashLabel;
 
 @end

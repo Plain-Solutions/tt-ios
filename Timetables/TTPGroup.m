@@ -27,7 +27,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder;
 {
-    if(self = [super init]) {
+    if (self = [super init]) {
         self.departmentName = [decoder decodeObjectForKey:@"departmentName"];
         self.departmentTag = [decoder decodeObjectForKey:@"departmentTag"];
         self.groupName = [decoder decodeObjectForKey:@"groupName"];
@@ -35,7 +35,7 @@
     return self;
 }
 
-- (id) copy;
+- (id)copy;
 {
 	TTPGroup *copy = [[TTPGroup alloc] init];
 	copy.departmentName = self.departmentName;

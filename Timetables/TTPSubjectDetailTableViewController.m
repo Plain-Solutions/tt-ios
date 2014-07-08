@@ -49,7 +49,8 @@
     if (indexPath.row > 3) {
         TTPSubgroupCell *sgCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
         if (sgCell == nil)
-            sgCell = [[TTPSubgroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"subgroupInfo"];
+            sgCell = [[TTPSubgroupCell alloc] initWithStyle:UITableViewCellStyleDefault
+											reuseIdentifier:@"subgroupInfo"];
 
         TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.row-4];
         sgCell.subgroupTeacherName.text = sub.teacher;
@@ -69,7 +70,8 @@
                                      [self.accessor timeRangeBySequence:[NSNumber numberWithInt:self.sequence]],
                                      [self.accessor convertParityNumToString:self.subject.parity],
                                      nil];
-    NSString *defaultCellText =  [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]] capitalizedString];
+    NSString *defaultCellText = [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]]
+								 capitalizedString];
 
     [defaultCell.textLabel setText:defaultCellText];
     defaultCell.textLabel.numberOfLines = 0;

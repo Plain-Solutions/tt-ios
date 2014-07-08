@@ -39,7 +39,8 @@
 }
 
 
- - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error; {
+- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error;
+{
     NSDictionary *asDict = [NSJSONSerialization JSONObjectWithData:raw options:0 error:&error];
     return [asDict objectForKey:@"msg"];
 }

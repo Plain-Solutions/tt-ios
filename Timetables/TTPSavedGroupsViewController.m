@@ -24,7 +24,7 @@
 
 @implementation TTPSavedGroupsViewController
 
-- (void)viewDidLoad
+- (void)viewDidLoad;
 {
 	[super viewDidLoad];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -52,7 +52,7 @@
 		}
 }
 
-- (void)didReceiveMemoryWarning
+- (void)didReceiveMemoryWarning;
 {
     [super didReceiveMemoryWarning];
 }
@@ -87,7 +87,8 @@
 	return (indexPath.row == self.myGrpIndex)?NO:YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[self.savedGroups removeObjectAtIndex:indexPath.row];

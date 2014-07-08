@@ -27,14 +27,6 @@
 	return self;
 }
 
-- (id)initWithTimetable:(NSMutableArray *)timetable;
-{
-	self = [super init];
-	[self initSets];
-	self.timetable = timetable;
-	return self;
-}
-
 - (void)initSets;
 {
 	self.lessonBeginTimes = [NSArray arrayWithObjects:@"08:20", @"10:00", @"12:05",
@@ -60,7 +52,8 @@
 	for (TTPDaySequenceEntity *e in self.timetable) {
 		[setOfAvailDays addObject:e.day];
 	}
-	self.availableDays= [[NSArray alloc] initWithArray:[[setOfAvailDays allObjects] sortedArrayUsingSelector:@selector(compare:)]];
+	self.availableDays= [[NSArray alloc] initWithArray:[[setOfAvailDays allObjects]
+														sortedArrayUsingSelector:@selector(compare:)]];
 }
 
 #pragma mark - Timey-wimey
@@ -77,7 +70,8 @@
 - (NSString *)timeRangeBySequence:(NSNumber *)sequence;
 {
     // will be formated as 00:00 - 00:00
-    return [NSString stringWithFormat:@"%@ – %@", [self beginTimeBySequence:sequence], [self endTimeBySequence:sequence]];
+    return [NSString stringWithFormat:@"%@ – %@",
+			[self beginTimeBySequence:sequence], [self endTimeBySequence:sequence]];
 }
 
 
@@ -101,7 +95,7 @@
 
 #pragma mark - Getting timetables and stuff
 
-- (NSInteger) lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSInteger)lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
 {
 	NSInteger count = 0;
 
@@ -121,10 +115,10 @@
 	NSLog(@"Lessons on day:%d\t parity:%d \t %d", day, parity, count);
 	return count;
 }
-- (NSInteger) lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+- (NSInteger)lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
 {
 	NSInteger count = 0;
-	//s//equence++;
+
 	for (TTPDaySequenceEntity *e  in self.timetable) {
 		if ([e.day integerValue] == day && [e.sequence integerValue] == sequence) {
 			for (TTPSubjectEntity *subj in e.subjects) {
@@ -137,7 +131,7 @@
 	return count;
 }
 
-- (NSArray *) availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSArray *)availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
 {
 	NSMutableSet *result = [[NSMutableSet alloc] init];
 	for (TTPDaySequenceEntity *e in self.timetable) {

@@ -64,14 +64,14 @@
 - (NSInteger)previousDay:(NSInteger)currentDay;
 - (void)populateAvailableDays;
 
-- (NSInteger) lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
-- (NSInteger) lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
-- (NSArray *) availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSInteger)lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSInteger)lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+- (NSArray *)availableSequencesOnDayParity:(NSInteger)day parity:(NSInteger)parity;
 
 - (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
 
 - (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
 - (NSString *)localizeActivities:(NSString *)activity;
 - (NSString *)convertParityNumToString:(NSNumber *)parity;
--(id)initWithTimetable:(NSMutableArray *)timetable;
+
 @end

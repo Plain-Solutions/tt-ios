@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Cell to display detailed subgroup information
+ */
 @interface TTPSubgroupCell : UITableViewCell
+
+/**
+ Name of the subgroup if any.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *subgroupNameLabel;
+
+/**
+ The place: building + room
+ */
 @property (weak, nonatomic) IBOutlet UILabel *subgroupLocationLabel;
+
+/**
+ Teacher's name.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *subgroupTeacherName;
 
 @end

@@ -123,15 +123,15 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
 	return [self.timetableAccessor lessonsCountOnDayParity:self.daySelector.currentPage
 													parity:self.paritySelector.selectedSegmentIndex];
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    if(section == 0)
+    if (section == 0)
         return 3;
     return 0.5;
 }
@@ -207,7 +207,7 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
 	if ([segue.identifier isEqualToString:@"discloseSubjectDetails"]) {
 		TTPSubjectCell *cell = (TTPSubjectCell*)sender;
