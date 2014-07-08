@@ -13,7 +13,10 @@
 
 @interface TTPSavedGroupsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *favs;
-@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
+@property (nonatomic, strong) TTPGroup *selectedGroup;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
+- (IBAction)addGroupToFavs:(id)sender;
 
 
 @end

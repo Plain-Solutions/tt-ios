@@ -42,12 +42,12 @@
 	self.parser = [[TTPParser alloc] init];
 	
 	for (TTPGroup *g in self.savedGroups) {
-		if (g.departmentName == self.myGroup.departmentName && g.groupName == self.myGroup.groupName) {
+		if ([g.departmentName isEqualToString:self.myGroup.departmentName] && [g.groupName isEqualToString:self.myGroup.groupName]) {
 			self.myGrpIndex = [self.savedGroups indexOfObject:g];
-			break;
 		}
-		
-	}
+		if ([g.departmentName isEqualToString:self.selectedGroup.departmentName] && [g.groupName isEqualToString:self.selectedGroup.groupName])
+			self.addButton.enabled = NO;
+		}
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,4 +149,19 @@
 
 
 
+- (IBAction)addGroupToFavs:(id)sender {
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	
+	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	TTPGroup *grp = [self.selectedGroup copy];
+	[savedGroups addObject:grp];
+	[self.savedGroups addObject:grp];
+	
+	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
+	[self.defaults setObject:updatedData forKey:@"savedGroups"];
+	[self.defaults synchronize];
+	[self.favs reloadData];
+	self.addButton.enabled = NO;
+
+}
 @end

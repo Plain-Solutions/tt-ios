@@ -238,6 +238,10 @@
         controller.subject = subj;
 		controller.sequence = [sequence integerValue];
     }
+	if ([segue.identifier isEqualToString:@"viewSavedGroups"]) {
+		TTPSavedGroupsViewController *controller = [segue destinationViewController];
+		controller.selectedGroup = self.selectedGroup;
+	}
 }
 
 
