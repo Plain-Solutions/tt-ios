@@ -10,12 +10,13 @@
 #import "ViewControllerDefines.h"
 #import "TTPDepartmentViewController.h"
 #import "TTPSubjectDetailTableViewController.h"
+#import "TTPSavedGroupsViewController.h"
 #import "TTPSubjectCell.h"
-#import "TTPGroup.h"
+
 #import "TTPSubjectEntity.h"
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
-#import "TTPSavedGroupsViewController.h"
+
 /**
  Main app view.
  */
@@ -25,11 +26,6 @@
  Department from the last screen selection
  */
 @property (nonatomic, strong) TTPGroup *selectedGroup;
-
-/**
- Lessons to display.
- */
-@property (nonatomic, strong) NSMutableArray *dayLessons;
 
 /**
  Display the name of the day.

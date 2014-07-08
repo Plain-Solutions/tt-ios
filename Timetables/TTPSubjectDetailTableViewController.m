@@ -13,7 +13,6 @@
 @end
 
 @implementation TTPSubjectDetailTableViewController
-@synthesize subject =_subject;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

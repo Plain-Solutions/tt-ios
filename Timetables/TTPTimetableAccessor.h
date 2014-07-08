@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TTPSubgroup.h"
-#import "TTPLesson.h"
 #import "TTPSubjectEntity.h"
 #import "TTPDaySequenceEntity.h"
 

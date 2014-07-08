@@ -17,7 +17,6 @@
 @implementation TTPTimetableViewController
 
 @synthesize selectedGroup = _selectedGroup;
-@synthesize dayLessons = _dayLessons;
 
 @synthesize parser = _parser;
 @synthesize timetableAccessor = _timetableAccessor;
@@ -195,7 +194,6 @@
 
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
 {
-	[self.dayLessons removeAllObjects];
 	[self.timetable reloadData];
 }
 

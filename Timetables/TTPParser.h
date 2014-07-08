@@ -4,7 +4,6 @@
 //
 
 #import "TTPDepartment.h"
-#import "TTPLesson.h"
 #import "TTPSubgroup.h"
 #import "TTPDaySequenceEntity.h"
 #import "TTPSubjectEntity.h"
