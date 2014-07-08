@@ -218,12 +218,13 @@
                                 <rect key="frame" x="0.0" y="430" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem width="2" style="plain" systemItem="fixedSpace" id="pho-5I-jeO"/>
                                     <barButtonItem systemItem="add" id="aBu-jn-HRS">
                                         <connections>
                                             <action selector="addGroupToFavs:" destination="3VE-bw-be7" id="4hh-NS-gvK"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="108" style="plain" systemItem="fixedSpace" id="jss-ol-Dgr"/>
+                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="jss-ol-Dgr"/>
                                     <barButtonItem title="Department Message" id="rhc-ab-cxb">
                                         <connections>
                                             <segue destination="6S1-hw-4S8" kind="push" identifier="viewMessage" id="9qm-am-HRi"/>
