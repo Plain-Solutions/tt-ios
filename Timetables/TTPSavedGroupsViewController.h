@@ -11,6 +11,9 @@
 #import "TTPParser.h"
 #import "TTPTimetableViewController.h"
 
-@interface TTPSavedGroupsViewController : UITableViewController
+@interface TTPSavedGroupsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *favs;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
+
 
 @end

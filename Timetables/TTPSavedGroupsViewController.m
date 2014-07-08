@@ -11,7 +11,7 @@
 #define IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
 
 
-@interface TTPSavedGroupsViewController ()
+@interface TTPSavedGroupsViewController () <UITableViewDelegate, UITableViewDataSource>
 {
 	TTPGroup *_confirmDeletedMyGroup;
 }
@@ -24,21 +24,15 @@
 
 @implementation TTPSavedGroupsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
-	self.title = @"Saved groups";
-	
+	self.navigationItem.title = @"Saved groups";
+	self.favs.delegate = self;
+	self.favs.dataSource = self;
+	[self.view addSubview:self.favs];
+
 	self.defaults = [NSUserDefaults standardUserDefaults];
 	NSData *data = [self.defaults objectForKey:@"savedGroups"];
 	self.savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
@@ -76,7 +70,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
 	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
 	
@@ -103,7 +97,7 @@
 		NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedGroups];
 		[self.defaults setObject:data forKey:@"savedGroups"];
 		[self.defaults synchronize];
-		[self.tableView reloadData];
+		[self.favs reloadData];
     }
 }
 
@@ -143,9 +137,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
     if ([segue.identifier isEqualToString:@"viewTimetable"]) {
-        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        [self.favs scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		UITableViewCell *cell = (UITableViewCell*)sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSIndexPath *indexPath = [self.favs indexPathForCell:cell];
 
         TTPTimetableViewController *controller = [segue destinationViewController];
 		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];

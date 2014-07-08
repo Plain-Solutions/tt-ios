@@ -21,7 +21,6 @@
 @synthesize parser = _parser;
 @synthesize timetableAccessor = _timetableAccessor;
 
-@synthesize addGroup = _addGroup;
 @synthesize paritySelector = _paritySelector;
 @synthesize daySelector = _daySelector;
 @synthesize timetable = _timetable;
@@ -43,7 +42,7 @@
 	
 	NSData *data = [self.defaults objectForKey:@"savedGroups"];
 	NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
+//	self.addGroup.enabled = !([self.selectedGroup isSaved:arr]);
 	
 	
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -254,7 +253,6 @@
 	[self.defaults setObject:updatedData forKey:@"savedGroups"];
 	[self.defaults synchronize];
 
-	self.addGroup.enabled = NO;
 }
 
 - (IBAction)searchGroups:(id)sender;

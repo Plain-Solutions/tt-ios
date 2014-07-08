@@ -46,7 +46,6 @@
  Display timetable
  */
 @property (weak, nonatomic) IBOutlet UITableView *timetable;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addGroup;
 
 - (IBAction)addGroup:(id)sender;
 - (IBAction)searchGroups:(id)sender;
