@@ -50,8 +50,8 @@
 				if (data != nil)
 					errorData = [self.parser parseError:data error:error];
 				
-				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@(%@)",
-								 errorData, self.selectedDepartment.tag, groupURL];
+				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@(%@) with",
+								 errorData, self.selectedDepartment.tag, groupURL, response.statusCode];
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
 																message: msg
 															   delegate: nil
