@@ -78,14 +78,31 @@
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
 												 cachePolicy:NSURLRequestUseProtocolCachePolicy
 											 timeoutInterval:120];
-		NSURLResponse *response = nil;
+		NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
 
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.parser = [[TTPParser alloc] init];
+			self.parser = [[TTPParser alloc] init];			
+			
+			if (response.statusCode != 200) {
+				NSString *errorData = [[NSString alloc] init];
+				if (data != nil)
+					errorData = [self.parser parseError:data error:error];
+				
+				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@/%@(%@)",
+								 errorData, self.selectedGroup.departmentTag, self.selectedGroup.groupName, ttURL];
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
+																message: msg
+															   delegate: nil
+													  cancelButtonTitle:@"OK"
+													  otherButtonTitles:nil];
+				[alert show];
+			}
+			else {
+			
 			self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
 			self.timetableAccessor.timetable = [self.parser parseTimetables:data
 																	  error:error];
@@ -94,6 +111,7 @@
 			self.daySelector.currentPage = [self getStartingDay];
 			self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 			[self.timetable reloadData];
+			}
 			HideNetworkActivityIndicator();
         });
     });

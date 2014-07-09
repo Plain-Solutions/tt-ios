@@ -35,7 +35,8 @@
 		
 		[alert show];
 	}
- 
+
+
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
@@ -44,15 +45,32 @@
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: depURL]
 												 cachePolicy:NSURLRequestUseProtocolCachePolicy
 											 timeoutInterval:60];
-        NSURLResponse *response = nil;
+        NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_main_queue(), ^{
 			self.parser = [[TTPParser alloc] init];
-			self.departmentList = [self.parser parseDepartments:data error:error];
+
+			if (response.statusCode != 200) {
+				NSString *errorData = [[NSString alloc] init];
+				if (data != nil)
+					errorData = [self.parser parseError:data error:error];
+				
+				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ on %@",
+								 errorData, depURL];
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
+																message: msg
+															   delegate: nil
+													  cancelButtonTitle:@"OK"
+													  otherButtonTitles:nil];
+				
+				[alert show];
+				
+			}
+			else
+				self.departmentList = [self.parser parseDepartments:data error:error];
 			[self.tableView reloadData];
 			HideNetworkActivityIndicator();
         });

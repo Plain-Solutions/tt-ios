@@ -38,6 +38,16 @@
     return [trimSpaced capitalizedString];
 }
 
+- (NSString *)parseError:(NSData *)raw error:(NSError *)error;
+{
+	NSDictionary *errorDict = [NSJSONSerialization
+							   JSONObjectWithData:raw
+							   options:0
+							   error:&error];
+	NSLog(@"%@", errorDict);
+	return [errorDict objectForKey:@"errMsg"];
+}
+
 
 - (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error;
 {

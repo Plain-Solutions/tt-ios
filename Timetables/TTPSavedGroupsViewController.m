@@ -70,13 +70,26 @@
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
 	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
 	
+	BOOL isMyGroup = NO;
 	if ([group.groupName isEqualToString:self.myGroup.groupName] &&
 		[group.departmentName isEqualToString:self.myGroup.departmentName]) {
-		[cell.textLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
-		[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+			[cell.textLabel setFont:[UIFont italicSystemFontOfSize:[UIFont systemFontSize]]];
+			[cell.detailTextLabel setFont:[UIFont italicSystemFontOfSize:[UIFont systemFontSize]]];
+			isMyGroup = YES;
+			if ([self.selectedGroup.groupName isEqualToString:self.myGroup.groupName] &&
+				[self.selectedGroup.departmentName isEqualToString:self.myGroup.departmentName]) {
+					[cell.textLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:[UIFont systemFontSize]]];
+					[cell.detailTextLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:[UIFont systemFontSize]]];
+			}
+	}
+	else
+		if ([group.groupName isEqualToString:self.selectedGroup.groupName] &&
+			[group.departmentName isEqualToString:self.selectedGroup.departmentName]) {
+				[cell.textLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
+				[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
 	}
 		 
-    cell.textLabel.text = group.groupName;
+    cell.textLabel.text = (isMyGroup)? [NSString stringWithFormat:@"%@ (mine)", group.groupName]:group.groupName;
 	cell.detailTextLabel.text = [self.parser prettifyDepartmentNames:group.departmentName];
     
     return cell;
