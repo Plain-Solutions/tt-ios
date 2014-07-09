@@ -90,8 +90,8 @@
 			self.timetableAccessor.timetable = [self.parser parseTimetables:data
 																	  error:error];
 			[self.timetableAccessor populateAvailableDays];
-			
-			self.daySelector.currentPage = self.timetableAccessor.firstAvailableDay;
+
+			self.daySelector.currentPage = [self getStartingDay];
 			self.daynameLabel.text = [self convertNumToDays:self.daySelector.currentPage];
 			[self.timetable reloadData];
 			HideNetworkActivityIndicator();
@@ -208,6 +208,35 @@
 		num = 0;
 	return [[weekdays objectAtIndex:num + 1] capitalizedString];
 
+}
+
+- (NSInteger)getStartingDay;
+{
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
+	[gregorian setFirstWeekday:2];
+	NSUInteger weekday = [gregorian ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
+	weekday--;
+	if (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:0]) {
+		if (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:1]) {
+			NSUInteger wday = weekday;
+			while (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:0] && weekday <= 5) {
+				weekday++;
+			}
+			if (weekday > 5) {
+				weekday = wday;
+				while (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:1] && weekday <= 5) {
+					weekday++;
+				}
+			}
+
+		}
+		else {
+			self.paritySelector.selectedSegmentIndex = 1;
+		}
+	}
+
+	return  weekday;
 }
 
 #pragma mark - Navigation
