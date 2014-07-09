@@ -50,9 +50,9 @@
 				if (data != nil)
 					errorData = [self.parser parseError:data error:error];
 				
-				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@(%@) with %d",
+				NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@(%@) with %d", nil),
 								 errorData, self.selectedDepartment.tag, groupURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
 																message: msg
 															   delegate: nil
 													  cancelButtonTitle:@"OK"
@@ -73,7 +73,6 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
-	NSLog(@"Here");
 	[self.tableView reloadData];
 }
 

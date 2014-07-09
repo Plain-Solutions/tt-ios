@@ -7,7 +7,6 @@
         <!--Navigation Controller-->
         <scene sceneID="rnf-da-mxW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t8O-LS-B4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="zMq-T4-QYk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L8a-0g-0h0">
                         <autoresizingMask key="autoresizingMask"/>
@@ -16,13 +15,13 @@
                         <segue destination="rsK-Bi-hKT" kind="relationship" relationship="rootViewController" id="dEQ-Jx-lNM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t8O-LS-B4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="212" y="-27"/>
         </scene>
         <!--Department View Controller - Select Department-->
         <scene sceneID="6YF-TP-qND">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jMe-8T-sKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="selectDepView" id="rsK-Bi-hKT" customClass="TTPDepartmentViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Val-bF-Mvb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -57,13 +56,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Department" id="Hvv-73-4hY"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jMe-8T-sKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811" y="-27"/>
         </scene>
         <!--Group View Controller - Department-->
         <scene sceneID="ru4-YL-4nW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NNV-R2-cf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="GroupView" id="Dml-C4-EK6" customClass="TTPGroupViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pr7-Il-x9I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -95,6 +94,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Department" id="dKm-p9-8gc"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNV-R2-cf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1403" y="-27"/>
         </scene>

@@ -13,7 +13,6 @@
 
 @synthesize lessonBeginTimes = _lessonBeginTimes;
 @synthesize lessonEndTimes = _lessonEndTimes;
-@synthesize availableActivities = _availableActivities;
 @synthesize timetable = _timetable;
 @synthesize availableDays = _availableDays;
 @synthesize firstAvailableDay = _firstAvailableDay;
@@ -34,16 +33,12 @@
 	
 	self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40",
 						   @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
-	
-	self.availableActivities = [NSArray arrayWithObjects:@"lecture", @"practice", @"laboratory", nil];
     
     self.parities = [NSArray arrayWithObjects:@"even", @"odd", @"even&odd", nil];
 }
 
 - (void)populateAvailableDays;
 {
-	
-	
 	self.firstAvailableDay = [((TTPDaySequenceEntity *)[self.timetable firstObject]).day integerValue];
 	self.lastAvailableDay = [((TTPDaySequenceEntity *)[self.timetable lastObject]).day integerValue];
 	
@@ -112,7 +107,6 @@
 				count++;
 		}
     }
-	NSLog(@"Lessons on day:%d\t parity:%d \t %d", day, parity, count);
 	return count;
 }
 - (NSInteger)lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
@@ -127,7 +121,6 @@
 			}
 		}
 	}
-	NSLog(@"----\nLessons on day:%d\t parity:%d\t sequence:%d is %d", day, parity, sequence , count);
 	return count;
 }
 
@@ -162,30 +155,18 @@
 
 - (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
 {
-	NSLog(@"Count:%d", subgroups.count);
 	if (subgroups.count == 1) {
 		TTPSubgroup *sub = [subgroups objectAtIndex:0];
 		return sub.location;
 	}
-	return @"Multiple values";
+	return NSLocalizedString(@"Multiple values", nil);
 }
 
 #pragma mark - Convert thing
 
-- (NSString *)localizeActivities:(NSString *)activity;
-{
-	
-	NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-	if ([language isEqualToString:@"ru"]) {
-		NSArray *russianNames = [NSArray arrayWithObjects:@"лекция", @"практика",
-								 @"лабораторная", nil];
-		return [russianNames objectAtIndex:[self.availableActivities indexOfObject:activity]];
-	}
-	return activity;
-}
-
 - (NSString *)convertParityNumToString:(NSNumber *)parity;
 {
-    return [self.parities objectAtIndex:[parity integerValue]];
+	NSString *result = [NSString stringWithString:[self.parities objectAtIndex:[parity integerValue]]];
+    return 	NSLocalizedString(result, nil);
 }
  @end

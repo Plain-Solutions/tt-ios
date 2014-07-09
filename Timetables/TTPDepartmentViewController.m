@@ -24,12 +24,16 @@
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
+	
+	self.title= NSLocalizedString(@"Select department", nil);
+	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	if ([defaults boolForKey:@"firstRun"] == YES) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Announcement!"
-														message: @"It seems that you are running Timetables for the first time! Choose your department and group."
-													   delegate: nil
+		NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
+		NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
+														message: alertMessage					delegate: nil
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
 		
@@ -57,11 +61,11 @@
 				NSString *errorData = [[NSString alloc] init];
 				if (data != nil)
 					errorData = [self.parser parseError:data error:error];
+				NSString *alertTitle = NSLocalizedString(@"Something bad happened!", nil);
 				
-				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ on %@ with %d",
+				NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ on %@ with %d", nil),
 								 errorData, depURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
-																message: msg
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle																message: msg
 															   delegate: nil
 													  cancelButtonTitle:@"OK"
 													  otherButtonTitles:nil];

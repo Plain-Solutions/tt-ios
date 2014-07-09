@@ -224,7 +224,7 @@
                                             <action selector="addGroupToFavs:" destination="3VE-bw-be7" id="4hh-NS-gvK"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="jss-ol-Dgr"/>
+                                    <barButtonItem width="93" style="plain" systemItem="fixedSpace" id="jss-ol-Dgr"/>
                                     <barButtonItem title="Department Message" id="rhc-ab-cxb">
                                         <connections>
                                             <segue destination="6S1-hw-4S8" kind="push" identifier="viewMessage" id="9qm-am-HRi"/>
@@ -239,6 +239,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="aBu-jn-HRS" id="tgD-ek-rQZ"/>
+                        <outlet property="depMsgButton" destination="rhc-ab-cxb" id="qEM-UP-lro"/>
                         <outlet property="favs" destination="Xar-Zy-Tpo" id="37N-QM-lXp"/>
                     </connections>
                 </viewController>
@@ -258,7 +259,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="TEst!!!!" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA7-TO-MoE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA7-TO-MoE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -66,7 +66,7 @@
         defaultCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicInfo"];
 
     NSArray *basicInfoCompilation = [NSArray arrayWithObjects:self.subject.name,
-                                     self.subject.activity,
+                                     NSLocalizedString(self.subject.activity, nil),
                                      [self.accessor timeRangeBySequence:[NSNumber numberWithInt:self.sequence]],
                                      [self.accessor convertParityNumToString:self.subject.parity],
                                      nil];

@@ -28,11 +28,6 @@
 @property (nonatomic, strong) NSArray *lessonEndTimes;
 
 /**
- Set of possible activities for localization.
- */
-@property (nonatomic, strong) NSArray *availableActivities;
-
-/**
  Fetched timetable copy
 */
 @property (nonatomic, strong) NSArray *timetable;
@@ -71,7 +66,7 @@
 - (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
 
 - (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
-- (NSString *)localizeActivities:(NSString *)activity;
+
 - (NSString *)convertParityNumToString:(NSNumber *)parity;
 
 @end

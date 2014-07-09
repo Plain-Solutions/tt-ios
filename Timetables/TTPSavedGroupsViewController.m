@@ -28,7 +28,8 @@
 {
 	[super viewDidLoad];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
-	self.navigationItem.title = @"Saved groups";
+	self.navigationItem.title = NSLocalizedString(@"Saved groups", nil);
+	self.depMsgButton.title = NSLocalizedString(@"Department message", nil);
 	self.favs.delegate = self;
 	self.favs.dataSource = self;
 	[self.view addSubview:self.favs];
@@ -89,7 +90,7 @@
 				[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
 	}
 		 
-    cell.textLabel.text = (isMyGroup)? [NSString stringWithFormat:@"%@ (mine)", group.groupName]:group.groupName;
+    cell.textLabel.text = (isMyGroup)? [NSString stringWithFormat:NSLocalizedString(@"%@ (mine)", nil), group.groupName]:group.groupName;
 	cell.detailTextLabel.text = [self.parser prettifyDepartmentNames:group.departmentName];
     
     return cell;

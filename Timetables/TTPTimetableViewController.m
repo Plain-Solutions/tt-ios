@@ -92,9 +92,9 @@
 				if (data != nil)
 					errorData = [self.parser parseError:data error:error];
 				
-				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d",
+				NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
 								 errorData, self.selectedGroup.departmentTag, self.selectedGroup.groupName, ttURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
 																message: msg
 															   delegate: nil
 													  cancelButtonTitle:@"OK"
@@ -150,7 +150,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
     if (section == 0)
-        return 10;
+        return 1.5;
     return 0.5;
 }
 
@@ -180,7 +180,7 @@
 
 	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
 								  [subj.name substringFromIndex:1]];
-	cell.subjectTypeLabel.text =[self.timetableAccessor localizeActivities:subj.activity];
+	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
 	cell.locationLabel.text= [self.timetableAccessor locationOnSingleSubgroupCount:subj.subgroups];
 
 	if ([subjectsDPT indexOfObject:subj] == 0) {

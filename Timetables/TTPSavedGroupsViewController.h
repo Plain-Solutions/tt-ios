@@ -32,5 +32,10 @@
  */
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
+/**
+ Outlet for label localization
+ */
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *depMsgButton;
+
 - (IBAction)addGroupToFavs:(id)sender;
 @end

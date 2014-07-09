@@ -36,14 +36,12 @@
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
-		5571DFE3195F66980089E7E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFE1195F66980089E7E7 /* InfoPlist.strings */; };
 		5571DFE5195F66980089E7E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE4195F66980089E7E7 /* main.m */; };
 		5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */; };
 		5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFF0195F66980089E7E7 /* Images.xcassets */; };
 		5571DFF8195F66980089E7E7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFF7195F66980089E7E7 /* XCTest.framework */; };
 		5571DFF9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFFA195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
-		5571E002195F66980089E7E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5571E000195F66980089E7E7 /* InfoPlist.strings */; };
 		5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E003195F66980089E7E7 /* TimetablesTests.m */; };
 		5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
 		5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
@@ -51,6 +49,7 @@
 		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
 		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
 		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
 /* End PBXBuildFile section */
@@ -94,7 +93,6 @@
 		5571DFDA195F66980089E7E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5571DFDC195F66980089E7E7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5571DFE0195F66980089E7E7 /* Timetables-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Timetables-Info.plist"; sourceTree = "<group>"; };
-		5571DFE2195F66980089E7E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5571DFE4195F66980089E7E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timetables-Prefix.pch"; sourceTree = "<group>"; };
 		5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPAppDelegate.h; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetablesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5571DFF7195F66980089E7E7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5571DFFF195F66980089E7E7 /* TimetablesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimetablesTests-Info.plist"; sourceTree = "<group>"; };
-		5571E001195F66980089E7E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5571E003195F66980089E7E7 /* TimetablesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimetablesTests.m; sourceTree = "<group>"; };
 		5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartmentViewController.h; sourceTree = "<group>"; };
 		5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepartmentViewController.m; sourceTree = "<group>"; };
@@ -112,6 +109,9 @@
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDaySequenceEntity.h; sourceTree = "<group>"; };
 		55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDaySequenceEntity.m; sourceTree = "<group>"; };
 		55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectEntity.h; sourceTree = "<group>"; };
@@ -195,6 +195,7 @@
 				5537A188196A813E00301897 /* SearchViews.storyboard */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
+				55A879C6196D33A600C941A1 /* Localizable.strings */,
 			);
 			path = Timetables;
 			sourceTree = "<group>";
@@ -203,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				5571DFE0195F66980089E7E7 /* Timetables-Info.plist */,
-				5571DFE1195F66980089E7E7 /* InfoPlist.strings */,
 				5571DFE4195F66980089E7E7 /* main.m */,
 				5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */,
 				557349E019656AEE00212502 /* ViewControllerDefines.h */,
@@ -224,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				5571DFFF195F66980089E7E7 /* TimetablesTests-Info.plist */,
-				5571E000195F66980089E7E7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -330,6 +329,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 5571DFCC195F66980089E7E7;
 			productRefGroup = 5571DFD6195F66980089E7E7 /* Products */;
@@ -347,9 +347,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A879C4196D33A600C941A1 /* Localizable.strings in Resources */,
 				5534F1B4196C7C470080E851 /* Main-4.storyboard in Resources */,
 				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
-				5571DFE3195F66980089E7E7 /* InfoPlist.strings in Resources */,
 				5520FB841961D7940031B156 /* Main-35.storyboard in Resources */,
 				5537A18A196A813E00301897 /* SearchViews.storyboard in Resources */,
 			);
@@ -359,7 +359,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5571E002195F66980089E7E7 /* InfoPlist.strings in Resources */,
 				5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */,
 				5534F1B5196C7C470080E851 /* Main-4.storyboard in Resources */,
 				5520FB851961D7940031B156 /* Main-35.storyboard in Resources */,
@@ -449,20 +448,14 @@
 			name = SearchViews.storyboard;
 			sourceTree = "<group>";
 		};
-		5571DFE1195F66980089E7E7 /* InfoPlist.strings */ = {
+		55A879C6196D33A600C941A1 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5571DFE2195F66980089E7E7 /* en */,
+				55A879C5196D33A600C941A1 /* Base */,
+				55A879C7196D33D800C941A1 /* en */,
+				55A879C8196D33EF00C941A1 /* ru */,
 			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5571E000195F66980089E7E7 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5571E001195F66980089E7E7 /* en */,
-			);
-			name = InfoPlist.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
