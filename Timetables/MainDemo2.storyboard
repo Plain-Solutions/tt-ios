@@ -232,7 +232,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W1f-cb-t20">
-                                <rect key="frame" x="6" y="442" width="307" height="29"/>
+                                <rect key="frame" x="2" y="447" width="316" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="oddbtn"/>
@@ -254,16 +254,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="W1f-cb-t20" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="6" id="0ZU-9p-3FZ"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="2" id="0ZU-9p-3FZ"/>
                             <constraint firstItem="5xH-97-qkJ" firstAttribute="top" secondItem="QuX-Lx-Bdn" secondAttribute="bottom" constant="1" id="AEw-yI-gdn"/>
                             <constraint firstItem="LBu-jz-fSt" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="72" id="Cbc-52-f5y"/>
-                            <constraint firstAttribute="trailing" secondItem="W1f-cb-t20" secondAttribute="trailing" constant="7" id="DSf-dA-sMd"/>
+                            <constraint firstAttribute="trailing" secondItem="W1f-cb-t20" secondAttribute="trailing" constant="2" id="DSf-dA-sMd"/>
                             <constraint firstItem="lrn-dK-7VN" firstAttribute="top" secondItem="LBu-jz-fSt" secondAttribute="bottom" constant="34" id="J47-X7-nTH"/>
                             <constraint firstItem="5xH-97-qkJ" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" id="KjP-xc-1Ms"/>
-                            <constraint firstItem="lrn-dK-7VN" firstAttribute="top" secondItem="W1f-cb-t20" secondAttribute="bottom" constant="10" id="Whe-39-nLk"/>
+                            <constraint firstItem="lrn-dK-7VN" firstAttribute="top" secondItem="W1f-cb-t20" secondAttribute="bottom" constant="5" id="Whe-39-nLk"/>
                             <constraint firstAttribute="trailing" secondItem="LBu-jz-fSt" secondAttribute="trailing" constant="71" id="fLF-CO-S9L"/>
                             <constraint firstAttribute="trailing" secondItem="5xH-97-qkJ" secondAttribute="trailing" id="nwE-oO-jG2"/>
-                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="30" id="qBV-9H-DBg"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="35" id="qBV-9H-DBg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="dayname" id="sbY-k0-mqL">
