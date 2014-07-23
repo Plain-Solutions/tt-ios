@@ -9,6 +9,7 @@
 #import "TTPMainViewController.h"
 #import "MVYSideMenuController.h"
 #import "TTPDepartmentViewController.h"
+#import "TTPGroup.h"
 
 @interface TTPMainViewController ()
 
@@ -34,8 +35,12 @@
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
 		[self.navigationController pushViewController:controller animated:YES];
 	}
-	
-	
+	else {
+		if ([defaults objectForKey:@"selectedGroup"] == nil)
+			[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
+		TTPGroup *grp =[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
+		self.title = [NSString stringWithFormat:@"%@ %@", grp.departmentTag, grp.groupName];
+		}
 }
 
 - (void)didReceiveMemoryWarning

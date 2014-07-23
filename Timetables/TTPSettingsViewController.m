@@ -1,21 +1,28 @@
 //
-//  TTPMenuViewController.m
+//  TTPSettingsViewController.m
 //  Timetables
 //
 //  Created by Vladislav Slepukhin on 23/07/14.
 //  Copyright (c) 2014 Vlad Slepukhin. All rights reserved.
 //
 
-#import "TTPMenuViewController.h"
+#import "TTPSettingsViewController.h"
 #import "MVYSideMenuController.h"
 
-#import "TTPDepMsgViewController.h"
-
-@interface TTPMenuViewController ()
+@interface TTPSettingsViewController ()
 
 @end
 
-@implementation TTPMenuViewController
+@implementation TTPSettingsViewController
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -26,56 +33,38 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-	// DepView is for search
-	self.menuItems = @[@"MainView", @"DepMsgView", @"SavedGroupsView", @"DepView", @"SettingsView"];
-
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    // Return the number of sections.
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    // Return the number of rows in the section.
+    return 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row == 0) {
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:nil forKey:@"selectedGroup"];
-	}
-	
-	TTPDepMsgViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
 }
-
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	static NSString *cellIdentifier = @"MenuItem";
-//	
-//	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//	
-//	NSString *item = [self.menuItems objectAtIndex:indexPath.row];
-//	[cell.textLabel setText:item];
-//	
-//	return cell;
-//}
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -126,4 +115,10 @@
 }
 */
 
+- (IBAction)menuBtnPressed:(id)sender {
+	MVYSideMenuController *sideMenuController = [self sideMenuController];
+	if (sideMenuController) {
+		[sideMenuController openMenu];
+	}
+}
 @end

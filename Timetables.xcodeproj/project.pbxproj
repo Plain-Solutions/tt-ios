@@ -71,6 +71,8 @@
 		5576C20B197FFCA000210DD1 /* appicon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C209197FFCA000210DD1 /* appicon80.png */; };
 		5576C20D197FFCED00210DD1 /* appicon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C20C197FFCED00210DD1 /* appicon58.png */; };
 		5576C20E197FFCED00210DD1 /* appicon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C20C197FFCED00210DD1 /* appicon58.png */; };
+		5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
+		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
 		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
@@ -149,6 +151,8 @@
 		5576C206197FFC3C00210DD1 /* appicon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon120.png; sourceTree = "<group>"; };
 		5576C209197FFCA000210DD1 /* appicon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon80.png; sourceTree = "<group>"; };
 		5576C20C197FFCED00210DD1 /* appicon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon58.png; sourceTree = "<group>"; };
+		5576C2141980304800210DD1 /* TTPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSettingsViewController.h; sourceTree = "<group>"; };
+		5576C2151980304800210DD1 /* TTPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSettingsViewController.m; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -280,6 +284,8 @@
 				5576C211197FFE6C00210DD1 /* Subject&Department Details */,
 				5576C212197FFE9100210DD1 /* MainView */,
 				5576C213197FFE9A00210DD1 /* Menu */,
+				5576C2141980304800210DD1 /* TTPSettingsViewController.h */,
+				5576C2151980304800210DD1 /* TTPSettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */,
 				5576C1D4197F996C00210DD1 /* TTPMainViewController.m in Sources */,
 				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
+				5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +549,7 @@
 				5537A18F196AD08500301897 /* TTPGroup.m in Sources */,
 				5576C1DD197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
 				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
+				5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */,
 				5576C1E1197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
 				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */,

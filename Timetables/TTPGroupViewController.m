@@ -115,17 +115,22 @@
 	selectedGroup.groupName = groupName;
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+	NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
+	[defaults setObject:grp forKey:@"selectedGroup"];
 	
 	if (![defaults boolForKey:@"wasCfgd"]) {
 
 		[defaults setBool:YES forKey:@"wasCfgd"];
-
-		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
 		[defaults setObject:grp forKey:@"myGroup"];
+		
 		[defaults synchronize];
 	}
-										
-	[self.navigationController popToRootViewControllerAnimated:YES];
+	
+	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
+	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+
 
 }
 
