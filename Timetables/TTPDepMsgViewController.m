@@ -7,25 +7,16 @@
 //
 
 #import "TTPDepMsgViewController.h"
-
+#import "MVYSideMenuController.h"
 @interface TTPDepMsgViewController ()
 @property (nonatomic, strong) TTPParser *parser;
 @end
 
 @implementation TTPDepMsgViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
-{
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-
-    }
-    return self;
-}
-
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
-	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *msgURL = [NSString
@@ -77,4 +68,12 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)menuBtnPressed:(id)sender {
+	
+	MVYSideMenuController *sideMenuController = [self sideMenuController];
+	if (sideMenuController) {
+		[sideMenuController openMenu];
+	}
+
+}
 @end

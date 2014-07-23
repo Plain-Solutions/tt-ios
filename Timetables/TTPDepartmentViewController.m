@@ -23,23 +23,9 @@
 
 - (void)viewDidLoad;
 {
-    [super viewDidLoad];
-	
+   [super viewDidLoad];
 	self.title= NSLocalizedString(@"Select department", nil);
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	if ([defaults boolForKey:@"firstRun"] == YES) {
-		NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
-		NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
-														message: alertMessage					delegate: nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		
-		[alert show];
-	}
-
+	[self.navigationItem setHidesBackButton:YES animated:NO];
 
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
@@ -73,20 +59,21 @@
 				[alert show];
 				
 			}
-			else
+			else {
 				self.departmentList = [self.parser parseDepartments:data error:error];
 			[self.tableView reloadData];
+			}
 			HideNetworkActivityIndicator();
         });
     });
-	
+
 }
 
 - (void)viewWillAppear:(BOOL)animated;
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
-	[self.tableView reloadData];
+	//[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning;
@@ -103,13 +90,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell"];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
+
+    if (cell == nil) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
+	}
+	
     TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DepCell"];
-    }
     cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
     return cell;
 }

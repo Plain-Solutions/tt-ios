@@ -42,7 +42,6 @@
     return 4 + self.subject.subgroups.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     // we go to subgroup cells

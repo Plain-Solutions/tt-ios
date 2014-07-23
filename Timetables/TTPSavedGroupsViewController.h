@@ -37,5 +37,8 @@
  */
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *depMsgButton;
 
+- (IBAction)menuBtnPressed:(id)sender;
+
+
 - (IBAction)addGroupToFavs:(id)sender;
 @end

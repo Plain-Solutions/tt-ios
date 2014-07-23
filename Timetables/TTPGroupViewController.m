@@ -7,6 +7,9 @@
 //
 
 #import "TTPGroupViewController.h"
+#import "TTPMenuViewController.h"
+#import "TTPMainViewController.h"
+#import "MVYSideMenuController.h"
 
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) TTPParser *parser;
@@ -27,8 +30,6 @@
     [super viewDidLoad];
     self.title = self.selectedDepartment.name;
 
-	
-	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
@@ -93,9 +94,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupCell"];
-    }
+	if (cell == nil) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+	}
 	
     cell.textLabel.text = [self.groupList objectAtIndex:indexPath.row];
 
@@ -107,30 +108,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 	NSString *groupName = [self.groupList objectAtIndex:indexPath.row];
+	
 	TTPGroup *selectedGroup = [[TTPGroup alloc] init];
 	selectedGroup.departmentName = self.selectedDepartment.name;
 	selectedGroup.departmentTag = self.selectedDepartment.tag;
 	selectedGroup.groupName = groupName;
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:
-									[defaults objectForKey:@"usedStoryboard"]bundle:nil];
-	
-	if ([defaults boolForKey:@"firstRun"] == YES) {
-		[defaults setBool:NO forKey:@"firstRun"];
 
-		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
-		NSData *favs = [NSKeyedArchiver archivedDataWithRootObject:[NSArray arrayWithObject:selectedGroup]];
+	NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
+	[defaults setObject:grp forKey:@"selectedGroup"];
+	
+	if (![defaults boolForKey:@"wasCfgd"]) {
+
+		[defaults setBool:YES forKey:@"wasCfgd"];
 		[defaults setObject:grp forKey:@"myGroup"];
-		[defaults setObject:favs forKey:@"savedGroups"];
+		
 		[defaults synchronize];
 	}
 	
-	TTPTimetableViewController *controller = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainView"];
-	
-	controller.selectedGroup = selectedGroup;
+	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
+	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
 
-	[self.navigationController pushViewController:controller animated:YES];
+
 }
 
 @end
