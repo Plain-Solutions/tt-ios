@@ -21,7 +21,8 @@
 {
 	[super viewDidLoad];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
+style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
 	if (![defaults boolForKey:@"wasCfgd"]) {
 		NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
 		NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);

@@ -12,9 +12,6 @@
 #import "MVYSideMenuController.h"
 #import "TTPDepartmentViewController.h"
 
-
-#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
-
 @implementation TTPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
@@ -37,7 +34,7 @@
 																					contentViewController:contentNavigationController
 																								  options:options];
 	
-	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height - 103.0);
+	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height);
 	self.window.rootViewController = sideMenuController;
 
 	[self.window makeKeyAndVisible];

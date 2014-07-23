@@ -7,6 +7,7 @@
 //
 
 #import "TTPDepartmentViewController.h"
+#import "MVYSideMenuController.h"
 
 @interface TTPDepartmentViewController ()
 @property (nonatomic, strong) TTPParser *parser;
@@ -25,7 +26,16 @@
 {
    [super viewDidLoad];
 	self.title= NSLocalizedString(@"Select department", nil);
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (![defaults boolForKey:@"wasCfgd"]) {
 	[self.navigationItem setHidesBackButton:YES animated:NO];
+	}
+	else self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
+																				  style:UIBarButtonItemStyleBordered
+																				 target:self
+																				 action:@selector(menuBtnTapped:)];
+	
+	
 
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
@@ -117,5 +127,14 @@
     }
 }
 
+
+
+- (IBAction)menuBtnTapped:(id)sender {
+	
+	MVYSideMenuController *sideMenuController = [self sideMenuController];
+	if (sideMenuController) {
+		[sideMenuController openMenu];
+	}
+}
 
 @end
