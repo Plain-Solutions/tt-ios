@@ -8,6 +8,8 @@
 
 #import "TTPMainViewController.h"
 #import "MVYSideMenuController.h"
+#import "TTPDepartmentViewController.h"
+
 @interface TTPMainViewController ()
 
 @end
@@ -16,9 +18,17 @@
 
 - (void)viewDidLoad
 {
-	
 	[super viewDidLoad];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	if ([defaults boolForKey:@"firstRun"] == YES ||
+		[defaults objectForKey:@"myGroup]"] == nil) {
 		
+		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
+		[self.navigationController pushViewController:controller animated:YES];
+	}
+	
+	
 }
 
 - (void)didReceiveMemoryWarning

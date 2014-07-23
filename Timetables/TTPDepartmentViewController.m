@@ -25,7 +25,8 @@
 {
    [super viewDidLoad];
 	self.title= NSLocalizedString(@"Select department", nil);
-//	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DepCell"];
+	[self.navigationItem setHidesBackButton:YES animated:NO];
+
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	

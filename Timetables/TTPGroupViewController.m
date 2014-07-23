@@ -7,6 +7,9 @@
 //
 
 #import "TTPGroupViewController.h"
+#import "TTPMenuViewController.h"
+#import "TTPMainViewController.h"
+#import "MVYSideMenuController.h"
 
 @interface TTPGroupViewController ()
 @property (nonatomic, strong) TTPParser *parser;
@@ -111,10 +114,9 @@
 	selectedGroup.groupName = groupName;
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:
-									[defaults objectForKey:@"usedStoryboard"]bundle:nil];
 	
 	if ([defaults boolForKey:@"firstRun"] == YES) {
+
 		[defaults setBool:NO forKey:@"firstRun"];
 
 		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
@@ -123,12 +125,13 @@
 		[defaults setObject:favs forKey:@"savedGroups"];
 		[defaults synchronize];
 	}
-	
-	TTPTimetableViewController *controller = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainView"];
-	
-	controller.selectedGroup = selectedGroup;
 
-	[self.navigationController pushViewController:controller animated:YES];
+	NSLog(@"here");
+
+	
+										
+	[self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 @end

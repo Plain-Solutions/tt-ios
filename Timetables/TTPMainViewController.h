@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTPGroup.h"
 
 @interface TTPMainViewController : UIViewController
+@property (strong, nonatomic) TTPGroup *selectedGroup;
+
 - (IBAction)menuBtnTapped:(id)sender;
 @end

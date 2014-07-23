@@ -24,15 +24,11 @@
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+	
 	if ([defaults objectForKey:@"myGroup"] == nil) {
 		[defaults setBool:YES forKey:@"firstRun"];
 		[defaults synchronize];
-
-//		TTPDepartmentViewController *firstRunGroupSelectController = [storyboard instantiateViewControllerWithIdentifier:@"selectDepView"];
-//		UINavigationController *contentNavigationController = [[UINavigationController alloc] initWithRootViewController:firstRunGroupSelectController];
-
-//		self.window.rootViewController = contentNavigationController;
-		self.window.rootViewController = [storyboard instantiateInitialViewController];
+		
 	}
 	else {
 	TTPMenuViewController *menuVC = [storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
