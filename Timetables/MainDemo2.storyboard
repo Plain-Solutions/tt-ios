@@ -162,10 +162,48 @@
             </objects>
             <point key="canvasLocation" x="210" y="-397"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="LRm-iV-SMf">
+            <objects>
+                <tableViewController storyboardIdentifier="MenuView" id="oqL-lC-fFj" customClass="TTPMenuViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bLk-D3-vJy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuItem" textLabel="oXT-Ni-Utc" style="IBUITableViewCellStyleDefault" id="FFo-Pb-t2F">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FFo-Pb-t2F" id="Y5r-bP-b9s">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="settingsMenuItem" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oXT-Ni-Utc">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="oqL-lC-fFj" id="mA5-Ai-TZ0"/>
+                            <outlet property="delegate" destination="oqL-lC-fFj" id="5Uh-pk-B9V"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="puc-v2-ib3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-970"/>
+        </scene>
         <!--Main View Controller - dayname-->
         <scene sceneID="sXt-UL-qeW">
             <objects>
-                <viewController id="urC-rf-re2" customClass="TTPMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" id="urC-rf-re2" customClass="TTPMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QuX-Lx-Bdn"/>
                         <viewControllerLayoutGuide type="bottom" id="lrn-dK-7VN"/>
@@ -211,7 +249,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="dayname" id="sbY-k0-mqL">
                         <barButtonItem key="backBarButtonItem" title="menu" id="X2n-Js-dAq"/>
-                        <barButtonItem key="leftBarButtonItem" title="menuBtn" id="r0Q-6w-RT7"/>
+                        <barButtonItem key="leftBarButtonItem" title="menuBtn" id="r0Q-6w-RT7">
+                            <connections>
+                                <action selector="menuBtnTapped:" destination="urC-rf-re2" id="xiq-0m-hda"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htg-0P-cdO" userLabel="First Responder" sceneMemberID="firstResponder"/>

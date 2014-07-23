@@ -1,5 +1,5 @@
 //
-//  TTPMainViewController.h
+//  TTPMenuViewController.h
 //  Timetables
 //
 //  Created by Vladislav Slepukhin on 23/07/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTPMainViewController : UIViewController
-- (IBAction)menuBtnTapped:(id)sender;
+@interface TTPMenuViewController : UITableViewController 
+
+@property (nonatomic, strong) NSArray *menuItems;
+
 @end

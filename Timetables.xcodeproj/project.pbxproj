@@ -59,6 +59,12 @@
 		5576C1DD197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */; };
 		5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */; };
 		5576C1E1197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */; };
+		5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */; };
+		5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */; };
+		5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */; };
+		5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */; };
+		5576C203197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */; };
+		5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
 		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
@@ -128,6 +134,12 @@
 		5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableDataViewController.m; sourceTree = "<group>"; };
 		5576C1DE197FA0E900210DD1 /* TTPMainViewContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMainViewContainerViewController.h; sourceTree = "<group>"; };
 		5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMainViewContainerViewController.m; sourceTree = "<group>"; };
+		5576C1E2197FA9A300210DD1 /* TTPMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMenuViewController.h; sourceTree = "<group>"; };
+		5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMenuViewController.m; sourceTree = "<group>"; };
+		5576C1FD197FF56300210DD1 /* MVYSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVYSideMenuController.h; sourceTree = "<group>"; };
+		5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVYSideMenuController.m; sourceTree = "<group>"; };
+		5576C1FF197FF56300210DD1 /* MVYSideMenuOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVYSideMenuOptions.h; sourceTree = "<group>"; };
+		5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVYSideMenuOptions.m; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -205,6 +217,7 @@
 		5571DFDE195F66980089E7E7 /* Timetables */ = {
 			isa = PBXGroup;
 			children = (
+				5576C1FC197FB6E200210DD1 /* SideMenu */,
 				5571E01A195F75180089E7E7 /* Entities */,
 				5571E00D195F6F350089E7E7 /* Controllers */,
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
@@ -272,6 +285,8 @@
 				5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */,
 				5576C1DE197FA0E900210DD1 /* TTPMainViewContainerViewController.h */,
 				5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */,
+				5576C1E2197FA9A300210DD1 /* TTPMenuViewController.h */,
+				5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -295,6 +310,17 @@
 				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		5576C1FC197FB6E200210DD1 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5576C1FD197FF56300210DD1 /* MVYSideMenuController.h */,
+				5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */,
+				5576C1FF197FF56300210DD1 /* MVYSideMenuOptions.h */,
+				5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */,
+			);
+			name = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5571E01D195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				5576C203197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
 				5571E021195F75B20089E7E7 /* TTPParser.m in Sources */,
 				5571DFE5195F66980089E7E7 /* main.m in Sources */,
 				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
@@ -415,6 +442,7 @@
 				5576C1DC197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
 				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
+				5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
@@ -423,6 +451,7 @@
 				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
+				5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
 				55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */,
 				5576C1D4197F996C00210DD1 /* TTPMainViewController.m in Sources */,
 				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
@@ -437,8 +466,11 @@
 				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
 				5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
+				5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
 				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
+				5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
+				5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
 				5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */,
 				5537A18F196AD08500301897 /* TTPGroup.m in Sources */,
