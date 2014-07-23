@@ -7,6 +7,9 @@
 //
 
 #import "TTPMenuViewController.h"
+#import "MVYSideMenuController.h"
+
+#import "TTPDepMsgViewController.h"
 
 @interface TTPMenuViewController ()
 
@@ -26,7 +29,7 @@
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MenuItem"];
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-	self.menuItems = @[@"myGroup", @"depMsg", @"favs", @"search", @"settings"];
+	self.menuItems = @[@"MainView", @"DepMsgView", @"favs", @"search", @"settings"];
 
 }
 
@@ -49,21 +52,28 @@
 {
 
     // Return the number of rows in the section.
-    return self.menuItems.count;
+    return 5;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *cellIdentifier = @"MenuItem";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	
-	NSString *item = [self.menuItems objectAtIndex:indexPath.row];
-	[cell.textLabel setText:item];
-	
-	return cell;
+	TTPDepMsgViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
+	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
 }
+
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	static NSString *cellIdentifier = @"MenuItem";
+//	
+//	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//	
+//	NSString *item = [self.menuItems objectAtIndex:indexPath.row];
+//	[cell.textLabel setText:item];
+//	
+//	return cell;
+//}
 
 
 /*
