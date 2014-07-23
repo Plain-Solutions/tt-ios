@@ -27,8 +27,6 @@
     [super viewDidLoad];
     self.title = self.selectedDepartment.name;
 
-	
-	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
@@ -93,9 +91,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupCell"];
-    }
+	if (cell == nil) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+	}
 	
     cell.textLabel.text = [self.groupList objectAtIndex:indexPath.row];
 

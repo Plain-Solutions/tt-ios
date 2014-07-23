@@ -10,6 +10,8 @@
 #import "TTPMainViewController.h"
 #import "TTPMenuViewController.h"
 #import "MVYSideMenuController.h"
+#import "TTPDepartmentViewController.h"
+
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 
@@ -17,36 +19,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 {
-	UIStoryboard *mainStoryboard = nil;
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-//	if ([defaults objectForKey:@"usedStoryboard"] == nil) {
-//		NSLog(@"Display size not set.");
-//		NSString *storyBoardName = (IS_IPHONE5)?@"Main-4":@"Main-35";
-//		[defaults setObject:storyBoardName forKey:@"usedStoryboard"];
-//		[defaults synchronize];
-//	}
-//	
-//	if ([defaults objectForKey:@"myGroup"] == nil) {
-//		[defaults setBool:YES forKey:@"firstRun"];
-//		[defaults synchronize];
-//		mainStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
-//		self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//		self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
-//		[self.window makeKeyAndVisible];
-//	}
-//	else {
-//	mainStoryboard = [UIStoryboard storyboardWithName:[defaults objectForKey:@"usedStoryboard"]bundle:nil];
-//
-	mainStoryboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
-//	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	if ([defaults objectForKey:@"myGroup"] == nil) {
+		[defaults setBool:YES forKey:@"firstRun"];
+		[defaults synchronize];
+
+//		TTPDepartmentViewController *firstRunGroupSelectController = [storyboard instantiateViewControllerWithIdentifier:@"selectDepView"];
+//		UINavigationController *contentNavigationController = [[UINavigationController alloc] initWithRootViewController:firstRunGroupSelectController];
+
+//		self.window.rootViewController = contentNavigationController;
+		self.window.rootViewController = [storyboard instantiateInitialViewController];
+	}
+	else {
+	TTPMenuViewController *menuVC = [storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
 	
-//	[self.window makeKeyAndVisible];
-//	}
-	
-	TTPMenuViewController *menuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MenuView"];
-	
-	TTPMainViewController *contentVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainView"];
+	TTPMainViewController *contentVC = [storyboard instantiateViewControllerWithIdentifier:@"MainView"];
 	UINavigationController *contentNavigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
 
 	MVYSideMenuOptions *options = [[MVYSideMenuOptions alloc] init];
@@ -59,13 +50,10 @@
 																								  options:options];
 	
 	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height - 103.0);
-
 	self.window.rootViewController = sideMenuController;
-	[self.window makeKeyAndVisible];
-	
-	
+	}
 
-	
+	[self.window makeKeyAndVisible];
 	return YES;
 }
 
