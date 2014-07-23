@@ -27,22 +27,6 @@
 	self.title= NSLocalizedString(@"Select department", nil);
 	[self.navigationItem setHidesBackButton:YES animated:NO];
 
-
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	if ([defaults boolForKey:@"firstRun"] == YES) {
-		NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
-		NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
-														message: alertMessage
-													   delegate: nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		
-		[alert show];
-	}
-
-
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";

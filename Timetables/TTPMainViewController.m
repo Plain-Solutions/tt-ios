@@ -21,9 +21,16 @@
 	[super viewDidLoad];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	if ([defaults boolForKey:@"firstRun"] == YES ||
-		[defaults objectForKey:@"myGroup]"] == nil) {
+	if (![defaults boolForKey:@"wasCfgd"]) {
+		NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
+		NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
+														message: alertMessage
+													   delegate: nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
 		
+		[alert show];
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
 		[self.navigationController pushViewController:controller animated:YES];
 	}

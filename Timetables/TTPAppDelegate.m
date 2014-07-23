@@ -22,15 +22,7 @@
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-	
-	if ([defaults objectForKey:@"myGroup"] == nil) {
-		[defaults setBool:YES forKey:@"firstRun"];
-		[defaults synchronize];
-		
-	}
-	else {
 	TTPMenuViewController *menuVC = [storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
 	
 	TTPMainViewController *contentVC = [storyboard instantiateViewControllerWithIdentifier:@"MainView"];
@@ -47,7 +39,6 @@
 	
 	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height - 103.0);
 	self.window.rootViewController = sideMenuController;
-	}
 
 	[self.window makeKeyAndVisible];
 	return YES;

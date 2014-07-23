@@ -108,6 +108,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 	NSString *groupName = [self.groupList objectAtIndex:indexPath.row];
+	
 	TTPGroup *selectedGroup = [[TTPGroup alloc] init];
 	selectedGroup.departmentName = self.selectedDepartment.name;
 	selectedGroup.departmentTag = self.selectedDepartment.tag;
@@ -115,20 +116,14 @@
 
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	if ([defaults boolForKey:@"firstRun"] == YES) {
+	if (![defaults boolForKey:@"wasCfgd"]) {
 
-		[defaults setBool:NO forKey:@"firstRun"];
+		[defaults setBool:YES forKey:@"wasCfgd"];
 
 		NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
-		NSData *favs = [NSKeyedArchiver archivedDataWithRootObject:[NSArray arrayWithObject:selectedGroup]];
 		[defaults setObject:grp forKey:@"myGroup"];
-		[defaults setObject:favs forKey:@"savedGroups"];
 		[defaults synchronize];
 	}
-
-	NSLog(@"here");
-
-	
 										
 	[self.navigationController popToRootViewControllerAnimated:YES];
 
