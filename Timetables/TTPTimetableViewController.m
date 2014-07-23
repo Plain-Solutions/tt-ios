@@ -222,7 +222,7 @@
 	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
 
 	NSArray *weekdays = [df weekdaySymbols];
-	if (num + 1 >= 7)
+	if (num		+ 1 >= 7)
 		num = 0;
 	return [[weekdays objectAtIndex:num + 1] capitalizedString];
 

@@ -49,6 +49,8 @@
 		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
 		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		5576C145197EFF7900210DD1 /* MainDemo2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* MainDemo2.storyboard */; };
+		5576C146197EFF7900210DD1 /* MainDemo2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* MainDemo2.storyboard */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
 		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
@@ -109,6 +111,7 @@
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		5576C144197EFF7900210DD1 /* MainDemo2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainDemo2.storyboard; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
 				5520FB821961D7940031B156 /* Main-35.storyboard */,
 				5534F1B2196C7C470080E851 /* Main-4.storyboard */,
+				5576C144197EFF7900210DD1 /* MainDemo2.storyboard */,
 				5537A188196A813E00301897 /* SearchViews.storyboard */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
@@ -317,6 +321,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Vlad Slepukhin";
 				TargetAttributes = {
+					5571DFD4195F66980089E7E7 = {
+						DevelopmentTeam = S6PWEEQSRT;
+					};
 					5571DFF5195F66980089E7E7 = {
 						TestTargetID = 5571DFD4195F66980089E7E7;
 					};
@@ -350,6 +357,7 @@
 				55A879C4196D33A600C941A1 /* Localizable.strings in Resources */,
 				5534F1B4196C7C470080E851 /* Main-4.storyboard in Resources */,
 				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
+				5576C145197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
 				5520FB841961D7940031B156 /* Main-35.storyboard in Resources */,
 				5537A18A196A813E00301897 /* SearchViews.storyboard in Resources */,
 			);
@@ -362,6 +370,7 @@
 				5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */,
 				5534F1B5196C7C470080E851 /* Main-4.storyboard in Resources */,
 				5520FB851961D7940031B156 /* Main-35.storyboard in Resources */,
+				5576C146197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,10 +546,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -552,10 +563,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

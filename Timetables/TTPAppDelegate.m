@@ -16,28 +16,29 @@
 	UIStoryboard *mainStoryboard = nil;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-	if ([defaults objectForKey:@"usedStoryboard"] == nil) {
-		NSLog(@"Display size not set.");
-		NSString *storyBoardName = (IS_IPHONE5)?@"Main-4":@"Main-35";
-		[defaults setObject:storyBoardName forKey:@"usedStoryboard"];
-		[defaults synchronize];
-	}
-	
-	if ([defaults objectForKey:@"myGroup"] == nil) {
-		[defaults setBool:YES forKey:@"firstRun"];
-		[defaults synchronize];
-		mainStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
-		self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-		self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
-		[self.window makeKeyAndVisible];
-	}
-	else {
-	mainStoryboard = [UIStoryboard storyboardWithName:[defaults objectForKey:@"usedStoryboard"]bundle:nil];
-		
+//	if ([defaults objectForKey:@"usedStoryboard"] == nil) {
+//		NSLog(@"Display size not set.");
+//		NSString *storyBoardName = (IS_IPHONE5)?@"Main-4":@"Main-35";
+//		[defaults setObject:storyBoardName forKey:@"usedStoryboard"];
+//		[defaults synchronize];
+//	}
+//	
+//	if ([defaults objectForKey:@"myGroup"] == nil) {
+//		[defaults setBool:YES forKey:@"firstRun"];
+//		[defaults synchronize];
+//		mainStoryboard = [UIStoryboard storyboardWithName:@"SearchViews" bundle:nil];
+//		self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//		self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
+//		[self.window makeKeyAndVisible];
+//	}
+//	else {
+//	mainStoryboard = [UIStoryboard storyboardWithName:[defaults objectForKey:@"usedStoryboard"]bundle:nil];
+//
+	mainStoryboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
 	[self.window makeKeyAndVisible];
-	}
+//	}
 	
 	return YES;
 }
