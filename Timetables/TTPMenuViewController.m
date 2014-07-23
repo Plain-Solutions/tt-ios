@@ -29,7 +29,7 @@
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MenuItem"];
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-	self.menuItems = @[@"MainView", @"DepMsgView", @"favs", @"search", @"settings"];
+	self.menuItems = @[@"MainView", @"DepMsgView", @"SavedGroupsView", @"search", @"settings"];
 
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "TTPSavedGroupsViewController.h"
-
+#import "MVYSideMenuController.h"
 #define IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
 
 
@@ -130,7 +130,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 	}
 }
 
+- (IBAction)menuBtnPressed:(id)sender {
+	MVYSideMenuController *sideMenuController = [self sideMenuController];
+	if (sideMenuController) {
+		[sideMenuController openMenu];
+	}
 
+}
 
 - (IBAction)addGroupToFavs:(id)sender;
 {
