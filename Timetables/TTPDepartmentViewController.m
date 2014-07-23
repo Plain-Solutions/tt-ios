@@ -93,7 +93,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
 
     if (cell == nil) {
-			    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
+		cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
 	}
 	
     TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
