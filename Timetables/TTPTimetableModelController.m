@@ -8,19 +8,24 @@
 
 #import "TTPTimetableModelController.h"
 #import "TTPTimetableDataViewController.h"
+#import "TTPGroup.h"
+#import "TTPParser.h"
 @interface TTPTimetableModelController()
 @property (readonly, strong, nonatomic) NSArray *pageData;
+
 @end
 
 @implementation TTPTimetableModelController
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
 		// Create the data model.
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		_pageData = [[dateFormatter monthSymbols] copy];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		TTPGroup *grp = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
+		
     }
     return self;
 }
@@ -61,12 +66,13 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = [self indexOfViewController:(TTPTimetableDataViewController *)viewController];
+	NSLog(@"%d", index);
     if (index == NSNotFound) {
         return nil;
     }
     
     index++;
-    if (index == [self.pageData count]) {
+    if (index >= [self.pageData count] - 1) {
         return 0;
     }
     return [self viewControllerAtIndex:index storyboard:viewController.storyboard];

@@ -34,7 +34,7 @@
 																					contentViewController:contentNavigationController
 																								  options:options];
 	
-	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height - 98.5);
+	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height); //- 98.5);
 	self.window.rootViewController = sideMenuController;
 
 	[self.window makeKeyAndVisible];

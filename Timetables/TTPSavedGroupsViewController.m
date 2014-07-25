@@ -68,6 +68,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     UITableViewCell *cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
+	
+	if (cell == nil)
+		cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
+	
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
 	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
 	

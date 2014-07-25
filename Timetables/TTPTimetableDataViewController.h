@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTPTimetableDataViewController : UIViewController
+@interface TTPTimetableDataViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) id dataObject;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UITableView *table;
+
 
 @end
