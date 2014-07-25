@@ -235,8 +235,8 @@
                                 <rect key="frame" x="2" y="447" width="316" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="oddbtn"/>
                                     <segment title="evnbtn"/>
+                                    <segment title="oddbtn"/>
                                 </segments>
                             </segmentedControl>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xH-97-qkJ">
@@ -274,6 +274,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="paritySelector" destination="W1f-cb-t20" id="flT-aL-zAl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htg-0P-cdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

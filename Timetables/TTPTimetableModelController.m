@@ -39,9 +39,11 @@
     return dataViewController;
 }
 
+
 - (NSUInteger)indexOfViewController:(TTPTimetableDataViewController *)viewController
 {
 	[viewController.table scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+
     return viewController.day;
 }
 

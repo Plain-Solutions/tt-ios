@@ -11,6 +11,7 @@
 
 @interface TTPMainViewController : UIViewController
 @property (strong, nonatomic) TTPGroup *selectedGroup;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;
 
 - (IBAction)menuBtnTapped:(id)sender;
 @end

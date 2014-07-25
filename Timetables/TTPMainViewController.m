@@ -35,6 +35,17 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 		TTPGroup *grp =[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
 		self.title = [NSString stringWithFormat:@"%@ %@", grp.departmentTag, grp.groupName];
 		}
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateDay:)
+												 name:@"updateDayLabelCalled"
+											   object:nil];
+
+	[self.paritySelector setTitle:NSLocalizedString(@"Even", nil) forSegmentAtIndex:0];
+	[self.paritySelector setTitle:NSLocalizedString(@"Odd", nil) forSegmentAtIndex:1];
+	[self.paritySelector addTarget:self
+							action:@selector(parityUpdated:forEvent:)
+				  forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)showNoMyGroupAlert;
@@ -55,6 +66,34 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)updateDay:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"updateDayLabelCalled"]){
+		NSInteger num = [[notification object] integerValue];
+		self.title = [self convertNumToDays:num];
+	}
+}
+
+- (NSString *)convertNumToDays:(NSInteger)num;
+{
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
+	
+	NSArray *weekdays = [df weekdaySymbols];
+	if (num + 1 >= 7)
+		num = 0;
+	return [[weekdays objectAtIndex:num + 1] capitalizedString];
+	
+}
+
+- (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
+{
+	NSLog(@"ParityUpdated sent");
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"parityUpdated"
+														object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+}
+
 
 - (IBAction)menuBtnTapped:(id)sender {
 	
