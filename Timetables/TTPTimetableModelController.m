@@ -10,36 +10,33 @@
 #import "TTPTimetableDataViewController.h"
 #import "TTPGroup.h"
 #import "TTPParser.h"
-@interface TTPTimetableModelController()
-@property (readonly, strong, nonatomic) NSArray *pageData;
+#import "TTPTimetableAccessor.h"
 
+
+
+@interface TTPTimetableModelController()
 @end
+
 
 @implementation TTPTimetableModelController
 
 - (id)init
 {
-    if (self = [super init]) {
-		// Create the data model.
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		_pageData = [[dateFormatter monthSymbols] copy];
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		TTPGroup *grp = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
-		
-    }
+	self = [super init];
+	if (self) {
+		NSLog(@"Invoked222");
+	}
     return self;
 }
 
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard
 {
-    // Return the data view controller for the given index.
-    if (([self.pageData count] == 0) || (index >= [self.pageData count])) {
-        return nil;
-    }
-    
-    // Create a new view controller and pass suitable data.
+	NSLog(@"Invoked");
+	// Create a new view controller and pass suitable data.
     TTPTimetableDataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimetableView"];
-	dataViewController.dataObject = self.pageData[index];
+	dataViewController.dataObject = [NSNumber numberWithInt:index];
+
+
     return dataViewController;
 }
 
@@ -47,34 +44,24 @@
 {
 	// Return the index of the given data view controller.
 	// For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-    return [self.pageData indexOfObject:viewController.dataObject];
+    return [viewController.dataObject integerValue];
 }
 
 #pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = [self indexOfViewController:(TTPTimetableDataViewController *)viewController];
-    if ((index == 0) || (index == NSNotFound)) {
-        index = [self.pageData count];
-    }
-    
-    index--;
-    return [self viewControllerAtIndex:index storyboard:viewController.storyboard];
+	NSLog(@"Invoked prevV");
+    return [self viewControllerAtIndex:[self.accessor previousDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]]
+							storyboard:viewController.storyboard];
+
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = [self indexOfViewController:(TTPTimetableDataViewController *)viewController];
-	NSLog(@"%d", index);
-    if (index == NSNotFound) {
-        return nil;
-    }
-    
-    index++;
-    if (index >= [self.pageData count] - 1) {
-        return 0;
-    }
-    return [self viewControllerAtIndex:index storyboard:viewController.storyboard];
+	NSLog(@"Invoked nextV");
+	return [self viewControllerAtIndex:[self.accessor nextDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]]
+							storyboard:viewController.storyboard];
+
 }
 @end

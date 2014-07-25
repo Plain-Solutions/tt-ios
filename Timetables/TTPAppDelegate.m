@@ -15,7 +15,7 @@
 @implementation TTPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
-{
+{	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
@@ -35,8 +35,8 @@
 																								  options:options];
 	
 	sideMenuController.menuFrame = CGRectMake(0, 65.0, 220.0, self.window.bounds.size.height); //- 98.5);
+	
 	self.window.rootViewController = sideMenuController;
-
 	[self.window makeKeyAndVisible];
 	return YES;
 }
@@ -59,6 +59,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application;
 {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:nil forKey:@"selectedGroup"];
 }
 
 @end

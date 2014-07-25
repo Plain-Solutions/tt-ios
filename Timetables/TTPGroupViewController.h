@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewControllerDefines.h"
-#import "TTPTimetableViewController.h"
 #import "TTPDepartment.h"
 #import "TTPParser.h"
 #import "TTPGroup.h"

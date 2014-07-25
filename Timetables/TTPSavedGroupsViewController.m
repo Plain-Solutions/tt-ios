@@ -119,19 +119,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
-    if ([segue.identifier isEqualToString:@"viewTimetable"]) {
-        [self.favs scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-		UITableViewCell *cell = (UITableViewCell*)sender;
-        NSIndexPath *indexPath = [self.favs indexPathForCell:cell];
-		
-        TTPTimetableViewController *controller = [segue destinationViewController];
-		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];
-
-    }
-	if ([segue.identifier isEqualToString:@"viewMessage"]) {
-		TTPDepMsgViewController *controller = [segue destinationViewController];
-		controller.departmentTag = self.selectedGroup.departmentTag;
-	}
+//    if ([segue.identifier isEqualToString:@"viewTimetable"]) {
+//        [self.favs scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+//		UITableViewCell *cell = (UITableViewCell*)sender;
+//        NSIndexPath *indexPath = [self.favs indexPathForCell:cell];
+//		
+//        TTPTimetableViewController *controller = [segue destinationViewController];
+//		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];
+//
+//    }
+//	if ([segue.identifier isEqualToString:@"viewMessage"]) {
+//		TTPDepMsgViewController *controller = [segue destinationViewController];
+//		controller.departmentTag = self.selectedGroup.departmentTag;
+//	}
 }
 
 - (IBAction)menuBtnPressed:(id)sender {

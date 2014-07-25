@@ -11,7 +11,7 @@
 /**
  Entity to store subject data according to API v2.
  */
-@interface TTPSubjectEntity : NSObject
+@interface TTPSubjectEntity : NSObject <NSCoding>
 
 /**
  The name of the subject
@@ -32,4 +32,7 @@
  Array of subgroups for subject
  */
 @property (nonatomic, strong) NSArray *subgroups;
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
+- (NSString *)description;
 @end

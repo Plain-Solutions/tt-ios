@@ -35,7 +35,7 @@
 /**
  All the days, which have lessons.
  */
-@property (nonatomic, strong) NSArray *availableDays;
+@property (nonatomic, strong) NSMutableArray *availableDays;
 
 /**
  First day of the week with lessons.
@@ -51,6 +51,8 @@
  Parity names
  */
 @property (nonatomic, strong) NSArray *parities;
+
+@property (nonatomic, assign) NSInteger currentDay;
 
 - (NSString *)beginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)endTimeBySequence:(NSNumber *)sequence;

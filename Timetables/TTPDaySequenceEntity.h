@@ -11,7 +11,7 @@
 /**
  Entity to store timetable according to API v2.
  */
-@interface TTPDaySequenceEntity : NSObject
+@interface TTPDaySequenceEntity : NSObject <NSCoding>
 
 /**
  Number of the day from 0 to 5.
@@ -27,4 +27,8 @@
  Array of subjects on day and sequence for both (even and odd) weeks.
  */
 @property (nonatomic, strong) NSArray *subjects;
+
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
+- (NSString *)description;
 @end

@@ -60,7 +60,7 @@
 {
 	if (indexPath.row == 0) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:nil forKey:@"selectedGroup"];
+		[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
 	}
 	
 	TTPDepMsgViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];

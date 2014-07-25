@@ -29,10 +29,6 @@
  */
 @property (nonatomic, strong) NSString *groupName;
 
-- (NSString *)departmentName;
-- (NSString *)departmentTag;
-- (NSString *)groupName;
-
 - (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
 - (id)initWithCoder:(NSCoder *)decoder;
 - (id) copy;

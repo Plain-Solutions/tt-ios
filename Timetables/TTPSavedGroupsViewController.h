@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTPTimetableViewController.h"
 #import "TTPDepMsgViewController.h"
 #import "TTPGroup.h"
 #import "TTPParser.h"

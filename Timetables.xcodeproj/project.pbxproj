@@ -16,16 +16,8 @@
 		551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
 		5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
 		5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
-		5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */; };
-		5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */; };
-		5520FB841961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
-		5520FB851961D7940031B156 /* Main-35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5520FB821961D7940031B156 /* Main-35.storyboard */; };
 		5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
 		5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
-		5534F1B4196C7C470080E851 /* Main-4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5534F1B2196C7C470080E851 /* Main-4.storyboard */; };
-		5534F1B5196C7C470080E851 /* Main-4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5534F1B2196C7C470080E851 /* Main-4.storyboard */; };
-		5537A18A196A813E00301897 /* SearchViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A188196A813E00301897 /* SearchViews.storyboard */; };
-		5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A188196A813E00301897 /* SearchViews.storyboard */; };
 		5537A18E196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
 		5537A18F196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
 		5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */; };
@@ -111,13 +103,8 @@
 		551C9350195F90A00017145D /* TTPGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroupViewController.m; sourceTree = "<group>"; };
 		5520FB661961A20A0031B156 /* TTPSubgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroup.m; sourceTree = "<group>"; };
 		5520FB671961A20A0031B156 /* TTPSubgroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroup.h; sourceTree = "<group>"; };
-		5520FB761961BA3A0031B156 /* TTPTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableViewController.h; sourceTree = "<group>"; };
-		5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableViewController.m; sourceTree = "<group>"; };
-		5520FB831961D7940031B156 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-35.storyboard"; sourceTree = "<group>"; };
 		5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepMsgViewController.h; sourceTree = "<group>"; };
 		5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepMsgViewController.m; sourceTree = "<group>"; };
-		5534F1B3196C7C470080E851 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-4.storyboard"; sourceTree = "<group>"; };
-		5537A189196A813E00301897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchViews.storyboard; sourceTree = "<group>"; };
 		5537A18C196AD08500301897 /* TTPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroup.h; sourceTree = "<group>"; };
 		5537A18D196AD08500301897 /* TTPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroup.m; sourceTree = "<group>"; };
 		5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupsViewController.h; sourceTree = "<group>"; };
@@ -260,10 +247,7 @@
 				5571E00D195F6F350089E7E7 /* Controllers */,
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
-				5520FB821961D7940031B156 /* Main-35.storyboard */,
-				5534F1B2196C7C470080E851 /* Main-4.storyboard */,
 				5576C144197EFF7900210DD1 /* MainDemo2.storyboard */,
-				5537A188196A813E00301897 /* SearchViews.storyboard */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
 				55A879C6196D33A600C941A1 /* Localizable.strings */,
@@ -303,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				5511C2791963DD5E00E2C33B /* Cells */,
-				5576C210197FFE3600210DD1 /* old */,
 				5576C20F197FFE2000210DD1 /* Search&Favs Views */,
 				5576C211197FFE6C00210DD1 /* Subject&Department Details */,
 				5576C212197FFE9100210DD1 /* MainView */,
@@ -379,15 +362,6 @@
 				5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */,
 			);
 			name = "Search&Favs Views";
-			sourceTree = "<group>";
-		};
-		5576C210197FFE3600210DD1 /* old */ = {
-			isa = PBXGroup;
-			children = (
-				5520FB761961BA3A0031B156 /* TTPTimetableViewController.h */,
-				5520FB771961BA3A0031B156 /* TTPTimetableViewController.m */,
-			);
-			name = old;
 			sourceTree = "<group>";
 		};
 		5576C211197FFE6C00210DD1 /* Subject&Department Details */ = {
@@ -513,7 +487,6 @@
 				55543A431980509C00C08BB3 /* star-25@2x.png in Resources */,
 				55543A411980509C00C08BB3 /* message-25@2x.png in Resources */,
 				55543A421980509C00C08BB3 /* search-25@2x.png in Resources */,
-				5534F1B4196C7C470080E851 /* Main-4.storyboard in Resources */,
 				5576C20A197FFCA000210DD1 /* appicon80.png in Resources */,
 				5576C20D197FFCED00210DD1 /* appicon58.png in Resources */,
 				55543A471980521800C08BB3 /* menu-25@2x.png in Resources */,
@@ -523,8 +496,6 @@
 				5576C145197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
 				55543A3719804C3C00C08BB3 /* search-25.png in Resources */,
 				5576C207197FFC3C00210DD1 /* appicon120.png in Resources */,
-				5520FB841961D7940031B156 /* Main-35.storyboard in Resources */,
-				5537A18A196A813E00301897 /* SearchViews.storyboard in Resources */,
 				55543A3519804C3C00C08BB3 /* home-25.png in Resources */,
 				55543A3619804C3C00C08BB3 /* message-25.png in Resources */,
 			);
@@ -535,9 +506,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5576C20B197FFCA000210DD1 /* appicon80.png in Resources */,
-				5537A18B196A813E00301897 /* SearchViews.storyboard in Resources */,
-				5534F1B5196C7C470080E851 /* Main-4.storyboard in Resources */,
-				5520FB851961D7940031B156 /* Main-35.storyboard in Resources */,
 				5576C20E197FFCED00210DD1 /* appicon58.png in Resources */,
 				5576C208197FFC3C00210DD1 /* appicon120.png in Resources */,
 				5576C146197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
@@ -568,7 +536,6 @@
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
-				5520FB781961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
 				5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
@@ -586,7 +553,6 @@
 				5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
 				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
-				5520FB791961BA3A0031B156 /* TTPTimetableViewController.m in Sources */,
 				5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
 				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
@@ -619,30 +585,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5520FB821961D7940031B156 /* Main-35.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5520FB831961D7940031B156 /* Base */,
-			);
-			name = "Main-35.storyboard";
-			sourceTree = "<group>";
-		};
-		5534F1B2196C7C470080E851 /* Main-4.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5534F1B3196C7C470080E851 /* Base */,
-			);
-			name = "Main-4.storyboard";
-			sourceTree = "<group>";
-		};
-		5537A188196A813E00301897 /* SearchViews.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5537A189196A813E00301897 /* Base */,
-			);
-			name = SearchViews.storyboard;
-			sourceTree = "<group>";
-		};
 		55A879C6196D33A600C941A1 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

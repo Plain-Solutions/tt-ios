@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "TTPTimetableDataViewController.h"
+#import "TTPTimetableAccessor.h"
 
 @interface TTPTimetableModelController : NSObject <UIPageViewControllerDataSource>
+@property (strong, nonatomic) TTPTimetableAccessor *accessor;
+
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard;
-- (NSUInteger)indexOfViewController:(TTPTimetableDataViewController *)viewController;
 @end

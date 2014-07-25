@@ -10,7 +10,7 @@
  A helping entity to store subgroup information in timetable
  This can be empty as well as the whole array. Please check
  */
-@interface TTPSubgroup : NSObject
+@interface TTPSubgroup : NSObject <NSCoding>
 
 /**
  Subgroup name.
@@ -27,5 +27,7 @@
  */
 @property NSString *location;
 
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
 - (NSString *)description;
 @end

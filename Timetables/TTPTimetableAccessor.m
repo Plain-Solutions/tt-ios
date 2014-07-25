@@ -17,6 +17,7 @@
 @synthesize availableDays = _availableDays;
 @synthesize firstAvailableDay = _firstAvailableDay;
 @synthesize lastAvailableDay = _lastAvailableDay;
+@synthesize currentDay = _currentDay;
 @synthesize parities = _parities;
 
 - (id)init;
@@ -41,14 +42,16 @@
 {
 	self.firstAvailableDay = [((TTPDaySequenceEntity *)[self.timetable firstObject]).day integerValue];
 	self.lastAvailableDay = [((TTPDaySequenceEntity *)[self.timetable lastObject]).day integerValue];
-	
-	NSMutableSet *setOfAvailDays = [[NSMutableSet alloc] init];
+
+	self.currentDay = self.firstAvailableDay;
+	self.availableDays = [[NSMutableArray alloc] initWithObjects:@NO, @NO, @NO, @NO, @NO, @NO, nil];
 	
 	for (TTPDaySequenceEntity *e in self.timetable) {
-		[setOfAvailDays addObject:e.day];
+		self.availableDays[e.day.integerValue] = @YES;
 	}
-	self.availableDays= [[NSArray alloc] initWithArray:[[setOfAvailDays allObjects]
-														sortedArrayUsingSelector:@selector(compare:)]];
+	for (int i = 0; i < 6; i++) {
+		NSLog(@"%d – %@", i, self.availableDays[i]);
+	}
 }
 
 #pragma mark - Timey-wimey
@@ -72,20 +75,25 @@
 
 - (NSInteger)nextDay:(NSInteger)currentDay;
 {
-	NSInteger nextIndex = [self.availableDays indexOfObject:[NSNumber numberWithInt:currentDay]]+1;
-	if (nextIndex >= self.availableDays.count) {
-		return self.firstAvailableDay;
+	currentDay++;
+
+	for (int i = currentDay; i < self.availableDays.count; i++) {
+		if ([self.availableDays[i]  isEqual: @YES]) {
+			return currentDay;
+		}
 	}
-	return [[self.availableDays objectAtIndex:nextIndex] integerValue];
+	return self.firstAvailableDay;
 }
 
 - (NSInteger)previousDay:(int)currentDay;
 {
-	NSInteger prevIndex = [self.availableDays indexOfObject:[NSNumber numberWithInt:currentDay]]-1;
-	if (prevIndex < 0) {
-		return self.lastAvailableDay;
+	currentDay--;
+	for (int i = currentDay; i >= 0; i--) {
+		if ([self.availableDays[i]  isEqual: @YES]) {
+			return i;
+		}
 	}
-	return [[self.availableDays objectAtIndex:prevIndex] integerValue];
+	return self.lastAvailableDay;
 }
 
 #pragma mark - Getting timetables and stuff
