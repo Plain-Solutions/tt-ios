@@ -34,8 +34,9 @@
 	NSLog(@"Invoked");
 	// Create a new view controller and pass suitable data.
     TTPTimetableDataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimetableView"];
-	dataViewController.dataObject = [NSNumber numberWithInt:index];
-
+	dataViewController.day = index;
+	dataViewController.accessor = self.accessor;
+	dataViewController.parity = 0;
 
     return dataViewController;
 }
@@ -44,7 +45,7 @@
 {
 	// Return the index of the given data view controller.
 	// For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-    return [viewController.dataObject integerValue];
+    return viewController.day;
 }
 
 #pragma mark - Page View Controller Data Source

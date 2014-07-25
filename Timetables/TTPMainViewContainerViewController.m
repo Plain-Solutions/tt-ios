@@ -91,7 +91,8 @@
 											  self.timetableViewController.delegate = self;
 											  self.timetableViewController.dataSource = self.modelController;
 											  
-											  TTPTimetableDataViewController *startingViewController = [self.modelController viewControllerAtIndex:self.timetableAccessor.firstAvailableDay storyboard:self.storyboard];
+											  TTPTimetableDataViewController *startingViewController = [self.modelController
+																										viewControllerAtIndex:self.timetableAccessor.firstAvailableDay storyboard:self.storyboard];
 											  NSArray *viewControllers = @[startingViewController];
 											  
 											  [self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];

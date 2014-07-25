@@ -21,7 +21,6 @@
 	self.table.delegate = self;
 	
 	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -38,12 +37,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 1;
+	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+																   parity:self.parity];
+	
+	return [self.accessor lessonsCountOnDayParitySequence:self.day
+															parity:self.parity
+														  sequence:[[seqs objectAtIndex:section] integerValue]];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
+	return [self.accessor lessonsCountOnDayParity:self.day parity:self.parity];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
@@ -61,14 +65,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"testful"];
-
+	
 	if (cell == nil)
 		cell = [tableView dequeueReusableCellWithIdentifier:@"testful"];
 	UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, cell.contentView.frame.size.height - 1.0, cell.contentView.frame.size.width, 1)];
 	seperator.backgroundColor =  [UIColor colorWithWhite:0.85 alpha:1.000];
 	[cell.contentView addSubview:seperator];
 	
-	cell.textLabel.text = [self.dataObject description];
+	NSArray *lsn = [self.accessor lessonsOnDayParitySequence:self.day parity:self.parity sequence:indexPath.section];
+	for (id i in lsn)
+		NSLog(@"%@", [i description]);
+	
+	cell.textLabel.text = [NSString stringWithFormat:@"%d", self.day];
 	
 	return cell;
 }

@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTPDaySequenceEntity.h"
+#import "TTPSubjectEntity.h"
+#import "TTPSubgroup.h"
+#import "TTPTimetableAccessor.h"
 
 @interface TTPTimetableDataViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (strong, nonatomic) id dataObject;
+@property (assign, nonatomic) NSInteger day;
 @property (weak, nonatomic) IBOutlet UITableView *table;
-
+@property (strong, nonatomic) TTPTimetableAccessor *accessor;
+@property (assign, nonatomic) NSInteger parity;
+@property (strong, nonatomic) NSArray *dayLessons;
 
 @end
