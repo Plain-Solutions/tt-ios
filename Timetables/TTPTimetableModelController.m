@@ -24,14 +24,12 @@
 {
 	self = [super init];
 	if (self) {
-		NSLog(@"Invoked222");
 	}
     return self;
 }
 
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard
 {
-	NSLog(@"Invoked");
 	// Create a new view controller and pass suitable data.
     TTPTimetableDataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimetableView"];
 	dataViewController.day = index;
@@ -43,8 +41,7 @@
 
 - (NSUInteger)indexOfViewController:(TTPTimetableDataViewController *)viewController
 {
-	// Return the index of the given data view controller.
-	// For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
+	[viewController.table scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     return viewController.day;
 }
 

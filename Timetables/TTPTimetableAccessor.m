@@ -49,9 +49,6 @@
 	for (TTPDaySequenceEntity *e in self.timetable) {
 		self.availableDays[e.day.integerValue] = @YES;
 	}
-	for (int i = 0; i < 6; i++) {
-		NSLog(@"%d – %@", i, self.availableDays[i]);
-	}
 }
 
 #pragma mark - Timey-wimey

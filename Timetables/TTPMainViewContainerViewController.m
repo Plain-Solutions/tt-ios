@@ -78,6 +78,8 @@
 										  }
 										  else {
 											  
+
+											  
 											  
 											  //TT ACCESSOR
 											  self.timetableAccessor = [[TTPTimetableAccessor alloc] init];

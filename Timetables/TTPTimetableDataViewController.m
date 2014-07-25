@@ -20,7 +20,6 @@
     [super viewDidLoad];
 	self.table.dataSource = self;
 	self.table.delegate = self;
-	NSLog(@"Height: %f/%f", self.table.frame.size.height, self.view.bounds.size.height);
 	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - self.table.frame.size.height + 40)];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -87,30 +86,20 @@
 		cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
 		if (cell == nil)
 				cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
-	
+		
 		cell.timeLabel.text = [self.accessor timeRangeBySequence:sequence];
 		
+	} else {
 		
-		cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
-									  [subj.name substringFromIndex:1]];
-		
-		
-		cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
-		
-		cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
-		
-		cell.activityImg.image= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", subj.activity]];
-
-		return cell;
-	}
-	cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
-	if (cell == nil)
 		cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
+
+		if (cell == nil)
+			cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
+	}
 	
 	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
 								  [subj.name substringFromIndex:1]];
-	
-	
+		
 	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
 	
 	cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
