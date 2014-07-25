@@ -13,14 +13,9 @@
  */
 @interface TTPSubjectCell : UITableViewCell
 /**
- Display beginning time.
+ Display beginning&finishing time.
  */
-@property (weak, nonatomic) IBOutlet UILabel *beginTimeLabel;
-
-/**
- Display finishing time.
- */
-@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 /**
  Display subject name.
@@ -37,9 +32,7 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
-/**
- Dash –– label conrol: remove on non-leading classes
- */
-@property (weak, nonatomic) IBOutlet UILabel *dashLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *activityImg;
+
 
 @end

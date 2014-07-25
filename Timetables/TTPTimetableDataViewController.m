@@ -7,6 +7,7 @@
 //
 
 #import "TTPTimetableDataViewController.h"
+#import "TTPSubjectCell.h"
 
 @interface TTPTimetableDataViewController ()
 
@@ -19,8 +20,8 @@
     [super viewDidLoad];
 	self.table.dataSource = self;
 	self.table.delegate = self;
-	
-	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+	NSLog(@"Height: %f/%f", self.table.frame.size.height, self.view.bounds.size.height);
+	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - self.table.frame.size.height + 40)];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -59,25 +60,55 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
 {
-    return 10;
+    return 15;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.table) {
+        if (scrollView.contentOffset.y < 0) {
+            scrollView.contentOffset = CGPointZero;
+        }
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"testful"];
+	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+																   parity:self.parity];
+	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
 	
+	NSArray *subjectsDPT = [self.accessor lessonsOnDayParitySequence:self.day
+																	   parity:self.parity
+																	 sequence:[sequence integerValue]];
+	
+	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	TTPSubjectCell *cell;
+	if ([subjectsDPT indexOfObject:subj] == 0) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
+		if (cell == nil)
+				cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
+		cell.timeLabel.text = [self.accessor timeRangeBySequence:sequence];
+	}
+	else {
+	cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
 	if (cell == nil)
-		cell = [tableView dequeueReusableCellWithIdentifier:@"testful"];
-	UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, cell.contentView.frame.size.height - 1.0, cell.contentView.frame.size.width, 1)];
-	seperator.backgroundColor =  [UIColor colorWithWhite:0.85 alpha:1.000];
-	[cell.contentView addSubview:seperator];
+		cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
+	}
+	NSLog(@"%f", cell.bounds.size.height);
 	
-	NSArray *lsn = [self.accessor lessonsOnDayParitySequence:self.day parity:self.parity sequence:indexPath.section];
-	for (id i in lsn)
-		NSLog(@"%@", [i description]);
 	
-	cell.textLabel.text = [NSString stringWithFormat:@"%d", self.day];
+	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
+	 [subj.name substringFromIndex:1]];
+ 
 	
+	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
+
+	cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
+	
+	cell.activityImg.image= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", subj.activity]];
+
 	return cell;
 }
+
+
 @end

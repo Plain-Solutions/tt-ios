@@ -10,12 +10,11 @@
 
 @implementation TTPSubjectCell
 
-@synthesize beginTimeLabel = _beginTimeLabel;
-@synthesize endTimeLabel = _endTimeLabel;
+@synthesize timeLabel = _timeLabel;
 @synthesize subjectNameLabel =_subjectNameLabel;
 @synthesize subjectTypeLabel = _subjectTypeLabel;
 @synthesize locationLabel = _locationLabel;
-@synthesize dashLabel = _dashLabel;
+@synthesize activityImg = _activityImg;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 {

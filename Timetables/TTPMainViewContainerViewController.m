@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+
 	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
 	dispatch_async(downloadQueue, ^
 				   {
@@ -87,7 +87,7 @@
 											  //=============
 											  											  
 											  // PageView
-											  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+											  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
 											  self.timetableViewController.delegate = self;
 											  self.timetableViewController.dataSource = self.modelController;
 											  
