@@ -582,11 +582,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cA-xc-SMc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cA-xc-SMc">
                                                     <rect key="frame" x="0.0" y="0.0" width="15" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="GUy-g1-bbt"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calculus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-MO-7w5">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Calculus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-MO-7w5">
                                                     <rect key="frame" x="23" y="6" width="275" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
@@ -605,6 +608,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NWO-MO-7w5" firstAttribute="leading" secondItem="3cA-xc-SMc" secondAttribute="trailing" constant="8" id="Frt-ML-Xhd"/>
+                                                <constraint firstAttribute="bottom" secondItem="3cA-xc-SMc" secondAttribute="bottom" constant="-1" id="PUj-I1-l9u"/>
+                                                <constraint firstItem="3cA-xc-SMc" firstAttribute="leading" secondItem="xkB-sD-c0u" secondAttribute="leading" id="fPQ-YP-yyS"/>
+                                                <constraint firstItem="3cA-xc-SMc" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" id="nZ0-zN-luy"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="activityImg" destination="3cA-xc-SMc" id="y8M-iL-97B"/>

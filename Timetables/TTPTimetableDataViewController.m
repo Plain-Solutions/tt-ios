@@ -87,22 +87,32 @@
 		cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
 		if (cell == nil)
 				cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
+	
 		cell.timeLabel.text = [self.accessor timeRangeBySequence:sequence];
+		
+		
+		cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
+									  [subj.name substringFromIndex:1]];
+		
+		
+		cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
+		
+		cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
+		
+		cell.activityImg.image= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", subj.activity]];
+
+		return cell;
 	}
-	else {
 	cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
 	if (cell == nil)
 		cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
-	}
-	NSLog(@"%f", cell.bounds.size.height);
-	
 	
 	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
-	 [subj.name substringFromIndex:1]];
- 
+								  [subj.name substringFromIndex:1]];
+	
 	
 	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
-
+	
 	cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
 	cell.activityImg.image= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", subj.activity]];
@@ -110,5 +120,13 @@
 	return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+		return 100;
+    } else {
+		return 80;
+    }
+}
 
 @end
