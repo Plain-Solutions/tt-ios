@@ -129,7 +129,11 @@
 	
 	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+	if (![self.presentedViewController isBeingDismissed])
+	{
+		[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+	}
+	
 
 
 }

@@ -35,11 +35,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if ([defaults objectForKey:@"selectedGroup"] || [defaults objectForKey:@"myGroup"]) {
+		if (![defaults objectForKey:@"selectedGroup"])
+			[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
+	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
 	dispatch_async(downloadQueue, ^
 				   {
-					   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
 					   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
 					   
 					   NSString *ttURL = [NSString
@@ -117,6 +121,7 @@
 										  }
 
 									  });});
+	}
 	
 }
 

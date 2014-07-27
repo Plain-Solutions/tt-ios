@@ -29,12 +29,8 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
 		[self.navigationController pushViewController:controller animated:YES];
 	}
-	else {
-		if ([defaults objectForKey:@"selectedGroup"] == nil)
-			[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
-		TTPGroup *grp =[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
-		self.title = [NSString stringWithFormat:@"%@ %@", grp.departmentTag, grp.groupName];
-		}
+	
+	self.title = @"Loading";
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateDay:)
