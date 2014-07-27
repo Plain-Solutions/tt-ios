@@ -640,14 +640,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giC-kz-8bd">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giC-kz-8bd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="giC-kz-8bd" secondAttribute="trailing" id="O0q-YW-Isl"/>
+                            <constraint firstItem="giC-kz-8bd" firstAttribute="leading" secondItem="Rkl-TI-Ub2" secondAttribute="leading" id="S4D-RD-K1i"/>
+                            <constraint firstItem="7sq-L0-828" firstAttribute="top" secondItem="giC-kz-8bd" secondAttribute="bottom" id="aWw-Cj-ql3"/>
+                            <constraint firstItem="giC-kz-8bd" firstAttribute="top" secondItem="Rkl-TI-Ub2" secondAttribute="top" id="xMh-tJ-SjW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="VTm-fL-43U">
                         <barButtonItem key="leftBarButtonItem" image="menu-25.png" id="mMn-i1-NY0">
@@ -656,7 +662,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="departmentMessageView" destination="giC-kz-8bd" id="BDT-yN-2QW"/>
                     </connections>

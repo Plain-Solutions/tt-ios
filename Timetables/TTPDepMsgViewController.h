@@ -21,9 +21,4 @@
 @property (weak, nonatomic) IBOutlet UITextView *departmentMessageView;
 - (IBAction)menuBtnPressed:(id)sender;
 
-
-/**
- Tag to navigate through API
- */
-@property (strong, nonatomic) NSString *departmentTag;
 @end

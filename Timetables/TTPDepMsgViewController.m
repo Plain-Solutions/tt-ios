@@ -8,6 +8,8 @@
 
 #import "TTPDepMsgViewController.h"
 #import "MVYSideMenuController.h"
+#import "TTPGroup.h"
+
 @interface TTPDepMsgViewController ()
 @property (nonatomic, strong) TTPParser *parser;
 @end
@@ -18,10 +20,15 @@
 {
     [super viewDidLoad];
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	NSString *depTag = ((TTPGroup *)[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]]).departmentTag;
+	
     dispatch_async(downloadQueue, ^{
 		NSString *msgURL = [NSString
 						   stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/msg",
-						   self.departmentTag];
+						   depTag];
 							
 		ShowNetworkActivityIndicator();
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: msgURL]
@@ -42,7 +49,7 @@
 					errorData = [self.parser parseError:data error:error];
 				
 				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@(%@) with %d",
-								 errorData, self.departmentTag, msgURL, response.statusCode];
+								 errorData, depTag, msgURL, response.statusCode];
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
 																message: msg
 															   delegate: nil
@@ -52,10 +59,7 @@
 			}
 			else {
 				NSString *result = [self.parser parseDownloadedMessageForDepartment:data error:error];
-				if ([self.departmentTag isEqualToString:@"ifg"])
-					result = [NSString stringWithFormat:@"%@\nBest wishes to lovely ADCh from fau!", result];
 				self.departmentMessageView.text = result;
-
 			}
 			HideNetworkActivityIndicator();
         });
