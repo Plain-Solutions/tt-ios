@@ -25,17 +25,21 @@
 }
 
 // this is used in Department view to minimize text and hold them in the single line
-- (NSString *)prettifyDepartmentNames:(NSString *)departmentName;
+- (NSString *)prettifyDepartmentNames:(NSString *)departmentName trim:(BOOL)trim;
 {
-    NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет"
+	NSString *result = [NSString stringWithString:departmentName];
+	if (trim) {
+	NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет"
 																			withString:@""];
     NSString *truncateDepBeginning = [truncateDepEnding stringByReplacingOccurrencesOfString:@"Факультет"
 																				  withString:@""];
     NSString *truncateInstitute = [truncateDepBeginning stringByReplacingOccurrencesOfString:@"Институт"
 																				  withString:@""];
-    NSString *trimSpaced = [truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    return [trimSpaced capitalizedString];
+		result = [NSString stringWithString:[truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+	}
+	
+	
+    return [NSString stringWithFormat:@"%@%@", [[result substringToIndex:1] capitalizedString], [result substringFromIndex:1]];
 }
 
 - (NSString *)parseError:(NSData *)raw error:(NSError *)error;

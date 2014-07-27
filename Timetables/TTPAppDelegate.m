@@ -47,15 +47,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application;
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:nil forKey:@"selectedGroup"];
-	[defaults synchronize];
-
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application;
 {
-	NSLog(@"here");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application;

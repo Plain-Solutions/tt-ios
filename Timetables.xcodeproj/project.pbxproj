@@ -85,6 +85,7 @@
 		5576C20E197FFCED00210DD1 /* appicon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C20C197FFCED00210DD1 /* appicon58.png */; };
 		5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
+		55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
 		55C4ABC3198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
@@ -182,6 +183,8 @@
 		5576C20C197FFCED00210DD1 /* appicon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon58.png; sourceTree = "<group>"; };
 		5576C2141980304800210DD1 /* TTPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSettingsViewController.h; sourceTree = "<group>"; };
 		5576C2151980304800210DD1 /* TTPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSettingsViewController.m; sourceTree = "<group>"; };
+		55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupCell.h; sourceTree = "<group>"; };
+		55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupCell.m; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */,
 				555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */,
 				555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */,
+				55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */,
+				55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				5576C203197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
 				5571E021195F75B20089E7E7 /* TTPParser.m in Sources */,
 				5571DFE5195F66980089E7E7 /* main.m in Sources */,
+				55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */,
 				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
 				5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
 				5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,

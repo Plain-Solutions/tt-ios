@@ -132,10 +132,9 @@
 
 		[defaults setBool:YES forKey:@"wasCfgd"];
 		[defaults setObject:grp forKey:@"myGroup"];
-		
-		[defaults synchronize];
 	}
-	
+
+	[defaults synchronize];
 	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
 	if (![self.presentedViewController isBeingDismissed])

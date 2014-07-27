@@ -25,6 +25,7 @@
 - (void)viewDidLoad;
 {
    [super viewDidLoad];
+	
 	self.title= NSLocalizedString(@"Select department", nil);
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
@@ -115,7 +116,7 @@
 	
     TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name];
+	cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name trim:YES];
     return cell;
 }
 

@@ -8,49 +8,66 @@
 
 #import "TTPSavedGroupsViewController.h"
 #import "MVYSideMenuController.h"
-#define IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+#import "TTPGroup.h"
+#import "TTPParser.h"
+#import "TTPMainViewController.h"
+#import "TTPSavedGroupCell.h"
 
-
-@interface TTPSavedGroupsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TTPSavedGroupsViewController ()
 {
 	TTPGroup *_confirmDeletedMyGroup;
 }
 @property (nonatomic, strong) NSMutableArray *savedGroups;
-@property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) TTPGroup *myGroup;
+@property (nonatomic, strong) TTPParser *parser;
 @property (nonatomic, strong) NSUserDefaults *defaults;
-@property (assign) NSInteger myGrpIndex;
 @end
 
 @implementation TTPSavedGroupsViewController
+
+@synthesize parser = _parser;
 
 - (void)viewDidLoad;
 {
 	[super viewDidLoad];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	self.navigationItem.title = NSLocalizedString(@"Saved groups", nil);
-	self.depMsgButton.title = NSLocalizedString(@"Department message", nil);
-	self.favs.delegate = self;
-	self.favs.dataSource = self;
-	[self.view addSubview:self.favs];
 
-	self.defaults = [NSUserDefaults standardUserDefaults];
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	self.savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
+	
+	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-	self.myGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"myGroup"]];
-
+	
 	self.parser = [[TTPParser alloc] init];
 	
-	for (TTPGroup *g in self.savedGroups) {
-		if ([g.departmentName isEqualToString:self.myGroup.departmentName] &&
-			[g.groupName isEqualToString:self.myGroup.groupName]) {
-			self.myGrpIndex = [self.savedGroups indexOfObject:g];
-		}
-		if ([g.departmentName isEqualToString:self.selectedGroup.departmentName] &&
-			[g.groupName isEqualToString:self.selectedGroup.groupName])
-			self.addButton.enabled = NO;
-		}
+	self.savedGroups = [[NSMutableArray alloc] init];
+	
+	self.defaults = [NSUserDefaults standardUserDefaults];
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	if (data != NULL)
+		self.savedGroups =[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	
+	[self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	if ([self.defaults boolForKey:@"noSavedGroupsShownHelp"] == NO && !self.savedGroups.count) {
+		NSString *alertTitle = NSLocalizedString(@"Saved groups", nil);
+		
+		NSString *msg = NSLocalizedString(@"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner", nil);
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle																message: msg
+													   delegate: nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		
+		[alert show];
+		[self.defaults setBool:YES forKey: @"noSavedGroupsShownHelp"];
+		[self.defaults synchronize];
+	}
+
 }
 
 - (void)didReceiveMemoryWarning;
@@ -67,42 +84,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    UITableViewCell *cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
+    TTPSavedGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	
 	if (cell == nil)
-		cell = [self.favs dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
+		cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	
 	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
-	cell.textLabel.textColor = IOS7_DEFAULT_NAVBAR_ITEM_BLUE_COLOR;
-	
-	BOOL isMyGroup = NO;
-	if ([group.groupName isEqualToString:self.myGroup.groupName] &&
-		[group.departmentName isEqualToString:self.myGroup.departmentName]) {
-			[cell.textLabel setFont:[UIFont italicSystemFontOfSize:[UIFont systemFontSize]]];
-			[cell.detailTextLabel setFont:[UIFont italicSystemFontOfSize:[UIFont systemFontSize]]];
-			isMyGroup = YES;
-			if ([self.selectedGroup.groupName isEqualToString:self.myGroup.groupName] &&
-				[self.selectedGroup.departmentName isEqualToString:self.myGroup.departmentName]) {
-					[cell.textLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:[UIFont systemFontSize]]];
-					[cell.detailTextLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:[UIFont systemFontSize]]];
-			}
-	}
-	else
-		if ([group.groupName isEqualToString:self.selectedGroup.groupName] &&
-			[group.departmentName isEqualToString:self.selectedGroup.departmentName]) {
-				[cell.textLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
-				[cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
-	}
-		 
-    cell.textLabel.text = (isMyGroup)? [NSString stringWithFormat:NSLocalizedString(@"%@ (mine)", nil), group.groupName]:group.groupName;
-	cell.detailTextLabel.text = [self.parser prettifyDepartmentNames:group.departmentName];
-    
+	cell.departmentLabel.text = [self.parser prettifyDepartmentNames:group.departmentName trim:NO];
+	cell.groupLabel.text=  group.groupName;
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	return (indexPath.row == self.myGrpIndex)?NO:YES;
+	return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -113,26 +108,41 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 		NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedGroups];
 		[self.defaults setObject:data forKey:@"savedGroups"];
 		[self.defaults synchronize];
-		[self.favs reloadData];
-    }
+		[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]]
+							  withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([segue.identifier isEqualToString:@"viewTimetable"]) {
-//        [self.favs scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-//		UITableViewCell *cell = (UITableViewCell*)sender;
-//        NSIndexPath *indexPath = [self.favs indexPathForCell:cell];
-//		
-//        TTPTimetableViewController *controller = [segue destinationViewController];
-//		controller.selectedGroup = [self.savedGroups objectAtIndex:indexPath.row];
-//
-//    }
-//	if ([segue.identifier isEqualToString:@"viewMessage"]) {
-//		TTPDepMsgViewController *controller = [segue destinationViewController];
-//		controller.departmentTag = self.selectedGroup.departmentTag;
-//	}
+	[self.defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:(TTPGroup *)self.savedGroups[indexPath.row]] forKey:@"selectedGroup"];
+	[self.defaults synchronize];
+	
+	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
+	if (![self.presentedViewController isBeingDismissed])
+	{
+		[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+	}
+	
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 18 + [self heightForText:((TTPGroup *)self.savedGroups[indexPath.row]).departmentName];
+}
+
+-(CGFloat)heightForText:(NSString *)text
+{
+	NSInteger MAX_HEIGHT = 2000;
+	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
+	textView.text = text;
+	textView.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:15.0f];
+	[textView sizeToFit];
+	return textView.frame.size.height;
+}
+
 
 - (IBAction)menuBtnPressed:(id)sender {
 	MVYSideMenuController *sideMenuController = [self sideMenuController];
@@ -142,20 +152,4 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 }
 
-- (IBAction)addGroupToFavs:(id)sender;
-{
-	// defaults
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-	TTPGroup *grp = [self.selectedGroup copy];
-	[savedGroups addObject:grp];
-	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
-	[self.defaults setObject:updatedData forKey:@"savedGroups"];
-	[self.defaults synchronize];
-
-	// UI
-	[self.savedGroups addObject:grp];
-	[self.favs reloadData];
-	self.addButton.enabled = NO;
-}
 @end

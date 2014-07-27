@@ -15,7 +15,7 @@
 
 - (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error;
 
-- (NSString *)prettifyDepartmentNames:(NSString *)departmentName;
+- (NSString *)prettifyDepartmentNames:(NSString *)departmentName trim:(BOOL)trim;
 
 - (NSString *)parseError:(NSData *)raw error:(NSError *)error;
 

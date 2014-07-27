@@ -12,7 +12,8 @@
 #import "TTPGroup.h"
 
 @interface TTPMainViewController ()
-
+@property (nonatomic, strong) NSArray *savedGrp;
+@property (nonatomic, strong) NSUserDefaults *defaults;
 @end
 
 @implementation TTPMainViewController
@@ -20,17 +21,47 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.defaults = [NSUserDefaults standardUserDefaults];
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
 style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
-	if (![defaults boolForKey:@"wasCfgd"]) {
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"fav" style:UIBarButtonItemStyleBordered target:self action:@selector(addGroupToFavs)];
+	
+	if (![self.defaults boolForKey:@"wasCfgd"]) {
 		[self showNoMyGroupAlert];
 		
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
 		[self.navigationController pushViewController:controller animated:YES];
 	}
 	
-	self.title = @"Loading";
+	
+	self.savedGrp = [[NSMutableArray alloc] init];
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+
+	self.savedGrp = (data != NULL)?[NSArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]]:nil;
+	
+	TTPGroup *group = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"selectedGroup"]];
+	TTPGroup *mygroup = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"myGroup"]];
+	
+	if ([group.departmentTag isEqualToString:mygroup.departmentTag] &&
+	 [group.groupName isEqualToString:mygroup.groupName]) {
+		[self.navigationItem setRightBarButtonItem:nil animated:NO];
+	}
+
+	if (group)
+		for (TTPGroup *grp in self.savedGrp) {
+			if ([group.departmentTag isEqualToString:grp.departmentTag] &&
+				[group.groupName isEqualToString:grp.groupName])
+				{
+					[self.navigationItem setRightBarButtonItem:nil animated:NO];
+					break;
+				}
+			else self.navigationItem.rightBarButtonItem.enabled = YES;
+		}
+	
+	
+	
+	self.title = NSLocalizedString(@"Loading", nil);
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateDay:)
@@ -55,6 +86,17 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 										  otherButtonTitles:nil];
 	
 	[alert show];
+}
+
+- (void)addGroupToFavs {
+	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	TTPGroup *grp = [[NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"selectedGroup"]] copy];
+	[savedGroups addObject:grp];
+	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
+	[self.defaults setObject:updatedData forKey:@"savedGroups"];
+	[self.defaults synchronize];
+	[self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
