@@ -86,6 +86,8 @@
 		5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
+		55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
+		55C4ABC3198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
 		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
 		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
 /* End PBXBuildFile section */
@@ -183,6 +185,8 @@
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55C4ABC0198502E6007F1017 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		55C4ABC1198502E6007F1017 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDaySequenceEntity.h; sourceTree = "<group>"; };
 		55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDaySequenceEntity.m; sourceTree = "<group>"; };
 		55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectEntity.h; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 		5571E00D195F6F350089E7E7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55C4ABC0198502E6007F1017 /* MBProgressHUD.h */,
+				55C4ABC1198502E6007F1017 /* MBProgressHUD.m */,
 				5511C2791963DD5E00E2C33B /* Cells */,
 				5576C20F197FFE2000210DD1 /* Search&Favs Views */,
 				5576C211197FFE6C00210DD1 /* Subject&Department Details */,
@@ -568,6 +574,7 @@
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
 				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
+				55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */,
 				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
 				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
 				5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
@@ -597,6 +604,7 @@
 				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
 				5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */,
 				5576C1E1197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
+				55C4ABC3198502E6007F1017 /* MBProgressHUD.m in Sources */,
 				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
 				5576C1D9197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,

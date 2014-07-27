@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TTPMainViewContainerViewController : UIViewController <UIPageViewControllerDelegate>
+#import "MBProgressHUD.h"
+@interface TTPMainViewContainerViewController : UIViewController <UIPageViewControllerDelegate, MBProgressHUDDelegate>
 
 @property (strong, nonatomic) UIPageViewController *timetableViewController;
 

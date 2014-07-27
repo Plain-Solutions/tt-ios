@@ -39,86 +39,101 @@
 	if ([defaults objectForKey:@"selectedGroup"] || [defaults objectForKey:@"myGroup"]) {
 		if (![defaults objectForKey:@"selectedGroup"])
 			[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
+		
+		MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.view];
+		[self.view addSubview:loadingView];
+		loadingView.delegate = self;
+
+		loadingView.labelText = NSLocalizedString(@"Loading schedule", nil);
+		[loadingView show:YES];
 	
-	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
-	dispatch_async(downloadQueue, ^
-				   {
+		dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
+		dispatch_async(downloadQueue, ^
+					   {
 
-					   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
-					   
-					   NSString *ttURL = [NSString
-										  stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
-										  selectedGroup.departmentTag,
-										  [selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-					   
-					   ShowNetworkActivityIndicator();
+						   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
 
-					   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
-																cachePolicy:NSURLRequestUseProtocolCachePolicy
-															timeoutInterval:120];
-					   NSHTTPURLResponse *response = nil;
-					   NSError *error = nil;
-					   NSData *data = [NSURLConnection sendSynchronousRequest:request
-															returningResponse:&response
-																		error:&error];
-					   
-					   dispatch_async(dispatch_get_main_queue(), ^
-									  {
-										  TTPParser *parser = [[TTPParser alloc] init];
-										  
-										  if (response.statusCode != 200) {
-											  NSString *errorData = [[NSString alloc] init];
-											  if (data != nil)
-												  errorData = [parser parseError:data error:error];
-											  
-											  NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
-															   errorData, selectedGroup.departmentTag, selectedGroup.groupName, ttURL, response.statusCode];
-											  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
-																							  message: msg
-																							 delegate: nil
-																					cancelButtonTitle:@"OK"
-																					otherButtonTitles:nil];
-											  [alert show];
-										  }
-										  else {
-											  
 
-											  
-											  
-											  //TT ACCESSOR
-											  self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
-											  self.timetableAccessor.timetable = [parser parseTimetables:data
-																								   error:error];
-											  [self.timetableAccessor populateAvailableDays];
-											  //=============
-											  											  
-											  // PageView
-											  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
-											  self.timetableViewController.delegate = self;
-											  self.timetableViewController.dataSource = self.modelController;
-											  
-											  TTPTimetableDataViewController *startingViewController = [self.modelController
-																										viewControllerAtIndex:self.timetableAccessor.firstAvailableDay storyboard:self.storyboard];
-											  NSArray *viewControllers = @[startingViewController];
-											  
-											  [self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-											  
-											  // ===================
-											  // UI/UX
-											  [self addChildViewController:self.timetableViewController];
-											  [self.view addSubview:self.timetableViewController.view];
-											  
-											  // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
-											  CGRect pageViewRect = self.view.bounds;
-											  self.timetableViewController.view.frame = pageViewRect;
-											  
-											  [self.timetableViewController didMoveToParentViewController:self];
-											  
-											  // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
-											  self.view.gestureRecognizers = self.timetableViewController.gestureRecognizers;
-																																
-											  HideNetworkActivityIndicator();
-										  }
+						   NSString *ttURL = [NSString
+											  stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
+											  selectedGroup.departmentTag,
+											  [selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+						   
+						   ShowNetworkActivityIndicator();
+
+						   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
+																	cachePolicy:NSURLRequestUseProtocolCachePolicy
+																timeoutInterval:120];
+						   NSHTTPURLResponse *response = nil;
+						   NSError *error = nil;
+						   NSData *data = [NSURLConnection sendSynchronousRequest:request
+																returningResponse:&response
+																			error:&error];
+						   
+						   dispatch_async(dispatch_get_main_queue(), ^
+										  {
+											  TTPParser *parser = [[TTPParser alloc] init];
+											  if (response.statusCode != 200) {
+												  NSString *errorData = [[NSString alloc] init];
+												  if (data != nil)
+													  errorData = [parser parseError:data error:error];
+												  
+												  NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
+																   errorData, selectedGroup.departmentTag, selectedGroup.groupName, ttURL, response.statusCode];
+												  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
+																								  message: msg
+																								 delegate: nil
+																						cancelButtonTitle:@"OK"
+																						otherButtonTitles:nil];
+												  [alert show];
+												  
+											  }
+											  else {																						
+												  //TT ACCESSOR
+												  self.timetableAccessor = [[TTPTimetableAccessor alloc] init];
+												  self.timetableAccessor.timetable = [parser parseTimetables:data
+																									   error:error];
+												  if (self.timetableAccessor.timetable.count) {
+												  [self.timetableAccessor populateAvailableDays];
+												  //=============
+																							  
+												  // PageView
+												  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+												  self.timetableViewController.delegate = self;
+												  self.timetableViewController.dataSource = self.modelController;
+												  
+												  TTPTimetableDataViewController *startingViewController = [self.modelController
+																											viewControllerAtIndex:self.timetableAccessor.firstAvailableDay storyboard:self.storyboard];
+												  NSArray *viewControllers = @[startingViewController];
+												  
+												  [self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+												  
+												  // ===================
+												  // UI/UX
+												  [self addChildViewController:self.timetableViewController];
+												  [self.view addSubview:self.timetableViewController.view];
+												  
+												  // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
+												  CGRect pageViewRect = self.view.bounds;
+												  self.timetableViewController.view.frame = pageViewRect;
+												  
+												  [self.timetableViewController didMoveToParentViewController:self];
+												  
+												  // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
+													  self.view.gestureRecognizers = self.timetableViewController.gestureRecognizers;}
+												  else {
+													  NSString *msg = NSLocalizedString(@"No timetable information available in SSU database. Please address your dean office to resolve this issue", nilw);
+													  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
+																									  message: msg
+																									 delegate: nil
+																							cancelButtonTitle:@"OK"
+																							otherButtonTitles:nil];
+													  [alert show];
+													  
+												  }
+												  [loadingView hide:YES];
+												  HideNetworkActivityIndicator();
+											  }
 
 									  });});
 	}

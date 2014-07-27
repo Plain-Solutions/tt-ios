@@ -25,6 +25,16 @@
 	
 	NSString *depTag = ((TTPGroup *)[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]]).departmentTag;
 	
+	
+	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:loadingView];
+	loadingView.delegate = self;
+	
+	loadingView.labelText = NSLocalizedString(@"Loading departments info", nil);
+	[loadingView show:YES];
+	
+	
+	
     dispatch_async(downloadQueue, ^{
 		NSString *msgURL = [NSString
 						   stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/msg",
@@ -59,8 +69,9 @@
 			}
 			else {
 				NSString *result = [self.parser parseDownloadedMessageForDepartment:data error:error];
-				self.departmentMessageView.text = result;
+				self.departmentMessageView.text = result;				
 			}
+			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
     });

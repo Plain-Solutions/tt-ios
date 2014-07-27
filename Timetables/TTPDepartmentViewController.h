@@ -11,12 +11,12 @@
 #import "TTPGroupViewController.h"
 #import "TTPDepartment.h"
 #import "TTPParser.h"
-
+#import "MBProgressHUD.h"
 /**
  Department view
  This is used to select a department both in first start and search.
  */
-@interface TTPDepartmentViewController : UITableViewController
+@interface TTPDepartmentViewController : UITableViewController <MBProgressHUDDelegate>
 
 /**
  Fetched Department list of TTPDepartment.

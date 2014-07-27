@@ -29,10 +29,18 @@
 {
     [super viewDidLoad];
     self.title = self.selectedDepartment.name;
+	
+	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:loadingView];
+	loadingView.delegate = self;
+
+	loadingView.labelText = NSLocalizedString(@"Loading groups list", nil);
+	[loadingView show:YES];
+	
 
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
-		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=1",
+		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=0",
 							  self.selectedDepartment.tag];
 
 		ShowNetworkActivityIndicator();
@@ -64,6 +72,7 @@
 				self.groupList = [self.parser parseGroups:data error:error];
 			
 			[self.tableView reloadData];
+			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
     });

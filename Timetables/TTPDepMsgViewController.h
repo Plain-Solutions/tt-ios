@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TTPParser.h"
 #import "ViewControllerDefines.h"
-
+#import "MBProgressHUD.h"
 /**
  Viewing Dean's office info
  */
-@interface TTPDepMsgViewController : UIViewController
+@interface TTPDepMsgViewController : UIViewController <MBProgressHUDDelegate>
 
 /**
  Subview to display parsed and formatted data.

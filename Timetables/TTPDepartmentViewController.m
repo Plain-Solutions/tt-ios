@@ -27,6 +27,7 @@
    [super viewDidLoad];
 	self.title= NSLocalizedString(@"Select department", nil);
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
 	if (![defaults boolForKey:@"wasCfgd"]) {
 	[self.navigationItem setHidesBackButton:YES animated:NO];
 	}
@@ -35,8 +36,13 @@
 																				 target:self
 																				 action:@selector(menuBtnTapped:)];
 	
+	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:loadingView];
+	loadingView.delegate = self;
 	
-
+	loadingView.labelText = NSLocalizedString(@"Loading departments list", nil);
+	[loadingView show:YES];
+	
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
@@ -73,6 +79,7 @@
 				self.departmentList = [self.parser parseDepartments:data error:error];
 			[self.tableView reloadData];
 			}
+			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
     });

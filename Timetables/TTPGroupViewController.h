@@ -11,10 +11,12 @@
 #import "TTPDepartment.h"
 #import "TTPParser.h"
 #import "TTPGroup.h"
+#import "MBProgressHUD.h"
+
 /**
  Group selection view.
  */
-@interface TTPGroupViewController : UITableViewController
+@interface TTPGroupViewController : UITableViewController <MBProgressHUDDelegate>
 
 /**
  Fetched grouplist.
