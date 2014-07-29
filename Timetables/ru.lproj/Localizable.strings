@@ -25,7 +25,7 @@
 
 "Select department" = "Выберите факультет";
 
-"Saved groups" = "Избранные группы";
+"Saved groups" = "Сохраненные";
 
 "Announcement!" = "Внимание!";
 
@@ -76,3 +76,7 @@
 "Department message" = "Сообщение деканата";
 
 "Settings" = "Настройки";
+
+"Set my Group" = "Установить мою группу";
+
+"Reset saved groups" = "Сбросить сохраненные группы";
