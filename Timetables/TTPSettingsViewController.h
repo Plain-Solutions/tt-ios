@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TTPSettingsViewController : UITableViewController
+#import "MBProgressHUD.h"
+@interface TTPSettingsViewController : UITableViewController <UIAlertViewDelegate, MBProgressHUDDelegate>
 - (IBAction)menuBtnPressed:(id)sender;
 
 @end
