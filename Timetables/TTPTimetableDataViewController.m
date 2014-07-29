@@ -119,9 +119,9 @@
 		
 	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
 								  [subj.name substringFromIndex:1]];
-		
-	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
 	
+	NSString *__actLocal = NSLocalizedString(subj.activity, nil);
+	cell.subjectTypeLabel.text = [NSString stringWithFormat:@"%@%@", [[__actLocal substringToIndex:1] capitalizedString], [__actLocal substringFromIndex:1]];
 	cell.locationLabel.text = [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
 	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];
