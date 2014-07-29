@@ -70,10 +70,6 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateDayButtons:) name:@"updateDayButtonsCalled"
-											   object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(parityUpdateRequest:) name:@"parityUpdateRequest"
 											   object:nil];
 
@@ -140,40 +136,11 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 														object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 }
 
-- (void)updateDayButtons:(NSNotification *)notification
-{
-	if ([[notification name] isEqualToString:@"updateDayButtonsCalled"]) {
-		NSArray *dayStates = [notification object];
-		NSLog(@"%@", [dayStates description]);
-		for (int i = 0; i < 6; i++) {
-			UIButton *button = (UIButton *)[self.view viewWithTag:300+i];
-			switch ([dayStates[i] integerValue]) {
-				case 0: [button setImage:[UIImage imageNamed:@"dayUnAvail"] forState:UIControlStateNormal]; button.enabled = NO;
-					break;
-				case 1: [button setImage:[UIImage imageNamed:@"dayButtonAvail"] forState:UIControlStateNormal]; button.enabled = YES; break;
-				case 2: [button setImage:[UIImage imageNamed:@"dayButtonCurrent"] forState:UIControlStateNormal]; button.enabled = YES; break;
-			}
-		}
-	}
-}
-
 - (void)parityUpdateRequest:(NSNotification *)notification
 {
 	if ([[notification name] isEqualToString:@"parityUpdateRequest"])
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"parityUpdated"
 															object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
-
-}
-
-
-- (IBAction)dayButtonTapped:(id)sender {
-	
-	UIButton *button = (UIButton*)sender;
-
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateDayButtonTapped"
-														object:[NSNumber numberWithInt:button.tag-300]];
-	
-
 }
 
 - (IBAction)menuBtnTapped:(id)sender {

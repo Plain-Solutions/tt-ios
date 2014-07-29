@@ -11,7 +11,6 @@
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-
 @interface TTPTimetableDataViewController ()
 
 @end
@@ -48,9 +47,7 @@
 		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES && i == self.day) {
 			__days[i] = @2;
 		}
-	}
-	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayButtonsCalled" object:__days];
-	
+	}	
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
 
 	
@@ -160,7 +157,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 80;
+	return 60;
 }
 
 - (UIColor *)activityTypeColor:(NSString *)activity {
@@ -172,5 +169,9 @@
 		return RGB(90, 200,250);
 	return [UIColor grayColor];
 }
+
+
+
+
 
 @end

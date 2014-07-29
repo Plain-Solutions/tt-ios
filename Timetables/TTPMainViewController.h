@@ -12,7 +12,8 @@
 @interface TTPMainViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;
 
-- (IBAction)dayButtonTapped:(id)sender;
+// This is for the next version
+// - (IBAction)dayButtonTapped:(id)sender;
 
 - (IBAction)menuBtnTapped:(id)sender;
 @end

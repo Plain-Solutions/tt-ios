@@ -12,13 +12,6 @@
 		5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
 		5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
 		5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
-		551C7F551987C3830043A92A /* dayButtonAvail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F531987C3830043A92A /* dayButtonAvail@2x.png */; };
-		551C7F581987C3C70043A92A /* dayButtonCurrent.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F561987C3C70043A92A /* dayButtonCurrent.png */; };
-		551C7F591987C3C70043A92A /* dayButtonCurrent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F571987C3C70043A92A /* dayButtonCurrent@2x.png */; };
-		551C7F5C1987C41D0043A92A /* dayUnAvail.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F5A1987C41D0043A92A /* dayUnAvail.png */; };
-		551C7F5D1987C41D0043A92A /* dunUnAvail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F5B1987C41D0043A92A /* dunUnAvail@2x.png */; };
-		551C7F5F1987C8890043A92A /* dayButtonAvail.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F5E1987C8890043A92A /* dayButtonAvail.png */; };
-		551C7F611987C89E0043A92A /* dayButtonAvail.png in Resources */ = {isa = PBXBuildFile; fileRef = 551C7F601987C89E0043A92A /* dayButtonAvail.png */; };
 		551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
 		551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
 		5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
@@ -109,13 +102,6 @@
 		5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectCell.m; sourceTree = "<group>"; };
 		5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableAccessor.h; sourceTree = "<group>"; };
 		5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableAccessor.m; sourceTree = "<group>"; };
-		551C7F531987C3830043A92A /* dayButtonAvail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dayButtonAvail@2x.png"; sourceTree = "<group>"; };
-		551C7F561987C3C70043A92A /* dayButtonCurrent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dayButtonCurrent.png; sourceTree = "<group>"; };
-		551C7F571987C3C70043A92A /* dayButtonCurrent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dayButtonCurrent@2x.png"; sourceTree = "<group>"; };
-		551C7F5A1987C41D0043A92A /* dayUnAvail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dayUnAvail.png; sourceTree = "<group>"; };
-		551C7F5B1987C41D0043A92A /* dunUnAvail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dunUnAvail@2x.png"; sourceTree = "<group>"; };
-		551C7F5E1987C8890043A92A /* dayButtonAvail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dayButtonAvail.png; sourceTree = "<group>"; };
-		551C7F601987C89E0043A92A /* dayButtonAvail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dayButtonAvail.png; sourceTree = "<group>"; };
 		551C934F195F90A00017145D /* TTPGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroupViewController.h; sourceTree = "<group>"; };
 		551C9350195F90A00017145D /* TTPGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroupViewController.m; sourceTree = "<group>"; };
 		5520FB661961A20A0031B156 /* TTPSubgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroup.m; sourceTree = "<group>"; };
@@ -357,9 +343,6 @@
 		5576C205197FFC2200210DD1 /* imgs */ = {
 			isa = PBXGroup;
 			children = (
-				551C7F5E1987C8890043A92A /* dayButtonAvail.png */,
-				551C7F601987C89E0043A92A /* dayButtonAvail.png */,
-				551C7F531987C3830043A92A /* dayButtonAvail@2x.png */,
 				55543A441980521800C08BB3 /* menu-25.png */,
 				55543A451980521800C08BB3 /* menu-25@2x.png */,
 				55543A3C1980509C00C08BB3 /* home-25@2x.png */,
@@ -375,10 +358,6 @@
 				5576C20C197FFCED00210DD1 /* appicon58.png */,
 				5576C209197FFCA000210DD1 /* appicon80.png */,
 				5576C206197FFC3C00210DD1 /* appicon120.png */,
-				551C7F561987C3C70043A92A /* dayButtonCurrent.png */,
-				551C7F5A1987C41D0043A92A /* dayUnAvail.png */,
-				551C7F5B1987C41D0043A92A /* dunUnAvail@2x.png */,
-				551C7F571987C3C70043A92A /* dayButtonCurrent@2x.png */,
 			);
 			name = imgs;
 			sourceTree = "<group>";
@@ -517,18 +496,12 @@
 				55543A3919804C3C00C08BB3 /* star-25.png in Resources */,
 				55543A3B1980501100C08BB3 /* settings-25@2x.png in Resources */,
 				55543A431980509C00C08BB3 /* star-25@2x.png in Resources */,
-				551C7F611987C89E0043A92A /* dayButtonAvail.png in Resources */,
-				551C7F5F1987C8890043A92A /* dayButtonAvail.png in Resources */,
 				55543A411980509C00C08BB3 /* message-25@2x.png in Resources */,
-				551C7F5C1987C41D0043A92A /* dayUnAvail.png in Resources */,
 				55543A421980509C00C08BB3 /* search-25@2x.png in Resources */,
-				551C7F591987C3C70043A92A /* dayButtonCurrent@2x.png in Resources */,
 				5576C20A197FFCA000210DD1 /* appicon80.png in Resources */,
 				5576C20D197FFCED00210DD1 /* appicon58.png in Resources */,
 				55543A471980521800C08BB3 /* menu-25@2x.png in Resources */,
 				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
-				551C7F5D1987C41D0043A92A /* dunUnAvail@2x.png in Resources */,
-				551C7F581987C3C70043A92A /* dayButtonCurrent.png in Resources */,
 				55543A461980521800C08BB3 /* menu-25.png in Resources */,
 				55543A401980509C00C08BB3 /* home-25@2x.png in Resources */,
 				5576C145197EFF7900210DD1 /* Main.storyboard in Resources */,
@@ -536,7 +509,6 @@
 				5576C207197FFC3C00210DD1 /* appicon120.png in Resources */,
 				55543A3519804C3C00C08BB3 /* home-25.png in Resources */,
 				55543A3619804C3C00C08BB3 /* message-25.png in Resources */,
-				551C7F551987C3830043A92A /* dayButtonAvail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

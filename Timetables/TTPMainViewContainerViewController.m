@@ -42,10 +42,11 @@ struct StartingDP {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateDayTapped:) name:@"updateDayButtonTapped"
-											   object:nil];
+
+//  This will be added in the next version
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(updateDayTapped:) name:@"updateDayButtonTapped"
+//											   object:nil];
 	
 	
 	
@@ -160,7 +161,6 @@ struct StartingDP {
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -195,8 +195,6 @@ struct StartingDP {
 }
 - (TTPTimetableModelController *)modelController
 {
-	// Return the model controller object, creating it if necessary.
-	// In more complex implementations, the model controller may be passed to the view controller.
     if (!_modelController) {
         _modelController = [[TTPTimetableModelController alloc] init];
 		self.modelController.accessor = self.timetableAccessor;
@@ -204,15 +202,16 @@ struct StartingDP {
     return _modelController;
 }
 
-- (void)updateDayTapped:(NSNotification *)notification
-{
-	NSInteger day = [[notification object] integerValue];
-	TTPTimetableDataViewController *startingViewController = [self.modelController
-															  viewControllerAtIndex:day storyboard:self.storyboard];
-	NSArray *viewControllers = @[startingViewController];
-	
-	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-	
-
-}
+// For the next release
+//- (void)updateDayTapped:(NSNotification *)notification
+//{
+//	NSInteger day = [[notification object] integerValue];
+//	TTPTimetableDataViewController *startingViewController = [self.modelController
+//															  viewControllerAtIndex:day storyboard:self.storyboard];
+//	NSArray *viewControllers = @[startingViewController];
+//	
+//	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//	
+//
+//}
 @end
