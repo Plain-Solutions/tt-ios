@@ -9,6 +9,9 @@
 #import "TTPTimetableDataViewController.h"
 #import "TTPSubjectCell.h"
 
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+
 @interface TTPTimetableDataViewController ()
 
 @end
@@ -66,9 +69,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    if (section == 0)
-        return 2.5;
-    return 0.5;
+    return 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
@@ -95,41 +96,62 @@
 																	 sequence:[sequence integerValue]];
 	
 	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
-	TTPSubjectCell *cell;
-	if ([subjectsDPT indexOfObject:subj] == 0) {
-		cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
-		if (cell == nil)
-				cell = [tableView dequeueReusableCellWithIdentifier:@"withTime"];
-		
-		cell.timeLabel.text = [self.accessor timeRangeBySequence:sequence];
-		
-	} else {
-		
-		cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
-
-		if (cell == nil)
-			cell = [tableView dequeueReusableCellWithIdentifier:@"noTime"];
-	}
+	TTPSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lessonCell"];
 	
+	if (cell == nil)
+				cell = [tableView dequeueReusableCellWithIdentifier:@"lessonCell"];
+		
 	cell.subjectNameLabel.text = [NSString stringWithFormat:@"%@%@",[[subj.name substringToIndex:1] uppercaseString],
 								  [subj.name substringFromIndex:1]];
 		
 	cell.subjectTypeLabel.text = NSLocalizedString(subj.activity, nil);
 	
-	cell.locationLabel.text= [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
+	cell.locationLabel.text = [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
-	cell.activityImg.image= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", subj.activity]];
+	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];
 
 	return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+	/* Create custom view to display section header... */
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height)];
+	label.font =  [UIFont fontWithName:@"Helvetica-Medium" size:15.0f];
+	label.textAlignment = NSTextAlignmentCenter;
+	label.backgroundColor = [UIColor clearColor];
+	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+														  parity:self.parity];
+	NSNumber *sequence = [seqs objectAtIndex:section];
+
+	label.text = [self.accessor timeRangeBySequence:sequence];;
+	label.textColor = [UIColor blackColor];
+
+	[view addSubview:label];
+	
+	UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 1)];
+	lineView.backgroundColor = [UIColor lightGrayColor];
+	[view addSubview:lineView];
+	
+	view.backgroundColor = [UIColor whiteColor];
+	return view;
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-		return 100;
-    } else {
 		return 80;
-    }
+}
+
+- (UIColor *)activityTypeColor:(NSString *)activity {
+	if ([activity isEqualToString:@"lecture"])
+		return RGB(255, 94, 58);
+	if ([activity isEqualToString:@"practice"])
+		return RGB(76, 217,100);
+	if ([activity isEqualToString:@"laboratory"])
+		return RGB(90, 200,250);
+	return [UIColor grayColor];
 }
 
 @end

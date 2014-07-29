@@ -13,11 +13,6 @@
  */
 @interface TTPSubjectCell : UITableViewCell
 /**
- Display beginning&finishing time.
- */
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-
-/**
  Display subject name.
  */
 @property (weak, nonatomic) IBOutlet UILabel *subjectNameLabel;
@@ -32,7 +27,9 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *activityImg;
-
+/**
+ Graphical activity type representation
+ */
+@property (strong, nonatomic) IBOutlet UIView *activityView;
 
 @end
