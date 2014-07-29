@@ -13,12 +13,20 @@
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
 
+struct StartingDP {
+	NSInteger day;
+	NSInteger parity;
+};
+
+
 @interface TTPMainViewContainerViewController ()
 @property (readonly, strong, nonatomic) TTPTimetableModelController *modelController;
 @property (strong, nonatomic) TTPTimetableAccessor *timetableAccessor;
 @end
 
-@implementation TTPMainViewContainerViewController
+@implementation TTPMainViewContainerViewController {
+	struct StartingDP _startingDP;
+}
 
 @synthesize modelController = _modelController;
 
@@ -95,6 +103,7 @@
 																									   error:error];
 												  if (self.timetableAccessor.timetable.count) {
 												  [self.timetableAccessor populateAvailableDays];
+												  [self setStartingDayParity];
 												  //=============
 																							  
 												  // PageView
@@ -103,8 +112,9 @@
 												  self.timetableViewController.dataSource = self.modelController;
 												  
 												  TTPTimetableDataViewController *startingViewController = [self.modelController
-																											viewControllerAtIndex:self.timetableAccessor.firstAvailableDay storyboard:self.storyboard];
+																											viewControllerAtIndex:_startingDP.day storyboard:self.storyboard];
 												  NSArray *viewControllers = @[startingViewController];
+												  startingViewController.parity = _startingDP.parity;
 												  
 												  [self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 												  
@@ -144,6 +154,37 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)setStartingDayParity;
+{
+	_startingDP.parity = 0;
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	[gregorian setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
+	[gregorian setFirstWeekday:2];
+	NSUInteger weekday = [gregorian ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:[NSDate date]];
+	weekday--;
+	if (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:0]) {
+		if (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:1]) {
+			NSUInteger wday = weekday;
+			while (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:0] && weekday <= 5) {
+				weekday++;
+			}
+			if (weekday > 5) {
+				weekday = wday;
+				while (![self.timetableAccessor lessonsCountOnDayParity:weekday parity:1] && weekday <= 5) {
+					weekday++;
+				}
+			}
+			
+		}
+		else {
+			_startingDP.parity = 1;
+		}
+	}
+	
+	_startingDP.day = weekday;
 }
 - (TTPTimetableModelController *)modelController
 {
