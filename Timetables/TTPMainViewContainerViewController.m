@@ -210,7 +210,6 @@ struct StartingDP {
 	TTPTimetableDataViewController *startingViewController = [self.modelController
 															  viewControllerAtIndex:day storyboard:self.storyboard];
 	NSArray *viewControllers = @[startingViewController];
-	startingViewController.parity = _startingDP.parity;
 	
 	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 	

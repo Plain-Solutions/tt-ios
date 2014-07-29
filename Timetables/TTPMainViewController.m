@@ -168,6 +168,11 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 
 - (IBAction)dayButtonTapped:(id)sender {
 	
+	UIButton *button = (UIButton*)sender;
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateDayButtonTapped"
+														object:[NSNumber numberWithInt:button.tag-300]];
+	
 
 }
 
