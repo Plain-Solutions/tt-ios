@@ -18,7 +18,7 @@
 {	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainDemo2" bundle:nil];
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
 	TTPMenuViewController *menuVC = [storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
 	

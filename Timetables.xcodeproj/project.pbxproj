@@ -61,8 +61,8 @@
 		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
 		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
 		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
-		5576C145197EFF7900210DD1 /* MainDemo2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* MainDemo2.storyboard */; };
-		5576C146197EFF7900210DD1 /* MainDemo2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* MainDemo2.storyboard */; };
+		5576C145197EFF7900210DD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* Main.storyboard */; };
+		5576C146197EFF7900210DD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* Main.storyboard */; };
 		5576C1D4197F996C00210DD1 /* TTPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D3197F996C00210DD1 /* TTPMainViewController.m */; };
 		5576C1D5197F996C00210DD1 /* TTPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D3197F996C00210DD1 /* TTPMainViewController.m */; };
 		5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D7197F99B000210DD1 /* TTPTimetableModelController.m */; };
@@ -163,7 +163,7 @@
 		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
 		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
 		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
-		5576C144197EFF7900210DD1 /* MainDemo2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainDemo2.storyboard; sourceTree = "<group>"; };
+		5576C144197EFF7900210DD1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5576C1D2197F996C00210DD1 /* TTPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMainViewController.h; sourceTree = "<group>"; };
 		5576C1D3197F996C00210DD1 /* TTPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMainViewController.m; sourceTree = "<group>"; };
 		5576C1D6197F99B000210DD1 /* TTPTimetableModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableModelController.h; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 				5571E00D195F6F350089E7E7 /* Controllers */,
 				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
 				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
-				5576C144197EFF7900210DD1 /* MainDemo2.storyboard */,
+				5576C144197EFF7900210DD1 /* Main.storyboard */,
 				5571DFF0195F66980089E7E7 /* Images.xcassets */,
 				5571DFDF195F66980089E7E7 /* Supporting Files */,
 				55A879C6196D33A600C941A1 /* Localizable.strings */,
@@ -535,7 +535,7 @@
 				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
 				55543A461980521800C08BB3 /* menu-25.png in Resources */,
 				55543A401980509C00C08BB3 /* home-25@2x.png in Resources */,
-				5576C145197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
+				5576C145197EFF7900210DD1 /* Main.storyboard in Resources */,
 				55543A3719804C3C00C08BB3 /* search-25.png in Resources */,
 				5576C207197FFC3C00210DD1 /* appicon120.png in Resources */,
 				55543A3519804C3C00C08BB3 /* home-25.png in Resources */,
@@ -551,7 +551,7 @@
 				5576C20B197FFCA000210DD1 /* appicon80.png in Resources */,
 				5576C20E197FFCED00210DD1 /* appicon58.png in Resources */,
 				5576C208197FFC3C00210DD1 /* appicon120.png in Resources */,
-				5576C146197EFF7900210DD1 /* MainDemo2.storyboard in Resources */,
+				5576C146197EFF7900210DD1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
