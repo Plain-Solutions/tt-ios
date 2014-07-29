@@ -8,7 +8,7 @@
 
 #import "TTPTimetableDataViewController.h"
 #import "TTPSubjectCell.h"
-
+#import "TTPSubjectDetailTableViewController.h"
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 @interface TTPTimetableDataViewController ()
@@ -170,8 +170,19 @@
 	return [UIColor grayColor];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
 
-
-
-
+	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+														  parity:self.parity];
+	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
+	
+	NSArray *subjectsDPT = [self.accessor lessonsOnDayParitySequence:self.day
+															  parity:self.parity
+															sequence:[sequence integerValue]];
+	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	controller.subject = subj;
+	controller.sequence = sequence;
+	[self.navigationController pushViewController:controller animated:YES];
+}
 @end

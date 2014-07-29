@@ -25,8 +25,10 @@
 {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+	self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
     self.title = self.subject.name;
 	self.accessor = [[TTPTimetableAccessor alloc] init];
+	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
 }
 
 - (void)didReceiveMemoryWarning;
@@ -39,19 +41,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 4 + self.subject.subgroups.count;
+	return 1;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 4 + self.subject.subgroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     // we go to subgroup cells
-    if (indexPath.row > 3) {
+    if (indexPath.section > 3) {
         TTPSubgroupCell *sgCell = [tableView dequeueReusableCellWithIdentifier:@"subgroupInfo" forIndexPath:indexPath];
         if (sgCell == nil)
             sgCell = [[TTPSubgroupCell alloc] initWithStyle:UITableViewCellStyleDefault
 											reuseIdentifier:@"subgroupInfo"];
 
-        TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.row-4];
+        TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.section-4];
         sgCell.subgroupTeacherName.text = sub.teacher;
         sgCell.subgroupLocationLabel.text = sub.location;
 		sgCell.subgroupNameLabel.text = sub.subgroupName;
@@ -66,10 +71,10 @@
 
     NSArray *basicInfoCompilation = [NSArray arrayWithObjects:self.subject.name,
                                      NSLocalizedString(self.subject.activity, nil),
-                                     [self.accessor timeRangeBySequence:[NSNumber numberWithInt:self.sequence]],
+                                     [self.accessor timeRangeBySequence:self.sequence],
                                      [self.accessor convertParityNumToString:self.subject.parity],
                                      nil];
-    NSString *defaultCellText = [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.row]]
+    NSString *defaultCellText = [[NSString stringWithString:[basicInfoCompilation objectAtIndex:indexPath.section]]
 								 capitalizedString];
 
     [defaultCell.textLabel setText:defaultCellText];
@@ -81,18 +86,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 
-    if (indexPath.row > 3) {
-		TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.row - 4];
+    if (indexPath.section > 3) {
+		TTPSubgroup *sub = [self.subject.subgroups objectAtIndex:indexPath.section - 4];
 		if (sub.subgroupName.length)
-			return 100.0;
+			return 70.0;
 		return 60.0;
     }
-    else
+    if (indexPath.section == 0 && self.subject.name.length > 27)
     {
-		if (self.subject.name.length > 23)
 			return 50.0;
-		return 35.0;
     }
+	return 35.0;
 }
 
+- (IBAction)backButtonTapped:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
+}
 @end

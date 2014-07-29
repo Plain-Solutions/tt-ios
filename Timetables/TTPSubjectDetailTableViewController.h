@@ -21,10 +21,11 @@
  A subject to get information from.
  */
 @property (nonatomic, weak) TTPSubjectEntity *subject;
-
 /**
  Sequence of define subject as for API v2 sequence is not
  included in subject info. 
  */
-@property (nonatomic, assign) NSInteger sequence;
+@property (nonatomic, strong) NSNumber *sequence;
+
+- (IBAction)backButtonTapped:(id)sender;
 @end
