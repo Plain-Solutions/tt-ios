@@ -36,6 +36,25 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
+	
+	NSMutableArray *__days = [[NSMutableArray alloc] initWithObjects:@0, @0, @0, @0, @0, @0, nil];
+	for (int i = 0; i < 6; i++) {
+		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == NO) {
+			__days[i] = @0;
+		}
+		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES) {
+			__days[i] = @1;
+		}
+		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES && i == self.day) {
+			__days[i] = @2;
+		}
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayButtonsCalled" object:__days];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
+
+	
+	
 }
 
 - (void)updateParity:(NSNotification *)notification
@@ -141,7 +160,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-		return 80;
+	return 80;
 }
 
 - (UIColor *)activityTypeColor:(NSString *)activity {
