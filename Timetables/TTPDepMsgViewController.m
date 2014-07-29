@@ -25,6 +25,7 @@
 	
 	NSString *depTag = ((TTPGroup *)[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]]).departmentTag;
 	
+	self.title = NSLocalizedString(@"Department message", nil);
 	
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.view];
 	[self.view addSubview:loadingView];
@@ -69,6 +70,7 @@
 			}
 			else {
 				NSString *result = [self.parser parseDownloadedMessageForDepartment:data error:error];
+				self.departmentMessageView.font = [UIFont fontWithName:@"HelveticeNeue-Light" size:14.0f];
 				self.departmentMessageView.text = result;				
 			}
 			[loadingView hide:YES];
