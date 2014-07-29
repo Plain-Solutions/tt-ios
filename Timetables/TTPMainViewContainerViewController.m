@@ -140,7 +140,7 @@ struct StartingDP {
 												  // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
 													  self.view.gestureRecognizers = self.timetableViewController.gestureRecognizers;}
 												  else {
-													  NSString *msg = NSLocalizedString(@"No timetable information available in SSU database. Please address your dean office to resolve this issue", nilw);
+													  NSString *msg = NSLocalizedString(@"No timetable information available in SSU database. Please address your dean office to resolve this issue", nil);
 													  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
 																									  message: msg
 																									 delegate: nil

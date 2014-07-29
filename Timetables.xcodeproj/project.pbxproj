@@ -86,6 +86,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		551C7F621987F9490043A92A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5571DFCD195F66980089E7E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5571DFD4195F66980089E7E7;
+			remoteInfo = Timetables;
+		};
 		5571DFFB195F66980089E7E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5571DFCD195F66980089E7E7 /* Project object */;
@@ -442,6 +449,7 @@
 			);
 			dependencies = (
 				5571DFFC195F66980089E7E7 /* PBXTargetDependency */,
+				551C7F631987F9490043A92A /* PBXTargetDependency */,
 			);
 			name = TimetablesTests;
 			productName = TimetablesTests;
@@ -591,6 +599,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		551C7F631987F9490043A92A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5571DFD4195F66980089E7E7 /* Timetables */;
+			targetProxy = 551C7F621987F9490043A92A /* PBXContainerItemProxy */;
+		};
 		5571DFFC195F66980089E7E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5571DFD4195F66980089E7E7 /* Timetables */;

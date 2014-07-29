@@ -20,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.title = NSLocalizedString(@"Settings", nil);
 	_menuItems = @[@"Set my Group", @"Reset saved groups"];
 	_defaults = [NSUserDefaults standardUserDefaults];
 
@@ -68,7 +69,7 @@
 		}
 	else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Reset?", nil)
-														message:NSLocalizedString(@"Really reset saved groups list. This cannot be undone.", nil)
+														message:NSLocalizedString(@"Really reset saved groups list? This cannot be undone.", nil)
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"No", nil)
 											  otherButtonTitles: nil];

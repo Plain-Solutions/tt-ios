@@ -31,7 +31,7 @@
 	[self.view addSubview:loadingView];
 	loadingView.delegate = self;
 	
-	loadingView.labelText = NSLocalizedString(@"Loading departments info", nil);
+	loadingView.labelText = NSLocalizedString(@"Loading department message", nil);
 	[loadingView show:YES];
 	
 	

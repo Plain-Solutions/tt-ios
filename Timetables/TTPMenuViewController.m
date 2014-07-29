@@ -25,7 +25,16 @@
 
 	// DepView is for search
 	self.menuItems = @[@"MainView", @"DepMsgView", @"SavedGroupsView", @"DepView", @"SettingsView"];
-
+	NSArray *menuNames = @[NSLocalizedString(@"My Group", nil),
+						   NSLocalizedString(@"Dean Info", nil),
+						   NSLocalizedString(@"Saved Groups", nil),
+						   NSLocalizedString(@"Search", nil),
+						   NSLocalizedString(@"Settings", nil)];
+	for (int i = 0; i < 5; i++) {
+		NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+		cell.textLabel.text = menuNames[i];
+	}
 }
 
 - (void)didReceiveMemoryWarning
