@@ -25,7 +25,7 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
 style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"fav" style:UIBarButtonItemStyleBordered target:self action:@selector(addGroupToFavs)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"star-25"] style:UIBarButtonItemStyleBordered target:self action:@selector(addGroupToFavs)];
 	
 	if (![self.defaults boolForKey:@"wasCfgd"]) {
 		[self showNoMyGroupAlert];

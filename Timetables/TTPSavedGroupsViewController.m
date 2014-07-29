@@ -58,7 +58,8 @@
 		
 		NSString *msg = NSLocalizedString(@"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner", nil);
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle																message: msg
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
+														message: msg
 													   delegate: nil
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
