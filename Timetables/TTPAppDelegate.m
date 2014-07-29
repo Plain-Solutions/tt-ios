@@ -47,6 +47,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application;
 {
+	[self termination];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application;
@@ -59,6 +60,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application;
 {
+	[self termination];
+}
+
+- (void)termination
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:nil forKey:@"selectedGroup"];
+	[defaults synchronize];
+
 }
 
 @end

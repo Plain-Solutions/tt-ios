@@ -66,7 +66,7 @@
 		[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
 	}
 	
-	TTPDepMsgViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];
+	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
 	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
 }

@@ -13,7 +13,9 @@
 @property (nonatomic, strong) TTPParser *parser;
 @end
 
-@implementation TTPDepartmentViewController
+@implementation TTPDepartmentViewController {
+	NSUserDefaults *_defaults;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style;
 {
@@ -27,15 +29,22 @@
    [super viewDidLoad];
 	
 	self.title= NSLocalizedString(@"Select department", nil);
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	if (![defaults boolForKey:@"wasCfgd"]) {
-	[self.navigationItem setHidesBackButton:YES animated:NO];
+	_defaults = [NSUserDefaults standardUserDefaults];
+
+	if ([_defaults boolForKey:@"cameFromSettings"]) {
+		[self.navigationItem setHidesBackButton:NO animated:YES];
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(backBtnTapepd:)];
+	}
+	else
+	{
+		if (![_defaults boolForKey:@"wasCfgd"]) {
+		[self.navigationItem setHidesBackButton:YES animated:NO];
 	}
 	else self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
 																				  style:UIBarButtonItemStyleBordered
 																				 target:self
-																				 action:@selector(menuBtnTapped:)];
+																				  action:@selector(menuBtnTapped:)];}
+
 	
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:loadingView];
@@ -91,7 +100,6 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
-	//[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning;
@@ -125,6 +133,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 {
     if ([segue.identifier isEqualToString:@"groupSelect"]) {
+		
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 		UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -143,6 +152,17 @@
 	if (sideMenuController) {
 		[sideMenuController openMenu];
 	}
+}
+
+- (IBAction)backBtnTapepd:(id)sender {
+	MVYSideMenuController *sideMenuController = [self sideMenuController];
+	[_defaults setBool:NO forKey:@"cameFromSettings"];
+	[_defaults setBool:YES forKey:@"wasCfgd"];
+	[_defaults synchronize];
+	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsView"];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
+	[sideMenuController changeContentViewController:navigationController closeMenu:YES];
+
 }
 
 @end

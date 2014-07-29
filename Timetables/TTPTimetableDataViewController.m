@@ -21,14 +21,13 @@
 	self.table.dataSource = self;
 	self.table.delegate = self;
 	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - self.table.frame.size.height + 40)];
-	
+
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
 												 name:@"parityUpdated"
 											   object:nil];
 
-	
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,7 +39,6 @@
 {
 	if ([notification.name isEqualToString:@"parityUpdated"]) {
 		NSInteger parity = [[notification object] integerValue];
-		NSLog(@"%d", parity);
 		self.parity = parity;
 		[self.table reloadData];
 	}
@@ -49,7 +47,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
