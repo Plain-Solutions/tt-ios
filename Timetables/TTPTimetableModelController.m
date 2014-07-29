@@ -34,8 +34,6 @@
     TTPTimetableDataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimetableView"];
 	dataViewController.day = index;
 	dataViewController.accessor = self.accessor;
-	dataViewController.parity = 0;
-
     return dataViewController;
 }
 

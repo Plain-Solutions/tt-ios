@@ -35,7 +35,6 @@ struct StartingDP {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -43,6 +42,14 @@ struct StartingDP {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateDayTapped:) name:@"updateDayButtonTapped"
+											   object:nil];
+	
+	
+	
+	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if ([defaults objectForKey:@"selectedGroup"] || [defaults objectForKey:@"myGroup"]) {
 		if (![defaults objectForKey:@"selectedGroup"])
@@ -195,5 +202,18 @@ struct StartingDP {
 		self.modelController.accessor = self.timetableAccessor;
     }
     return _modelController;
+}
+
+- (void)updateDayTapped:(NSNotification *)notification
+{
+	NSInteger day = [[notification object] integerValue];
+	TTPTimetableDataViewController *startingViewController = [self.modelController
+															  viewControllerAtIndex:day storyboard:self.storyboard];
+	NSArray *viewControllers = @[startingViewController];
+	startingViewController.parity = _startingDP.parity;
+	
+	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+	
+
 }
 @end

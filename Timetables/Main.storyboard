@@ -239,28 +239,110 @@
                                 </segments>
                             </segmentedControl>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xH-97-qkJ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="392"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="B5Y-Cl-XYM" kind="embed" id="6Mr-I3-rn1"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="LBu-jz-fSt">
-                                <rect key="frame" x="72" y="409" width="177" height="37"/>
-                            </pageControl>
+                            <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFf-4h-nY3">
+                                <rect key="frame" x="20" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Cfk-Xa-y3N"/>
+                                    <constraint firstAttribute="height" constant="30" id="s9r-jQ-jdn"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="M3G-4h-D9v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4V-ve-Q0u">
+                                <rect key="frame" x="70" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SdV-AQ-dDo"/>
+                                    <constraint firstAttribute="width" constant="30" id="ude-Lv-5Vm"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="pVZ-UB-Cmh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-yB-kZ9">
+                                <rect key="frame" x="120" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Gg-5V-Qd6"/>
+                                    <constraint firstAttribute="width" constant="30" id="PHU-xN-nJW"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="lLn-yP-ah4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="304" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQw-xH-4As">
+                                <rect key="frame" x="220" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8Tb-9J-eiS"/>
+                                    <constraint firstAttribute="width" constant="30" id="p11-oX-tpN"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="pJf-O1-QRh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="305" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyC-Ww-w5q">
+                                <rect key="frame" x="270" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cQT-NG-ccN"/>
+                                    <constraint firstAttribute="width" constant="30" id="iqU-bZ-EIx"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="9fe-zv-MGH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="303" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2t-AR-27X">
+                                <rect key="frame" x="170" y="411" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SLr-uq-b5x"/>
+                                    <constraint firstAttribute="width" constant="30" id="Wa4-ip-8Ea"/>
+                                </constraints>
+                                <state key="normal" image="dayButtonAvail.png"/>
+                                <connections>
+                                    <action selector="dayButtonTapped:" destination="urC-rf-re2" eventType="touchUpInside" id="FdM-Di-CTA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="W1f-cb-t20" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="2" id="0ZU-9p-3FZ"/>
+                            <constraint firstItem="MQw-xH-4As" firstAttribute="leading" secondItem="K2t-AR-27X" secondAttribute="trailing" constant="20" id="8Q7-Ph-uwP"/>
+                            <constraint firstItem="cqb-yB-kZ9" firstAttribute="leading" secondItem="L4V-ve-Q0u" secondAttribute="trailing" constant="20" id="A1Y-sW-QuF"/>
                             <constraint firstItem="5xH-97-qkJ" firstAttribute="top" secondItem="QuX-Lx-Bdn" secondAttribute="bottom" id="AEw-yI-gdn"/>
-                            <constraint firstItem="LBu-jz-fSt" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="72" id="Cbc-52-f5y"/>
-                            <constraint firstAttribute="trailing" secondItem="W1f-cb-t20" secondAttribute="trailing" constant="2" id="DSf-dA-sMd"/>
-                            <constraint firstItem="lrn-dK-7VN" firstAttribute="top" secondItem="LBu-jz-fSt" secondAttribute="bottom" constant="34" id="J47-X7-nTH"/>
+                            <constraint firstItem="MQw-xH-4As" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="GkY-MD-5Di"/>
                             <constraint firstItem="5xH-97-qkJ" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" id="KjP-xc-1Ms"/>
+                            <constraint firstItem="L4V-ve-Q0u" firstAttribute="leading" secondItem="jFf-4h-nY3" secondAttribute="trailing" constant="20" id="KkU-KI-2zr"/>
+                            <constraint firstItem="cqb-yB-kZ9" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="LJX-tS-UMY"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="jFf-4h-nY3" secondAttribute="bottom" constant="6" id="NmQ-QW-lGg"/>
+                            <constraint firstItem="cqb-yB-kZ9" firstAttribute="leading" secondItem="L4V-ve-Q0u" secondAttribute="trailing" constant="20" id="Sg9-fb-x6X"/>
                             <constraint firstItem="lrn-dK-7VN" firstAttribute="top" secondItem="W1f-cb-t20" secondAttribute="bottom" constant="5" id="Whe-39-nLk"/>
-                            <constraint firstAttribute="trailing" secondItem="LBu-jz-fSt" secondAttribute="trailing" constant="71" id="fLF-CO-S9L"/>
+                            <constraint firstItem="jFf-4h-nY3" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="Wk4-7m-hol"/>
+                            <constraint firstItem="K2t-AR-27X" firstAttribute="leading" secondItem="cqb-yB-kZ9" secondAttribute="trailing" constant="20" id="ZRY-YR-GpE"/>
+                            <constraint firstItem="K2t-AR-27X" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="Zgd-LQ-5Xo"/>
+                            <constraint firstItem="jFf-4h-nY3" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="20" id="bKC-sx-AmG"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="leading" secondItem="5ab-Xr-vDn" secondAttribute="leading" constant="2" id="guK-UQ-8pc"/>
+                            <constraint firstItem="K2t-AR-27X" firstAttribute="leading" secondItem="cqb-yB-kZ9" secondAttribute="trailing" constant="20" id="h22-Iz-kNb"/>
+                            <constraint firstAttribute="trailing" secondItem="W1f-cb-t20" secondAttribute="trailing" constant="2" id="hXD-Ri-XYb"/>
+                            <constraint firstAttribute="trailing" secondItem="DyC-Ww-w5q" secondAttribute="trailing" constant="20" id="hsw-Xh-aQE"/>
+                            <constraint firstItem="DyC-Ww-w5q" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="ipd-8m-fjZ"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="MQw-xH-4As" secondAttribute="bottom" constant="6" id="kmR-6O-s9q"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="K2t-AR-27X" secondAttribute="bottom" constant="6" id="mkR-mF-EOe"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="L4V-ve-Q0u" secondAttribute="bottom" constant="6" id="mpA-BD-BhV"/>
                             <constraint firstAttribute="trailing" secondItem="5xH-97-qkJ" secondAttribute="trailing" id="nwE-oO-jG2"/>
-                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="35" id="qBV-9H-DBg"/>
+                            <constraint firstItem="L4V-ve-Q0u" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="6" id="oEb-Om-rSJ"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="5xH-97-qkJ" secondAttribute="bottom" constant="42" id="qBV-9H-DBg"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="cqb-yB-kZ9" secondAttribute="bottom" constant="6" id="rEu-Lh-HEB"/>
+                            <constraint firstItem="L4V-ve-Q0u" firstAttribute="leading" secondItem="jFf-4h-nY3" secondAttribute="trailing" constant="20" id="uMH-cI-5hd"/>
+                            <constraint firstItem="DyC-Ww-w5q" firstAttribute="leading" secondItem="MQw-xH-4As" secondAttribute="trailing" constant="20" id="xUQ-gR-ucG"/>
+                            <constraint firstItem="W1f-cb-t20" firstAttribute="top" secondItem="DyC-Ww-w5q" secondAttribute="bottom" constant="6" id="y6H-Bk-BTU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="dayname" id="sbY-k0-mqL">
@@ -351,7 +433,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2aJ-w2-Bwl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4SF-BW-Lm3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="385"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -599,6 +681,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dayButtonAvail.png" width="32" height="32"/>
         <image name="home-25.png" width="25" height="25"/>
         <image name="menu-25.png" width="25" height="25"/>
         <image name="message-25.png" width="25" height="25"/>

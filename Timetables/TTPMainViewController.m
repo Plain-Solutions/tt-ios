@@ -13,21 +13,22 @@
 
 @interface TTPMainViewController ()
 @property (nonatomic, strong) NSArray *savedGrp;
-@property (nonatomic, strong) NSUserDefaults *defaults;
 @end
 
-@implementation TTPMainViewController
+@implementation TTPMainViewController {
+	NSUserDefaults *_defaults;
+}
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.defaults = [NSUserDefaults standardUserDefaults];
+	_defaults = [NSUserDefaults standardUserDefaults];
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
 style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"star-25"] style:UIBarButtonItemStyleBordered target:self action:@selector(addGroupToFavs)];
 	
-	if (![self.defaults boolForKey:@"wasCfgd"]) {
+	if (![_defaults boolForKey:@"wasCfgd"]) {
 		[self showNoMyGroupAlert];
 		
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
@@ -36,12 +37,12 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 	
 	
 	self.savedGrp = [[NSMutableArray alloc] init];
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	NSData *data = [_defaults objectForKey:@"savedGroups"];
 
 	self.savedGrp = (data != NULL)?[NSArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]]:nil;
 	
-	TTPGroup *group = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"selectedGroup"]];
-	TTPGroup *mygroup = [NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"myGroup"]];
+	TTPGroup *group = [NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"selectedGroup"]];
+	TTPGroup *mygroup = [NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"myGroup"]];
 	
 	if ([group.departmentTag isEqualToString:mygroup.departmentTag] &&
 	 [group.groupName isEqualToString:mygroup.groupName]) {
@@ -67,6 +68,15 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 											 selector:@selector(updateDay:)
 												 name:@"updateDayLabelCalled"
 											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateDayButtons:) name:@"updateDayButtonsCalled"
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(parityUpdateRequest:) name:@"parityUpdateRequest"
+											   object:nil];
+
 
 	[self.paritySelector setTitle:NSLocalizedString(@"Even", nil) forSegmentAtIndex:0];
 	[self.paritySelector setTitle:NSLocalizedString(@"Odd", nil) forSegmentAtIndex:1];
@@ -89,23 +99,22 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 }
 
 - (void)addGroupToFavs {
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
+	NSData *data = [_defaults objectForKey:@"savedGroups"];
 	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-	TTPGroup *grp = [[NSKeyedUnarchiver unarchiveObjectWithData:[self.defaults objectForKey:@"selectedGroup"]] copy];
+	TTPGroup *grp = [[NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"selectedGroup"]] copy];
 	[savedGroups addObject:grp];
 	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
-	[self.defaults setObject:updatedData forKey:@"savedGroups"];
-	[self.defaults synchronize];
+	[_defaults setObject:updatedData forKey:@"savedGroups"];
+	[_defaults synchronize];
 	[self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)updateDay:(NSNotification *) notification
+- (void)updateDay:(NSNotification *)notification
 {
     if ([[notification name] isEqualToString:@"updateDayLabelCalled"]){
 		NSInteger num = [[notification object] integerValue];
@@ -127,11 +136,40 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 
 - (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
 {
-	NSLog(@"ParityUpdated sent");
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"parityUpdated"
 														object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 }
 
+- (void)updateDayButtons:(NSNotification *)notification
+{
+	if ([[notification name] isEqualToString:@"updateDayButtonsCalled"]) {
+		NSArray *dayStates = [notification object];
+		NSLog(@"%@", [dayStates description]);
+		for (int i = 0; i < 6; i++) {
+			UIButton *button = (UIButton *)[self.view viewWithTag:300+i];
+			switch ([dayStates[i] integerValue]) {
+				case 0: [button setImage:[UIImage imageNamed:@"dayUnAvail"] forState:UIControlStateNormal]; button.enabled = NO;
+					break;
+				case 1: [button setImage:[UIImage imageNamed:@"dayButtonAvail"] forState:UIControlStateNormal]; button.enabled = YES; break;
+				case 2: [button setImage:[UIImage imageNamed:@"dayButtonCurrent"] forState:UIControlStateNormal]; button.enabled = YES; break;
+			}
+		}
+	}
+}
+
+- (void)parityUpdateRequest:(NSNotification *)notification
+{
+	if ([[notification name] isEqualToString:@"parityUpdateRequest"])
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"parityUpdated"
+															object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
+
+}
+
+
+- (IBAction)dayButtonTapped:(id)sender {
+	
+
+}
 
 - (IBAction)menuBtnTapped:(id)sender {
 	
