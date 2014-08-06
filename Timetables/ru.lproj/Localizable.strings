@@ -1,0 +1,82 @@
+/* 
+  Localizable.strings
+  Timetables
+
+  Created by Vladislav Slepukhin on 09/07/14.
+  Copyright (c) 2014 Vlad Slepukhin. All rights reserved.
+*/
+"even" = "числитель";
+
+"Even" = "Числитель";
+
+"Odd" = "Знаменатель";
+
+"odd" = "знаменатель";
+
+"even&odd" = "все недели";
+
+"practice" = "пракитика";
+
+"lecture" = "лекция";
+
+"laboratory" = "лабораторная";
+
+"Multiple values" = "Несколько подгрупп";
+
+"Select department" = "Выберите факультет";
+
+"Saved groups" = "Сохраненные";
+
+"Announcement!" = "Внимание!";
+
+"It seems that you are running Timetables for the first time! Choose your department and group." = "Похоже, что вы запустили Расписания в первый раз. Выберите свой факультет и группу.";
+
+"Something bad happened!" = "Беда!";
+
+"Loading departments list" = "Загрузка списка факультетов";
+
+"Department message" = "Сообщение деканата";
+
+"Loading department message" = "Загрузка сообщения деканата";
+
+"Loading groups list" = "Загрузка списка групп";
+
+"Loading schedule" = "Загрузка расписания";
+
+"No timetable information available in SSU database. Please address your dean office to resolve this issue" = "Для вашей группы расписание отсутствует. Обратитесь в деканат.";
+
+"Back" = "Назад";
+
+"Reset?" = "Сбросить?";
+
+"Resetting" = "Идет сброс";
+
+"Really reset saved groups list. This cannot be undone." = "Действительно очистить список сохраненных групп? Это нельзя отменить.";
+
+"Yes" = "Да";
+
+"No" = "Нет";
+
+"My Group" = "Моя группа";
+
+"Dean Info" = "Информация";
+
+"Saved Groups" = "Сохраненные";
+
+"Search" = "Поиск";
+
+"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner" = "Здесь вы можете хранить ссылки на группы ваших друзей для быстрого доступа. Чтобы добавить группу нажмите ★ на главном экране в правом углу.";
+
+"Please report the following error and restart the app:\n%@ on %@ with %d" = "Сообщите разработчику эти данные и перезапустите приложение:\n%@ on %@ with %d";
+
+"Please report the following error and restart the app:\n%@ at %@(%@) with %d" = "Cообщите разработчику эти данные и перезапустите приложение:\n%@ at %@(%@) with %d";
+
+"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d" = "Сообщите разработчику эти данные и перезапустите приложение:\n%@ at %@(%@) with %d";
+
+"Department message" = "Сообщение деканата";
+
+"Settings" = "Настройки";
+
+"Set my Group" = "Установить мою группу";
+
+"Reset saved groups" = "Сбросить сохраненные группы";

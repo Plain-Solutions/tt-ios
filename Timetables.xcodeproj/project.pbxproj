@@ -1,0 +1,811 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
+		5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
+		5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
+		5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
+		5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
+		551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
+		551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C9350195F90A00017145D /* TTPGroupViewController.m */; };
+		5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
+		5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5520FB661961A20A0031B156 /* TTPSubgroup.m */; };
+		5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
+		5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */; };
+		5537A18E196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
+		5537A18F196AD08500301897 /* TTPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A18D196AD08500301897 /* TTPGroup.m */; };
+		5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */; };
+		5537A193196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */; };
+		55543A3519804C3C00C08BB3 /* home-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3019804C3C00C08BB3 /* home-25.png */; };
+		55543A3619804C3C00C08BB3 /* message-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3119804C3C00C08BB3 /* message-25.png */; };
+		55543A3719804C3C00C08BB3 /* search-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3219804C3C00C08BB3 /* search-25.png */; };
+		55543A3819804C3C00C08BB3 /* settings-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3319804C3C00C08BB3 /* settings-25.png */; };
+		55543A3919804C3C00C08BB3 /* star-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3419804C3C00C08BB3 /* star-25.png */; };
+		55543A3B1980501100C08BB3 /* settings-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3A1980501100C08BB3 /* settings-25@2x.png */; };
+		55543A401980509C00C08BB3 /* home-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3C1980509C00C08BB3 /* home-25@2x.png */; };
+		55543A411980509C00C08BB3 /* message-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3D1980509C00C08BB3 /* message-25@2x.png */; };
+		55543A421980509C00C08BB3 /* search-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3E1980509C00C08BB3 /* search-25@2x.png */; };
+		55543A431980509C00C08BB3 /* star-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A3F1980509C00C08BB3 /* star-25@2x.png */; };
+		55543A461980521800C08BB3 /* menu-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A441980521800C08BB3 /* menu-25.png */; };
+		55543A471980521800C08BB3 /* menu-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A451980521800C08BB3 /* menu-25@2x.png */; };
+		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
+		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
+		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
+		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
+		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
+		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
+		5571DFE5195F66980089E7E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE4195F66980089E7E7 /* main.m */; };
+		5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */; };
+		5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5571DFF0195F66980089E7E7 /* Images.xcassets */; };
+		5571DFF8195F66980089E7E7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFF7195F66980089E7E7 /* XCTest.framework */; };
+		5571DFF9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
+		5571DFFA195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
+		5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E003195F66980089E7E7 /* TimetablesTests.m */; };
+		5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
+		5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */; };
+		5571E01D195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
+		5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01B195F754E0089E7E7 /* TTPDepartment.m */; };
+		5571E021195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		5571E022195F75B20089E7E7 /* TTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5571E01F195F75B20089E7E7 /* TTPParser.m */; };
+		5576C145197EFF7900210DD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* Main.storyboard */; };
+		5576C146197EFF7900210DD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5576C144197EFF7900210DD1 /* Main.storyboard */; };
+		5576C1D4197F996C00210DD1 /* TTPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D3197F996C00210DD1 /* TTPMainViewController.m */; };
+		5576C1D5197F996C00210DD1 /* TTPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D3197F996C00210DD1 /* TTPMainViewController.m */; };
+		5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D7197F99B000210DD1 /* TTPTimetableModelController.m */; };
+		5576C1D9197F99B000210DD1 /* TTPTimetableModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1D7197F99B000210DD1 /* TTPTimetableModelController.m */; };
+		5576C1DC197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */; };
+		5576C1DD197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */; };
+		5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */; };
+		5576C1E1197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */; };
+		5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */; };
+		5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */; };
+		5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */; };
+		5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */; };
+		5576C203197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */; };
+		5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */; };
+		5576C207197FFC3C00210DD1 /* appicon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C206197FFC3C00210DD1 /* appicon120.png */; };
+		5576C208197FFC3C00210DD1 /* appicon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C206197FFC3C00210DD1 /* appicon120.png */; };
+		5576C20A197FFCA000210DD1 /* appicon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C209197FFCA000210DD1 /* appicon80.png */; };
+		5576C20B197FFCA000210DD1 /* appicon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C209197FFCA000210DD1 /* appicon80.png */; };
+		5576C20D197FFCED00210DD1 /* appicon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C20C197FFCED00210DD1 /* appicon58.png */; };
+		5576C20E197FFCED00210DD1 /* appicon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576C20C197FFCED00210DD1 /* appicon58.png */; };
+		5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
+		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
+		557B458B1988282800470EE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B45891988282800470EE0 /* Default-568h@2x.png */; };
+		557B458C1988282800470EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B458A1988282800470EE0 /* Default@2x.png */; };
+		55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */; };
+		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
+		55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
+		55C4ABC3198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
+		55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */; };
+		55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		551C7F621987F9490043A92A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5571DFCD195F66980089E7E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5571DFD4195F66980089E7E7;
+			remoteInfo = Timetables;
+		};
+		5571DFFB195F66980089E7E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5571DFCD195F66980089E7E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5571DFD4195F66980089E7E7;
+			remoteInfo = Timetables;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectDetailTableViewController.h; sourceTree = "<group>"; };
+		55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectDetailTableViewController.m; sourceTree = "<group>"; };
+		5511C27A1963DD7E00E2C33B /* TTPSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectCell.h; sourceTree = "<group>"; };
+		5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectCell.m; sourceTree = "<group>"; };
+		5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableAccessor.h; sourceTree = "<group>"; };
+		5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableAccessor.m; sourceTree = "<group>"; };
+		551C934F195F90A00017145D /* TTPGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroupViewController.h; sourceTree = "<group>"; };
+		551C9350195F90A00017145D /* TTPGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroupViewController.m; sourceTree = "<group>"; };
+		5520FB661961A20A0031B156 /* TTPSubgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroup.m; sourceTree = "<group>"; };
+		5520FB671961A20A0031B156 /* TTPSubgroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroup.h; sourceTree = "<group>"; };
+		5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepMsgViewController.h; sourceTree = "<group>"; };
+		5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepMsgViewController.m; sourceTree = "<group>"; };
+		5537A18C196AD08500301897 /* TTPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPGroup.h; sourceTree = "<group>"; };
+		5537A18D196AD08500301897 /* TTPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPGroup.m; sourceTree = "<group>"; };
+		5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupsViewController.h; sourceTree = "<group>"; };
+		5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupsViewController.m; sourceTree = "<group>"; };
+		55543A3019804C3C00C08BB3 /* home-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25.png"; sourceTree = "<group>"; };
+		55543A3119804C3C00C08BB3 /* message-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-25.png"; sourceTree = "<group>"; };
+		55543A3219804C3C00C08BB3 /* search-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-25.png"; sourceTree = "<group>"; };
+		55543A3319804C3C00C08BB3 /* settings-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-25.png"; sourceTree = "<group>"; };
+		55543A3419804C3C00C08BB3 /* star-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-25.png"; sourceTree = "<group>"; };
+		55543A3A1980501100C08BB3 /* settings-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-25@2x.png"; sourceTree = "<group>"; };
+		55543A3C1980509C00C08BB3 /* home-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25@2x.png"; sourceTree = "<group>"; };
+		55543A3D1980509C00C08BB3 /* message-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-25@2x.png"; sourceTree = "<group>"; };
+		55543A3E1980509C00C08BB3 /* search-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-25@2x.png"; sourceTree = "<group>"; };
+		55543A3F1980509C00C08BB3 /* star-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-25@2x.png"; sourceTree = "<group>"; };
+		55543A441980521800C08BB3 /* menu-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-25.png"; sourceTree = "<group>"; };
+		55543A451980521800C08BB3 /* menu-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-25@2x.png"; sourceTree = "<group>"; };
+		555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubgroupCell.h; sourceTree = "<group>"; };
+		555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubgroupCell.m; sourceTree = "<group>"; };
+		5571DFD5195F66980089E7E7 /* Timetables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timetables.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5571DFD8195F66980089E7E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5571DFDA195F66980089E7E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5571DFDC195F66980089E7E7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5571DFE0195F66980089E7E7 /* Timetables-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Timetables-Info.plist"; sourceTree = "<group>"; };
+		5571DFE4195F66980089E7E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Timetables-Prefix.pch"; sourceTree = "<group>"; };
+		5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPAppDelegate.h; sourceTree = "<group>"; };
+		5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPAppDelegate.m; sourceTree = "<group>"; };
+		5571DFF0195F66980089E7E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetablesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5571DFF7195F66980089E7E7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5571DFFF195F66980089E7E7 /* TimetablesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimetablesTests-Info.plist"; sourceTree = "<group>"; };
+		5571E003195F66980089E7E7 /* TimetablesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimetablesTests.m; sourceTree = "<group>"; };
+		5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartmentViewController.h; sourceTree = "<group>"; };
+		5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepartmentViewController.m; sourceTree = "<group>"; };
+		5571E01B195F754E0089E7E7 /* TTPDepartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDepartment.m; sourceTree = "<group>"; };
+		5571E01C195F754E0089E7E7 /* TTPDepartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDepartment.h; sourceTree = "<group>"; };
+		5571E01F195F75B20089E7E7 /* TTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPParser.m; sourceTree = "<group>"; };
+		5571E020195F75B20089E7E7 /* TTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPParser.h; sourceTree = "<group>"; };
+		557349E019656AEE00212502 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		5576C144197EFF7900210DD1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5576C1D2197F996C00210DD1 /* TTPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMainViewController.h; sourceTree = "<group>"; };
+		5576C1D3197F996C00210DD1 /* TTPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMainViewController.m; sourceTree = "<group>"; };
+		5576C1D6197F99B000210DD1 /* TTPTimetableModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableModelController.h; sourceTree = "<group>"; };
+		5576C1D7197F99B000210DD1 /* TTPTimetableModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableModelController.m; sourceTree = "<group>"; };
+		5576C1DA197F9AAB00210DD1 /* TTPTimetableDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableDataViewController.h; sourceTree = "<group>"; };
+		5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPTimetableDataViewController.m; sourceTree = "<group>"; };
+		5576C1DE197FA0E900210DD1 /* TTPMainViewContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMainViewContainerViewController.h; sourceTree = "<group>"; };
+		5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMainViewContainerViewController.m; sourceTree = "<group>"; };
+		5576C1E2197FA9A300210DD1 /* TTPMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPMenuViewController.h; sourceTree = "<group>"; };
+		5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPMenuViewController.m; sourceTree = "<group>"; };
+		5576C1FD197FF56300210DD1 /* MVYSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVYSideMenuController.h; sourceTree = "<group>"; };
+		5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVYSideMenuController.m; sourceTree = "<group>"; };
+		5576C1FF197FF56300210DD1 /* MVYSideMenuOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVYSideMenuOptions.h; sourceTree = "<group>"; };
+		5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVYSideMenuOptions.m; sourceTree = "<group>"; };
+		5576C206197FFC3C00210DD1 /* appicon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon120.png; sourceTree = "<group>"; };
+		5576C209197FFCA000210DD1 /* appicon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon80.png; sourceTree = "<group>"; };
+		5576C20C197FFCED00210DD1 /* appicon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon58.png; sourceTree = "<group>"; };
+		5576C2141980304800210DD1 /* TTPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSettingsViewController.h; sourceTree = "<group>"; };
+		5576C2151980304800210DD1 /* TTPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSettingsViewController.m; sourceTree = "<group>"; };
+		557B45891988282800470EE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		557B458A1988282800470EE0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupCell.h; sourceTree = "<group>"; };
+		55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupCell.m; sourceTree = "<group>"; };
+		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A879C7196D33D800C941A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A879C8196D33EF00C941A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55C4ABC0198502E6007F1017 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		55C4ABC1198502E6007F1017 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPDaySequenceEntity.h; sourceTree = "<group>"; };
+		55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPDaySequenceEntity.m; sourceTree = "<group>"; };
+		55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectEntity.h; sourceTree = "<group>"; };
+		55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectEntity.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5571DFD2195F66980089E7E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */,
+				5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */,
+				5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5571DFF3195F66980089E7E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5571DFF8195F66980089E7E7 /* XCTest.framework in Frameworks */,
+				5571DFFA195F66980089E7E7 /* UIKit.framework in Frameworks */,
+				5571DFF9195F66980089E7E7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5511C2791963DD5E00E2C33B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5511C27A1963DD7E00E2C33B /* TTPSubjectCell.h */,
+				5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */,
+				555DE4DA1967EBD100F4D939 /* TTPSubgroupCell.h */,
+				555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */,
+				55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */,
+				55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		5571DFCC195F66980089E7E7 = {
+			isa = PBXGroup;
+			children = (
+				5571DFD7195F66980089E7E7 /* Frameworks */,
+				5571DFD6195F66980089E7E7 /* Products */,
+				5571DFDE195F66980089E7E7 /* Timetables */,
+				5571DFFD195F66980089E7E7 /* TimetablesTests */,
+			);
+			sourceTree = "<group>";
+		};
+		5571DFD6195F66980089E7E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5571DFD5195F66980089E7E7 /* Timetables.app */,
+				5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5571DFD7195F66980089E7E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5571DFD8195F66980089E7E7 /* Foundation.framework */,
+				5571DFDA195F66980089E7E7 /* CoreGraphics.framework */,
+				5571DFDC195F66980089E7E7 /* UIKit.framework */,
+				5571DFF7195F66980089E7E7 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5571DFDE195F66980089E7E7 /* Timetables */ = {
+			isa = PBXGroup;
+			children = (
+				5576C205197FFC2200210DD1 /* imgs */,
+				5576C1FC197FB6E200210DD1 /* SideMenu */,
+				5571E01A195F75180089E7E7 /* Entities */,
+				5571E00D195F6F350089E7E7 /* Controllers */,
+				5571DFE7195F66980089E7E7 /* TTPAppDelegate.h */,
+				5571DFE8195F66980089E7E7 /* TTPAppDelegate.m */,
+				5576C144197EFF7900210DD1 /* Main.storyboard */,
+				5571DFF0195F66980089E7E7 /* Images.xcassets */,
+				5571DFDF195F66980089E7E7 /* Supporting Files */,
+				55A879C6196D33A600C941A1 /* Localizable.strings */,
+			);
+			path = Timetables;
+			sourceTree = "<group>";
+		};
+		5571DFDF195F66980089E7E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5571DFE0195F66980089E7E7 /* Timetables-Info.plist */,
+				5571DFE4195F66980089E7E7 /* main.m */,
+				5571DFE6195F66980089E7E7 /* Timetables-Prefix.pch */,
+				557349E019656AEE00212502 /* ViewControllerDefines.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5571DFFD195F66980089E7E7 /* TimetablesTests */ = {
+			isa = PBXGroup;
+			children = (
+				5571E003195F66980089E7E7 /* TimetablesTests.m */,
+				5571DFFE195F66980089E7E7 /* Supporting Files */,
+			);
+			path = TimetablesTests;
+			sourceTree = "<group>";
+		};
+		5571DFFE195F66980089E7E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5571DFFF195F66980089E7E7 /* TimetablesTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5571E00D195F6F350089E7E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				55C4ABC0198502E6007F1017 /* MBProgressHUD.h */,
+				55C4ABC1198502E6007F1017 /* MBProgressHUD.m */,
+				5511C2791963DD5E00E2C33B /* Cells */,
+				5576C20F197FFE2000210DD1 /* Search&Favs Views */,
+				5576C211197FFE6C00210DD1 /* Subject&Department Details */,
+				5576C212197FFE9100210DD1 /* MainView */,
+				5576C213197FFE9A00210DD1 /* Menu */,
+				5576C2141980304800210DD1 /* TTPSettingsViewController.h */,
+				5576C2151980304800210DD1 /* TTPSettingsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5571E01A195F75180089E7E7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5571E01C195F754E0089E7E7 /* TTPDepartment.h */,
+				5571E01B195F754E0089E7E7 /* TTPDepartment.m */,
+				5571E020195F75B20089E7E7 /* TTPParser.h */,
+				5571E01F195F75B20089E7E7 /* TTPParser.m */,
+				5520FB671961A20A0031B156 /* TTPSubgroup.h */,
+				5520FB661961A20A0031B156 /* TTPSubgroup.m */,
+				5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */,
+				5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */,
+				5537A18C196AD08500301897 /* TTPGroup.h */,
+				5537A18D196AD08500301897 /* TTPGroup.m */,
+				55FAE795196C01AD004DFC62 /* TTPDaySequenceEntity.h */,
+				55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */,
+				55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */,
+				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		5576C1FC197FB6E200210DD1 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5576C1FD197FF56300210DD1 /* MVYSideMenuController.h */,
+				5576C1FE197FF56300210DD1 /* MVYSideMenuController.m */,
+				5576C1FF197FF56300210DD1 /* MVYSideMenuOptions.h */,
+				5576C200197FF56300210DD1 /* MVYSideMenuOptions.m */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
+		5576C205197FFC2200210DD1 /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				557B45891988282800470EE0 /* Default-568h@2x.png */,
+				557B458A1988282800470EE0 /* Default@2x.png */,
+				55543A441980521800C08BB3 /* menu-25.png */,
+				55543A451980521800C08BB3 /* menu-25@2x.png */,
+				55543A3C1980509C00C08BB3 /* home-25@2x.png */,
+				55543A3D1980509C00C08BB3 /* message-25@2x.png */,
+				55543A3E1980509C00C08BB3 /* search-25@2x.png */,
+				55543A3F1980509C00C08BB3 /* star-25@2x.png */,
+				55543A3019804C3C00C08BB3 /* home-25.png */,
+				55543A3A1980501100C08BB3 /* settings-25@2x.png */,
+				55543A3119804C3C00C08BB3 /* message-25.png */,
+				55543A3219804C3C00C08BB3 /* search-25.png */,
+				55543A3319804C3C00C08BB3 /* settings-25.png */,
+				55543A3419804C3C00C08BB3 /* star-25.png */,
+				5576C20C197FFCED00210DD1 /* appicon58.png */,
+				5576C209197FFCA000210DD1 /* appicon80.png */,
+				5576C206197FFC3C00210DD1 /* appicon120.png */,
+			);
+			name = imgs;
+			sourceTree = "<group>";
+		};
+		5576C20F197FFE2000210DD1 /* Search&Favs Views */ = {
+			isa = PBXGroup;
+			children = (
+				5571E012195F71150089E7E7 /* TTPDepartmentViewController.h */,
+				5571E013195F71150089E7E7 /* TTPDepartmentViewController.m */,
+				551C934F195F90A00017145D /* TTPGroupViewController.h */,
+				551C9350195F90A00017145D /* TTPGroupViewController.m */,
+				5537A190196ADF6200301897 /* TTPSavedGroupsViewController.h */,
+				5537A191196ADF6200301897 /* TTPSavedGroupsViewController.m */,
+			);
+			name = "Search&Favs Views";
+			sourceTree = "<group>";
+		};
+		5576C211197FFE6C00210DD1 /* Subject&Department Details */ = {
+			isa = PBXGroup;
+			children = (
+				5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */,
+				5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */,
+				55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */,
+				55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */,
+			);
+			name = "Subject&Department Details";
+			sourceTree = "<group>";
+		};
+		5576C212197FFE9100210DD1 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				5576C1D2197F996C00210DD1 /* TTPMainViewController.h */,
+				5576C1D3197F996C00210DD1 /* TTPMainViewController.m */,
+				5576C1D6197F99B000210DD1 /* TTPTimetableModelController.h */,
+				5576C1D7197F99B000210DD1 /* TTPTimetableModelController.m */,
+				5576C1DA197F9AAB00210DD1 /* TTPTimetableDataViewController.h */,
+				5576C1DB197F9AAB00210DD1 /* TTPTimetableDataViewController.m */,
+				5576C1DE197FA0E900210DD1 /* TTPMainViewContainerViewController.h */,
+				5576C1DF197FA0E900210DD1 /* TTPMainViewContainerViewController.m */,
+			);
+			name = MainView;
+			sourceTree = "<group>";
+		};
+		5576C213197FFE9A00210DD1 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5576C1E2197FA9A300210DD1 /* TTPMenuViewController.h */,
+				5576C1E3197FA9A300210DD1 /* TTPMenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5571DFD4195F66980089E7E7 /* Timetables */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5571E007195F66980089E7E7 /* Build configuration list for PBXNativeTarget "Timetables" */;
+			buildPhases = (
+				5571DFD1195F66980089E7E7 /* Sources */,
+				5571DFD2195F66980089E7E7 /* Frameworks */,
+				5571DFD3195F66980089E7E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Timetables;
+			productName = Timetables;
+			productReference = 5571DFD5195F66980089E7E7 /* Timetables.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5571DFF5195F66980089E7E7 /* TimetablesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5571E00A195F66980089E7E7 /* Build configuration list for PBXNativeTarget "TimetablesTests" */;
+			buildPhases = (
+				5571DFF2195F66980089E7E7 /* Sources */,
+				5571DFF3195F66980089E7E7 /* Frameworks */,
+				5571DFF4195F66980089E7E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5571DFFC195F66980089E7E7 /* PBXTargetDependency */,
+				551C7F631987F9490043A92A /* PBXTargetDependency */,
+			);
+			name = TimetablesTests;
+			productName = TimetablesTests;
+			productReference = 5571DFF6195F66980089E7E7 /* TimetablesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5571DFCD195F66980089E7E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TTP;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Vlad Slepukhin";
+				TargetAttributes = {
+					5571DFD4195F66980089E7E7 = {
+						DevelopmentTeam = S6PWEEQSRT;
+					};
+					5571DFF5195F66980089E7E7 = {
+						TestTargetID = 5571DFD4195F66980089E7E7;
+					};
+				};
+			};
+			buildConfigurationList = 5571DFD0195F66980089E7E7 /* Build configuration list for PBXProject "Timetables" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ru,
+			);
+			mainGroup = 5571DFCC195F66980089E7E7;
+			productRefGroup = 5571DFD6195F66980089E7E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5571DFD4195F66980089E7E7 /* Timetables */,
+				5571DFF5195F66980089E7E7 /* TimetablesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5571DFD3195F66980089E7E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55A879C4196D33A600C941A1 /* Localizable.strings in Resources */,
+				55543A3819804C3C00C08BB3 /* settings-25.png in Resources */,
+				55543A3919804C3C00C08BB3 /* star-25.png in Resources */,
+				55543A3B1980501100C08BB3 /* settings-25@2x.png in Resources */,
+				55543A431980509C00C08BB3 /* star-25@2x.png in Resources */,
+				55543A411980509C00C08BB3 /* message-25@2x.png in Resources */,
+				55543A421980509C00C08BB3 /* search-25@2x.png in Resources */,
+				5576C20A197FFCA000210DD1 /* appicon80.png in Resources */,
+				5576C20D197FFCED00210DD1 /* appicon58.png in Resources */,
+				55543A471980521800C08BB3 /* menu-25@2x.png in Resources */,
+				5571DFF1195F66980089E7E7 /* Images.xcassets in Resources */,
+				55543A461980521800C08BB3 /* menu-25.png in Resources */,
+				557B458C1988282800470EE0 /* Default@2x.png in Resources */,
+				557B458B1988282800470EE0 /* Default-568h@2x.png in Resources */,
+				55543A401980509C00C08BB3 /* home-25@2x.png in Resources */,
+				5576C145197EFF7900210DD1 /* Main.storyboard in Resources */,
+				55543A3719804C3C00C08BB3 /* search-25.png in Resources */,
+				5576C207197FFC3C00210DD1 /* appicon120.png in Resources */,
+				55543A3519804C3C00C08BB3 /* home-25.png in Resources */,
+				55543A3619804C3C00C08BB3 /* message-25.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5571DFF4195F66980089E7E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5576C20B197FFCA000210DD1 /* appicon80.png in Resources */,
+				5576C20E197FFCED00210DD1 /* appicon58.png in Resources */,
+				5576C208197FFC3C00210DD1 /* appicon120.png in Resources */,
+				5576C146197EFF7900210DD1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5571DFD1195F66980089E7E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5571E01D195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				5576C203197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
+				5571E021195F75B20089E7E7 /* TTPParser.m in Sources */,
+				5571DFE5195F66980089E7E7 /* main.m in Sources */,
+				55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */,
+				5571DFE9195F66980089E7E7 /* TTPAppDelegate.m in Sources */,
+				5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
+				5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
+				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
+				5576C1DC197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
+				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
+				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
+				5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
+				5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
+				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
+				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
+				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
+				5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
+				55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */,
+				55FAE797196C01AD004DFC62 /* TTPDaySequenceEntity.m in Sources */,
+				5537A18E196AD08500301897 /* TTPGroup.m in Sources */,
+				5576C1E4197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
+				55FAE79A196C021A004DFC62 /* TTPSubjectEntity.m in Sources */,
+				5576C1D4197F996C00210DD1 /* TTPMainViewController.m in Sources */,
+				551C9351195F90A00017145D /* TTPGroupViewController.m in Sources */,
+				5576C2161980304800210DD1 /* TTPSettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5571DFF2195F66980089E7E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */,
+				5571E015195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
+				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
+				5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
+				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
+				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
+				5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
+				5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
+				5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */,
+				5571E01E195F754E0089E7E7 /* TTPDepartment.m in Sources */,
+				5537A18F196AD08500301897 /* TTPGroup.m in Sources */,
+				5576C1DD197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
+				551C9352195F90A00017145D /* TTPGroupViewController.m in Sources */,
+				5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */,
+				5576C1E1197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
+				55C4ABC3198502E6007F1017 /* MBProgressHUD.m in Sources */,
+				555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
+				5534F1AD196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
+				5576C1D9197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
+				5571E022195F75B20089E7E7 /* TTPParser.m in Sources */,
+				5576C1D5197F996C00210DD1 /* TTPMainViewController.m in Sources */,
+				5537A193196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		551C7F631987F9490043A92A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5571DFD4195F66980089E7E7 /* Timetables */;
+			targetProxy = 551C7F621987F9490043A92A /* PBXContainerItemProxy */;
+		};
+		5571DFFC195F66980089E7E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5571DFD4195F66980089E7E7 /* Timetables */;
+			targetProxy = 5571DFFB195F66980089E7E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		55A879C6196D33A600C941A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55A879C5196D33A600C941A1 /* Base */,
+				55A879C7196D33D800C941A1 /* en */,
+				55A879C8196D33EF00C941A1 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5571E005195F66980089E7E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5571E006195F66980089E7E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5571E008195F66980089E7E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
+				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";			
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5571E009195F66980089E7E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vladislav Slepukhin (S6PWEEQSRT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vladislav Slepukhin (S6PWEEQSRT)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
+				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";				
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		5571E00B195F66980089E7E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Timetables.app/Timetables";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TimetablesTests/TimetablesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		5571E00C195F66980089E7E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Timetables.app/Timetables";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
+				INFOPLIST_FILE = "TimetablesTests/TimetablesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5571DFD0195F66980089E7E7 /* Build configuration list for PBXProject "Timetables" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5571E005195F66980089E7E7 /* Debug */,
+				5571E006195F66980089E7E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5571E007195F66980089E7E7 /* Build configuration list for PBXNativeTarget "Timetables" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5571E008195F66980089E7E7 /* Debug */,
+				5571E009195F66980089E7E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5571E00A195F66980089E7E7 /* Build configuration list for PBXNativeTarget "TimetablesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5571E00B195F66980089E7E7 /* Debug */,
+				5571E00C195F66980089E7E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5571DFCD195F66980089E7E7 /* Project object */;
+}
