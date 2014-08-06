@@ -49,7 +49,6 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-	NSLog(@"Invoked prevV");
     return [self viewControllerAtIndex:[self.accessor previousDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]]
 							storyboard:viewController.storyboard];
 
@@ -57,7 +56,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-	NSLog(@"Invoked nextV");
+
 	return [self viewControllerAtIndex:[self.accessor nextDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]]
 							storyboard:viewController.storyboard];
 

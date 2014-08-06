@@ -48,7 +48,6 @@
 							   JSONObjectWithData:raw
 							   options:0
 							   error:&error];
-	NSLog(@"%@", errorDict);
 	return [errorDict objectForKey:@"errMsg"];
 }
 

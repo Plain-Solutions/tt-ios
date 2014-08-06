@@ -22,7 +22,7 @@
     [super viewDidLoad];
 	self.table.dataSource = self;
 	self.table.delegate = self;
-	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - self.table.frame.size.height + 40)];
+//	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
 
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
