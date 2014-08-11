@@ -28,7 +28,7 @@
 	<array>
 		<dict>
 			<key>UILaunchImageMinimumOSVersion</key>
-			<string>7.1</string>
+			<string>7.0</string>
 			<key>UILaunchImageName</key>
 			<string>Default</string>
 			<key>UILaunchImageOrientation</key>
@@ -38,7 +38,7 @@
 		</dict>
 		<dict>
 			<key>UILaunchImageMinimumOSVersion</key>
-			<string>7.1</string>
+			<string>7.0</string>
 			<key>UILaunchImageName</key>
 			<string>Default-568h</string>
 			<key>UILaunchImageOrientation</key>
