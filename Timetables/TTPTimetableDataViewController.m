@@ -36,18 +36,18 @@
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
 	
-	NSMutableArray *__days = [[NSMutableArray alloc] initWithObjects:@0, @0, @0, @0, @0, @0, nil];
-	for (int i = 0; i < 6; i++) {
-		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == NO) {
-			__days[i] = @0;
-		}
-		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES) {
-			__days[i] = @1;
-		}
-		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES && i == self.day) {
-			__days[i] = @2;
-		}
-	}	
+//	NSMutableArray *__days = [[NSMutableArray alloc] initWithObjects:@0, @0, @0, @0, @0, @0, nil];
+//	for (int i = 0; i < 6; i++) {
+//		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == NO) {
+//			__days[i] = @0;
+//		}
+//		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES) {
+//			__days[i] = @1;
+//		}
+//		if ([(NSNumber *)self.accessor.availableDays[i] boolValue] == YES && i == self.day) {
+//			__days[i] = @2;
+//		}
+//	}	
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
 
 	

@@ -11,6 +11,18 @@
 #import "TTPSubjectEntity.h"
 #import "TTPDaySequenceEntity.h"
 
+typedef enum __parities {
+	EvenSubject,
+	OddSubject,
+	AllWeekSubject,
+} TTPParity;
+
+struct __dayParityEntity {
+	NSInteger day;
+	TTPParity parity;
+	BOOL hasSubjects;
+};
+
 /**
  Some sort of library with useful methods to access to data in the timetable.
  It also holds a copy of fetched timetable.
@@ -37,28 +49,17 @@
  */
 @property (nonatomic, strong) NSMutableArray *availableDays;
 
-/**
- First day of the week with lessons.
- */
-@property (nonatomic, assign) NSInteger firstAvailableDay;
-
-/**
- Last day of the week with lessons.
- */
-@property (nonatomic, assign) NSInteger lastAvailableDay;
 
 /**
  Parity names
  */
 @property (nonatomic, strong) NSArray *parities;
 
-@property (nonatomic, assign) NSInteger currentDay;
-
 - (NSString *)beginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)endTimeBySequence:(NSNumber *)sequence;
 - (NSString *)timeRangeBySequence:(NSNumber *)sequence;
-- (NSInteger)nextDay:(NSInteger)currentDay;
-- (NSInteger)previousDay:(NSInteger)currentDay;
+- (struct __dayParityEntity)nextDay:(NSInteger)currentDay;
+- (struct __dayParityEntity)previousDay:(NSInteger)currentDay;
 - (void)populateAvailableDays;
 
 - (NSInteger)lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;

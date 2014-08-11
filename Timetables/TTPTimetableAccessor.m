@@ -9,15 +9,14 @@
 //
 
 #import "TTPTimetableAccessor.h"
+
+
 @implementation TTPTimetableAccessor
 
 @synthesize lessonBeginTimes = _lessonBeginTimes;
 @synthesize lessonEndTimes = _lessonEndTimes;
 @synthesize timetable = _timetable;
 @synthesize availableDays = _availableDays;
-@synthesize firstAvailableDay = _firstAvailableDay;
-@synthesize lastAvailableDay = _lastAvailableDay;
-@synthesize currentDay = _currentDay;
 @synthesize parities = _parities;
 
 - (id)init;
@@ -40,16 +39,61 @@
 
 - (void)populateAvailableDays;
 {
-	self.firstAvailableDay = [((TTPDaySequenceEntity *)[self.timetable firstObject]).day integerValue];
-	self.lastAvailableDay = [((TTPDaySequenceEntity *)[self.timetable lastObject]).day integerValue];
+	self.availableDays = [[NSMutableArray alloc] init];
 
-	self.currentDay = self.firstAvailableDay;
-	self.availableDays = [[NSMutableArray alloc] initWithObjects:@NO, @NO, @NO, @NO, @NO, @NO, nil];
-	
+	NSMutableSet *sDays = [[NSMutableSet alloc] init];
 	for (TTPDaySequenceEntity *e in self.timetable) {
-		self.availableDays[e.day.integerValue] = @YES;
+		[sDays addObject:e.day];
+	}
+	NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:nil];
+
+	NSArray *days = [[NSArray arrayWithArray:[sDays allObjects]] sortedArrayUsingDescriptors:@[sortDescriptor]];
+	for (NSNumber *num in days) {
+		NSInteger i = [num integerValue];
+		struct __dayParityEntity dpe;
+		dpe.day = i;
+
+		NSMutableArray *__day = [[NSMutableArray alloc] init];
+		for (TTPDaySequenceEntity *e in self.timetable)
+			if ([e.day integerValue] == i)
+				[__day addObject:e];
+		for (TTPDaySequenceEntity *e in __day) {
+			dpe.hasSubjects = (e.subjects.count)?YES:NO;
+			BOOL hasFoundEven, hasFoundOdd;
+			hasFoundEven = hasFoundOdd = NO;
+			
+			for (TTPSubjectEntity *subj in e.subjects) {
+				if ([subj.parity integerValue] == 2) {
+					hasFoundEven = hasFoundOdd = YES;
+					break;
+				}
+				if ([subj.parity integerValue] == 1) {
+					hasFoundOdd = YES;
+				}
+				if (![subj.parity integerValue]) {
+					hasFoundEven = YES;
+				}
+			}
+			
+			if (hasFoundEven && hasFoundOdd)
+				dpe.parity = AllWeekSubject;
+			else if (hasFoundEven && !hasFoundOdd)
+				dpe.parity = EvenSubject;
+			else if (hasFoundOdd && !hasFoundEven)
+				dpe.parity = OddSubject;
+		}
+		[self.availableDays  addObject:[NSValue valueWithBytes:&dpe objCType:@encode(struct __dayParityEntity)]];
+	}
+	
+		for (int i = 0; i < self.availableDays.count; i++) {
+		struct __dayParityEntity e;
+		[self.availableDays[i] getValue:&e];
+		NSLog(@"%ld %d %d", (long)e.day, e.hasSubjects, e.parity);
+		
 	}
 }
+
+
 
 #pragma mark - Timey-wimey
 
@@ -70,27 +114,46 @@
 }
 
 
-- (NSInteger)nextDay:(NSInteger)currentDay;
+- (struct __dayParityEntity)nextDay:(NSInteger)currentDay;
 {
-	currentDay++;
-
-	for (int i = currentDay; i < self.availableDays.count; i++) {
-		if ([self.availableDays[i]  isEqual: @YES]) {
-			return currentDay;
+	NSInteger index = -1;
+	
+	struct __dayParityEntity dpe;
+	for (int i = 0; i < self.availableDays.count; i++) {
+		[self.availableDays[i] getValue:&dpe];
+		if (dpe.day == currentDay) {
+			index = i;
+			break;
 		}
 	}
-	return self.firstAvailableDay;
+	index++;
+	if (index >= self.availableDays.count)
+		[[self.availableDays firstObject] getValue:&dpe];
+	else
+		[self.availableDays[index] getValue:&dpe];
+
+	return dpe;
 }
 
-- (NSInteger)previousDay:(int)currentDay;
+- (struct __dayParityEntity)previousDay:(NSInteger)currentDay
 {
-	currentDay--;
-	for (int i = currentDay; i >= 0; i--) {
-		if ([self.availableDays[i]  isEqual: @YES]) {
-			return i;
+	NSInteger index = -1;
+
+	struct __dayParityEntity dpe;
+	for (int i = 0; i < self.availableDays.count; i++) {
+
+		[self.availableDays[i] getValue:&dpe];
+		if (dpe.day == currentDay) {
+			index = i;
+			break;
 		}
 	}
-	return self.lastAvailableDay;
+	index--;
+	if (index < 0)
+		[[self.availableDays lastObject] getValue:&dpe];
+	else
+		[self.availableDays[index] getValue:&dpe];
+	return dpe;
 }
 
 #pragma mark - Getting timetables and stuff
