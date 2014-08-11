@@ -58,7 +58,6 @@
 			if ([e.day integerValue] == i)
 				[__day addObject:e];
 		for (TTPDaySequenceEntity *e in __day) {
-			dpe.hasSubjects = (e.subjects.count)?YES:NO;
 			BOOL hasFoundEven, hasFoundOdd;
 			hasFoundEven = hasFoundOdd = NO;
 			
@@ -88,7 +87,6 @@
 		for (int i = 0; i < self.availableDays.count; i++) {
 		struct __dayParityEntity e;
 		[self.availableDays[i] getValue:&e];
-		NSLog(@"%ld %d %d", (long)e.day, e.hasSubjects, e.parity);
 		
 	}
 }
@@ -166,7 +164,7 @@
 		BOOL addDPT = NO;
 		if ([e.day integerValue] == day) {
 			for (TTPSubjectEntity *subj in e.subjects) {
-				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2) {
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == AllWeekSubject) {
 					addDPT = YES;
 					break;
 				}
@@ -184,7 +182,7 @@
 	for (TTPDaySequenceEntity *e  in self.timetable) {
 		if ([e.day integerValue] == day && [e.sequence integerValue] == sequence) {
 			for (TTPSubjectEntity *subj in e.subjects) {
-				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == AllWeekSubject)
 					count++;
 			}
 		}
@@ -198,7 +196,7 @@
 	for (TTPDaySequenceEntity *e in self.timetable) {
 		if ([e.day integerValue] == day) {
 			for (TTPSubjectEntity *subj in e.subjects) {
-				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == AllWeekSubject)
 					[result addObject:e.sequence];
 			}
 		}
@@ -213,7 +211,7 @@
 	for (TTPDaySequenceEntity *e  in self.timetable)
 		if ([e.day integerValue] == day && [e.sequence integerValue] == sequence) {
 			for (TTPSubjectEntity *subj in e.subjects) {
-				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == 2)
+				if ([subj.parity integerValue] == parity || [subj.parity integerValue] == AllWeekSubject)
 					[result addObject:subj];
 			}
 		}

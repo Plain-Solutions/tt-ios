@@ -20,7 +20,6 @@ typedef enum __parities {
 struct __dayParityEntity {
 	NSInteger day;
 	TTPParity parity;
-	BOOL hasSubjects;
 };
 
 /**

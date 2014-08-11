@@ -13,19 +13,13 @@
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
 
-struct startingDP {
-	NSInteger day;
-	NSInteger parity;
-};
-
-
 @interface TTPMainViewContainerViewController ()
 @property (readonly, strong, nonatomic) TTPTimetableModelController *modelController;
 @property (strong, nonatomic) TTPTimetableAccessor *timetableAccessor;
 @end
 
 @implementation TTPMainViewContainerViewController {
-	struct startingDP _startingDP;
+	struct __dayParityEntity _startingDP;
 }
 
 @synthesize modelController = _modelController;
