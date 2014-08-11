@@ -112,7 +112,7 @@
 													  //=============
 																							  
 													  // PageView
-													  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+													  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:30.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
 													  self.timetableViewController.view.backgroundColor = RGB(239, 239, 244);
 													  self.timetableViewController.delegate = self;
 													  self.timetableViewController.dataSource = self.modelController;

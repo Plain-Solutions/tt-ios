@@ -7,6 +7,8 @@
 //
 
 #import "TTPTimetableDataViewController.h"
+#import "TTPParser.h"
+#import "TTPGroup.h"
 #import "TTPSubjectCell.h"
 #import "TTPSubjectDetailTableViewController.h"
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
@@ -19,13 +21,17 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
 	self.table.dataSource = self;
 	self.table.delegate = self;
+	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
+    [super viewDidLoad];
 	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
-	[self.table setContentInset:UIEdgeInsetsMake(10,0,0,0)];
 
 
+	UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+	[refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+	[self.table addSubview:refreshControl];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
 												 name:@"parityUpdated"
@@ -33,9 +39,66 @@
 
 }
 
+- (void)refresh:(UIRefreshControl *)refreshControl {
+	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
+	dispatch_async(downloadQueue, ^
+				   {
+					   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+					   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
+					   
+					   
+					   NSString *ttURL = [NSString
+										  stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
+										  selectedGroup.departmentTag,
+										  [selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+					   
+					   ShowNetworkActivityIndicator();
+					   
+					   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
+																cachePolicy:NSURLRequestUseProtocolCachePolicy
+															timeoutInterval:120];
+					   NSHTTPURLResponse *response = nil;
+					   NSError *error = nil;
+					   NSData *data = [NSURLConnection sendSynchronousRequest:request
+															returningResponse:&response
+																		error:&error];
+					   
+					   dispatch_async(dispatch_get_main_queue(), ^
+									  {
+										  TTPParser *parser = [[TTPParser alloc] init];
+										  if (response.statusCode != 200) {
+											  NSString *errorData = [[NSString alloc] init];
+											  if (data != nil)
+												  errorData = [parser parseError:data error:error];
+											  
+											  NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
+															   errorData, selectedGroup.departmentTag, selectedGroup.groupName, ttURL, response.statusCode];
+											  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
+																							  message: msg
+																							 delegate: nil
+																					cancelButtonTitle:@"OK"
+																					otherButtonTitles:nil];
+											  [alert show];
+											  
+										  }
+										  else {
+											  //TT ACCESSOR
+											  self.accessor.timetable = [parser parseTimetables:data
+																								   error:error];
+
+ 											  HideNetworkActivityIndicator();
+											  if (self.accessor.timetable.count) {
+												  [self.accessor populateAvailableDays];
+												  [self.table reloadData];
+											}
+ 												[refreshControl endRefreshing];
+										  }});});
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
+
 	
 //	NSMutableArray *__days = [[NSMutableArray alloc] initWithObjects:@0, @0, @0, @0, @0, @0, nil];
 //	for (int i = 0; i < 6; i++) {
