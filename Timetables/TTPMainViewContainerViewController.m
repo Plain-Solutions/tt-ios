@@ -13,6 +13,9 @@
 #import "TTPParser.h"
 #import "TTPTimetableAccessor.h"
 
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+
 @interface TTPMainViewContainerViewController ()
 @property (readonly, strong, nonatomic) TTPTimetableModelController *modelController;
 @property (strong, nonatomic) TTPTimetableAccessor *timetableAccessor;
@@ -110,6 +113,7 @@
 																							  
 													  // PageView
 													  self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+													  self.timetableViewController.view.backgroundColor = RGB(239, 239, 244);
 													  self.timetableViewController.delegate = self;
 													  self.timetableViewController.dataSource = self.modelController;
 												  

@@ -22,7 +22,8 @@
     [super viewDidLoad];
 	self.table.dataSource = self;
 	self.table.delegate = self;
-//	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
+	[self.table setContentInset:UIEdgeInsetsMake(10,0,0,0)];
 
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -85,7 +86,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return 20;
+	//if (section == 0)
+	//	return 25;
+	return 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
@@ -93,13 +96,13 @@
     return 15;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView == self.table) {
-        if (scrollView.contentOffset.y < 0) {
-            scrollView.contentOffset = CGPointZero;
-        }
-	}
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    if (scrollView == self.table) {
+//        if (scrollView.contentOffset.y < 0) {
+//            scrollView.contentOffset = CGPointZero;
+//        }
+//	}
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -126,6 +129,19 @@
 	
 	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];
 
+	UIView *leftLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 60)];
+	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
+	[[cell contentView] addSubview:leftLineView];
+
+	UIView *rightLineView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 1, 0, 1, 60)];
+	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
+	[[cell contentView] addSubview:rightLineView];
+
+	UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width, 0.5)];
+	[bottomLineView setBackgroundColor:[UIColor lightGrayColor]];
+	[[cell contentView] addSubview:bottomLineView];
+
+	
 	return cell;
 }
 
@@ -146,9 +162,19 @@
 
 	[view addSubview:label];
 	
-	UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 1)];
+	UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
 	lineView.backgroundColor = [UIColor lightGrayColor];
 	[view addSubview:lineView];
+	
+	UIView *leftLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
+	[view  addSubview:leftLineView];
+
+	UIView *rightLineView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 1, 0, 1, 20)];
+	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
+	[view addSubview:rightLineView];
+
+
 	
 	view.backgroundColor = [UIColor whiteColor];
 	return view;
