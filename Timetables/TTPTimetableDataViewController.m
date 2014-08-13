@@ -11,8 +11,10 @@
 #import "TTPGroup.h"
 #import "TTPSubjectCell.h"
 #import "TTPSubjectDetailTableViewController.h"
-#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#import "ViewControllerDefines.h"
 
+#define CELL_HEIGHT 60
+#define IS_IPHONE_5 self.view.bounds.size.height > 480.0
 @interface TTPTimetableDataViewController ()
 
 @end
@@ -25,7 +27,9 @@
 	self.table.delegate = self;
 	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
     [super viewDidLoad];
-	self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
+	NSLog(@"%f", self.view.bounds.size.height);
+	self.table.tableFooterView = (IS_IPHONE_5)?[[UIView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, 30)]:
+	[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
 
 
 	UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -39,61 +43,6 @@
 
 }
 
-- (void)refresh:(UIRefreshControl *)refreshControl {
-	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
-	dispatch_async(downloadQueue, ^
-				   {
-					   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-					   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
-					   
-					   
-					   NSString *ttURL = [NSString
-										  stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
-										  selectedGroup.departmentTag,
-										  [selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-					   
-					   ShowNetworkActivityIndicator();
-					   
-					   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
-																cachePolicy:NSURLRequestUseProtocolCachePolicy
-															timeoutInterval:120];
-					   NSHTTPURLResponse *response = nil;
-					   NSError *error = nil;
-					   NSData *data = [NSURLConnection sendSynchronousRequest:request
-															returningResponse:&response
-																		error:&error];
-					   
-					   dispatch_async(dispatch_get_main_queue(), ^
-									  {
-										  TTPParser *parser = [[TTPParser alloc] init];
-										  if (response.statusCode != 200) {
-											  NSString *errorData = [[NSString alloc] init];
-											  if (data != nil)
-												  errorData = [parser parseError:data error:error];
-											  
-											  NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
-															   errorData, selectedGroup.departmentTag, selectedGroup.groupName, ttURL, response.statusCode];
-											  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
-																							  message: msg
-																							 delegate: nil
-																					cancelButtonTitle:@"OK"
-																					otherButtonTitles:nil];
-											  [alert show];
-											  
-										  }
-										  else {
-											  //TT ACCESSOR
-											  self.accessor.timetable = [parser parseTimetables:data
-																								   error:error];
-
- 											  HideNetworkActivityIndicator();
-											  if (self.accessor.timetable.count) {
-												  [self.accessor populateAvailableDays];
-												  [self.table reloadData];
-											}
- 												[refreshControl endRefreshing];
-										  }});});
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -149,8 +98,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-	//if (section == 0)
-	//	return 25;
 	return 20;
 }
 
@@ -158,14 +105,6 @@
 {
     return 15;
 }
-
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if (scrollView == self.table) {
-//        if (scrollView.contentOffset.y < 0) {
-//            scrollView.contentOffset = CGPointZero;
-//        }
-//	}
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -246,7 +185,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 60;
+	return CELL_HEIGHT;
 }
 
 - (UIColor *)activityTypeColor:(NSString *)activity {
@@ -274,4 +213,63 @@
 	controller.sequence = sequence;
 	[self.navigationController pushViewController:controller animated:YES];
 }
+
+
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+	dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
+	dispatch_async(downloadQueue, ^
+				   {
+					   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+					   TTPGroup *selectedGroup = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]];
+					   
+					   
+					   NSString *ttURL = [NSString
+										  stringWithFormat:@"http://api.ssutt.org:8080/2/department/%@/group/%@",
+										  selectedGroup.departmentTag,
+										  [selectedGroup.groupName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+					   
+					   ShowNetworkActivityIndicator();
+					   
+					   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: ttURL]
+																cachePolicy:NSURLRequestUseProtocolCachePolicy
+															timeoutInterval:120];
+					   NSHTTPURLResponse *response = nil;
+					   NSError *error = nil;
+					   NSData *data = [NSURLConnection sendSynchronousRequest:request
+															returningResponse:&response
+																		error:&error];
+					   
+					   dispatch_async(dispatch_get_main_queue(), ^
+									  {
+										  TTPParser *parser = [[TTPParser alloc] init];
+										  if (response.statusCode != 200) {
+											  NSString *errorData = [[NSString alloc] init];
+											  if (data != nil)
+												  errorData = [parser parseError:data error:error];
+											  
+											  NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@/%@(%@) with %d", nil),
+															   errorData, selectedGroup.departmentTag, selectedGroup.groupName, ttURL, response.statusCode];
+											  UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
+																							  message: msg
+																							 delegate: nil
+																					cancelButtonTitle:@"OK"
+																					otherButtonTitles:nil];
+											  [alert show];
+											  
+										  }
+										  else {
+											  //TT ACCESSOR
+											  self.accessor.timetable = [parser parseTimetables:data
+																						  error:error];
+											  
+											  HideNetworkActivityIndicator();
+											  if (self.accessor.timetable.count) {
+												  [self.accessor populateAvailableDays];
+												  [self.table reloadData];
+											  }
+ 												[refreshControl endRefreshing];
+										  }});});
+}
+
 @end
