@@ -14,4 +14,12 @@
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
+#define OpenMenu() MVYSideMenuController *sideMenuController = [self sideMenuController]; if (sideMenuController) [sideMenuController openMenu]
+
+#define BackButtonTap(viewString) MVYSideMenuController *sideMenuController = [self sideMenuController];	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:viewString];	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];	[sideMenuController changeContentViewController:navigationController closeMenu:YES]
+
+
+
+
+
 #endif

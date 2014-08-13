@@ -79,6 +79,7 @@
 		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		557B458B1988282800470EE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B45891988282800470EE0 /* Default-568h@2x.png */; };
 		557B458C1988282800470EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B458A1988282800470EE0 /* Default@2x.png */; };
+		5586E58E199BE01E0084FB17 /* TTPSharedSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */; };
 		55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
@@ -178,6 +179,8 @@
 		5576C2151980304800210DD1 /* TTPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSettingsViewController.m; sourceTree = "<group>"; };
 		557B45891988282800470EE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		557B458A1988282800470EE0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5586E58C199BE01E0084FB17 /* TTPSharedSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSharedSettingsController.h; sourceTree = "<group>"; };
+		5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSharedSettingsController.m; sourceTree = "<group>"; };
 		55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupCell.h; sourceTree = "<group>"; };
 		55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupCell.m; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */,
 				55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */,
 				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
+				5586E58C199BE01E0084FB17 /* TTPSharedSettingsController.h */,
+				5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
+				5586E58E199BE01E0084FB17 /* TTPSharedSettingsController.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,

@@ -67,7 +67,9 @@
 
 "Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner" = "Здесь вы можете хранить ссылки на группы ваших друзей для быстрого доступа. Чтобы добавить группу нажмите ★ на главном экране в правом углу.";
 
-"Please report the following error and restart the app:\n%@ on %@ with %d" = "Сообщите разработчику эти данные и перезапустите приложение:\n%@ on %@ with %d";
+"Network seems to be down. Please, turn on cellular connection or Wi-Fi" = "Нет подключения к сети. Включите мобильную сеть передачи данных или Wi-Fi";
+
+"Please report the following error and restart the app:\n%@ on %@ with %d: %@" = "Сообщите разработчику эти данные и перезапустите приложение:\n%@ on %@ with %d: %@";
 
 "Please report the following error and restart the app:\n%@ at %@(%@) with %d" = "Cообщите разработчику эти данные и перезапустите приложение:\n%@ at %@(%@) with %d";
 
