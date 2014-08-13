@@ -20,6 +20,8 @@
 
 #define OpenMainView() 	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"]; UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];if (![self.presentedViewController isBeingDismissed]) {	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];}
 
+#define SetMenuButton() 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"] style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
+
 
 #define CreateRequest(url) [NSURLRequest requestWithURL: [NSURL URLWithString: url]cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
 

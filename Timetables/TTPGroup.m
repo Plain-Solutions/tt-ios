@@ -50,4 +50,11 @@
 	return copy;
 }
 
+- (BOOL)isEqualTo:(TTPGroup *)group
+{
+	return ([self.departmentTag isEqualToString:group.departmentTag] &&
+		[self.departmentName isEqualToString:group.departmentName] &&
+		[self.groupName isEqualToString:group.groupName])?YES:NO;
+}
+
 @end

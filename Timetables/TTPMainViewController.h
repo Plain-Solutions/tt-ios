@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "MVYSideMenuController.h"
+#import "TTPDepartmentViewController.h"
+#import "ViewControllerDefines.h"
+
 #import "TTPGroup.h"
+#import "TTPSharedSettingsController.h"
 
 @interface TTPMainViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;

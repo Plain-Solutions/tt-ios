@@ -8,7 +8,9 @@
 
 #import "TTPSharedSettingsController.h"
 
-#define UNARCHIVE(data)	[NSKeyedUnarchiver unarchiveObjectWithData:data];
+#define ARCHIVE(data) [NSKeyedArchiver archivedDataWithRootObject:data];
+
+#define UNARCHIVE(data)	[NSKeyedUnarchiver unarchiveObjectWithData:data]
 
 @implementation TTPSharedSettingsController {
 	NSUserDefaults *_defaults;
@@ -18,6 +20,7 @@
 @synthesize wasCfgd = _wasCfgd;
 @synthesize myGroup = _myGroup;
 @synthesize selectedGroup = _selectedGroup;
+@synthesize savedGroups = _savedGroups;
 
 + (id)sharedController
 {
@@ -26,17 +29,20 @@
 	dispatch_once(&onceToken, ^{
 		sharedSettingsController = [[self alloc] init];
 	});
+	
 	return sharedSettingsController;
 }
 - (id)init
 {
 	if (self = [super init]) {
 		_defaults = [NSUserDefaults standardUserDefaults];
-		_cameFromSettings = [_defaults boolForKey:@"cameFromSettings"];
 
+		_cameFromSettings = [_defaults  boolForKey:@"cameFromSettings"];
 		_wasCfgd = [_defaults boolForKey:@"wasCfgd"];
+
 		_myGroup = UNARCHIVE([_defaults objectForKey:@"myGroup"]);
 		_selectedGroup = UNARCHIVE([_defaults objectForKey:@"selectedGroup"]);
+		_savedGroups = UNARCHIVE([_defaults objectForKey:@"savedGroups"]);
 	}
 	return self;
 }
@@ -68,7 +74,7 @@
 - (void)setMyGroup:(TTPGroup *)value
 {
 	_myGroup = value;
-	NSData *data = [NSKeyedArchiver archivedDataWithRootObject:value];
+	NSData *data = ARCHIVE(value);
 	[_defaults setObject:data forKey:@"myGroup"];
 	[_defaults synchronize];
 }
@@ -81,7 +87,7 @@
 - (void)setSelectedGroup:(TTPGroup *)value
 {
 	_selectedGroup = value;
-	NSData *data = [NSKeyedArchiver archivedDataWithRootObject:value];
+	NSData *data = ARCHIVE(value);
 	[_defaults setObject:data forKey:@"selectedGroup"];
 	[_defaults synchronize];
 }
@@ -89,6 +95,31 @@
 - (TTPGroup *)selectedGroup
 {
 	return _selectedGroup;
+}
+
+- (void)setSavedGroups:(NSArray *)groups;
+{
+	NSData *data = ARCHIVE(groups);
+	[_defaults setObject:data forKey:@"savedGroups"];
+	[_defaults synchronize];
+}
+
+- (NSArray *)savedGroups
+{
+	return  _savedGroups;
+}
+
+- (void)addSelectedGroupToFavorites
+{
+
+	NSMutableArray *__savedGroups = [NSMutableArray arrayWithArray:_savedGroups];
+	[__savedGroups addObject:_selectedGroup];
+	_savedGroups = [NSArray arrayWithArray:__savedGroups];
+	
+	
+	NSData *data = ARCHIVE(__savedGroups);
+	[_defaults setObject:data forKey:@"savedGroups"];
+	[_defaults synchronize];
 }
 
 @end

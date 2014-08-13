@@ -8,6 +8,16 @@
 
 @implementation TTPParser
 
++ (id)sharedParser
+{
+	static TTPParser *sharedParser = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedParser = [[self alloc] init];
+	});
+	
+	return sharedParser;
+}
 #pragma mark - Parsing
 
 - (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error

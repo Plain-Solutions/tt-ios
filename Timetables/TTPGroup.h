@@ -34,5 +34,6 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;
 - (id)copy;
+- (BOOL)isEqualTo:(TTPGroup *)group;
 
 @end

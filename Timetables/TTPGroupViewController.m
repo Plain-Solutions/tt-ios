@@ -46,7 +46,7 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-			_parser = [[TTPParser alloc] init];
+			_parser = [TTPParser sharedParser];
 			
 			if (response.statusCode != 200) {
 				[self showErrorAlert:data

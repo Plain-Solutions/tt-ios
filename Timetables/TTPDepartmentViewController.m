@@ -36,11 +36,7 @@
 	else if (!_settings.wasCfgd)
 		[self.navigationItem setHidesBackButton:YES animated:NO];
 	else
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
-																			 style:UIBarButtonItemStyleBordered
-																			target:self
-																			action:@selector(menuBtnTapped:)];
-
+		SetMenuButton();
 
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:loadingView];
@@ -62,7 +58,7 @@
 											 returningResponse:&response
 														 error:&error];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			_parser = [[TTPParser alloc] init];
+			_parser = [TTPParser sharedParser];
 
 			if (response.statusCode != 200) {
 				[self showErrorAlert:data

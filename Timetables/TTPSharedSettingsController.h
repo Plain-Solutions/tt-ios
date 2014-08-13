@@ -19,6 +19,8 @@
 
 @property (strong) TTPGroup *myGroup;
 @property (strong) TTPGroup *selectedGroup;
+@property (strong) NSArray *savedGroups;
 
 + (id)sharedController;
+- (void)addSelectedGroupToFavorites;
 @end

@@ -7,52 +7,38 @@
 //
 
 #import "TTPMainViewController.h"
-#import "MVYSideMenuController.h"
-#import "TTPDepartmentViewController.h"
-#import "TTPGroup.h"
+
 
 @interface TTPMainViewController ()
-@property (nonatomic, strong) NSArray *savedGrp;
 @end
 
 @implementation TTPMainViewController {
-	NSUserDefaults *_defaults;
+	TTPSharedSettingsController *_settings;
 }
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	_defaults = [NSUserDefaults standardUserDefaults];
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
-style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)];
+	_settings = [TTPSharedSettingsController sharedController];
+	self.title = NSLocalizedString(@"Loading", nil);
+
+	SetMenuButton();
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"star-25"] style:UIBarButtonItemStyleBordered target:self action:@selector(addGroupToFavs)];
 	
-	if (![_defaults boolForKey:@"wasCfgd"]) {
+	if (!_settings.wasCfgd) {
 		[self showNoMyGroupAlert];
 		
 		TTPDepartmentViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DepView"];
 		[self.navigationController pushViewController:controller animated:YES];
 	}
 	
-	
-	self.savedGrp = [[NSMutableArray alloc] init];
-	NSData *data = [_defaults objectForKey:@"savedGroups"];
-
-	self.savedGrp = (data != NULL)?[NSArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]]:nil;
-	
-	TTPGroup *group = [NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"selectedGroup"]];
-	TTPGroup *mygroup = [NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"myGroup"]];
-	
-	if ([group.departmentTag isEqualToString:mygroup.departmentTag] &&
-	 [group.groupName isEqualToString:mygroup.groupName]) {
+	if ([_settings.selectedGroup isEqualTo:_settings.myGroup]) {
 		[self.navigationItem setRightBarButtonItem:nil animated:NO];
 	}
-
-	if (group)
-		for (TTPGroup *grp in self.savedGrp) {
-			if ([group.departmentTag isEqualToString:grp.departmentTag] &&
-				[group.groupName isEqualToString:grp.groupName])
+	else
+		for (TTPGroup *g in _settings.savedGroups) {
+			if ([_settings.selectedGroup isEqualTo:g])
 				{
 					[self.navigationItem setRightBarButtonItem:nil animated:NO];
 					break;
@@ -60,9 +46,6 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 			else self.navigationItem.rightBarButtonItem.enabled = YES;
 		}
 	
-	
-	
-	self.title = NSLocalizedString(@"Loading", nil);
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateDay:)
@@ -81,42 +64,19 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 				  forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)showNoMyGroupAlert;
-{
-	NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
-	NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
-													message: alertMessage
-												   delegate: nil
-										  cancelButtonTitle:@"OK"
-										  otherButtonTitles:nil];
-	
-	[alert show];
-}
-
-- (void)addGroupToFavs {
-	NSData *data = [_defaults objectForKey:@"savedGroups"];
-	NSMutableArray *savedGroups = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-	TTPGroup *grp = [[NSKeyedUnarchiver unarchiveObjectWithData:[_defaults objectForKey:@"selectedGroup"]] copy];
-	[savedGroups addObject:grp];
-	NSData *updatedData = [NSKeyedArchiver archivedDataWithRootObject:savedGroups];
-	[_defaults setObject:updatedData forKey:@"savedGroups"];
-	[_defaults synchronize];
-	[self.navigationItem setRightBarButtonItem:nil animated:YES];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-- (void)updateDay:(NSNotification *)notification
-{
-    if ([[notification name] isEqualToString:@"updateDayLabelCalled"]){
-		NSInteger num = [[notification object] integerValue];
-		self.title = [self convertNumToDays:num];
-	}
+#pragma mark - Actions
+
+- (void)addGroupToFavs {
+	[_settings addSelectedGroupToFavorites];
+	[self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
+
+#pragma mark - Conversion
 
 - (NSString *)convertNumToDays:(NSInteger)num;
 {
@@ -130,7 +90,17 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 	
 }
 
-- (void)parityUpdated:(id)sender forEvent:(UIEvent *)event;
+#pragma mark - Notifications
+
+- (void)updateDay:(NSNotification *)notification
+{
+	if ([[notification name] isEqualToString:@"updateDayLabelCalled"]){
+		NSInteger num = [[notification object] integerValue];
+		self.title = [self convertNumToDays:num];
+	}
+}
+
+- (void)parityUpdated:(id)sender forEvent:(UIEvent *)event
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"parityUpdated"
 														object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
@@ -143,11 +113,27 @@ style:UIBarButtonItemStyleBordered target:self action:@selector(menuBtnTapped:)]
 															object:	[NSNumber numberWithInt:self.paritySelector.selectedSegmentIndex]];
 }
 
+#pragma mark - Navigation
+
 - (IBAction)menuBtnTapped:(id)sender {
-	
-	MVYSideMenuController *sideMenuController = [self sideMenuController];
-	if (sideMenuController) {
-		[sideMenuController openMenu];
-	}
+	OpenMenu();
 }
+
+#pragma mark - Alerts
+
+- (void)showNoMyGroupAlert;
+{
+	NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
+	NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
+													message: alertMessage
+												   delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+	[alert show];
+}
+
+
+
 @end

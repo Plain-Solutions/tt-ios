@@ -22,4 +22,5 @@
 - (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error;
 - (NSString *)prettifyDepartmentNames:(NSString *)departmentName trim:(BOOL)trim;
 
++ (id)sharedParser;
 @end
