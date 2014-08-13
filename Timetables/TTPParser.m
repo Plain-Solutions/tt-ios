@@ -116,7 +116,7 @@
 		result = [NSString stringWithString:[truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 	}
 	
-	return [NSString stringWithFormat:@"%@%@", [[result substringToIndex:1] capitalizedString], [result substringFromIndex:1]];
+	return CapitalizedString(result);
 }
 
 @end

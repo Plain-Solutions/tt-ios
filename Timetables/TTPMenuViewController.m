@@ -7,24 +7,23 @@
 //
 
 #import "TTPMenuViewController.h"
-#import "MVYSideMenuController.h"
 
-#import "TTPDepMsgViewController.h"
 
 @interface TTPMenuViewController ()
-
 @end
 
-@implementation TTPMenuViewController
+@implementation TTPMenuViewController {
+	NSArray *_menuItems;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-	self.tableView.tableFooterView.backgroundColor = [UIColor colorWithRed:(153.0/255.0) green:(153.0/255.0) blue:(153.0/255.0) alpha:1.0];
+    self.tableView.tableFooterView = Frame(0,0,self.view.bounds.size.width,self.view.bounds.size.height);
+	self.tableView.tableFooterView.backgroundColor = MenuViewColor;
 
 	// DepView is for search
-	self.menuItems = @[@"MainView", @"DepMsgView", @"SavedGroupsView", @"DepView", @"SettingsView"];
+	_menuItems = @[@"MainView", @"DepMsgView", @"SavedGroupsView", @"DepView", @"SettingsView"];
 	NSArray *menuNames = @[NSLocalizedString(@"My Group", nil),
 						   NSLocalizedString(@"Dean Info", nil),
 						   NSLocalizedString(@"Saved Groups", nil),
@@ -49,8 +48,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-	self.tableView.tableFooterView.backgroundColor = [UIColor colorWithRed:(102.0/255.0) green:(204.0/255.0) blue:(255.0/255.0) alpha:1.0];
+	UIView *view = ZeroFrame();
+	self.tableView.tableFooterView.backgroundColor = MenuViewBackgroundColor;
 	return view;
 }
 
@@ -71,13 +70,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.row == 0) {
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setObject:[defaults objectForKey:@"myGroup"] forKey:@"selectedGroup"];
+		TTPSharedSettingsController *settings = [TTPSharedSettingsController sharedController];
+		settings.selectedGroup = settings.myGroup;
 	}
 	
-	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:self.menuItems[indexPath.row]];
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-	[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
+	MenuItemTap(_menuItems[indexPath.row]);
 }
 
 @end

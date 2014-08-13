@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "TTPSubjectCell.h"
+#import "TTPSubjectDetailTableViewController.h"
+#import "ViewControllerDefines.h"
+
+#import "TTPTimetableAccessor.h"
 #import "TTPDaySequenceEntity.h"
 #import "TTPSubjectEntity.h"
+#import "TTPParser.h"
+#import "TTPGroup.h"
 #import "TTPSubgroup.h"
-#import "TTPTimetableAccessor.h"
+#import "TTPSharedSettingsController.h"
+
+#define CELL_HEIGHT 60
+#define IS_IPHONE_5 self.view.bounds.size.height > 480.0
+
 
 @interface TTPTimetableDataViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (assign, nonatomic) NSInteger day;

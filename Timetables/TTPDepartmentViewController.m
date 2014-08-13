@@ -134,7 +134,7 @@
 	_settings.cameFromSettings = NO;
 	_settings.wasCfgd = YES;
 
-	BackButtonTap(@"SettingsView");
+	MenuItemTap(@"SettingsView");
 }
 
 #pragma mark - Alerts

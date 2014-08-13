@@ -7,12 +7,6 @@
 //
 
 #import "TTPTimetableModelController.h"
-#import "TTPTimetableDataViewController.h"
-#import "TTPGroup.h"
-#import "TTPParser.h"
-#import "TTPTimetableAccessor.h"
-
-
 
 @interface TTPTimetableModelController()
 @end
@@ -20,13 +14,6 @@
 
 @implementation TTPTimetableModelController
 
-- (id)init
-{
-	self = [super init];
-	if (self) {
-	}
-    return self;
-}
 
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard
 {

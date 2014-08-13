@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTPMenuViewController : UITableViewController 
+#import "MVYSideMenuController.h"
+#import "TTPDepMsgViewController.h"
 
-@property (nonatomic, strong) NSArray *menuItems;
+#import "TTPSharedSettingsController.h"
 
+@interface TTPMenuViewController : UITableViewController
 @end
