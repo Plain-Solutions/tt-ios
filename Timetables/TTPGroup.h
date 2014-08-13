@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  An entity to store user parameters in NSUserDefaults and
  fancier data transition between views.
@@ -31,7 +32,7 @@
 
 - (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
 - (id)initWithCoder:(NSCoder *)decoder;
-- (id) copy;
 - (void)encodeWithCoder:(NSCoder *)encoder;
+- (id)copy;
 
 @end

@@ -37,7 +37,6 @@
 	self.tableView.dataSource = self;
 	
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-	//self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
 	
 	self.parser = [[TTPParser alloc] init];
 	

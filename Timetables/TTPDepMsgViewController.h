@@ -19,6 +19,7 @@
  Subview to display parsed and formatted data.
  */
 @property (weak, nonatomic) IBOutlet UITextView *departmentMessageView;
+
 - (IBAction)menuBtnPressed:(id)sender;
 
 @end

@@ -13,31 +13,22 @@
 
 @implementation TTPTimetableAccessor
 
-@synthesize lessonBeginTimes = _lessonBeginTimes;
-@synthesize lessonEndTimes = _lessonEndTimes;
-@synthesize timetable = _timetable;
-@synthesize availableDays = _availableDays;
-@synthesize parities = _parities;
-
 - (id)init;
 {
-	self = [super init];
-	[self initSets];
-	return self;
-}
-
-- (void)initSets;
-{
+	if (self = [super init]) {
 	self.lessonBeginTimes = [NSArray arrayWithObjects:@"08:20", @"10:00", @"12:05",
 							 @"13:50", @"15:35", @"17:20", @"18:45", @"20:10", nil];
 	
 	self.lessonEndTimes = [NSArray arrayWithObjects:@"09:50", @"11:35", @"13:40",
 						   @"15:25", @"17:10", @"18:40", @"20:05", @"21:30", nil];
-    
-    self.parities = [NSArray arrayWithObjects:@"even", @"odd", @"even&odd", nil];
+	
+	self.parities = [NSArray arrayWithObjects:@"even", @"odd", @"even&odd", nil];
+	}
+	
+	return self;
 }
 
-- (void)populateAvailableDays;
+- (void)populateAvailableDays
 {
 	self.availableDays = [[NSMutableArray alloc] init];
 
@@ -91,28 +82,25 @@
 	}
 }
 
-
-
 #pragma mark - Timey-wimey
 
-- (NSString *)beginTimeBySequence:(NSNumber *)sequence;
+- (NSString *)beginTimeBySequence:(NSNumber *)sequence
 {
 	return [self.lessonBeginTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
 
-- (NSString *)endTimeBySequence:(NSNumber *)sequence;
+- (NSString *)endTimeBySequence:(NSNumber *)sequence
 {
 	return [self.lessonEndTimes objectAtIndex: [[NSNumber numberWithInt:[sequence intValue] - 1] intValue]];
 }
-- (NSString *)timeRangeBySequence:(NSNumber *)sequence;
+- (NSString *)timeRangeBySequence:(NSNumber *)sequence
 {
     // will be formated as 00:00 - 00:00
     return [NSString stringWithFormat:@"%@ – %@",
 			[self beginTimeBySequence:sequence], [self endTimeBySequence:sequence]];
 }
 
-
-- (struct __dayParityEntity)nextDay:(NSInteger)currentDay;
+- (struct __dayParityEntity)nextDay:(NSInteger)currentDay
 {
 	NSInteger index = -1;
 	
@@ -154,9 +142,9 @@
 	return dpe;
 }
 
-#pragma mark - Getting timetables and stuff
+#pragma mark - Getting timetables on specific DP/DPS
 
-- (NSInteger)lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity;
+- (NSInteger)lessonsCountOnDayParity:(NSInteger)day parity:(NSInteger)parity
 {
 	NSInteger count = 0;
 
@@ -175,7 +163,7 @@
     }
 	return count;
 }
-- (NSInteger)lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+- (NSInteger)lessonsCountOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence
 {
 	NSInteger count = 0;
 
@@ -205,7 +193,7 @@
 	return [[NSArray alloc] initWithArray:[[result allObjects] sortedArrayUsingSelector:@selector(compare:)]];
 }
 
-- (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence;
+- (NSArray *)lessonsOnDayParitySequence:(NSInteger)day parity:(NSInteger)parity sequence:(NSInteger)sequence
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
 	for (TTPDaySequenceEntity *e  in self.timetable)
@@ -219,7 +207,9 @@
     return result;
 }
 
-- (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups;
+#pragma mark - Converting and styling
+
+- (NSString *)locationOnSingleSubgroupCount:(NSArray *)subgroups
 {
 	if (subgroups.count == 1) {
 		TTPSubgroup *sub = [subgroups objectAtIndex:0];
@@ -228,11 +218,10 @@
 	return NSLocalizedString(@"Multiple values", nil);
 }
 
-#pragma mark - Convert thing
-
-- (NSString *)convertParityNumToString:(NSNumber *)parity;
+- (NSString *)convertParityNumToString:(NSNumber *)parity
 {
 	NSString *result = [NSString stringWithString:[self.parities objectAtIndex:[parity integerValue]]];
-    return 	NSLocalizedString(result, nil);
+	return 	NSLocalizedString(result, nil);
 }
- @end
+
+@end

@@ -9,10 +9,8 @@
 
 #import "TTPDaySequenceEntity.h"
 
+
 @implementation TTPDaySequenceEntity
-@synthesize  day = _day;
-@synthesize sequence = _sequence;
-@synthesize subjects = _subjects;
 
 - (id)initWithCoder:(NSCoder *)decoder {
 	if (self = [super init]) {
@@ -20,6 +18,7 @@
 		self.sequence = [decoder decodeObjectForKey:@"sequence"];
 		self.subjects = [decoder decodeObjectForKey:@"subjects"];
 	}
+	
 	return self;
 }
 
@@ -39,6 +38,8 @@
 		[description appendString:[subject description]];
 	}
 	[description appendString:@"\n====="];
+	
 	return description;
 }
+
 @end

@@ -8,13 +8,10 @@
 
 #import "TTPGroup.h"
 
+
 @implementation TTPGroup
 
-@synthesize departmentName = _departmentName;
-@synthesize departmentTag = _departmentTag;
-@synthesize groupName = _groupName;
-
-- (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
+- (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName
 {
 	if (self = [super init]) {
 		self.departmentName = departmentName;
@@ -25,17 +22,25 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder;
+- (id)initWithCoder:(NSCoder *)decoder
 {
     if (self = [super init]) {
         self.departmentName = [decoder decodeObjectForKey:@"departmentName"];
         self.departmentTag = [decoder decodeObjectForKey:@"departmentTag"];
         self.groupName = [decoder decodeObjectForKey:@"groupName"];
     }
+	
     return self;
 }
 
-- (id)copy;
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+	[encoder encodeObject:self.departmentName forKey:@"departmentName"];
+	[encoder encodeObject:self.departmentTag forKey:@"departmentTag"];
+	[encoder encodeObject:self.groupName forKey:@"groupName"];
+}
+
+- (id)copy
 {
 	TTPGroup *copy = [[TTPGroup alloc] init];
 	copy.departmentName = self.departmentName;
@@ -43,13 +48,6 @@
 	copy.groupName = self.groupName;
 
 	return copy;
-}
-
-- (void)encodeWithCoder:(NSCoder *)encoder;
-{
-    [encoder encodeObject:self.departmentName forKey:@"departmentName"];
-    [encoder encodeObject:self.departmentTag forKey:@"departmentTag"];
-    [encoder encodeObject:self.groupName forKey:@"groupName"];
 }
 
 @end

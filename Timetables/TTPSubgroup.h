@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  Entity of subgroup.
  A helping entity to store subgroup information in timetable
@@ -30,4 +31,5 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;
 - (NSString *)description;
+
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface TTPSavedGroupCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupLabel;
 

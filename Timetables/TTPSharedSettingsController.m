@@ -30,9 +30,10 @@
 {
 	if (self = [super init]) {
 		_defaults = [NSUserDefaults standardUserDefaults];
-		self.cameFromSettings = [_defaults boolForKey:@"cameFromSettings"];
-		self.wasCfgd = [_defaults boolForKey:@"wasCfgd"];
-		self.myGroup = [_defaults objectForKey:@"myGroup"];
+		_cameFromSettings = [_defaults boolForKey:@"cameFromSettings"];
+		_wasCfgd = [_defaults boolForKey:@"wasCfgd"];
+		_myGroup = [_defaults objectForKey:@"myGroup"];
+		_selectedGroup = [_defaults objectForKey:@"selectedGroup"];
 	}
 	return self;
 }

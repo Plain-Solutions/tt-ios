@@ -8,7 +8,9 @@
 
 @implementation TTPParser
 
-- (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error;
+#pragma mark - Parsing
+
+- (NSMutableArray *)parseDepartments:(NSData *)raw error:(NSError *)error
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
 
@@ -17,49 +19,32 @@
                        options:NSJSONReadingMutableContainers
                          error:&error];
     for (NSDictionary *elem in asArray) {
-        TTPDepartment *dep = [[TTPDepartment alloc] initWithNameTag:[elem objectForKey:@"name"]
+        TTPDepartment *dep = [[TTPDepartment alloc]
+							  initWithNameTag:[elem objectForKey:@"name"]
 																  tag:[elem objectForKey:@"tag"]];
         [result addObject:dep];
     }
     return result;
 }
 
-// this is used in Department view to minimize text and hold them in the single line
-- (NSString *)prettifyDepartmentNames:(NSString *)departmentName trim:(BOOL)trim;
-{
-	NSString *result = [NSString stringWithString:departmentName];
-	if (trim) {
-	NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет"
-																			withString:@""];
-    NSString *truncateDepBeginning = [truncateDepEnding stringByReplacingOccurrencesOfString:@"Факультет"
-																				  withString:@""];
-    NSString *truncateInstitute = [truncateDepBeginning stringByReplacingOccurrencesOfString:@"Институт"
-																				  withString:@""];
-		result = [NSString stringWithString:[truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-	}
-	
-	
-    return [NSString stringWithFormat:@"%@%@", [[result substringToIndex:1] capitalizedString], [result substringFromIndex:1]];
-}
-
-- (NSString *)parseError:(NSData *)raw error:(NSError *)error;
+- (NSString *)parseError:(NSData *)raw error:(NSError *)error
 {
 	NSDictionary *errorDict = [NSJSONSerialization
 							   JSONObjectWithData:raw
 							   options:0
 							   error:&error];
+	
 	return [errorDict objectForKey:@"errMsg"];
 }
 
-
-- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error;
+- (NSString *)parseDownloadedMessageForDepartment:(NSData *)raw error:(NSError *)error
 {
     NSDictionary *asDict = [NSJSONSerialization JSONObjectWithData:raw options:0 error:&error];
+	
     return [asDict objectForKey:@"msg"];
 }
 
-
-- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error;
+- (NSMutableArray *)parseGroups:(NSData *)raw error:(NSError *)error
 {
     NSArray *asArray = [NSJSONSerialization
             JSONObjectWithData:raw
@@ -69,7 +54,7 @@
     return [asArray mutableCopy];
 }
 
-- (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error;
+- (NSMutableArray *)parseTimetables:(NSData *)raw error:(NSError *)error
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
 	
@@ -77,6 +62,7 @@
 						JSONObjectWithData:raw
 						options:NSJSONReadingMutableContainers
 						error:&error];
+	
     for (NSDictionary *lesson in asArray) {
 		TTPDaySequenceEntity *dse = [[TTPDaySequenceEntity alloc] init];
 		dse.day = lesson[@"day"];
@@ -104,8 +90,23 @@
 		[result addObject:dse];
 	}
 	
-    return result;
+    return result;	
+}
+
+#pragma mark - Styling
+
+// This is used in Department view to minimize text and display them in the single line
+- (NSString *)prettifyDepartmentNames:(NSString *)departmentName trim:(BOOL)trim
+{
+	NSString *result = [NSString stringWithString:departmentName];
+	if (trim) {
+		NSString *truncateDepEnding = [departmentName stringByReplacingOccurrencesOfString:@"факультет" withString:@""];
+		NSString *truncateDepBeginning = [truncateDepEnding stringByReplacingOccurrencesOfString:@"Факультет" withString:@""];
+		NSString *truncateInstitute = [truncateDepBeginning stringByReplacingOccurrencesOfString:@"Институт" withString:@""];
+		result = [NSString stringWithString:[truncateInstitute stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+	}
 	
+	return [NSString stringWithFormat:@"%@%@", [[result substringToIndex:1] capitalizedString], [result substringFromIndex:1]];
 }
 
 @end
