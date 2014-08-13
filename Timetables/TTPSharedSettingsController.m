@@ -8,6 +8,8 @@
 
 #import "TTPSharedSettingsController.h"
 
+#define UNARCHIVE(data)	[NSKeyedUnarchiver unarchiveObjectWithData:data];
+
 @implementation TTPSharedSettingsController {
 	NSUserDefaults *_defaults;
 }
@@ -31,9 +33,10 @@
 	if (self = [super init]) {
 		_defaults = [NSUserDefaults standardUserDefaults];
 		_cameFromSettings = [_defaults boolForKey:@"cameFromSettings"];
+
 		_wasCfgd = [_defaults boolForKey:@"wasCfgd"];
-		_myGroup = [_defaults objectForKey:@"myGroup"];
-		_selectedGroup = [_defaults objectForKey:@"selectedGroup"];
+		_myGroup = UNARCHIVE([_defaults objectForKey:@"myGroup"]);
+		_selectedGroup = UNARCHIVE([_defaults objectForKey:@"selectedGroup"]);
 	}
 	return self;
 }

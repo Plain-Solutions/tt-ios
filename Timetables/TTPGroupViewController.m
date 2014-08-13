@@ -108,11 +108,11 @@
 	selectedGroup.departmentTag = self.selectedDepartment.tag;
 	selectedGroup.groupName = groupName;
 
-	_settings.selectedGroup = selectedGroup;
+	_settings.selectedGroup = [selectedGroup copy];
 	
 	if (!_settings.wasCfgd) {
 		_settings.wasCfgd = YES;
-		_settings.myGroup = _settings.selectedGroup;
+		_settings.myGroup = [_settings.selectedGroup copy];
 	}
 
 	OpenMainView();

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "TTPMainViewController.h"
+#import "TTPMenuViewController.h"
+#import "MVYSideMenuController.h"
+#import "TTPDepartmentViewController.h"
 #import "ViewControllerDefines.h"
+
+#import "TTPSharedSettingsController.h"
 
 /** Default delegate file
  */
