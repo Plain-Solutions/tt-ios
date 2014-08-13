@@ -13,6 +13,16 @@
 
 @implementation TTPTimetableAccessor
 
++(id)sharedAccessor
+{
+	static TTPTimetableAccessor *sharedAccessor;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedAccessor = [[self alloc] init];
+	});
+	return sharedAccessor;
+}
+
 - (id)init;
 {
 	if (self = [super init]) {

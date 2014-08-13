@@ -71,7 +71,7 @@
 											  }
 											  else {																						
 												  //TT ACCESSOR
-												  _accessor = [[TTPTimetableAccessor alloc] init];
+												  _accessor = [TTPTimetableAccessor sharedAccessor];
 												  _accessor.timetable = [_parser parseTimetables:data
 																									   error:error];
 												  [loadingView hide:YES];

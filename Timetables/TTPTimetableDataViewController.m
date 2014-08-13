@@ -13,12 +13,13 @@
 
 @implementation TTPTimetableDataViewController {
 	TTPSharedSettingsController *_settings;
+	TTPTimetableAccessor *_accessor;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	_accessor = [TTPTimetableAccessor sharedAccessor];
 	self.table.dataSource = self;
 	self.table.delegate = self;
 	
@@ -57,17 +58,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
 	
-	return [self.accessor lessonsCountOnDayParitySequence:self.day
+	return [_accessor lessonsCountOnDayParitySequence:self.day
 															parity:self.parity
 														  sequence:[[seqs objectAtIndex:section] integerValue]];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return [self.accessor lessonsCountOnDayParity:self.day parity:self.parity];
+	return [_accessor lessonsCountOnDayParity:self.day parity:self.parity];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
@@ -82,11 +83,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
 	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
 	
-	NSArray *subjectsDPT = [self.accessor lessonsOnDayParitySequence:self.day
+	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
 																	   parity:self.parity
 																	 sequence:[sequence integerValue]];
 	
@@ -99,7 +100,7 @@
 	cell.subjectNameLabel.text = CapitalizedString(subj.name);
 
 	cell.subjectTypeLabel.text = CapitalizedString(NSLocalizedString(subj.activity, nil));
-	cell.locationLabel.text = [self.accessor locationOnSingleSubgroupCount:subj.subgroups];
+	cell.locationLabel.text = [_accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
 	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];
 
@@ -126,11 +127,11 @@
 	label.font =  [UIFont fontWithName:@"Helvetica-Medium" size:15.0f];
 	label.textAlignment = NSTextAlignmentCenter;
 	label.backgroundColor = [UIColor clearColor];
-	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 														  parity:self.parity];
 	NSNumber *sequence = [seqs objectAtIndex:section];
 
-	label.text = [self.accessor timeRangeBySequence:sequence];;
+	label.text = [_accessor timeRangeBySequence:sequence];;
 	label.textColor = [UIColor blackColor];
 
 	[view addSubview:label];
@@ -170,11 +171,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
 
-	NSArray *seqs = [self.accessor availableSequencesOnDayParity:self.day
+	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 														  parity:self.parity];
 	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
 	
-	NSArray *subjectsDPT = [self.accessor lessonsOnDayParitySequence:self.day
+	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
 															  parity:self.parity
 															sequence:[sequence integerValue]];
 	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
@@ -205,7 +206,8 @@
 					   NSError *error = nil;
 					   NSData *data = [NSURLConnection sendSynchronousRequest:request
 															returningResponse:&response
-																		error:&error];					   dispatch_async(dispatch_get_main_queue(), ^
+																		error:&error];
+					   dispatch_async(dispatch_get_main_queue(), ^
 									  {
 										  TTPParser *parser = [TTPParser sharedParser];
 										  if (response.statusCode != 200) {
@@ -216,12 +218,12 @@
 										  }
 										  else {
 											  //TT ACCESSOR
-											  self.accessor.timetable = [parser parseTimetables:data
+											  _accessor.timetable = [parser parseTimetables:data
 																						  error:error];
 											  
 											  HideNetworkActivityIndicator();
-											  if (self.accessor.timetable.count) {
-												  [self.accessor populateAvailableDays];
+											  if (_accessor.timetable.count) {
+												  [_accessor populateAvailableDays];
 												  [self.table reloadData];
 											  }
  												[refreshControl endRefreshing];
@@ -247,7 +249,7 @@
 {
 	NSString *errorData = [[NSString alloc] init];
 	if (data != nil)
-		errorData = [_parser parseError:data error:error];
+		errorData = [[TTPParser sharedParser] parseError:data error:error];
 	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
 	
 	NSString *msg;

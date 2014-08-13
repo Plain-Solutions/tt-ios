@@ -55,6 +55,9 @@ struct __dayParityEntity {
  */
 @property (nonatomic, strong) NSArray *parities;
 
+
++ (id)sharedAccessor;
+
 - (void)populateAvailableDays;
 - (NSString *)beginTimeBySequence:(NSNumber *)sequence;
 - (NSString *)endTimeBySequence:(NSNumber *)sequence;
