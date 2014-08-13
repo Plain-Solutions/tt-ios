@@ -15,4 +15,5 @@
 @property (nonatomic, assign) BOOL cameFromSettings;
 @property (nonatomic, assign) BOOL wasCfgd;
 
++ (id)sharedSettings;
 @end

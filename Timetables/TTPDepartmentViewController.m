@@ -22,7 +22,7 @@
 - (void)viewDidLoad;
 {
    [super viewDidLoad];
-	_settings = [[TTPSharedSettingsController alloc] init];
+	_settings = [TTPSharedSettingsController sharedSettings];
 
 	self.title= NSLocalizedString(@"Select department", nil);
 	

@@ -14,6 +14,16 @@
 
 @synthesize cameFromSettings = _cameFromSettings;
 @synthesize wasCfgd = _wasCfgd;
+
++ (id)sharedSettings
+{
+	static TTPSharedSettingsController *sharedSettingsController = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedSettingsController = [[self alloc] init];
+	});
+	return sharedSettingsController;
+}
 - (id)init
 {
 	if (self = [super init]) {
