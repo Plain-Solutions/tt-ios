@@ -259,7 +259,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="dayname" id="sbY-k0-mqL">
-                        <barButtonItem key="backBarButtonItem" title="menu" id="X2n-Js-dAq"/>
+                        <barButtonItem key="backBarButtonItem" id="X2n-Js-dAq"/>
                         <barButtonItem key="leftBarButtonItem" title="menuBtn" id="r0Q-6w-RT7">
                             <connections>
                                 <action selector="menuBtnTapped:" destination="urC-rf-re2" id="xiq-0m-hda"/>

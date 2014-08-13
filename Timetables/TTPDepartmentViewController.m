@@ -31,21 +31,20 @@
 	self.title= NSLocalizedString(@"Select department", nil);
 	_defaults = [NSUserDefaults standardUserDefaults];
 
+	
+
 	if ([_defaults boolForKey:@"cameFromSettings"]) {
 		[self.navigationItem setHidesBackButton:NO animated:YES];
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(backBtnTapepd:)];
 	}
-	else
-	{
-		if (![_defaults boolForKey:@"wasCfgd"]) {
+	else if (![_defaults boolForKey:@"wasCfgd"])
 		[self.navigationItem setHidesBackButton:YES animated:NO];
-	}
-	else self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
-																				  style:UIBarButtonItemStyleBordered
-																				 target:self
-																				  action:@selector(menuBtnTapped:)];}
+	else
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
+																			 style:UIBarButtonItemStyleBordered
+																			target:self
+																			action:@selector(menuBtnTapped:)];
 
-	
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:loadingView];
 	loadingView.delegate = self;
