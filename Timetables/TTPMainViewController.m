@@ -78,7 +78,7 @@
 
 #pragma mark - Conversion
 
-- (NSString *)convertNumToDays:(NSInteger)num;
+- (NSString *)convertNumToDays:(NSInteger)num
 {
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
@@ -115,13 +115,14 @@
 
 #pragma mark - Navigation
 
-- (IBAction)menuBtnTapped:(id)sender {
+- (IBAction)menuBtnTapped:(id)sender
+{
 	OpenMenu();
 }
 
 #pragma mark - Alerts
 
-- (void)showNoMyGroupAlert;
+- (void)showNoMyGroupAlert
 {
 	NSString *alertTitle = NSLocalizedString(@"Announcement!", nil);
 	NSString *alertMessage = NSLocalizedString(@"It seems that you are running Timetables for the first time! Choose your department and group.", nil);
