@@ -14,13 +14,11 @@
 
 @implementation TTPTimetableModelController
 
-
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard
 {
 	// Create a new view controller and pass suitable data.
     TTPTimetableDataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimetableView"];
 	dataViewController.day = index;
-	dataViewController.accessor = self.accessor;
     return dataViewController;
 }
 
@@ -36,7 +34,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-	return [self viewControllerAtIndex:[self.accessor previousDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]].day
+	return [self viewControllerAtIndex:[[TTPTimetableAccessor sharedAccessor] previousDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]].day
 							storyboard:viewController.storyboard];
 
 }
@@ -44,7 +42,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
 
-	return [self viewControllerAtIndex:[self.accessor nextDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]].day
+	return [self viewControllerAtIndex:[[TTPTimetableAccessor sharedAccessor] nextDay:[self indexOfViewController:(TTPTimetableDataViewController *)viewController]].day
 							storyboard:viewController.storyboard];
 
 }

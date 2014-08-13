@@ -97,7 +97,6 @@
 {
     if (!_modelController) {
         _modelController = [[TTPTimetableModelController alloc] init];
-		self.modelController.accessor = _accessor;
     }
     return _modelController;
 }
