@@ -22,7 +22,7 @@
 - (void)viewDidLoad;
 {
    [super viewDidLoad];
-	_settings = [TTPSharedSettingsController sharedSettings];
+	_settings = [TTPSharedSettingsController sharedController];
 
 	self.title= NSLocalizedString(@"Select department", nil);
 	
@@ -54,9 +54,8 @@
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
 		ShowNetworkActivityIndicator();
 
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: depURL]
-												 cachePolicy:NSURLRequestUseProtocolCachePolicy
-											 timeoutInterval:60];
+		NSURLRequest *request = CreateRequest(depURL);
+		
         NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request
@@ -149,21 +148,22 @@
 	NSString *errorData = [[NSString alloc] init];
 	if (data != nil)
 		errorData = [_parser parseError:data error:error];
-	NSString *alertTitle = NSLocalizedString(@"Something bad happened!", nil);
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
+	
 	NSString *msg;
 	if (response.statusCode)
 		msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ on %@ with %d: %@", nil),
 			   errorData, depURL, response.statusCode, errorData];
 	else
 		msg = NSLocalizedString(@"Network seems to be down. Please, turn on cellular connection or Wi-Fi", nil);
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
 													message: msg
 												   delegate: nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	
 	[alert show];
-
 }
 
 @end

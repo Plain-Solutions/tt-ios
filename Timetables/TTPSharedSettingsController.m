@@ -14,8 +14,10 @@
 
 @synthesize cameFromSettings = _cameFromSettings;
 @synthesize wasCfgd = _wasCfgd;
+@synthesize myGroup = _myGroup;
+@synthesize selectedGroup = _selectedGroup;
 
-+ (id)sharedSettings
++ (id)sharedController
 {
 	static TTPSharedSettingsController *sharedSettingsController = nil;
 	static dispatch_once_t onceToken;
@@ -30,7 +32,7 @@
 		_defaults = [NSUserDefaults standardUserDefaults];
 		self.cameFromSettings = [_defaults boolForKey:@"cameFromSettings"];
 		self.wasCfgd = [_defaults boolForKey:@"wasCfgd"];
-		
+		self.myGroup = [_defaults objectForKey:@"myGroup"];
 	}
 	return self;
 }
@@ -49,6 +51,40 @@
 	[_defaults synchronize];
 }
 
+- (BOOL)cameFromSettings
+{
+	return _cameFromSettings;
+}
 
+- (BOOL)wasCfgd
+{
+	return _wasCfgd;
+}
+
+- (void)setMyGroup:(TTPGroup *)value
+{
+	_myGroup = value;
+	NSData *data = [NSKeyedArchiver archivedDataWithRootObject:value];
+	[_defaults setObject:data forKey:@"myGroup"];
+	[_defaults synchronize];
+}
+
+- (TTPGroup *)myGroup
+{
+	return _myGroup;
+}
+
+- (void)setSelectedGroup:(TTPGroup *)value
+{
+	_selectedGroup = value;
+	NSData *data = [NSKeyedArchiver archivedDataWithRootObject:value];
+	[_defaults setObject:data forKey:@"selectedGroup"];
+	[_defaults synchronize];
+}
+
+- (TTPGroup *)selectedGroup
+{
+	return _selectedGroup;
+}
 
 @end

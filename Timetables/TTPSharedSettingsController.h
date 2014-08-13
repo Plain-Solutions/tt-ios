@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TTPGroup.h"
+
 /**
  This class unifies all the settings in the app for more convinient access
  */
 @interface TTPSharedSettingsController : NSObject
-@property (nonatomic, assign) BOOL cameFromSettings;
-@property (nonatomic, assign) BOOL wasCfgd;
+@property (assign) BOOL cameFromSettings;
+@property (assign) BOOL wasCfgd;
 
-+ (id)sharedSettings;
+@property (strong) TTPGroup *myGroup;
+@property (strong) TTPGroup *selectedGroup;
+
++ (id)sharedController;
 @end
