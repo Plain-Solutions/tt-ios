@@ -8,9 +8,6 @@
 
 #import "TTPSharedSettingsController.h"
 
-#define ARCHIVE(data) [NSKeyedArchiver archivedDataWithRootObject:data];
-
-#define UNARCHIVE(data)	[NSKeyedUnarchiver unarchiveObjectWithData:data]
 
 @implementation TTPSharedSettingsController {
 	NSUserDefaults *_defaults;
@@ -18,6 +15,8 @@
 
 @synthesize cameFromSettings = _cameFromSettings;
 @synthesize wasCfgd = _wasCfgd;
+@synthesize noSavedGroupsShownHelp = _noSavedGroupsShownHelp;
+
 @synthesize myGroup = _myGroup;
 @synthesize selectedGroup = _selectedGroup;
 @synthesize savedGroups = _savedGroups;
@@ -71,6 +70,18 @@
 	return _wasCfgd;
 }
 
+- (void)setNoSavedGroupsShownHelp:(BOOL)value
+{
+	_noSavedGroupsShownHelp = value;
+	[_defaults setBool:value forKey:@"noSavedGroupsShownHelp"];
+	[_defaults synchronize];
+}
+
+- (BOOL)noSavedGroupsShownHelp
+{
+	return _noSavedGroupsShownHelp;
+}
+
 - (void)setMyGroup:(TTPGroup *)value
 {
 	_myGroup = value;
@@ -112,7 +123,7 @@
 - (void)addSelectedGroupToFavorites
 {
 
-	NSMutableArray *__savedGroups = [NSMutableArray arrayWithArray:_savedGroups];
+	NSMutableArray *__savedGroups = MUTIFY_ARRAY(_savedGroups);
 	[__savedGroups addObject:_selectedGroup];
 	_savedGroups = [NSArray arrayWithArray:__savedGroups];
 	
