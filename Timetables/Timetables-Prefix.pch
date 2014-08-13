@@ -15,4 +15,4 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#define CapitalizedString(string) [NSString stringWithFormat:@"%@%@", [[string substringToIndex:1] capitalizedString], [string substringFromIndex:1]];
+#define CapitalizedString(string) [NSString stringWithFormat:@"%@%@", [[string substringToIndex:1] capitalizedString], [string substringFromIndex:1]]

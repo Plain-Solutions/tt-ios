@@ -25,6 +25,8 @@
 #define ZeroFrame() [[UIView alloc] initWithFrame:CGRectZero];
 #define ViewWidth self.view.bounds.size.width
 
+#define REGULAR_FONT 	[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]
+
 #define OpenMenu() MVYSideMenuController *sideMenuController = [self sideMenuController]; if (sideMenuController) [sideMenuController openMenu]
 
 #define MenuItemTap(viewString) MVYSideMenuController *sideMenuController = [self sideMenuController];	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:viewString];	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];	[sideMenuController changeContentViewController:navigationController closeMenu:YES]

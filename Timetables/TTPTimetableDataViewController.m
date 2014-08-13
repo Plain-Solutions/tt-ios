@@ -42,7 +42,8 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
 
@@ -99,7 +100,21 @@
 		
 	cell.subjectNameLabel.text = CapitalizedString(subj.name);
 
-	cell.subjectTypeLabel.text = CapitalizedString(NSLocalizedString(subj.activity, nil));
+
+	cell.subjectTypeLabel.text =  [CapitalizedString(NSLocalizedString(subj.activity, nil)) stringByAppendingString:@"  "];
+	CGSize typeSize = [cell.subjectTypeLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+												REGULAR_FONT, NSFontAttributeName,
+												[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+
+	cell.subjectTypeLabel.textColor = [UIColor whiteColor];
+	cell.subjectTypeLabel.textAlignment = NSTextAlignmentCenter;
+	cell.subjectTypeLabel.preferredMaxLayoutWidth = typeSize.width + 10;
+	cell.subjectTypeLabel.layer.cornerRadius = 5.0;
+	cell.subjectTypeLabel.layer.masksToBounds = YES;
+	cell.subjectTypeLabel.backgroundColor = [self activityTypeColor:subj.activity];
+	[cell.subjectTypeLabel layoutSubviews];
+
+	
 	cell.locationLabel.text = [_accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
 	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];

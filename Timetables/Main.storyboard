@@ -452,19 +452,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="лабораторная" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLS-uG-zYW">
-                                                    <rect key="frame" x="213" y="36" width="105" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="SlO-G2-VF6"/>
-                                                        <constraint firstAttribute="width" constant="105" id="vtt-UV-VPP"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Несколько подгрупп" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvW-Eg-5hG">
-                                                    <rect key="frame" x="23" y="36" width="145" height="20"/>
+                                                    <rect key="frame" x="144" y="36" width="168" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="145" id="l5M-To-607"/>
+                                                        <constraint firstAttribute="width" constant="168" id="l5M-To-607"/>
                                                         <constraint firstAttribute="height" constant="20" id="uVx-C6-ZEp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -486,16 +477,24 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="лабораторная" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLS-uG-zYW">
+                                                    <rect key="frame" x="20" y="36" width="97" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="SlO-G2-VF6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="MLS-uG-zYW" secondAttribute="trailing" constant="2" id="Bnd-iJ-aXT"/>
-                                                <constraint firstAttribute="bottom" secondItem="fvW-Eg-5hG" secondAttribute="bottom" constant="3" id="GHi-zg-8DT"/>
-                                                <constraint firstAttribute="bottom" secondItem="MLS-uG-zYW" secondAttribute="bottom" constant="3" id="O0W-yz-ADd"/>
+                                                <constraint firstAttribute="bottom" secondItem="fvW-Eg-5hG" secondAttribute="bottom" constant="3" id="4Sh-NK-7nf"/>
                                                 <constraint firstItem="NWO-MO-7w5" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" constant="-5" id="P55-Ey-ktO"/>
+                                                <constraint firstAttribute="trailing" secondItem="fvW-Eg-5hG" secondAttribute="trailing" constant="8" id="QG9-Kh-web"/>
+                                                <constraint firstItem="MLS-uG-zYW" firstAttribute="leading" secondItem="BsO-i1-qTO" secondAttribute="trailing" constant="5" id="eSh-gF-Ooj"/>
                                                 <constraint firstItem="BsO-i1-qTO" firstAttribute="leading" secondItem="xkB-sD-c0u" secondAttribute="leading" id="gDq-Pu-NWm"/>
                                                 <constraint firstItem="BsO-i1-qTO" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" id="ia0-RX-N9a"/>
                                                 <constraint firstItem="NWO-MO-7w5" firstAttribute="leading" secondItem="BsO-i1-qTO" secondAttribute="trailing" constant="8" id="lgj-sZ-mNW"/>
-                                                <constraint firstItem="fvW-Eg-5hG" firstAttribute="leading" secondItem="BsO-i1-qTO" secondAttribute="trailing" constant="8" id="t4L-g4-ItO"/>
+                                                <constraint firstAttribute="bottom" secondItem="MLS-uG-zYW" secondAttribute="bottom" constant="3" id="ryr-hk-32W"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -517,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bM1-qm-C51" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="-430"/>
+            <point key="canvasLocation" x="2161" y="-431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qzp-sY-cU8">
