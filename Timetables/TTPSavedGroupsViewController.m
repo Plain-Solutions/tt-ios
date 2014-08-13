@@ -13,12 +13,13 @@
 
 @implementation TTPSavedGroupsViewController {
 	NSMutableArray *_savedGroups;
+	
 	TTPParser *_parser;
 	TTPSharedSettingsController *_settings;
 	TTPGroup *_confirmDeletedMyGroup;
 }
 
-- (void)viewDidLoad;
+- (void)viewDidLoad
 {
 	[super viewDidLoad];
 	_settings = [TTPSharedSettingsController sharedController];
@@ -37,7 +38,8 @@
 	[self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
 	[super viewDidAppear:animated];
 
 	if ( !_settings.noSavedGroupsShownHelp && !_savedGroups.count) {
@@ -69,7 +71,7 @@
     return _savedGroups.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TTPSavedGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	
@@ -88,7 +90,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath;
+forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[_savedGroups removeObjectAtIndex:indexPath.row];
@@ -112,7 +114,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 	
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 18 + [self heightForText:((TTPGroup *)_savedGroups[indexPath.row]).departmentName];
@@ -130,7 +131,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 #pragma mark - Actions
 
-- (IBAction)menuBtnPressed:(id)sender {
+- (IBAction)menuBtnPressed:(id)sender
+{
 	OpenMenu();
 }
 
