@@ -189,8 +189,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
 	_selectedSequence = [self sequenceForIndexPath:indexPath];
-	[self showDetailsAlert:subj];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[self showDetailsAlert:subj];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -359,7 +360,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
 													message:content
 												   delegate:nil
-										  cancelButtonTitle:@"Dismiss"
+										  cancelButtonTitle:NSLocalizedString(@"Dismiss", nil)
 										  otherButtonTitles:nil];
 	[alert show];
 }

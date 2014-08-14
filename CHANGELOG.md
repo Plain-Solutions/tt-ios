@@ -17,7 +17,7 @@ Timetables 1.1
 	* _Properly_ resizable cells in Saved Groups
 	* When exiting and re-entering app your group is shown instead of last opened group (actually, a bug, which was fixed)
 	* _Totally new_ SubjectDetailView: now shows as a alert, instead of view
-	* Implement caching
+	* Implement caching (#3)
 * Code:
 	* Converted `TTPParser`, `TTPTimetableAccessor` to singletons, now initialized via `[TTPSomething sharedSomething]`
 	* Reduced memory usage to 6 MB average
