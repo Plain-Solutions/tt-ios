@@ -30,6 +30,16 @@
  */
 @property (nonatomic, strong) NSString *groupName;
 
+/**
+ Was it cachhed
+ */
+@property (nonatomic, assign) BOOL hasCache;
+
+/**
+ Cached timetable
+ */
+@property (nonatomic, strong) NSArray *timetable;
+
 - (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;

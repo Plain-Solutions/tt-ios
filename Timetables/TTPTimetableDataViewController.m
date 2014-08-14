@@ -7,6 +7,7 @@
 //
 
 #import "TTPTimetableDataViewController.h"
+#import "MVYSideMenuController.h"
 
 #define MAGIC_NUMBER 20
 #define RowHeightFromHash(subject) [_heights[[NSString stringWithFormat:@"%ld", (unsigned long)subject.hash]] floatValue]
@@ -16,14 +17,27 @@
 @implementation TTPTimetableDataViewController {
 	TTPSharedSettingsController *_settings;
 	TTPTimetableAccessor *_accessor;
+
 	NSNumber *_selectedSequence;
 	NSDictionary *_heights;
+	
+	BOOL _notFirstTimeLoadFromCache;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	_accessor = [TTPTimetableAccessor sharedAccessor];
+	if (self.isLoadedFromCache) {
+		dispatch_queue_t mvlQ = dispatch_queue_create("mainviewload", NULL);
+		dispatch_async(mvlQ, ^{
+			[NSThread sleepForTimeInterval:0.1];
+			dispatch_async(dispatch_get_main_queue(),^ {
+				[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
+
+			});});
+	}
+
 	self.table.dataSource = self;
 	self.table.delegate = self;
 	self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -63,6 +77,8 @@
 {
 	[super viewDidAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
+	if (self.isLoadedFromCache)
+		[self refresh:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -249,23 +265,34 @@
 									  {
 										  TTPParser *parser = [TTPParser sharedParser];
 										  if (response.statusCode != 200) {
-											  [self showErrorAlert:data
+											  if (!_notFirstTimeLoadFromCache)
+												  _notFirstTimeLoadFromCache = YES;
+											  else
+												  [self showErrorAlert:data
 															 error:error
 															   url:timetableURL
 														  response:response];
+											  
 										  }
 										  else {
 											  //TT ACCESSOR
 											  _accessor.timetable = [parser parseTimetables:data
 																						  error:error];
-											  
+											  NSMutableDictionary *__heights = [[NSMutableDictionary alloc] init];
+											  for (TTPDaySequenceEntity *e in _accessor.timetable)
+												  for (TTPSubjectEntity *_e in e.subjects)
+													  [__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
+																	forKey:[NSString stringWithFormat:@"%d", _e.hash]];
+											  _heights = [NSDictionary dictionaryWithDictionary:__heights];
 											  HideNetworkActivityIndicator();
 											  if (_accessor.timetable.count) {
 												  [_accessor populateAvailableDays];
 												  [self.table reloadData];
 											  }
- 												[refreshControl endRefreshing];
-										  }});});
+ 												
+										  }
+									  [refreshControl endRefreshing];
+									  });});
 }
 
 

@@ -28,6 +28,8 @@
         self.departmentName = [decoder decodeObjectForKey:@"departmentName"];
         self.departmentTag = [decoder decodeObjectForKey:@"departmentTag"];
         self.groupName = [decoder decodeObjectForKey:@"groupName"];
+		self.hasCache = [decoder decodeBoolForKey:@"hasCache"];
+		self.timetable = [NSKeyedUnarchiver unarchiveObjectWithData:[decoder decodeObjectForKey:@"timetable"]];
     }
 	
     return self;
@@ -38,6 +40,8 @@
 	[encoder encodeObject:self.departmentName forKey:@"departmentName"];
 	[encoder encodeObject:self.departmentTag forKey:@"departmentTag"];
 	[encoder encodeObject:self.groupName forKey:@"groupName"];
+	[encoder encodeBool:self.hasCache forKey:@"hasCache"];
+	[encoder encodeObject:[NSKeyedArchiver archivedDataWithRootObject:self.timetable] forKey:@"timetable"];
 }
 
 - (id)copy

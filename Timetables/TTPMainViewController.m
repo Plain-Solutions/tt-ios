@@ -18,6 +18,10 @@
 
 - (void)viewDidLoad
 {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateDay:)
+												 name:@"updateDayLabelCalled"
+											   object:nil];
 	[super viewDidLoad];
 	_settings = [TTPSharedSettingsController sharedController];
 	self.title = NSLocalizedString(@"Loading", nil);
@@ -45,13 +49,7 @@
 				}
 			else self.navigationItem.rightBarButtonItem.enabled = YES;
 		}
-	
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateDay:)
-												 name:@"updateDayLabelCalled"
-											   object:nil];
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(parityUpdateRequest:) name:@"parityUpdateRequest"
 											   object:nil];

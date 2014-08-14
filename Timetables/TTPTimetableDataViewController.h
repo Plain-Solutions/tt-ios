@@ -24,10 +24,12 @@
 
 
 @interface TTPTimetableDataViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
 @property (assign, nonatomic) NSInteger day;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) TTPTimetableAccessor *accessor;
 @property (assign, nonatomic) NSInteger parity;
 @property (strong, nonatomic) NSArray *dayLessons;
+@property (assign, nonatomic) BOOL isLoadedFromCache;
 
 @end

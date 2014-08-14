@@ -20,7 +20,6 @@
 
 // This is for the next version
 // - (IBAction)dayButtonTapped:(id)sender;
-
 - (IBAction)menuBtnTapped:(id)sender;
 
 @end
