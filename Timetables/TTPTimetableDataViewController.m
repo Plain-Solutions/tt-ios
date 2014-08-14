@@ -17,6 +17,7 @@
 @implementation TTPTimetableDataViewController {
 	TTPSharedSettingsController *_settings;
 	TTPTimetableAccessor *_accessor;
+	NSNumber *_selectedSequence;
 }
 
 - (void)viewDidLoad
@@ -143,7 +144,7 @@
 														  parity:self.parity];
 	NSNumber *sequence = [seqs objectAtIndex:section];
 
-	label.text = [_accessor timeRangeBySequence:sequence];;
+	label.text = [_accessor timeRangeBySequence:sequence];
 	label.textColor = [UIColor blackColor];
 
 	[view addSubview:label];
@@ -166,12 +167,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
-	
 	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
-	controller.subject = subj;
-	controller.sequence = [self sequenceForIndexPath:indexPath];
-	[self.navigationController pushViewController:controller animated:YES];
+	_selectedSequence = [self sequenceForIndexPath:indexPath];
+	[self showDetailsAlert:subj];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -301,6 +299,38 @@
 	[alert show];
 }
 
+- (void)showDetailsAlert:(TTPSubjectEntity *)subject
+{
+	
+	NSString *title = NSLocalizedString(@"Details", nil);
+	NSString *content = [NSString stringWithFormat:NSLocalizedString(@"Name: %@\nType: %@\nTime: %@\nParity: %@\n\n", nil),
+						 CapitalizedString(subject.name),
+						 CapitalizedString(NSLocalizedString(subject.activity, nil)), [_accessor timeRangeBySequence:_selectedSequence],
+						 CapitalizedString([_accessor convertParityNumToString:subject.parity])];
 
+	NSString *subgroupContent = @"";
+	for (TTPSubgroup *e in subject.subgroups) {
+		if (subject.subgroups.count > 1) {
+			subgroupContent = NSLocalizedString(@"Subgroup:\n", nil);
+		if (e.subgroupName.length)
+			subgroupContent = [NSString stringWithFormat:@"%@\n",CapitalizedString(e.subgroupName)];
+		}
+		if (e.teacher.length)
+			subgroupContent = [subgroupContent stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@"Teacher: %@\n", nil), e.teacher]];
+		if (e.location.length)
+			subgroupContent = [subgroupContent stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@"Location: %@\n\n", nil), e.location]];
+		content = [content stringByAppendingString:subgroupContent];
+	}
+	
+	content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+													message:content
+												   delegate:nil
+										  cancelButtonTitle:@"Dismiss"
+										  otherButtonTitles:nil];
+	[alert show];
+	
+
+}
 
 @end

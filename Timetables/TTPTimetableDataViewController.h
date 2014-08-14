@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "TTPSubjectCell.h"
-#import "TTPSubjectDetailTableViewController.h"
 #import "ViewControllerDefines.h"
 
 #import "TTPTimetableAccessor.h"

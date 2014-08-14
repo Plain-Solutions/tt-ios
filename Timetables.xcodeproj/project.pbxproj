@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
 		5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
 		5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
 		5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
@@ -36,7 +35,6 @@
 		55543A471980521800C08BB3 /* menu-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A451980521800C08BB3 /* menu-25@2x.png */; };
 		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
-		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
@@ -106,8 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectDetailTableViewController.h; sourceTree = "<group>"; };
-		55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectDetailTableViewController.m; sourceTree = "<group>"; };
 		5511C27A1963DD7E00E2C33B /* TTPSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectCell.h; sourceTree = "<group>"; };
 		5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectCell.m; sourceTree = "<group>"; };
 		5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableAccessor.h; sourceTree = "<group>"; };
@@ -398,8 +394,6 @@
 			children = (
 				5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */,
 				5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */,
-				55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */,
-				55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */,
 			);
 			name = "Subject&Department Details";
 			sourceTree = "<group>";
@@ -561,7 +555,6 @@
 				5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
 				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5576C1DC197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
-				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
@@ -590,7 +583,6 @@
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
 				5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
-				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
 				5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
 				5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */,
