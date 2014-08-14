@@ -9,7 +9,8 @@
 #import "TTPTimetableDataViewController.h"
 
 #define MAGIC_NUMBER 20
-#define ROW_HEIGHT MAGIC_NUMBER + [self heightForText:subj.name]
+#define ROW_HEIGHT MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name]
+
 @interface TTPTimetableDataViewController ()
 @end
 
@@ -86,15 +87,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
-																   parity:self.parity];
-	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
-	
-	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
-																	   parity:self.parity
-																	 sequence:[sequence integerValue]];
-	
-	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
 	TTPSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lessonCell"];
 
 	if (cell == nil)
@@ -175,31 +168,35 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
 	
-	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
-													  parity:self.parity];
-	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
-	
-	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
-														  parity:self.parity
-														sequence:[sequence integerValue]];
-	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
 	controller.subject = subj;
-	controller.sequence = sequence;
+	controller.sequence = [self sequenceForIndexPath:indexPath];
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	return ROW_HEIGHT;
+}
+
+
+#pragma mark - Private methods
+- (NSNumber *)sequenceForIndexPath:(NSIndexPath *)indexPath
+{
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 													  parity:self.parity];
-	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
-	
+
+	return [seqs objectAtIndex:indexPath.section];
+}
+
+- (TTPSubjectEntity *)subjectForIndexPath:(NSIndexPath *)indexPath
+{
+	NSNumber *sequence = [self sequenceForIndexPath:indexPath];
 	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
 														  parity:self.parity
 														sequence:[sequence integerValue]];
-	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
 
-	return MAGIC_NUMBER + [self heightForText:subj.name];
+	return [subjectsDPT objectAtIndex:indexPath.row];
 }
 
 -(CGFloat)heightForText:(NSString *)text
@@ -211,9 +208,6 @@
 	[textView sizeToFit];
 	return textView.frame.size.height;
 }
-
-
-
 
 - (UIColor *)activityTypeColor:(NSString *)activity {
 	if ([activity isEqualToString:@"lecture"])
@@ -284,7 +278,6 @@
 }
 
 #pragma mark - Alerts
-
 
 - (void)showErrorAlert:(NSData *)data error:(NSError *)error url:(NSString *)timetableURL response:(NSHTTPURLResponse *)response
 {
