@@ -58,18 +58,19 @@
 												 name:@"parityUpdated"
 											   object:nil];
 
-	NSMutableDictionary *__heights = [[NSMutableDictionary alloc] init];
-	for (TTPDaySequenceEntity *e in _accessor.timetable)
-		for (TTPSubjectEntity *_e in e.subjects)
-			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
-						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
-	_heights = [NSDictionary dictionaryWithDictionary:__heights];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
+	NSMutableDictionary *__heights = [[NSMutableDictionary alloc] init];
+	for (TTPDaySequenceEntity *e in _accessor.timetable)
+		for (TTPSubjectEntity *_e in e.subjects)
+			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
+						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
+	_heights = [NSDictionary dictionaryWithDictionary:__heights];
+
 	[self.table reloadData];
 }
 
