@@ -116,7 +116,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 18 + [self heightForText:((TTPGroup *)_savedGroups[indexPath.row]).departmentName];
+	return 10 + [self heightForText:((TTPGroup *)_savedGroups[indexPath.row]).departmentName];
 }
 
 -(CGFloat)heightForText:(NSString *)text
@@ -124,7 +124,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	NSInteger MAX_HEIGHT = 2000;
 	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
 	textView.text = text;
-	textView.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:15.0f];
+	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
 	[textView sizeToFit];
 	return textView.frame.size.height;
 }
