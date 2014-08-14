@@ -130,7 +130,7 @@
 	
 	UIView *rect = Frame(0, 0, ViewWidth, rowHeight);
 	rect.backgroundColor = [UIColor clearColor];
-	rect.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	rect.layer.borderColor = [UIColor grayColor].CGColor;
 	rect.layer.borderWidth = 1.0f;
 	[[cell contentView] addSubview:rect];
 	
@@ -156,7 +156,7 @@
 	
 	UIView *rect = Frame(0, 0, ViewWidth, 20);
 	rect.backgroundColor = [UIColor clearColor];
-	rect.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	rect.layer.borderColor = [UIColor grayColor].CGColor;
 	rect.layer.borderWidth = 0.5f;
 	[view addSubview:rect];
 	
@@ -169,6 +169,7 @@
 	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
 	_selectedSequence = [self sequenceForIndexPath:indexPath];
 	[self showDetailsAlert:subj];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -178,6 +179,7 @@
 
 
 #pragma mark - Private methods
+
 - (NSNumber *)sequenceForIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
@@ -328,8 +330,6 @@
 										  cancelButtonTitle:@"Dismiss"
 										  otherButtonTitles:nil];
 	[alert show];
-	
-
 }
 
 @end
