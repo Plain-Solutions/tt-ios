@@ -26,7 +26,7 @@
 {
     [super viewDidLoad];
 	_settings = [TTPSharedSettingsController sharedController];
-
+	_accessor = [TTPTimetableAccessor sharedAccessor];
 	//  This will be added in the next version
 //	[[NSNotificationCenter defaultCenter] addObserver:self
 //											 selector:@selector(updateDayTapped:) name:@"updateDayButtonTapped"
@@ -38,7 +38,14 @@
 		loadingView.delegate = self;
 		loadingView.labelText = NSLocalizedString(@"Loading schedule", nil);
 		[loadingView show:YES];
-	
+		
+		if (_settings.myGroup.hasCache && _settings.myGroup.timetable.count &&
+			_settings.myGroup.timetable && [_settings.selectedGroup isEqualTo:_settings.myGroup]) {
+
+			_accessor.timetable = _settings.myGroup.timetable;
+			[self setupMainView:YES];
+		}
+		else {
 		dispatch_queue_t downloadQueue = dispatch_queue_create("myDownloadQueue",NULL);
 		dispatch_async(downloadQueue, ^
 					   {
@@ -71,18 +78,24 @@
 											  }
 											  else {																						
 												  //TT ACCESSOR
-												  _accessor = [TTPTimetableAccessor sharedAccessor];
 												  _accessor.timetable = [_parser parseTimetables:data
 																									   error:error];
 												  [loadingView hide:YES];
 												  HideNetworkActivityIndicator();
-												  if (_accessor.timetable.count)
-													  [self setupMainView];
+												  if (_accessor.timetable.count) {
+													  if ([_settings.selectedGroup isEqualTo:_settings.myGroup]) {
+														  TTPGroup *__myGroup = [_settings.myGroup copy];
+														  __myGroup.hasCache = YES;
+														  __myGroup.timetable = _accessor.timetable;
+														  _settings.myGroup = __myGroup;
+														}
+													  [self setupMainView:NO];
+												  }
 												  else
 													  [self showEmptyTimetableAlert];
 												  
 												}
-									  });});
+										  });});}
 	}
 	
 }
@@ -102,38 +115,40 @@
 }
 
 #pragma mark - Private Actions
-- (void)setupMainView
-		{
-			[_accessor populateAvailableDays];
-			[self setStartingDayParity];
-			//=============
-			
-			// PageView
-			self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:30.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
-			self.timetableViewController.view.backgroundColor = TableViewColor;
-			self.timetableViewController.delegate = self;
-			self.timetableViewController.dataSource = self.modelController;
-			
-			TTPTimetableDataViewController *startingViewController = [self.modelController
-																	  viewControllerAtIndex:_startingDP.day storyboard:self.storyboard];
-			NSArray *viewControllers = @[startingViewController];
-			startingViewController.parity = _startingDP.parity;
-			
-			[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-			
-			// ===================
-			// UI/UX
-			[self addChildViewController:self.timetableViewController];
-			[self.view addSubview:self.timetableViewController.view];
-			
-			// Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
-			CGRect pageViewRect = self.view.bounds;
-			self.timetableViewController.view.frame = pageViewRect;
-			
-			[self.timetableViewController didMoveToParentViewController:self];
-			
-			// Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
-			self.view.gestureRecognizers = self.timetableViewController.gestureRecognizers;
+- (void)setupMainView:(BOOL)loadedFromCache
+{
+	[_accessor populateAvailableDays];
+	[self setStartingDayParity];
+	//=============
+
+	// PageView
+	self.timetableViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:30.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+	self.timetableViewController.view.backgroundColor = TableViewColor;
+	self.timetableViewController.delegate = self;
+	self.timetableViewController.dataSource = self.modelController;
+
+	TTPTimetableDataViewController *startingViewController = [self.modelController
+															  viewControllerAtIndex:_startingDP.day storyboard:self.storyboard];
+	NSArray *viewControllers = @[startingViewController];
+	startingViewController.parity = _startingDP.parity;
+	startingViewController.isLoadedFromCache = loadedFromCache;
+
+	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:_startingDP.day]];
+
+	// ===================
+	// UI/UX
+	[self addChildViewController:self.timetableViewController];
+	[self.view addSubview:self.timetableViewController.view];
+
+	// Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
+	CGRect pageViewRect = self.view.bounds;
+	self.timetableViewController.view.frame = pageViewRect;
+	
+	[self.timetableViewController didMoveToParentViewController:self];
+
+	// Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
+	self.view.gestureRecognizers = self.timetableViewController.gestureRecognizers;
 
 }
 

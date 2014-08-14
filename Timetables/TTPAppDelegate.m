@@ -22,8 +22,9 @@
 	TTPMenuViewController *menuVC = [storyboard instantiateViewControllerWithIdentifier:@"MenuView"];
 	
 	TTPMainViewController *contentVC = [storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+	
 	UINavigationController *contentNavigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-
+	
 	MVYSideMenuOptions *options = [[MVYSideMenuOptions alloc] init];
 	options.contentViewScale = 1.0;
 	options.contentViewOpacity = 0.05;
