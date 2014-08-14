@@ -50,8 +50,6 @@
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
 						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
-	NSSet *set = [NSSet setWithArray:[_heights allKeys]];
-	NSLog(@"set: %d dict: %d", set.count, _heights.count);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -279,8 +277,6 @@
 		NSInteger parity = [[notification object] integerValue];
 		self.parity = parity;
 		[self.table reloadData];
-		[self.table beginUpdates];
-		[self.table endUpdates];
 	}
 }
 
