@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="urC-rf-re2">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -461,20 +460,12 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsO-i1-qTO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="15" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="FTI-yz-9pL"/>
-                                                        <constraint firstAttribute="width" constant="15" id="phl-2H-1Zc"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculus" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="297" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-MO-7w5">
-                                                    <rect key="frame" x="23" y="-5" width="297" height="45"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculus" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="297" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-MO-7w5">
+                                                    <rect key="frame" x="23" y="5" width="297" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="297" id="ICs-hz-mpx"/>
-                                                        <constraint firstAttribute="height" constant="45" id="sxB-Ms-ZYp"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="лабораторная" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLS-uG-zYW">
@@ -488,17 +479,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="fvW-Eg-5hG" secondAttribute="bottom" constant="3" id="4Sh-NK-7nf"/>
-                                                <constraint firstItem="NWO-MO-7w5" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" constant="-5" id="P55-Ey-ktO"/>
+                                                <constraint firstItem="MLS-uG-zYW" firstAttribute="leading" secondItem="xkB-sD-c0u" secondAttribute="leading" constant="20" id="6lu-d0-Bl1"/>
+                                                <constraint firstItem="NWO-MO-7w5" firstAttribute="leading" secondItem="xkB-sD-c0u" secondAttribute="leading" constant="23" id="Akz-5R-1cd"/>
+                                                <constraint firstItem="NWO-MO-7w5" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" constant="5" id="P55-Ey-ktO"/>
                                                 <constraint firstAttribute="trailing" secondItem="fvW-Eg-5hG" secondAttribute="trailing" constant="8" id="QG9-Kh-web"/>
-                                                <constraint firstItem="MLS-uG-zYW" firstAttribute="leading" secondItem="BsO-i1-qTO" secondAttribute="trailing" constant="5" id="eSh-gF-Ooj"/>
-                                                <constraint firstItem="BsO-i1-qTO" firstAttribute="leading" secondItem="xkB-sD-c0u" secondAttribute="leading" id="gDq-Pu-NWm"/>
-                                                <constraint firstItem="BsO-i1-qTO" firstAttribute="top" secondItem="xkB-sD-c0u" secondAttribute="top" id="ia0-RX-N9a"/>
-                                                <constraint firstItem="NWO-MO-7w5" firstAttribute="leading" secondItem="BsO-i1-qTO" secondAttribute="trailing" constant="8" id="lgj-sZ-mNW"/>
                                                 <constraint firstAttribute="bottom" secondItem="MLS-uG-zYW" secondAttribute="bottom" constant="3" id="ryr-hk-32W"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="activityView" destination="BsO-i1-qTO" id="1rB-Uf-rYw"/>
                                             <outlet property="locationLabel" destination="fvW-Eg-5hG" id="khe-Ux-4sT"/>
                                             <outlet property="subjectNameLabel" destination="NWO-MO-7w5" id="g2W-rk-NMK"/>
                                             <outlet property="subjectTypeLabel" destination="MLS-uG-zYW" id="Vad-Bg-cOS"/>
@@ -593,7 +581,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8A-m5-bkw">
                                             <rect key="frame" x="5" y="23" width="240" height="18"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
