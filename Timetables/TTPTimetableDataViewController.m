@@ -25,7 +25,8 @@
 	_accessor = [TTPTimetableAccessor sharedAccessor];
 	self.table.dataSource = self;
 	self.table.delegate = self;
-	
+	self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
+
 	// A small gap between navbar and first cell in the table
 	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
 
@@ -121,17 +122,11 @@
 	activityView.backgroundColor = [self activityTypeColor:subj.activity];
 	[[cell contentView] addSubview:activityView];
 	
-	UIView *leftLineView = Frame(0, 0, 1, rowHeight);
-	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
-	[[cell contentView] addSubview:leftLineView];
-
-	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, rowHeight);
-	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
-	[[cell contentView] addSubview:rightLineView];
-
-	UIView *bottomLineView = Frame(0, rowHeight, ViewWidth, 0.5);
-	[bottomLineView setBackgroundColor:[UIColor lightGrayColor]];
-	[[cell contentView] addSubview:bottomLineView];
+	UIView *rect = Frame(0, 0, ViewWidth, rowHeight);
+	rect.backgroundColor = [UIColor clearColor];
+	rect.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	rect.layer.borderWidth = 1.0f;
+	[[cell contentView] addSubview:rect];
 	
 	return cell;
 }
@@ -153,17 +148,11 @@
 
 	[view addSubview:label];
 	
-	UIView *lineView = Frame(0, 0, ViewWidth, 1);
-	lineView.backgroundColor = [UIColor lightGrayColor];
-	[view addSubview:lineView];
-	
-	UIView *leftLineView = Frame(0, 0, 1, 20);
-	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
-	[view  addSubview:leftLineView];
-
-	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, 20);
-	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
-	[view addSubview:rightLineView];
+	UIView *rect = Frame(0, 0, ViewWidth, 20);
+	rect.backgroundColor = [UIColor clearColor];
+	rect.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	rect.layer.borderWidth = 0.5f;
+	[view addSubview:rect];
 	
 	view.backgroundColor = [UIColor whiteColor];
 
