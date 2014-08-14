@@ -9,7 +9,6 @@
 #import "TTPTimetableDataViewController.h"
 
 #define MAGIC_NUMBER 20
-#define ROW_HEIGHT MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name]
 
 @interface TTPTimetableDataViewController ()
 @end
@@ -49,9 +48,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
 	[self.table reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,20 +116,20 @@
 
 	
 	cell.locationLabel.text = [_accessor locationOnSingleSubgroupCount:subj.subgroups];
-	
-	UIView *activityView = Frame(0, 0, 15, ROW_HEIGHT);
+	CGFloat rowHeight = MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name];
+	UIView *activityView = Frame(0, 0, 15, rowHeight);
 	activityView.backgroundColor = [self activityTypeColor:subj.activity];
 	[[cell contentView] addSubview:activityView];
 	
-	UIView *leftLineView = Frame(0, 0, 1, ROW_HEIGHT);
+	UIView *leftLineView = Frame(0, 0, 1, rowHeight);
 	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:leftLineView];
 
-	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, ROW_HEIGHT);
+	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, rowHeight);
 	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:rightLineView];
 
-	UIView *bottomLineView = Frame(0, ROW_HEIGHT, ViewWidth, 0.5);
+	UIView *bottomLineView = Frame(0, rowHeight, ViewWidth, 0.5);
 	[bottomLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:bottomLineView];
 	
@@ -174,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return ROW_HEIGHT;
+	return MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name];
 }
 
 
