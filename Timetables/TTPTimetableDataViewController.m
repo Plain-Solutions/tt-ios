@@ -17,6 +17,7 @@
 	TTPSharedSettingsController *_settings;
 	TTPTimetableAccessor *_accessor;
 	NSNumber *_selectedSequence;
+	NSDictionary *_heights;
 }
 
 - (void)viewDidLoad
@@ -30,7 +31,6 @@
 	// A small gap between navbar and first cell in the table
 	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
 
-	
 	// Create table footer to give enough space to scroll and avoid
 	// extra scrolling
 	self.table.tableFooterView = (IS_IPHONE_5)?Frame(0, 0, ViewWidth, 30):Frame(0, 0, ViewWidth, 100);
@@ -44,6 +44,12 @@
 												 name:@"parityUpdated"
 											   object:nil];
 
+	NSMutableDictionary *__heights = [[NSMutableDictionary alloc] init];
+	for (TTPDaySequenceEntity *e in _accessor.timetable)
+		for (TTPSubjectEntity *_e in e.subjects)
+			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
+						  forKey:[NSString stringWithFormat:@"%ld", (unsigned long)_e.hash]];
+	_heights = [NSDictionary dictionaryWithDictionary:__heights];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -167,7 +173,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name];
+	return [_heights[[NSString stringWithFormat:@"%ld", (unsigned long)[self subjectForIndexPath:indexPath].hash]] floatValue];
 }
 
 
