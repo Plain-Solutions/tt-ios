@@ -9,7 +9,7 @@
 #import "TTPTimetableDataViewController.h"
 
 #define MAGIC_NUMBER 20
-
+#define RowHeightFromHash(subject) [_heights[[NSString stringWithFormat:@"%ld", (unsigned long)subject.hash]] floatValue]
 @interface TTPTimetableDataViewController ()
 @end
 
@@ -48,8 +48,10 @@
 	for (TTPDaySequenceEntity *e in _accessor.timetable)
 		for (TTPSubjectEntity *_e in e.subjects)
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
-						  forKey:[NSString stringWithFormat:@"%ld", (unsigned long)_e.hash]];
+						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
+	NSSet *set = [NSSet setWithArray:[_heights allKeys]];
+	NSLog(@"set: %d dict: %d", set.count, _heights.count);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,12 +125,16 @@
 
 	
 	cell.locationLabel.text = [_accessor locationOnSingleSubgroupCount:subj.subgroups];
-	CGFloat rowHeight = MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name];
-	UIView *activityView = Frame(0, 0, 15, rowHeight);
+	
+	[[cell viewWithTag:1337] removeFromSuperview];
+	UIView *activityView = Frame(0, 0, 15, RowHeightFromHash(subj));
 	activityView.backgroundColor = [self activityTypeColor:subj.activity];
+	activityView.tag = 1337;
 	[[cell contentView] addSubview:activityView];
 	
-	UIView *rect = Frame(0, 0, ViewWidth, rowHeight);
+	[[cell viewWithTag:1488] removeFromSuperview];
+	UIView *rect = Frame(0, 0, ViewWidth, RowHeightFromHash(subj));
+	rect.tag = 1488;
 	rect.backgroundColor = [UIColor clearColor];
 	rect.layer.borderColor = [UIColor grayColor].CGColor;
 	rect.layer.borderWidth = 1.0f;
@@ -273,6 +279,8 @@
 		NSInteger parity = [[notification object] integerValue];
 		self.parity = parity;
 		[self.table reloadData];
+		[self.table beginUpdates];
+		[self.table endUpdates];
 	}
 }
 
