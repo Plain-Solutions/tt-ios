@@ -8,6 +8,9 @@
 
 #import "TTPTimetableDataViewController.h"
 
+#define MAGIC_NUMBER 20
+#define ROW_HEIGHT MAGIC_NUMBER + [self heightForText:[self subjectForIndexPath:indexPath].name]
+
 @interface TTPTimetableDataViewController ()
 @end
 
@@ -46,8 +49,8 @@
 {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"updateDayLabelCalled" object:[NSNumber numberWithInt:self.day]];
-
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"parityUpdateRequest" object:nil];
+	[self.table reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +64,7 @@
 {
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
-	
+
 	return [_accessor lessonsCountOnDayParitySequence:self.day
 															parity:self.parity
 														  sequence:[[seqs objectAtIndex:section] integerValue]];
@@ -84,15 +87,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
-																   parity:self.parity];
-	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
-	
-	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
-																	   parity:self.parity
-																	 sequence:[sequence integerValue]];
-	
-	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
+	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
 	TTPSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lessonCell"];
 
 	if (cell == nil)
@@ -117,17 +112,19 @@
 	
 	cell.locationLabel.text = [_accessor locationOnSingleSubgroupCount:subj.subgroups];
 	
-	cell.activityView.backgroundColor = [self activityTypeColor:subj.activity];
-
-	UIView *leftLineView = Frame(0, 0, 1, 60);
+	UIView *activityView = Frame(0, 0, 15, ROW_HEIGHT);
+	activityView.backgroundColor = [self activityTypeColor:subj.activity];
+	[[cell contentView] addSubview:activityView];
+	
+	UIView *leftLineView = Frame(0, 0, 1, ROW_HEIGHT);
 	[leftLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:leftLineView];
 
-	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, 60);
+	UIView *rightLineView = Frame(ViewWidth -1, 0, 1, ROW_HEIGHT);
 	[rightLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:rightLineView];
 
-	UIView *bottomLineView = Frame(0, 60, ViewWidth, 0.5);
+	UIView *bottomLineView = Frame(0, ROW_HEIGHT, ViewWidth, 0.5);
 	[bottomLineView setBackgroundColor:[UIColor lightGrayColor]];
 	[[cell contentView] addSubview:bottomLineView];
 	
@@ -168,9 +165,48 @@
 	return view;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
+	
+	TTPSubjectEntity *subj = [self subjectForIndexPath:indexPath];
+	controller.subject = subj;
+	controller.sequence = [self sequenceForIndexPath:indexPath];
+	[self.navigationController pushViewController:controller animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return CELL_HEIGHT;
+	return ROW_HEIGHT;
+}
+
+
+#pragma mark - Private methods
+- (NSNumber *)sequenceForIndexPath:(NSIndexPath *)indexPath
+{
+	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
+													  parity:self.parity];
+
+	return [seqs objectAtIndex:indexPath.section];
+}
+
+- (TTPSubjectEntity *)subjectForIndexPath:(NSIndexPath *)indexPath
+{
+	NSNumber *sequence = [self sequenceForIndexPath:indexPath];
+	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
+														  parity:self.parity
+														sequence:[sequence integerValue]];
+
+	return [subjectsDPT objectAtIndex:indexPath.row];
+}
+
+-(CGFloat)heightForText:(NSString *)text
+{
+	NSInteger MAX_HEIGHT = 2000;
+	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
+	textView.text = text;
+	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19.0f];
+	[textView sizeToFit];
+	return textView.frame.size.height;
 }
 
 - (UIColor *)activityTypeColor:(NSString *)activity {
@@ -181,22 +217,6 @@
 	if ([activity isEqualToString:@"laboratory"])
 		return LabColor;
 	return [UIColor grayColor];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	TTPSubjectDetailTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubjInfo"];
-
-	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
-														  parity:self.parity];
-	NSNumber *sequence = [seqs objectAtIndex:indexPath.section];
-	
-	NSArray *subjectsDPT = [_accessor lessonsOnDayParitySequence:self.day
-															  parity:self.parity
-															sequence:[sequence integerValue]];
-	TTPSubjectEntity *subj = [subjectsDPT objectAtIndex:indexPath.row];
-	controller.subject = subj;
-	controller.sequence = sequence;
-	[self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Actions
@@ -258,7 +278,6 @@
 }
 
 #pragma mark - Alerts
-
 
 - (void)showErrorAlert:(NSData *)data error:(NSError *)error url:(NSString *)timetableURL response:(NSHTTPURLResponse *)response
 {

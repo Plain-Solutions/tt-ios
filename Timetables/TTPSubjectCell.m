@@ -14,7 +14,6 @@
 @synthesize subjectNameLabel =_subjectNameLabel;
 @synthesize subjectTypeLabel = _subjectTypeLabel;
 @synthesize locationLabel = _locationLabel;
-@synthesize activityView = _activityView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
