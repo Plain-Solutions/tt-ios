@@ -6,30 +6,21 @@
 #import "TTPDepartment.h"
 
 
-@implementation TTPDepartment {
+@implementation TTPDepartment
 
-}
-
-@synthesize name = _name;
-@synthesize tag = _tag;
-
-
-- (id)initWithNameTag:(NSString *)name tag:(NSString *)tag;
+- (id)initWithNameTag:(NSString *)name tag:(NSString *)tag
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.name = name;
         self.tag = tag;
     }
-
     return self;
 }
 
-- (NSString *)description;
+- (NSString *)description
 {
     return [NSString stringWithFormat:@"Name: %@\nTag: %@\n",
                                       self.name, self.tag];
 }
-
 
 @end

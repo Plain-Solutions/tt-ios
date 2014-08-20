@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  Entity to store subject data according to API v2.
  */
@@ -32,7 +33,9 @@
  Array of subgroups for subject
  */
 @property (nonatomic, strong) NSArray *subgroups;
+
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;
 - (NSString *)description;
+
 @end

@@ -8,25 +8,21 @@
 
 #import "TTPSubjectCell.h"
 
+
 @implementation TTPSubjectCell
 
 @synthesize subjectNameLabel =_subjectNameLabel;
 @synthesize subjectTypeLabel = _subjectTypeLabel;
 @synthesize locationLabel = _locationLabel;
-@synthesize activityView = _activityView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
     return self;
 }
 
-- (void)awakeFromNib;
-{
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 }

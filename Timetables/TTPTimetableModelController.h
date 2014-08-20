@@ -10,8 +10,17 @@
 #import "TTPTimetableDataViewController.h"
 #import "TTPTimetableAccessor.h"
 
+#import "TTPGroup.h"
+#import "TTPParser.h"
+
+
 @interface TTPTimetableModelController : NSObject <UIPageViewControllerDataSource>
+
+/**
+ Passed from mater view accessor with pre-defined timetable
+ */
 @property (strong, nonatomic) TTPTimetableAccessor *accessor;
 
 - (TTPTimetableDataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard;
+
 @end

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MVYSideMenuController.h"
+#import "TTPMainViewController.h"
+#import "TTPSavedGroupCell.h"
+
+#import "TTPGroup.h"
+#import "TTPParser.h"
+#import "TTPSharedSettingsController.h"
+
 /**
  Saved in NSUserDefaults groups viewing.
  */

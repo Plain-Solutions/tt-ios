@@ -27,9 +27,4 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
-/**
- Graphical activity type representation
- */
-@property (strong, nonatomic) IBOutlet UIView *activityView;
-
 @end

@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  Entity of department.
  Fetched from api.ssutt.org and deserialised from JSON
@@ -22,7 +23,6 @@
 @property (nonatomic, strong) NSString *tag;
 
 - (id)initWithNameTag:(NSString *)name tag:(NSString *)tag;
-
 - (NSString *)description;
 
 @end

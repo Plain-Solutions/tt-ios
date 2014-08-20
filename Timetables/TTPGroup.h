@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  An entity to store user parameters in NSUserDefaults and
  fancier data transition between views.
@@ -29,9 +30,20 @@
  */
 @property (nonatomic, strong) NSString *groupName;
 
+/**
+ Was it cachhed
+ */
+@property (nonatomic, assign) BOOL hasCache;
+
+/**
+ Cached timetable
+ */
+@property (nonatomic, strong) NSArray *timetable;
+
 - (id)initWithAllInfo:(NSString *)departmentName tag:(NSString *)departmentTag name:(NSString *)groupName;
 - (id)initWithCoder:(NSCoder *)decoder;
-- (id) copy;
 - (void)encodeWithCoder:(NSCoder *)encoder;
+- (id)copy;
+- (BOOL)isEqualTo:(TTPGroup *)group;
 
 @end

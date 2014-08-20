@@ -9,70 +9,53 @@
 #import "TTPDepMsgViewController.h"
 #import "MVYSideMenuController.h"
 #import "TTPGroup.h"
+#import "TTPSharedSettingsController.h"
 
 @interface TTPDepMsgViewController ()
-@property (nonatomic, strong) TTPParser *parser;
 @end
 
-@implementation TTPDepMsgViewController
+@implementation TTPDepMsgViewController {
+	TTPSharedSettingsController *_settings;
+	TTPParser *_parser;
+}
 
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
-	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	NSString *depTag = ((TTPGroup *)[NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"selectedGroup"]]).departmentTag;
-	
+	_settings = [TTPSharedSettingsController sharedController];
 	self.title = NSLocalizedString(@"Department message", nil);
 	
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.view];
 	[self.view addSubview:loadingView];
 	loadingView.delegate = self;
-	
 	loadingView.labelText = NSLocalizedString(@"Loading department message", nil);
 	[loadingView show:YES];
 	
-	
-	
+	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *msgURL = [NSString
 						   stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/msg",
-						   depTag];
+						   _settings.selectedGroup.departmentTag];
 							
 		ShowNetworkActivityIndicator();
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: msgURL]
-												 cachePolicy:NSURLRequestUseProtocolCachePolicy
-											 timeoutInterval:120];
+		NSURLRequest *request = CreateRequest(msgURL);
+		
 		NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
-		
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.parser = [[TTPParser alloc] init];
+			_parser = [TTPParser sharedParser];
 						
 			if (response.statusCode != 200) {
-				NSString *errorData = [[NSString alloc] init];
-				if (data != nil)
-					errorData = [self.parser parseError:data error:error];
-				
-				NSString *msg = [NSString stringWithFormat:@"Please report the following error and restart the app:\n%@ at %@(%@) with %d",
-								 errorData, depTag, msgURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Something bad happended!"
-																message: msg
-															   delegate: nil
-													  cancelButtonTitle:@"OK"
-													  otherButtonTitles:nil];
-				[alert show];
+				[self showErrAlert:data error:error messageURL:msgURL response:response];
 			}
 			else {
-				NSString *result = [self.parser parseDownloadedMessageForDepartment:data error:error];
+				NSString *result = [_parser parseDownloadedMessageForDepartment:data error:error];
 				self.departmentMessageView.font = [UIFont fontWithName:@"HelveticeNeue-Light" size:14.0f];
 				self.departmentMessageView.text = result;				
-			}
+				}
 			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
@@ -85,12 +68,30 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)menuBtnPressed:(id)sender {
-	
-	MVYSideMenuController *sideMenuController = [self sideMenuController];
-	if (sideMenuController) {
-		[sideMenuController openMenu];
-	}
-
+- (IBAction)menuBtnPressed:(id)sender
+{
+	OpenMenu();
 }
+
+- (void)showErrAlert:(NSData *)data error:(NSError *)error messageURL:(NSString *)msgURL response:(NSHTTPURLResponse *)response
+{
+	NSString *errorData = [[NSString alloc] init];
+	if (data != nil)
+		errorData = [_parser parseError:data error:error];
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
+	
+	NSString *msg;
+	if (response.statusCode)
+		msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@(%@) with %d", nil),
+					 errorData, _settings.selectedGroup.departmentTag, msgURL, response.statusCode];
+	else
+		msg = NSLocalizedString(@"Network seems to be down. Please, turn on cellular connection or Wi-Fi", nil);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title																message: msg
+													delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+}
+
 @end

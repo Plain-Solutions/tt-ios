@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "MVYSideMenuController.h"
+#import "TTPDepartmentViewController.h"
+#import "ViewControllerDefines.h"
+
 #import "TTPGroup.h"
+#import "TTPSharedSettingsController.h"
 
 @interface TTPMainViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paritySelector;
 
 // This is for the next version
 // - (IBAction)dayButtonTapped:(id)sender;
-
 - (IBAction)menuBtnTapped:(id)sender;
+
 @end

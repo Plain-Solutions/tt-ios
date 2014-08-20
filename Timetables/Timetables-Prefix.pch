@@ -15,5 +15,4 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
-#define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
+#define CapitalizedString(string) [NSString stringWithFormat:@"%@%@", [[string substringToIndex:1] capitalizedString], [string substringFromIndex:1]]

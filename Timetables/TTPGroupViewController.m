@@ -7,71 +7,57 @@
 //
 
 #import "TTPGroupViewController.h"
-#import "TTPMenuViewController.h"
-#import "TTPMainViewController.h"
-#import "MVYSideMenuController.h"
 
 @interface TTPGroupViewController ()
-@property (nonatomic, strong) TTPParser *parser;
 @end
 
-@implementation TTPGroupViewController
-@synthesize selectedDepartment = _selectedDepartment;
-@synthesize groupList = _groupList;
-
-- (id)initWithStyle:(UITableViewStyle)style;
-{
-    self = [super initWithStyle:style];
-    return self;
+@implementation TTPGroupViewController {
+	NSMutableArray *_groupList;
+	
+	TTPParser *_parser;
+	TTPSharedSettingsController *_settings;
 }
+@synthesize selectedDepartment = _selectedDepartment;
 
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
+	_settings = [TTPSharedSettingsController sharedController];
+	
     self.title = self.selectedDepartment.name;
 	
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:loadingView];
 	loadingView.delegate = self;
-
 	loadingView.labelText = NSLocalizedString(@"Loading groups list", nil);
 	[loadingView show:YES];
 	
-
+	
+	// Downloading group list
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *groupURL = [NSString stringWithFormat:@"http://api.ssutt.org:8080/1/department/%@/groups?filled=0",
 							  self.selectedDepartment.tag];
-
 		ShowNetworkActivityIndicator();
-		NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: groupURL]
-												 cachePolicy:NSURLRequestUseProtocolCachePolicy
-											 timeoutInterval:60];
+		
+		NSURLRequest *request = CreateRequest(groupURL);
         NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-			self.parser = [[TTPParser alloc] init];
+			_parser = [TTPParser sharedParser];
 			
 			if (response.statusCode != 200) {
-				NSString *errorData = [[NSString alloc] init];
-				if (data != nil)
-					errorData = [self.parser parseError:data error:error];
-				
-				NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@(%@) with %d", nil),
-								 errorData, self.selectedDepartment.tag, groupURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Something bad happened!", nil)
-																message: msg
-															   delegate: nil
-													  cancelButtonTitle:@"OK"
-													  otherButtonTitles:nil];
-				[alert show];
+				[self showErrorAlert:data
+							   error:error
+							groupURL:groupURL
+							response:response];
 			}
-			else
-				self.groupList = [self.parser parseGroups:data error:error];
-			
-			[self.tableView reloadData];
+			else {
+				_groupList = [_parser parseGroups:data error:error];
+				[self.tableView reloadData];
+				}
 			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
@@ -83,7 +69,6 @@
 {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
-	[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning;
@@ -95,7 +80,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return self.groupList.count;
+    return _groupList.count;
 }
 
 
@@ -107,7 +92,7 @@
 		cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
 	}
 	
-    cell.textLabel.text = [self.groupList objectAtIndex:indexPath.row];
+    cell.textLabel.text = [_groupList objectAtIndex:indexPath.row];
 
     return cell;
 }
@@ -116,34 +101,44 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	NSString *groupName = [self.groupList objectAtIndex:indexPath.row];
+	NSString *groupName = [_groupList objectAtIndex:indexPath.row];
 	
 	TTPGroup *selectedGroup = [[TTPGroup alloc] init];
 	selectedGroup.departmentName = self.selectedDepartment.name;
 	selectedGroup.departmentTag = self.selectedDepartment.tag;
 	selectedGroup.groupName = groupName;
 
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-	NSData *grp = [NSKeyedArchiver archivedDataWithRootObject:selectedGroup];
-	[defaults setObject:grp forKey:@"selectedGroup"];
+	_settings.selectedGroup = [selectedGroup copy];
 	
-	if (![defaults boolForKey:@"wasCfgd"]) {
-
-		[defaults setBool:YES forKey:@"wasCfgd"];
-		[defaults setObject:grp forKey:@"myGroup"];
+	if (!_settings.wasCfgd) {
+		_settings.wasCfgd = YES;
+		_settings.myGroup = [_settings.selectedGroup copy];
 	}
 
-	[defaults synchronize];
-	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-	if (![self.presentedViewController isBeingDismissed])
-	{
-		[[self sideMenuController] changeContentViewController:navigationController closeMenu:YES];
-	}
+	OpenMainView();
+}
+
+#pragma mark - Alerts
+- (void)showErrorAlert:(NSData *)data error:(NSError *)error groupURL:(NSString *)groupURL response:(NSHTTPURLResponse *)response
+{
+	NSString *errorData = [[NSString alloc] init];
+	if (data != nil)
+		errorData = [_parser parseError:data error:error];
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
 	
+	NSString *msg;
+	if (response.statusCode)
+		msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ at %@(%@) with %d: %@", nil),
+					 errorData, self.selectedDepartment.tag, groupURL, response.statusCode, errorData];
+	else
+		msg = NSLocalizedString(@"Network seems to be down. Please, turn on cellular connection or Wi-Fi", nil);
 
-
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+													message: msg
+												   delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
 }
 
 @end

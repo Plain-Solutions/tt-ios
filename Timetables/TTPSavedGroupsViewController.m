@@ -7,29 +7,22 @@
 //
 
 #import "TTPSavedGroupsViewController.h"
-#import "MVYSideMenuController.h"
-#import "TTPGroup.h"
-#import "TTPParser.h"
-#import "TTPMainViewController.h"
-#import "TTPSavedGroupCell.h"
 
 @interface TTPSavedGroupsViewController ()
-{
-	TTPGroup *_confirmDeletedMyGroup;
-}
-@property (nonatomic, strong) NSMutableArray *savedGroups;
-@property (nonatomic, strong) TTPGroup *myGroup;
-@property (nonatomic, strong) TTPParser *parser;
-@property (nonatomic, strong) NSUserDefaults *defaults;
 @end
 
-@implementation TTPSavedGroupsViewController
+@implementation TTPSavedGroupsViewController {
+	NSMutableArray *_savedGroups;
+	
+	TTPParser *_parser;
+	TTPSharedSettingsController *_settings;
+	TTPGroup *_confirmDeletedMyGroup;
+}
 
-@synthesize parser = _parser;
-
-- (void)viewDidLoad;
+- (void)viewDidLoad
 {
 	[super viewDidLoad];
+	_settings = [TTPSharedSettingsController sharedController];
 	[[self navigationController] setNavigationBarHidden:NO animated:YES];
 	self.navigationItem.title = NSLocalizedString(@"Saved groups", nil);
 
@@ -37,23 +30,19 @@
 	self.tableView.dataSource = self;
 	
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-	//self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
 	
-	self.parser = [[TTPParser alloc] init];
+	_parser = [TTPParser sharedParser];
 	
-	self.savedGroups = [[NSMutableArray alloc] init];
-	
-	self.defaults = [NSUserDefaults standardUserDefaults];
-	NSData *data = [self.defaults objectForKey:@"savedGroups"];
-	if (data != NULL)
-		self.savedGroups =[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	_savedGroups = (_settings.savedGroups)?MUTIFY_ARRAY(_settings.savedGroups):nil;
 	
 	[self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
 	[super viewDidAppear:animated];
-	if ([self.defaults boolForKey:@"noSavedGroupsShownHelp"] == NO && !self.savedGroups.count) {
+
+	if ( !_settings.noSavedGroupsShownHelp && !_savedGroups.count) {
 		NSString *alertTitle = NSLocalizedString(@"Saved groups", nil);
 		
 		NSString *msg = NSLocalizedString(@"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner", nil);
@@ -65,8 +54,7 @@
 											  otherButtonTitles:nil];
 		
 		[alert show];
-		[self.defaults setBool:YES forKey: @"noSavedGroupsShownHelp"];
-		[self.defaults synchronize];
+		_settings.noSavedGroupsShownHelp = YES;
 	}
 
 }
@@ -80,18 +68,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return self.savedGroups.count;
+    return _savedGroups.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TTPSavedGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	
 	if (cell == nil)
 		cell = [tableView dequeueReusableCellWithIdentifier:@"savedGroup" forIndexPath:indexPath];
 	
-	TTPGroup *group = [self.savedGroups objectAtIndex:indexPath.row];
-	cell.departmentLabel.text = [self.parser prettifyDepartmentNames:group.departmentName trim:NO];
+	TTPGroup *group = [_savedGroups objectAtIndex:indexPath.row];
+	cell.departmentLabel.text = [_parser prettifyDepartmentNames:group.departmentName trim:NO];
 	cell.groupLabel.text=  group.groupName;
     return cell;
 }
@@ -102,13 +90,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath;
+forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[self.savedGroups removeObjectAtIndex:indexPath.row];
-		NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedGroups];
-		[self.defaults setObject:data forKey:@"savedGroups"];
-		[self.defaults synchronize];
+		[_savedGroups removeObjectAtIndex:indexPath.row];
+		_settings.savedGroups = _savedGroups;
+
 		[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]]
 							  withRowAnimation:UITableViewRowAnimationFade];
 	}
@@ -116,8 +103,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self.defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:(TTPGroup *)self.savedGroups[indexPath.row]] forKey:@"selectedGroup"];
-	[self.defaults synchronize];
+	_settings.selectedGroup = _savedGroups[indexPath.row];
 	
 	TTPMainViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainView"];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
@@ -128,10 +114,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 	
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 18 + [self heightForText:((TTPGroup *)self.savedGroups[indexPath.row]).departmentName];
+	return 10 + [self heightForText:((TTPGroup *)_savedGroups[indexPath.row]).departmentName];
 }
 
 -(CGFloat)heightForText:(NSString *)text
@@ -139,18 +124,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath;
 	NSInteger MAX_HEIGHT = 2000;
 	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
 	textView.text = text;
-	textView.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:15.0f];
+	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
 	[textView sizeToFit];
 	return textView.frame.size.height;
 }
 
+#pragma mark - Actions
 
-- (IBAction)menuBtnPressed:(id)sender {
-	MVYSideMenuController *sideMenuController = [self sideMenuController];
-	if (sideMenuController) {
-		[sideMenuController openMenu];
-	}
-
+- (IBAction)menuBtnPressed:(id)sender
+{
+	OpenMenu();
 }
 
 @end

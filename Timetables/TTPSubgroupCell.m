@@ -8,9 +8,10 @@
 
 #import "TTPSubgroupCell.h"
 
+
 @implementation TTPSubgroupCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
@@ -18,11 +19,7 @@
     return self;
 }
 
-- (void)awakeFromNib;
-{
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 }

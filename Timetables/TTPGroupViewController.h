@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "TTPMenuViewController.h"
+#import "TTPMainViewController.h"
 #import "ViewControllerDefines.h"
+#import "MVYSideMenuController.h"
+#import "MBProgressHUD.h"
+
 #import "TTPDepartment.h"
 #import "TTPParser.h"
 #import "TTPGroup.h"
-#import "MBProgressHUD.h"
+#import "TTPSharedSettingsController.h"
 
 /**
  Group selection view.
@@ -19,12 +25,7 @@
 @interface TTPGroupViewController : UITableViewController <MBProgressHUDDelegate>
 
 /**
- Fetched grouplist.
- */
-@property (nonatomic, strong) NSMutableArray *groupList;
-
-/**
- Selected department from the last screen.
+ Selected department from the previous screen.
  */
 @property (nonatomic, strong) TTPDepartment *selectedDepartment;
 

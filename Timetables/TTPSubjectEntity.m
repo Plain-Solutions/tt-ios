@@ -8,13 +8,10 @@
 
 #import "TTPSubjectEntity.h"
 
-@implementation TTPSubjectEntity
-@synthesize name = _name;
-@synthesize activity = _activity;
-@synthesize parity = _parity;
-@synthesize subgroups = _subgroups;
 
-- (id)initWithCoder:(NSCoder *)decoder;
+@implementation TTPSubjectEntity
+
+- (id)initWithCoder:(NSCoder *)decoder
 {
 	if (self = [super init]) {
 		self.name = [decoder decodeObjectForKey:@"name"];
@@ -22,10 +19,11 @@
 		self.parity = [decoder decodeObjectForKey:@"parity"];
 		self.subgroups = [decoder decodeObjectForKey:@"subgroups"];
 	}
+	
 	return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder;
+- (void)encodeWithCoder:(NSCoder *)encoder
 {
 	[encoder encodeObject:self.name forKey:@"name"];;
 	[encoder encodeObject:self.activity forKey:@"activity"];
@@ -33,7 +31,7 @@
 	[encoder encodeObject:self.subgroups forKey:@"subgroups"];
 }
 
-- (NSString *)description;
+- (NSString *)description
 {
 	NSMutableString *description = [[NSMutableString alloc] init];
 	[description appendString:[NSString stringWithFormat:@"\tSubject name: %@\n\tActivity: %@\n\tParity: %@\n", self.name, self.activity, self.parity]];
@@ -41,6 +39,8 @@
 	for (id subgroup in self.subgroups) {
 		[description appendString:[subgroup description]];
 	}
+	
 	return description;
 }
+
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  Entity to store timetable according to API v2.
  */
@@ -31,4 +32,5 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;
 - (NSString *)description;
+
 @end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
 		5511C27C1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
 		5511C27D1963DD7E00E2C33B /* TTPSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */; };
 		5511C280196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5511C27F196424DB00E2C33B /* TTPTimetableAccessor.m */; };
@@ -36,7 +35,6 @@
 		55543A471980521800C08BB3 /* menu-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55543A451980521800C08BB3 /* menu-25@2x.png */; };
 		555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
 		555DE4DD1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555DE4DB1967EBD100F4D939 /* TTPSubgroupCell.m */; };
-		555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */; };
 		5571DFD9195F66980089E7E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFD8195F66980089E7E7 /* Foundation.framework */; };
 		5571DFDB195F66980089E7E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDA195F66980089E7E7 /* CoreGraphics.framework */; };
 		5571DFDD195F66980089E7E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571DFDC195F66980089E7E7 /* UIKit.framework */; };
@@ -79,6 +77,7 @@
 		5576C2171980304800210DD1 /* TTPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576C2151980304800210DD1 /* TTPSettingsViewController.m */; };
 		557B458B1988282800470EE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B45891988282800470EE0 /* Default-568h@2x.png */; };
 		557B458C1988282800470EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 557B458A1988282800470EE0 /* Default@2x.png */; };
+		5586E58E199BE01E0084FB17 /* TTPSharedSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */; };
 		55872B2819851D2D004F0C01 /* TTPSavedGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */; };
 		55A879C4196D33A600C941A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A879C6196D33A600C941A1 /* Localizable.strings */; };
 		55C4ABC2198502E6007F1017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ABC1198502E6007F1017 /* MBProgressHUD.m */; };
@@ -105,8 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectDetailTableViewController.h; sourceTree = "<group>"; };
-		55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectDetailTableViewController.m; sourceTree = "<group>"; };
 		5511C27A1963DD7E00E2C33B /* TTPSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSubjectCell.h; sourceTree = "<group>"; };
 		5511C27B1963DD7E00E2C33B /* TTPSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSubjectCell.m; sourceTree = "<group>"; };
 		5511C27E196424DB00E2C33B /* TTPTimetableAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPTimetableAccessor.h; sourceTree = "<group>"; };
@@ -178,6 +175,8 @@
 		5576C2151980304800210DD1 /* TTPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSettingsViewController.m; sourceTree = "<group>"; };
 		557B45891988282800470EE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		557B458A1988282800470EE0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5586E58C199BE01E0084FB17 /* TTPSharedSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSharedSettingsController.h; sourceTree = "<group>"; };
+		5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSharedSettingsController.m; sourceTree = "<group>"; };
 		55872B2619851D2D004F0C01 /* TTPSavedGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPSavedGroupCell.h; sourceTree = "<group>"; };
 		55872B2719851D2D004F0C01 /* TTPSavedGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPSavedGroupCell.m; sourceTree = "<group>"; };
 		55A879C5196D33A600C941A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -336,6 +335,8 @@
 				55FAE796196C01AD004DFC62 /* TTPDaySequenceEntity.m */,
 				55FAE798196C021A004DFC62 /* TTPSubjectEntity.h */,
 				55FAE799196C021A004DFC62 /* TTPSubjectEntity.m */,
+				5586E58C199BE01E0084FB17 /* TTPSharedSettingsController.h */,
+				5586E58D199BE01E0084FB17 /* TTPSharedSettingsController.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -393,8 +394,6 @@
 			children = (
 				5534F1AA196C70650080E851 /* TTPDepMsgViewController.h */,
 				5534F1AB196C70650080E851 /* TTPDepMsgViewController.m */,
-				55115F8D196734280072CB00 /* TTPSubjectDetailTableViewController.h */,
-				55115F8E196734280072CB00 /* TTPSubjectDetailTableViewController.m */,
 			);
 			name = "Subject&Department Details";
 			sourceTree = "<group>";
@@ -556,10 +555,10 @@
 				5576C1E0197FA0E900210DD1 /* TTPMainViewContainerViewController.m in Sources */,
 				5571E014195F71150089E7E7 /* TTPDepartmentViewController.m in Sources */,
 				5576C1DC197F9AAB00210DD1 /* TTPTimetableDataViewController.m in Sources */,
-				55115F8F196734280072CB00 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5520FB6C1961A20A0031B156 /* TTPSubgroup.m in Sources */,
 				5576C201197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5576C1D8197F99B000210DD1 /* TTPTimetableModelController.m in Sources */,
+				5586E58E199BE01E0084FB17 /* TTPSharedSettingsController.m in Sources */,
 				555DE4DC1967EBD100F4D939 /* TTPSubgroupCell.m in Sources */,
 				5537A192196ADF6200301897 /* TTPSavedGroupsViewController.m in Sources */,
 				5534F1AC196C70650080E851 /* TTPDepMsgViewController.m in Sources */,
@@ -584,7 +583,6 @@
 				5571E004195F66980089E7E7 /* TimetablesTests.m in Sources */,
 				5576C202197FF56300210DD1 /* MVYSideMenuController.m in Sources */,
 				5511C281196424DB00E2C33B /* TTPTimetableAccessor.m in Sources */,
-				555DE4DE1967F6F600F4D939 /* TTPSubjectDetailTableViewController.m in Sources */,
 				5576C204197FF56300210DD1 /* MVYSideMenuOptions.m in Sources */,
 				5576C1E5197FA9A300210DD1 /* TTPMenuViewController.m in Sources */,
 				5520FB6D1961A20A0031B156 /* TTPSubgroup.m in Sources */,
@@ -665,7 +663,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -697,7 +695,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -708,12 +706,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -724,12 +724,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Vladislav Slepukhin (S6PWEEQSRT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vladislav Slepukhin (S6PWEEQSRT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Timetables/Timetables-Prefix.pch";
 				INFOPLIST_FILE = "Timetables/Timetables-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,88 +7,70 @@
 //
 
 #import "TTPDepartmentViewController.h"
-#import "MVYSideMenuController.h"
+
 
 @interface TTPDepartmentViewController ()
-@property (nonatomic, strong) TTPParser *parser;
 @end
 
 @implementation TTPDepartmentViewController {
-	NSUserDefaults *_defaults;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style;
-{
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
+	NSMutableArray *_departmentList;
+	
+	TTPSharedSettingsController *_settings;
+	TTPParser *_parser;
 }
 
 - (void)viewDidLoad;
 {
    [super viewDidLoad];
-	
+	_settings = [TTPSharedSettingsController sharedController];
+
 	self.title= NSLocalizedString(@"Select department", nil);
-	_defaults = [NSUserDefaults standardUserDefaults];
-
-	if ([_defaults boolForKey:@"cameFromSettings"]) {
-		[self.navigationItem setHidesBackButton:NO animated:YES];
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(backBtnTapepd:)];
-	}
-	else
-	{
-		if (![_defaults boolForKey:@"wasCfgd"]) {
-		[self.navigationItem setHidesBackButton:YES animated:NO];
-	}
-	else self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-25"]
-																				  style:UIBarButtonItemStyleBordered
-																				 target:self
-																				  action:@selector(menuBtnTapped:)];}
-
 	
+	if (_settings.cameFromSettings) {
+		[self.navigationItem setHidesBackButton:NO animated:YES];
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+												 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+												 target:self
+												 action:@selector(backBtnTapepd:)];
+	}
+	else if (!_settings.wasCfgd)
+		[self.navigationItem setHidesBackButton:YES animated:NO];
+	else
+		SetMenuButton();
+
 	MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:loadingView];
 	loadingView.delegate = self;
-	
 	loadingView.labelText = NSLocalizedString(@"Loading departments list", nil);
 	[loadingView show:YES];
 	
+	// Downloading department list
 	dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_async(downloadQueue, ^{
 		NSString *depURL = @"http://api.ssutt.org:8080/1/departments";
 		ShowNetworkActivityIndicator();
 
-		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: depURL]
-												 cachePolicy:NSURLRequestUseProtocolCachePolicy
-											 timeoutInterval:60];
+		NSURLRequest *request = CreateRequest(depURL);
+		
         NSHTTPURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request
 											 returningResponse:&response
 														 error:&error];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.parser = [[TTPParser alloc] init];
+			_parser = [TTPParser sharedParser];
 
 			if (response.statusCode != 200) {
-				NSString *errorData = [[NSString alloc] init];
-				if (data != nil)
-					errorData = [self.parser parseError:data error:error];
-				NSString *alertTitle = NSLocalizedString(@"Something bad happened!", nil);
-				
-				NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ on %@ with %d", nil),
-								 errorData, depURL, response.statusCode];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle: alertTitle																message: msg
-															   delegate: nil
-													  cancelButtonTitle:@"OK"
-													  otherButtonTitles:nil];
-				
-				[alert show];
-				
+				[self showErrorAlert:data
+							   error:error
+					   departmentURL:depURL
+							response:response];
 			}
 			else {
-				self.departmentList = [self.parser parseDepartments:data error:error];
-			[self.tableView reloadData];
-			}
+				_departmentList = [_parser parseDepartments:data
+													  error:error];
+				[self.tableView reloadData];
+				}
 			[loadingView hide:YES];
 			HideNetworkActivityIndicator();
         });
@@ -111,7 +93,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-   return self.departmentList.count;
+   return _departmentList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -122,9 +104,9 @@
 		cell = [tableView dequeueReusableCellWithIdentifier:@"DepCell" forIndexPath:indexPath];
 	}
 	
-    TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
+    TTPDepartment *dep = [_departmentList objectAtIndex:indexPath.row];
     
-	cell.textLabel.text = [self.parser prettifyDepartmentNames:dep.name trim:YES];
+	cell.textLabel.text = [_parser prettifyDepartmentNames:dep.name trim:YES];
     return cell;
 }
 
@@ -139,30 +121,45 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 		
         TTPGroupViewController *controller = [segue destinationViewController];
-		TTPDepartment *dep = [self.departmentList objectAtIndex:indexPath.row];
+		TTPDepartment *dep = [_departmentList objectAtIndex:indexPath.row];
 		controller.selectedDepartment = dep;
     }
 }
 
-
-
 - (IBAction)menuBtnTapped:(id)sender {
-	
-	MVYSideMenuController *sideMenuController = [self sideMenuController];
-	if (sideMenuController) {
-		[sideMenuController openMenu];
-	}
+	OpenMenu();
 }
 
 - (IBAction)backBtnTapepd:(id)sender {
-	MVYSideMenuController *sideMenuController = [self sideMenuController];
-	[_defaults setBool:NO forKey:@"cameFromSettings"];
-	[_defaults setBool:YES forKey:@"wasCfgd"];
-	[_defaults synchronize];
-	UIViewController *contentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsView"];
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentVC];
-	[sideMenuController changeContentViewController:navigationController closeMenu:YES];
+	_settings.cameFromSettings = NO;
+	_settings.wasCfgd = YES;
 
+	MenuItemTap(@"SettingsView");
+}
+
+#pragma mark - Alerts
+
+- (void)showErrorAlert:(NSData *)data error:(NSError *)error departmentURL:(NSString *)depURL response:(NSHTTPURLResponse *)response
+{
+	NSString *errorData = [[NSString alloc] init];
+	if (data != nil)
+		errorData = [_parser parseError:data error:error];
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
+	
+	NSString *msg;
+	if (response.statusCode)
+		msg = [NSString stringWithFormat:NSLocalizedString(@"Please report the following error and restart the app:\n%@ on %@ with %d: %@", nil),
+			   errorData, depURL, response.statusCode, errorData];
+	else
+		msg = NSLocalizedString(@"Network seems to be down. Please, turn on cellular connection or Wi-Fi", nil);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+													message: msg
+												   delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	
+	[alert show];
 }
 
 @end

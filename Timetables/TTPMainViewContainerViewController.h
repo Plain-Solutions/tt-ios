@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "MBProgressHUD.h"
+#import "ViewControllerDefines.h"
+#import "TTPTimetableModelController.h"
+#import "TTPTimetableDataViewController.h"
+
+#import "TTPGroup.h"
+#import "TTPParser.h"
+#import "TTPTimetableAccessor.h"
+#import "TTPSharedSettingsController.h"
+
 @interface TTPMainViewContainerViewController : UIViewController <UIPageViewControllerDelegate, MBProgressHUDDelegate>
 
 @property (strong, nonatomic) UIPageViewController *timetableViewController;
