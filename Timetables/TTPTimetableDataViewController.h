@@ -23,7 +23,7 @@
 #define IS_IPHONE_5 self.view.bounds.size.height > 480.0
 
 
-@interface TTPTimetableDataViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TTPTimetableDataViewController : UITableViewController
 
 @property (assign, nonatomic) NSInteger day;
 @property (weak, nonatomic) IBOutlet UITableView *table;
