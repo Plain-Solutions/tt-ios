@@ -49,9 +49,9 @@
 	// extra scrolling
 	self.table.tableFooterView = (IS_IPHONE_5)?Frame(0, 0, ViewWidth, 30):Frame(0, 0, ViewWidth, 100);
 	// Pull to refresh
-	UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-	[refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-	[self.table addSubview:refreshControl];
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+	[self.table addSubview:self.refreshControl];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
