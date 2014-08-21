@@ -45,9 +45,6 @@
 	// A small gap between navbar and first cell in the table
 	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
 
-	// Create table footer to give enough space to scroll and avoid
-	// extra scrolling
-	self.table.tableFooterView = (IS_IPHONE_5)?Frame(0, 0, ViewWidth, 30):Frame(0, 0, ViewWidth, 100);
 	// Pull to refresh
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
