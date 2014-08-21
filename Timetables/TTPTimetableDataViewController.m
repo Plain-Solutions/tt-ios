@@ -49,9 +49,9 @@
 	// extra scrolling
 	self.table.tableFooterView = (IS_IPHONE_5)?Frame(0, 0, ViewWidth, 30):Frame(0, 0, ViewWidth, 100);
 	// Pull to refresh
-	UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-	[refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-	[self.table addSubview:refreshControl];
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+	[self.table addSubview:self.refreshControl];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
@@ -68,9 +68,9 @@
 	for (TTPDaySequenceEntity *e in _accessor.timetable)
 		for (TTPSubjectEntity *_e in e.subjects)
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
-						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
+						  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
-
+	NSLog(@"%@", [_heights description]);
 	[self.table reloadData];
 }
 
