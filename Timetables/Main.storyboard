@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="urC-rf-re2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="urC-rf-re2">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
-        <!--Department View Controller - depView-->
+        <!--depView-->
         <scene sceneID="etI-To-1ke">
             <objects>
                 <tableViewController storyboardIdentifier="DepView" id="slJ-ZX-oXb" customClass="TTPDepartmentViewController" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="-97" y="-397"/>
         </scene>
-        <!--Group View Controller - grpView-->
+        <!--grpView-->
         <scene sceneID="nxb-ca-b1v">
             <objects>
                 <tableViewController id="3P8-xX-Enz" customClass="TTPGroupViewController" sceneMemberID="viewController">
@@ -220,7 +220,7 @@
             </objects>
             <point key="canvasLocation" x="901" y="-397"/>
         </scene>
-        <!--Main View Controller - dayname-->
+        <!--dayname-->
         <scene sceneID="sXt-UL-qeW">
             <objects>
                 <viewController storyboardIdentifier="MainView" id="urC-rf-re2" customClass="TTPMainViewController" sceneMemberID="viewController">
@@ -274,7 +274,7 @@
             </objects>
             <point key="canvasLocation" x="1316" y="-397"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="bM4-oA-AhB">
             <objects>
                 <tableViewController storyboardIdentifier="SettingsView" id="620-tq-t7m" customClass="TTPSettingsViewController" sceneMemberID="viewController">
@@ -370,7 +370,7 @@
             </objects>
             <point key="canvasLocation" x="-565" y="-397"/>
         </scene>
-        <!--Dep Msg View Controller - Title-->
+        <!--Title-->
         <scene sceneID="pSa-Rq-YJm">
             <objects>
                 <viewController storyboardIdentifier="DepMsgView" id="mwc-Cy-GJS" customClass="TTPDepMsgViewController" sceneMemberID="viewController">
@@ -480,7 +480,7 @@
             </objects>
             <point key="canvasLocation" x="2181" y="-361"/>
         </scene>
-        <!--Saved Groups View Controller - Title-->
+        <!--Title-->
         <scene sceneID="obT-cp-4M6">
             <objects>
                 <tableViewController storyboardIdentifier="SavedGroupsView" id="Ycv-ut-mmJ" customClass="TTPSavedGroupsViewController" sceneMemberID="viewController">
@@ -553,6 +553,9 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination">
+            <size key="portraitSize" width="320" height="480"/>
+            <size key="landscapeSize" width="480" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
 </document>

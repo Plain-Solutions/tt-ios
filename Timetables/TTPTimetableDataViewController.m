@@ -68,9 +68,9 @@
 	for (TTPDaySequenceEntity *e in _accessor.timetable)
 		for (TTPSubjectEntity *_e in e.subjects)
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
-						  forKey:[NSString stringWithFormat:@"%d", _e.hash]];
+						  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
-
+	NSLog(@"%@", [_heights description]);
 	[self.table reloadData];
 }
 
