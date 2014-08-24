@@ -288,8 +288,16 @@
 											  _heights = [NSDictionary dictionaryWithDictionary:__heights];
 											  HideNetworkActivityIndicator();
 											  if (_accessor.timetable.count) {
+												  TTPGroup *__myGroup = [_settings.myGroup copy];
+												  __myGroup.hasCache = YES;
+												  __myGroup.timetable = _accessor.timetable;
+												  _settings.myGroup = __myGroup;
 												  [_accessor populateAvailableDays];
 												  [self.tableView reloadData];
+											  }
+											  else
+											  {
+												  
 											  }
  												
 										  }
@@ -328,6 +336,18 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
 													message: msg
 												   delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+}
+
+- (void)emptyTimetableFetchedAlert;
+{
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
+	NSString *msg = NSLocalizedString(@"Fetched timetable was neither loaded, nor cached as it has become empty", nil);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+													message:msg
+												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];

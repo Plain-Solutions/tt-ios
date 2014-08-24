@@ -29,7 +29,7 @@
 
 "Announcement!" = "Внимание!";
 
-"It seems that you are running Timetables for the first time! Choose your department and group." = "Похоже, что вы запустили Расписания в первый раз. Выберите свой факультет и группу.";
+"It seems that you are running Timetables for the first time! Choose your department and group." = "Похоже, что Расписания запущены в первый раз. Выберите свой факультет и группу.";
 
 "Something bad happened!" = "Беда!";
 
@@ -65,7 +65,7 @@
 
 "Search" = "Поиск";
 
-"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner" = "Здесь вы можете хранить ссылки на группы ваших друзей для быстрого доступа. Чтобы добавить группу нажмите ★ на главном экране в правом углу.";
+"Here you can store your friends' groups for quick access. To add a group tap ★ on the main view right corner" = "Здесь можно хранить ссылки на группы ваших друзей для быстрого доступа. Чтобы добавить группу нажмите ★ на главном экране в правом углу.";
 
 "Network seems to be down. Please, turn on cellular connection or Wi-Fi" = "Нет подключения к сети. Включите мобильную сеть передачи данных или Wi-Fi";
 
@@ -97,4 +97,5 @@
 
 "Dismiss" = "Скрыть";
 
+"Fetched timetable was neither loaded, nor cached as it has become empty" = "Обновленное расписание не было загружено и сохранено в кеш, так как оно оказалось пустым";
 
