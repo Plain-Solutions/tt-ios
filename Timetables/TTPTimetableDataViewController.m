@@ -67,7 +67,6 @@
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
 						  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
-	NSLog(@"%@", [_heights description]);
 	[self.tableView reloadData];
 }
 
@@ -100,7 +99,6 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	NSLog(@"Here for day:%d parity:%d", self.day, self.parity);
 	return [_accessor lessonsCountOnDayParity:self.day parity:self.parity];
 }
 
