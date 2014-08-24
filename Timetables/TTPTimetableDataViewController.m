@@ -90,11 +90,11 @@
 {
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
-//	if (seqs.count)
+	if (seqs.count && section < seqs.count)
 		return [_accessor lessonsCountOnDayParitySequence:self.day
 															parity:self.parity
 														sequence:[[seqs objectAtIndex:section] integerValue]];
-//	return 0;
+	return 0;
 }
 
 
@@ -224,8 +224,8 @@
 {
 	NSInteger MAX_HEIGHT = 2000;
 	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
-	textView.text = text;
-	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19.0f];
+	textView.text = [text substringWithRange:NSMakeRange(0, text.length - 2)];
+	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
 	[textView sizeToFit];
 	return textView.frame.size.height;
 }
