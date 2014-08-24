@@ -38,17 +38,17 @@
 			});});
 	}
 
-	self.table.dataSource = self;
-	self.table.delegate = self;
-	self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 	// A small gap between navbar and first cell in the table
-	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
+	[self.tableView setContentInset:UIEdgeInsetsMake(8,0,0,0)];
 
 	// Pull to refresh
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-	[self.table addSubview:self.refreshControl];
+	[self.tableView addSubview:self.refreshControl];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
@@ -68,7 +68,7 @@
 						  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
 	NSLog(@"%@", [_heights description]);
-	[self.table reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -90,14 +90,17 @@
 {
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
-
-	return [_accessor lessonsCountOnDayParitySequence:self.day
+//	if (seqs.count)
+		return [_accessor lessonsCountOnDayParitySequence:self.day
 															parity:self.parity
-														  sequence:[[seqs objectAtIndex:section] integerValue]];
+														sequence:[[seqs objectAtIndex:section] integerValue]];
+//	return 0;
 }
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+	NSLog(@"Here for day:%d parity:%d", self.day, self.parity);
 	return [_accessor lessonsCountOnDayParity:self.day parity:self.parity];
 }
 
@@ -286,7 +289,7 @@
 											  HideNetworkActivityIndicator();
 											  if (_accessor.timetable.count) {
 												  [_accessor populateAvailableDays];
-												  [self.table reloadData];
+												  [self.tableView reloadData];
 											  }
  												
 										  }
@@ -302,7 +305,7 @@
 	if ([notification.name isEqualToString:@"parityUpdated"]) {
 		NSInteger parity = [[notification object] integerValue];
 		self.parity = parity;
-		[self.table reloadData];
+		[self.tableView reloadData];
 	}
 }
 
