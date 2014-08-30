@@ -38,20 +38,17 @@
 			});});
 	}
 
-	self.table.dataSource = self;
-	self.table.delegate = self;
-	self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 	// A small gap between navbar and first cell in the table
-	[self.table setContentInset:UIEdgeInsetsMake(8,0,0,0)];
+	[self.tableView setContentInset:UIEdgeInsetsMake(8,0,0,0)];
 
-	// Create table footer to give enough space to scroll and avoid
-	// extra scrolling
-	self.table.tableFooterView = (IS_IPHONE_5)?Frame(0, 0, ViewWidth, 30):Frame(0, 0, ViewWidth, 100);
 	// Pull to refresh
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-	[self.table addSubview:self.refreshControl];
+	[self.tableView addSubview:self.refreshControl];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateParity:)
@@ -70,8 +67,7 @@
 			[__heights setObject:[NSNumber numberWithFloat:MAGIC_NUMBER + [self heightForText:_e.name]]
 						  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_e.hash]];
 	_heights = [NSDictionary dictionaryWithDictionary:__heights];
-	NSLog(@"%@", [_heights description]);
-	[self.table reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -93,11 +89,13 @@
 {
 	NSArray *seqs = [_accessor availableSequencesOnDayParity:self.day
 																   parity:self.parity];
-
-	return [_accessor lessonsCountOnDayParitySequence:self.day
+	if (seqs.count && section < seqs.count)
+		return [_accessor lessonsCountOnDayParitySequence:self.day
 															parity:self.parity
-														  sequence:[[seqs objectAtIndex:section] integerValue]];
+														sequence:[[seqs objectAtIndex:section] integerValue]];
+	return 0;
 }
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -224,8 +222,8 @@
 {
 	NSInteger MAX_HEIGHT = 2000;
 	UITextView * textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 280, MAX_HEIGHT)];
-	textView.text = text;
-	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19.0f];
+	textView.text = [text substringWithRange:NSMakeRange(0, text.length - 2)];
+	textView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
 	[textView sizeToFit];
 	return textView.frame.size.height;
 }
@@ -288,8 +286,16 @@
 											  _heights = [NSDictionary dictionaryWithDictionary:__heights];
 											  HideNetworkActivityIndicator();
 											  if (_accessor.timetable.count) {
+												  TTPGroup *__myGroup = [_settings.myGroup copy];
+												  __myGroup.hasCache = YES;
+												  __myGroup.timetable = _accessor.timetable;
+												  _settings.myGroup = __myGroup;
 												  [_accessor populateAvailableDays];
-												  [self.table reloadData];
+												  [self.tableView reloadData];
+											  }
+											  else
+											  {
+												  
 											  }
  												
 										  }
@@ -305,7 +311,7 @@
 	if ([notification.name isEqualToString:@"parityUpdated"]) {
 		NSInteger parity = [[notification object] integerValue];
 		self.parity = parity;
-		[self.table reloadData];
+		[self.tableView reloadData];
 	}
 }
 
@@ -328,6 +334,18 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
 													message: msg
 												   delegate: nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+}
+
+- (void)emptyTimetableFetchedAlert;
+{
+	NSString *title = NSLocalizedString(@"Something bad happened!", nil);
+	NSString *msg = NSLocalizedString(@"Fetched timetable was neither loaded, nor cached as it has become empty", nil);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+													message:msg
+												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];

@@ -27,10 +27,6 @@
     [super viewDidLoad];
 	_settings = [TTPSharedSettingsController sharedController];
 	_accessor = [TTPTimetableAccessor sharedAccessor];
-	//  This will be added in the next version
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(updateDayTapped:) name:@"updateDayButtonTapped"
-//											   object:nil];
 	if (_settings.selectedGroup) {
 		
 		MBProgressHUD *loadingView = [[MBProgressHUD alloc] initWithView:self.view];
@@ -234,17 +230,4 @@
 										  otherButtonTitles:nil];
 	[alert show];
 }
-
-// For the next release
-//- (void)updateDayTapped:(NSNotification *)notification
-//{
-//	NSInteger day = [[notification object] integerValue];
-//	TTPTimetableDataViewController *startingViewController = [self.modelController
-//															  viewControllerAtIndex:day storyboard:self.storyboard];
-//	NSArray *viewControllers = @[startingViewController];
-//	
-//	[self.timetableViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//	
-//
-//}
 @end

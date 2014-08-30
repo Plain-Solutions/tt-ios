@@ -20,13 +20,11 @@
 #import "TTPSharedSettingsController.h"
 
 #define CELL_HEIGHT 60
-#define IS_IPHONE_5 self.view.bounds.size.height > 480.0
 
 
 @interface TTPTimetableDataViewController : UITableViewController
 
 @property (assign, nonatomic) NSInteger day;
-@property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) TTPTimetableAccessor *accessor;
 @property (assign, nonatomic) NSInteger parity;
 @property (strong, nonatomic) NSArray *dayLessons;
